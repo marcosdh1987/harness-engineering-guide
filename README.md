@@ -42,9 +42,30 @@ This is the same strict validation path used in CI before deployment.
 
 ## GitHub Pages deployment
 
-Pull requests run a docs validation workflow that builds the site with `mkdocs build --strict` and uploads the generated `site/` directory as an artifact for inspection.
+The site is deployed to GitHub Pages from the `gh-pages` branch using [JamesIves/github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action).
 
-Pushes to `main` run the GitHub Pages deployment workflow, which builds the site, uploads the generated `site/` artifact for Pages, and deploys it with the official GitHub Pages actions.
+### One-time repository setup
+
+Enable GitHub Pages in **Settings → Pages** and set the source to:
+
+- **Source**: Deploy from a branch
+- **Branch**: `gh-pages` / `/ (root)`
+
+This only needs to be done once. The `gh-pages` branch is created automatically on the first push to `main`.
+
+### Workflows
+
+| Workflow | Trigger | What it does |
+|---|---|---|
+| `docs-check.yml` | Every PR and push to `main` | Validates the build with `mkdocs build --strict` |
+| `pages.yml` | Push to `main` | Deploys to `gh-pages` branch (preserves PR preview directories) |
+| `pr-preview.yml` | PR opened / updated | Deploys a live preview to `pr-preview/pr-<N>/` and posts the URL as a PR comment |
+| `pr-preview-cleanup.yml` | PR closed | Removes the preview directory and its PR comment |
+
+PR preview URLs follow the pattern:
+```
+https://marcosdh1987.github.io/harness-engineering-guide/pr-preview/pr-<N>/
+```
 
 ## Open-source safety
 
