@@ -42,23 +42,22 @@ This is the same strict validation path used in CI before deployment.
 
 ## GitHub Pages deployment
 
-The site is deployed to GitHub Pages from the `gh-pages` branch using [JamesIves/github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action).
+The site is deployed to GitHub Pages with the official GitHub Pages Actions workflow.
 
 ### One-time repository setup
 
 Enable GitHub Pages in **Settings → Pages** and set the source to:
 
-- **Source**: Deploy from a branch
-- **Branch**: `gh-pages` / `/ (root)`
+- **Build and deployment source**: **GitHub Actions**
 
-This only needs to be done once. The `gh-pages` branch is created automatically on the first push to `main`.
+This only needs to be done once. The `Deploy GitHub Pages` workflow uploads the built `site/` artifact and publishes it through the `github-pages` environment on pushes to `main` or manual runs.
 
 ### Workflows
 
 | Workflow | Trigger | What it does |
 |---|---|---|
 | `docs-check.yml` | Every PR and push to `main` | Validates the build with `mkdocs build --strict` |
-| `pages.yml` | Push to `main` | Deploys to `gh-pages` branch (preserves PR preview directories) |
+| `pages.yml` | Push to `main`, manual run | Builds the site, uploads the Pages artifact, and deploys with the official GitHub Pages Actions flow |
 | `pr-preview.yml` | PR opened / updated | Deploys a live preview to `pr-preview/pr-<N>/` and posts the URL as a PR comment |
 | `pr-preview-cleanup.yml` | PR closed | Removes the preview directory and its PR comment |
 
