@@ -58,13 +58,6 @@ This only needs to be done once. The `Deploy GitHub Pages` workflow uploads the 
 |---|---|---|
 | `docs-check.yml` | Every PR and push to `main` | Validates the build with `mkdocs build --strict` |
 | `pages.yml` | Push to `main`, manual run | Builds the site, uploads the Pages artifact, and deploys with the official GitHub Pages Actions flow |
-| `pr-preview.yml` | PR opened / updated | Deploys a live preview to `pr-preview/pr-<N>/` and posts the URL as a PR comment |
-| `pr-preview-cleanup.yml` | PR closed | Removes the preview directory and its PR comment |
-
-PR preview URLs follow the pattern:
-```
-https://marcosdh1987.github.io/harness-engineering-guide/pr-preview/pr-<N>/
-```
 
 ## Open-source safety
 
