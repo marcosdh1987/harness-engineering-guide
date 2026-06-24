@@ -38,9 +38,17 @@ mkdocs serve
 mkdocs build --strict
 ```
 
+This is the same strict validation path used in CI before deployment.
+
 ## GitHub Pages deployment
 
-GitHub Actions builds the site on every push to `main`, uploads the generated `site/` artifact, and deploys it with the official GitHub Pages actions.
+Pull requests run a docs validation workflow that builds the site with `mkdocs build --strict` and uploads the generated `site/` directory as an artifact for inspection.
+
+Pushes to `main` run the GitHub Pages deployment workflow, which builds the site, uploads the generated `site/` artifact for Pages, and deploys it with the official GitHub Pages actions.
+
+## Open-source safety
+
+This repository is intended for public use and does not include credentials, tokens, private URLs, client names, budgets, contractual details, copied private documentation, or sensitive prompts.
 
 ## License
 
