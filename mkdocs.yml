@@ -1,0 +1,104 @@
+site_name: Harness Engineering Guide
+site_url: https://marcosdh1987.github.io/harness-engineering-guide/
+repo_url: https://github.com/marcosdh1987/harness-engineering-guide
+repo_name: marcosdh1987/harness-engineering-guide
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - toc.follow
+    - content.code.copy
+plugins:
+  - search
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+extra:
+  alternate:
+    - name: English
+      link: en/
+      lang: en
+    - name: Español
+      link: es/
+      lang: es
+nav:
+  - Home: index.md
+  - English:
+      - Overview: en/index.md
+      - Learning Path: en/learning-path.md
+      - Concepts:
+          - Harness Engineering: en/concepts/harness-engineering.md
+          - AI Rules Architecture: en/concepts/ai-rules-architecture.md
+          - Governance, Skills, Automation, Orchestration: en/concepts/governance-skills-automation-orchestration.md
+          - Skills vs Prompts: en/concepts/skills-vs-prompts.md
+          - Context Engineering: en/concepts/context-engineering.md
+      - Tools:
+          - Tool Overview: en/tools/index.md
+          - Claude Code: en/tools/claude-code.md
+          - GitHub Copilot: en/tools/github-copilot.md
+          - Codex: en/tools/codex.md
+          - OpenCode: en/tools/opencode.md
+          - Antigravity: en/tools/antigravity.md
+      - Reference Implementation:
+          - Overview: en/reference-implementation/index.md
+          - ml-python-base: en/reference-implementation/ml-python-base.md
+      - Patterns:
+          - Working Loop: en/patterns/working-loop.md
+          - Rule Layering: en/patterns/rule-layering.md
+          - Skill Design: en/patterns/skill-design.md
+          - Adapter Design: en/patterns/adapter-design.md
+          - Drift Control: en/patterns/drift-control.md
+      - Labs:
+          - Labs Overview: en/labs/index.md
+          - Create a Rule: en/labs/create-a-rule.md
+          - Create a Skill: en/labs/create-a-skill.md
+          - Validate a Change: en/labs/validate-a-change.md
+          - Publish Safe Docs: en/labs/publish-safe-docs.md
+      - Open-Source Readiness: en/open-source-readiness.md
+  - Español:
+      - Visión general: es/index.md
+      - Ruta de aprendizaje: es/learning-path.md
+      - Conceptos:
+          - Harness Engineering: es/concepts/harness-engineering.md
+          - Arquitectura de reglas de IA: es/concepts/ai-rules-architecture.md
+          - Gobernanza, skills, automatización y orquestación: es/concepts/governance-skills-automation-orchestration.md
+          - Skills vs prompts: es/concepts/skills-vs-prompts.md
+          - Context Engineering: es/concepts/context-engineering.md
+      - Herramientas:
+          - Visión general: es/tools/index.md
+          - Claude Code: es/tools/claude-code.md
+          - GitHub Copilot: es/tools/github-copilot.md
+          - Codex: es/tools/codex.md
+          - OpenCode: es/tools/opencode.md
+          - Antigravity: es/tools/antigravity.md
+      - Implementación de referencia:
+          - Visión general: es/reference-implementation/index.md
+          - ml-python-base: es/reference-implementation/ml-python-base.md
+      - Patrones:
+          - Ciclo de trabajo: es/patterns/working-loop.md
+          - Capas de reglas: es/patterns/rule-layering.md
+          - Diseño de skills: es/patterns/skill-design.md
+          - Diseño de adapters: es/patterns/adapter-design.md
+          - Control de drift: es/patterns/drift-control.md
+      - Laboratorios:
+          - Visión general: es/labs/index.md
+          - Crear una regla: es/labs/create-a-rule.md
+          - Crear una skill: es/labs/create-a-skill.md
+          - Validar un cambio: es/labs/validate-a-change.md
+          - Publicar documentación segura: es/labs/publish-safe-docs.md
+      - Preparación para open source: es/open-source-readiness.md
