@@ -56,7 +56,23 @@ nav:
           - Antigravity: en/tools/antigravity.md
       - Reference Implementation:
           - Overview: en/reference-implementation/index.md
-          - ml-python-base: en/reference-implementation/ml-python-base.md
+          - ml-python-base:
+              - Overview: en/reference-implementation/ml-python-base/index.md
+              - Inventory: en/reference-implementation/ml-python-base/inventory.md
+              - Rules: en/reference-implementation/ml-python-base/rules.md
+              - Skills: en/reference-implementation/ml-python-base/skills.md
+              - Agents: en/reference-implementation/ml-python-base/agents.md
+              - Hooks: en/reference-implementation/ml-python-base/hooks.md
+              - Adapters: en/reference-implementation/ml-python-base/adapters.md
+              - Automation: en/reference-implementation/ml-python-base/automation.md
+              - Drift Control: en/reference-implementation/ml-python-base/drift-control.md
+              - Working Loop: en/reference-implementation/ml-python-base/working-loop.md
+      - Evidence:
+          - Overview: en/evidence/index.md
+          - Vendor Docs: en/evidence/vendor-docs.md
+          - Research: en/evidence/research.md
+          - Security: en/evidence/security.md
+          - Reading List: en/evidence/reading-list.md
       - Patterns:
           - Working Loop: en/patterns/working-loop.md
           - Rule Layering: en/patterns/rule-layering.md
@@ -88,7 +104,23 @@ nav:
           - Antigravity: es/tools/antigravity.md
       - Implementación de referencia:
           - Visión general: es/reference-implementation/index.md
-          - ml-python-base: es/reference-implementation/ml-python-base.md
+          - ml-python-base:
+              - Visión general: es/reference-implementation/ml-python-base/index.md
+              - Inventario: es/reference-implementation/ml-python-base/inventory.md
+              - Reglas: es/reference-implementation/ml-python-base/rules.md
+              - Skills: es/reference-implementation/ml-python-base/skills.md
+              - Agentes: es/reference-implementation/ml-python-base/agents.md
+              - Hooks: es/reference-implementation/ml-python-base/hooks.md
+              - Adaptadores: es/reference-implementation/ml-python-base/adapters.md
+              - Automatización: es/reference-implementation/ml-python-base/automation.md
+              - Control de drift: es/reference-implementation/ml-python-base/drift-control.md
+              - Ciclo de trabajo: es/reference-implementation/ml-python-base/working-loop.md
+      - Evidencia:
+          - Visión general: es/evidence/index.md
+          - Documentación de proveedores: es/evidence/vendor-docs.md
+          - Investigación: es/evidence/research.md
+          - Seguridad: es/evidence/security.md
+          - Lista de lectura: es/evidence/reading-list.md
       - Patrones:
           - Ciclo de trabajo: es/patterns/working-loop.md
           - Capas de reglas: es/patterns/rule-layering.md
