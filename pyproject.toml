@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "harness-engineering-guide"
+version = "0.1.0"
+description = "Bilingual MkDocs guide for Harness Engineering in AI-assisted software development."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "mkdocs==1.6.1",
+  "mkdocs-material==9.7.6",
+]
+
+[tool.setuptools]
+py-modules = []
