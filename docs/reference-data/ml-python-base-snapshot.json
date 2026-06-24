@@ -1,0 +1,496 @@
+{
+  "repo_url": "https://github.com/marcosdh1987/ml-python-base",
+  "commit_sha": "587ac29d30cb50d5c307f41e942c14d3f0bba298",
+  "branch": "main",
+  "last_sync": "2026-06-24T17:45:44.341172Z",
+  "inventory": [
+    {
+      "path": "README.md",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "14732 bytes",
+      "purpose": "Main entry point and documentation overview of the template repository.",
+      "tool_target": "General Developers",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": "CLAUDE.md",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "9943 bytes",
+      "purpose": "Claude Code integration profile, tool guidelines, and command policies.",
+      "tool_target": "Claude Code",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": "OPENCODE.md",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "10890 bytes",
+      "purpose": "OpenCode configuration profile, MCP tool usage instructions, and safety rules.",
+      "tool_target": "OpenCode",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": "GEMINI.md",
+      "exists": false,
+      "is_dir": false,
+      "size_or_children": "Not present in current snapshot",
+      "purpose": "GEMINI rules mapping governed skills with @.github prefix reference syntax (if present in root).",
+      "tool_target": "Gemini / Antigravity",
+      "source_of_truth": "Generated"
+    },
+    {
+      "path": "AGENTS.md",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "6998 bytes",
+      "purpose": "Codex subagent profile defining standard coding roles and coordination paths.",
+      "tool_target": "Codex / OpenAI Agents",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": ".github/copilot-instructions.md",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "9204 bytes",
+      "purpose": "Repository-wide custom instructions for GitHub Copilot.",
+      "tool_target": "GitHub Copilot",
+      "source_of_truth": "Generated"
+    },
+    {
+      "path": ".github/architecture.md",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "1217 bytes",
+      "purpose": "Core design, layering boundaries (Domain, Application, Infrastructure), and SRP guidance.",
+      "tool_target": "All AI Tools",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": ".github/standards.md",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "1713 bytes",
+      "purpose": "Coding guidelines (Python, uv, Makefile, absolute imports, Ruff, Pydantic, mypy, validation checklist).",
+      "tool_target": "All AI Tools",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": ".github/domain-boundaries.md",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "999 bytes",
+      "purpose": "Workspace separation (src, tests, notebooks) and mutable/immutable data zones.",
+      "tool_target": "All AI Tools",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": ".github/automation.md",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "2413 bytes",
+      "purpose": "Level 3 automation checks, read-only CI quality gates, and uv.lock drift guards.",
+      "tool_target": "All AI Tools",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": ".github/orchestration.md",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "1338 bytes",
+      "purpose": "Level 4 orchestration, plan-first rules, diff reviews, and skill invocation gates.",
+      "tool_target": "All AI Tools",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": ".github/skills/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "15 items",
+      "purpose": "Governed internal skills defining repeatable agent workflows.",
+      "tool_target": "Skills Sync Engine",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": ".github/skills-external/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "10 items",
+      "purpose": "Imported external skills managed by the skills sync engine.",
+      "tool_target": "Skills Sync Engine",
+      "source_of_truth": "Yes (Synced source)"
+    },
+    {
+      "path": ".github/agents/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "7 items",
+      "purpose": "Governed agent definitions mapping workspace roles (documenter, orchestrator, reviewer, tester, etc.).",
+      "tool_target": "Skills Sync Engine",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": ".claude/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "7 items",
+      "purpose": "Claude Code workspace settings, commands, hooks, and native symlinked skills.",
+      "tool_target": "Claude Code",
+      "source_of_truth": "Generated (from settings/hooks)"
+    },
+    {
+      "path": ".claude/skills/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "24 items",
+      "purpose": "Symlinks pointing to governed and external skills for Claude Code discovery.",
+      "tool_target": "Claude Code",
+      "source_of_truth": "Generated"
+    },
+    {
+      "path": ".claude/hooks/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "2 items",
+      "purpose": "Claude session hooks like session_start.sh and stop_nudge.sh.",
+      "tool_target": "Claude Code",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": ".opencode/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "8 items",
+      "purpose": "OpenCode workspace configuration, modules, and native adapter links.",
+      "tool_target": "OpenCode",
+      "source_of_truth": "Generated"
+    },
+    {
+      "path": ".opencode/skills/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "24 items",
+      "purpose": "Symlinks pointing to governed skills for OpenCode discovery.",
+      "tool_target": "OpenCode",
+      "source_of_truth": "Generated"
+    },
+    {
+      "path": ".codex/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "3 items",
+      "purpose": "Codex adapter configuration and local workspace hooks.",
+      "tool_target": "Codex",
+      "source_of_truth": "Generated"
+    },
+    {
+      "path": ".codex/skills/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "24 items",
+      "purpose": "Symlinks pointing to governed skills for Codex discovery.",
+      "tool_target": "Codex",
+      "source_of_truth": "Generated"
+    },
+    {
+      "path": ".agents/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "4 items",
+      "purpose": "Antigravity native adapter directory.",
+      "tool_target": "Antigravity",
+      "source_of_truth": "Generated"
+    },
+    {
+      "path": ".agents/skills/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "25 items",
+      "purpose": "Copied native Antigravity skills with a generated manifest.",
+      "tool_target": "Antigravity",
+      "source_of_truth": "Generated"
+    },
+    {
+      "path": ".agents/rules/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "1 items",
+      "purpose": "Antigravity rules directory containing GEMINI.md.",
+      "tool_target": "Antigravity",
+      "source_of_truth": "Generated"
+    },
+    {
+      "path": "adapters/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "2 items",
+      "purpose": "Declarative registry (registry.toml) and templates for multi-tool adapter rendering.",
+      "tool_target": "Skills Sync Engine",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": "src/ml_python_base/skills_sync/",
+      "exists": true,
+      "is_dir": true,
+      "size_or_children": "15 items",
+      "purpose": "Python-based declarative engine managing link projection, agent mapping, and hash-based drift checks.",
+      "tool_target": "Skills Sync Engine",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": "skills-lock.json",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "3800 bytes",
+      "purpose": "Hash-locked catalog of synced external skills ensuring CI reproducibility.",
+      "tool_target": "Skills Sync Engine",
+      "source_of_truth": "Generated / Lock"
+    },
+    {
+      "path": "Makefile",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "22878 bytes",
+      "purpose": "Standardized entry point for local and CI quality gates and skills synchronization.",
+      "tool_target": "General Developers",
+      "source_of_truth": "Yes"
+    },
+    {
+      "path": "docs/skills-management.md",
+      "exists": true,
+      "is_dir": false,
+      "size_or_children": "7322 bytes",
+      "purpose": "Explanatory guide on the skills sync engine, ideation routing, and adapter drift gates.",
+      "tool_target": "General Developers",
+      "source_of_truth": "Yes"
+    }
+  ],
+  "skills": [
+    {
+      "name": "generate_e2e_tests",
+      "type": "internal",
+      "path": ".github/skills/generate_e2e_tests.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/generate_e2e_tests.md"
+    },
+    {
+      "name": "create_mle_agent_package",
+      "type": "internal",
+      "path": ".github/skills/create_mle_agent_package.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/create_mle_agent_package.md"
+    },
+    {
+      "name": "research_current_info",
+      "type": "internal",
+      "path": ".github/skills/research_current_info.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/research_current_info.md"
+    },
+    {
+      "name": "refactor_to_clean_architecture",
+      "type": "internal",
+      "path": ".github/skills/refactor_to_clean_architecture.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/refactor_to_clean_architecture.md"
+    },
+    {
+      "name": "validate_module_structure",
+      "type": "internal",
+      "path": ".github/skills/validate_module_structure.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/validate_module_structure.md"
+    },
+    {
+      "name": "generate_migration_plan",
+      "type": "internal",
+      "path": ".github/skills/generate_migration_plan.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/generate_migration_plan.md"
+    },
+    {
+      "name": "create_domain_contract",
+      "type": "internal",
+      "path": ".github/skills/create_domain_contract.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/create_domain_contract.md"
+    },
+    {
+      "name": "verify_changes",
+      "type": "internal",
+      "path": ".github/skills/verify_changes.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/verify_changes.md"
+    },
+    {
+      "name": "generate_implementation_docs",
+      "type": "internal",
+      "path": ".github/skills/generate_implementation_docs.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/generate_implementation_docs.md"
+    },
+    {
+      "name": "bootstrap_project",
+      "type": "internal",
+      "path": ".github/skills/bootstrap_project.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/bootstrap_project.md"
+    },
+    {
+      "name": "systematic_debugging",
+      "type": "internal",
+      "path": ".github/skills/systematic_debugging.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/systematic_debugging.md"
+    },
+    {
+      "name": "plan_and_execute_feature",
+      "type": "internal",
+      "path": ".github/skills/plan_and_execute_feature.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/plan_and_execute_feature.md"
+    },
+    {
+      "name": "brainstorm_quick",
+      "type": "internal",
+      "path": ".github/skills/brainstorm_quick.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/brainstorm_quick.md"
+    },
+    {
+      "name": "retrospective",
+      "type": "internal",
+      "path": ".github/skills/retrospective.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/retrospective.md"
+    },
+    {
+      "name": "ui-ux-pro-max",
+      "type": "external",
+      "path": ".github/skills-external/ui-ux-pro-max/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/ui-ux-pro-max/SKILL.md"
+    },
+    {
+      "name": "using-git-worktrees",
+      "type": "external",
+      "path": ".github/skills-external/using-git-worktrees/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/using-git-worktrees/SKILL.md"
+    },
+    {
+      "name": "test-driven-development",
+      "type": "external",
+      "path": ".github/skills-external/test-driven-development/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/test-driven-development/SKILL.md"
+    },
+    {
+      "name": "executing-plans",
+      "type": "external",
+      "path": ".github/skills-external/executing-plans/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/executing-plans/SKILL.md"
+    },
+    {
+      "name": "finishing-a-development-branch",
+      "type": "external",
+      "path": ".github/skills-external/finishing-a-development-branch/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/finishing-a-development-branch/SKILL.md"
+    },
+    {
+      "name": "brainstorming",
+      "type": "external",
+      "path": ".github/skills-external/brainstorming/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/brainstorming/SKILL.md"
+    },
+    {
+      "name": "writing-plans",
+      "type": "external",
+      "path": ".github/skills-external/writing-plans/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/writing-plans/SKILL.md"
+    },
+    {
+      "name": "writing-clearly-and-concisely",
+      "type": "external",
+      "path": ".github/skills-external/writing-clearly-and-concisely/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/writing-clearly-and-concisely/SKILL.md"
+    },
+    {
+      "name": "requesting-code-review",
+      "type": "external",
+      "path": ".github/skills-external/requesting-code-review/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/requesting-code-review/SKILL.md"
+    },
+    {
+      "name": "subagent-driven-development",
+      "type": "external",
+      "path": ".github/skills-external/subagent-driven-development/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/subagent-driven-development/SKILL.md"
+    }
+  ],
+  "agents": [
+    {
+      "name": "orchestrator",
+      "path": ".github/agents/orchestrator.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/orchestrator.md"
+    },
+    {
+      "name": "reviewer",
+      "path": ".github/agents/reviewer.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/reviewer.md"
+    },
+    {
+      "name": "documenter",
+      "path": ".github/agents/documenter.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/documenter.md"
+    },
+    {
+      "name": "tester",
+      "path": ".github/agents/tester.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/tester.md"
+    },
+    {
+      "name": "planner",
+      "path": ".github/agents/planner.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/planner.md"
+    },
+    {
+      "name": "implementer",
+      "path": ".github/agents/implementer.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/implementer.md"
+    }
+  ],
+  "hooks": [
+    {
+      "name": "stop_nudge.sh",
+      "path": ".claude/hooks/stop_nudge.sh",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/stop_nudge.sh"
+    },
+    {
+      "name": "session_start.sh",
+      "path": ".claude/hooks/session_start.sh",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/session_start.sh"
+    }
+  ],
+  "adapters": [
+    {
+      "name": "registry.toml",
+      "path": "adapters/registry.toml",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/registry.toml"
+    },
+    {
+      "name": "template: claude.md.j2",
+      "path": "adapters/templates/claude.md.j2",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/claude.md.j2"
+    },
+    {
+      "name": "template: opencode.md.j2",
+      "path": "adapters/templates/opencode.md.j2",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/opencode.md.j2"
+    },
+    {
+      "name": "template: _skills_block.j2",
+      "path": "adapters/templates/_skills_block.j2",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/_skills_block.j2"
+    },
+    {
+      "name": "template: agents.md.j2",
+      "path": "adapters/templates/agents.md.j2",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/agents.md.j2"
+    },
+    {
+      "name": "template: gemini.md.j2",
+      "path": "adapters/templates/gemini.md.j2",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/gemini.md.j2"
+    },
+    {
+      "name": "template: copilot.md.j2",
+      "path": "adapters/templates/copilot.md.j2",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/copilot.md.j2"
+    }
+  ]
+}

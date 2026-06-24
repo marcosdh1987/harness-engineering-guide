@@ -16,9 +16,13 @@ English is the canonical language for the guide. Spanish is a first-class transl
 
 ## Reference implementation
 
-The guide uses [`marcosdh1987/ml-python-base`](https://github.com/marcosdh1987/ml-python-base) as a public reference implementation. It is referenced for patterns and structure only. This repository does not modify or copy private content from it.
+The guide uses [`marcosdh1987/ml-python-base`](https://github.com/marcosdh1987/ml-python-base) as a public reference implementation. This guide features auto-generated reference implementation sections and evidence libraries.
+
+`ml-python-base` remains the authoritative source of truth for implementation patterns.
 
 ## Local installation
+
+Create a local virtual environment and install the package dependencies:
 
 ```bash
 python -m venv .venv
@@ -26,19 +30,34 @@ source .venv/bin/activate
 pip install -e .
 ```
 
-## Run locally
+## Local commands (Makefile)
+
+A helper `Makefile` is provided to run common operations locally:
+
+- **Serve the site**:
+  ```bash
+  make docs-serve
+  ```
+  Launches a local development server at `http://localhost:8000`.
+
+- **Build and validate the site**:
+  ```bash
+  make docs-build
+  ```
+  Performs a strict build validation (`mkdocs build --strict`). This is the same validation executed in CI.
+
+- **Sync reference implementation**:
+  ```bash
+  make sync-reference
+  ```
+  Runs `scripts/sync_reference_template.py` to scan the local/remote `ml-python-base` template, generate the machine-readable snapshot JSON, and compile English and Spanish reference pages along with the evidence bibliography.
+
+### Local sync folder configuration
+By default, the sync script checks `/Users/marcossoto/Documents/example/ml-python-base` for a local clone. If that folder is not present, it will automatically clone `ml-python-base` into a temporary folder to perform the synchronization. You can override the target folder path using the `REF_REPO_PATH` environment variable:
 
 ```bash
-mkdocs serve
+REF_REPO_PATH=/path/to/my/ml-python-base make sync-reference
 ```
-
-## Build the site
-
-```bash
-mkdocs build --strict
-```
-
-This is the same strict validation path used in CI before deployment.
 
 ## GitHub Pages deployment
 

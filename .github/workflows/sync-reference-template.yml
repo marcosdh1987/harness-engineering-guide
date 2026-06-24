@@ -1,0 +1,69 @@
+name: Sync Reference Template
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Every Sunday at midnight UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install .
+
+      - name: Run sync script
+        run: python scripts/sync_reference_template.py
+
+      - name: Build documentation
+        run: mkdocs build --strict
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git status
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Get current template commit
+        id: commit-info
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          if [ -f docs/reference-data/ml-python-base-snapshot.json ]; then
+            SHA=$(jq -r '.commit_sha' docs/reference-data/ml-python-base-snapshot.json)
+            echo "sha=$SHA" >> $GITHUB_OUTPUT
+          else
+            echo "sha=unknown" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request
+        if: steps.git-check.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "docs: sync ml-python-base reference snapshot"
+          title: "docs: sync ml-python-base reference snapshot"
+          body: |
+            Automatically synchronized reference implementation snapshot with `marcosdh1987/ml-python-base`.
+            
+            - **Reference Commit SHA**: ${{ steps.commit-info.outputs.sha }}
+            
+            Please review the generated pages and merge this PR to update the published guide.
+          branch: sync/ml-python-base-reference
+          delete-branch: true
