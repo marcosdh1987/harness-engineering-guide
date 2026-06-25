@@ -1,6 +1,6 @@
 # Harness Engineering Guide
 
-Harness Engineering Guide is a public, bilingual documentation site about building durable systems around AI coding tools.
+[Harness Engineering Guide](https://marcosdh1987.github.io/harness-engineering-guide/) is a public, bilingual documentation site about building durable systems around AI coding tools.
 
 ## What this repository is
 
@@ -53,7 +53,9 @@ A helper `Makefile` is provided to run common operations locally:
   Runs `scripts/sync_reference_template.py` to scan the local/remote `ml-python-base` template, generate the machine-readable snapshot JSON, and compile English and Spanish reference pages along with the evidence bibliography.
 
 ### Local sync folder configuration
-By default, the sync script checks `/Users/marcossoto/Documents/example/ml-python-base` for a local clone. If that folder is not present, it will automatically clone `ml-python-base` into a temporary folder to perform the synchronization. You can override the target folder path using the `REF_REPO_PATH` environment variable:
+By default, the sync script clones `ml-python-base` into a temporary folder inside `docs/reference-data/` to perform the synchronization if no local path is configured.
+
+To use a local clone, copy `.env.example` to `.env` and set `REF_REPO_PATH` to the path of your local clone, or override the target folder path using the `REF_REPO_PATH` environment variable on execution:
 
 ```bash
 REF_REPO_PATH=/path/to/my/ml-python-base make sync-reference
