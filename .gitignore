@@ -6,3 +6,4 @@ site/
 .cache/
 .mypy_cache/
 .pytest_cache/
+.env

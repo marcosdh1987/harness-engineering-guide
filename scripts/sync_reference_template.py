@@ -19,7 +19,7 @@ import subprocess
 import tempfile
 import shutil
 import argparse
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Import yaml (which is available in the environment as MkDocs depends on it)
 try:
@@ -28,9 +28,31 @@ except ImportError:
     print("Error: PyYAML is required. Please install it with 'pip install pyyaml'.")
     sys.exit(1)
 
+# Load environment variables from .env if present
+def load_dotenv():
+    paths = [".env", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")]
+    for path in paths:
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    if "=" in line:
+                        key, val = line.split("=", 1)
+                        key = key.strip()
+                        val = val.strip()
+                        if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
+                            val = val[1:-1]
+                        if key and key not in os.environ:
+                            os.environ[key] = val
+            break
+
+load_dotenv()
+
 # Configuration
 REPO_URL = "https://github.com/marcosdh1987/ml-python-base"
-DEFAULT_LOCAL_PATH = "/Users/marcossoto/Documents/example/ml-python-base"
+DEFAULT_LOCAL_PATH = ""  # Can be configured in .env under REF_REPO_PATH
 SNAPSHOT_PATH = "docs/reference-data/ml-python-base-snapshot.json"
 EVIDENCE_YAML_PATH = "docs/reference-data/evidence-sources.yml"
 
@@ -353,7 +375,7 @@ def scan_repository(repo_path):
         "repo_url": REPO_URL,
         "commit_sha": commit_sha,
         "branch": branch,
-        "last_sync": datetime.utcnow().isoformat() + "Z",
+        "last_sync": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "inventory": inventory,
         "skills": skills,
         "agents": agents,
