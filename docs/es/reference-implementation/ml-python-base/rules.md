@@ -3,7 +3,7 @@
 > [!NOTE]
 > **Contenido generado**: Esta página se genera automáticamente a partir del snapshot de la plantilla.
 > - **Commit de referencia**: [587ac29](https://github.com/marcosdh1987/ml-python-base/commit/587ac29d30cb50d5c307f41e942c14d3f0bba298) en la rama `main`
-> - **Última sincronización**: `2026-06-25T14:51:49.011688Z`
+> - **Última sincronización**: `2026-06-28T00:52:06.059621Z`
 > - **Artefactos de referencia**:
 >   - [.github/architecture.md](https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/architecture.md)
 >   - [.github/standards.md](https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/standards.md)
