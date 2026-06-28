@@ -2,7 +2,7 @@
   "repo_url": "https://github.com/marcosdh1987/ml-python-base",
   "commit_sha": "587ac29d30cb50d5c307f41e942c14d3f0bba298",
   "branch": "main",
-  "last_sync": "2026-06-25T14:51:49.011688Z",
+  "last_sync": "2026-06-28T00:52:06.059621Z",
   "inventory": [
     {
       "path": "README.md",
@@ -134,7 +134,7 @@
       "path": ".claude/",
       "exists": true,
       "is_dir": true,
-      "size_or_children": "7 items",
+      "size_or_children": "5 items",
       "purpose": "Claude Code workspace settings, commands, hooks, and native symlinked skills.",
       "tool_target": "Claude Code",
       "source_of_truth": "Generated (from settings/hooks)"
@@ -161,7 +161,7 @@
       "path": ".opencode/",
       "exists": true,
       "is_dir": true,
-      "size_or_children": "8 items",
+      "size_or_children": "3 items",
       "purpose": "OpenCode workspace configuration, modules, and native adapter links.",
       "tool_target": "OpenCode",
       "source_of_truth": "Generated"
@@ -179,7 +179,7 @@
       "path": ".codex/",
       "exists": true,
       "is_dir": true,
-      "size_or_children": "3 items",
+      "size_or_children": "2 items",
       "purpose": "Codex adapter configuration and local workspace hooks.",
       "tool_target": "Codex",
       "source_of_truth": "Generated"
@@ -197,7 +197,7 @@
       "path": ".agents/",
       "exists": true,
       "is_dir": true,
-      "size_or_children": "4 items",
+      "size_or_children": "2 items",
       "purpose": "Antigravity native adapter directory.",
       "tool_target": "Antigravity",
       "source_of_truth": "Generated"
@@ -233,7 +233,7 @@
       "path": "src/ml_python_base/skills_sync/",
       "exists": true,
       "is_dir": true,
-      "size_or_children": "15 items",
+      "size_or_children": "14 items",
       "purpose": "Python-based declarative engine managing link projection, agent mapping, and hash-based drift checks.",
       "tool_target": "Skills Sync Engine",
       "source_of_truth": "Yes"
@@ -274,46 +274,10 @@
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/generate_e2e_tests.md"
     },
     {
-      "name": "create_mle_agent_package",
-      "type": "internal",
-      "path": ".github/skills/create_mle_agent_package.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/create_mle_agent_package.md"
-    },
-    {
-      "name": "research_current_info",
-      "type": "internal",
-      "path": ".github/skills/research_current_info.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/research_current_info.md"
-    },
-    {
       "name": "refactor_to_clean_architecture",
       "type": "internal",
       "path": ".github/skills/refactor_to_clean_architecture.md",
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/refactor_to_clean_architecture.md"
-    },
-    {
-      "name": "validate_module_structure",
-      "type": "internal",
-      "path": ".github/skills/validate_module_structure.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/validate_module_structure.md"
-    },
-    {
-      "name": "generate_migration_plan",
-      "type": "internal",
-      "path": ".github/skills/generate_migration_plan.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/generate_migration_plan.md"
-    },
-    {
-      "name": "create_domain_contract",
-      "type": "internal",
-      "path": ".github/skills/create_domain_contract.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/create_domain_contract.md"
-    },
-    {
-      "name": "verify_changes",
-      "type": "internal",
-      "path": ".github/skills/verify_changes.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/verify_changes.md"
     },
     {
       "name": "generate_implementation_docs",
@@ -322,22 +286,10 @@
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/generate_implementation_docs.md"
     },
     {
-      "name": "bootstrap_project",
+      "name": "research_current_info",
       "type": "internal",
-      "path": ".github/skills/bootstrap_project.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/bootstrap_project.md"
-    },
-    {
-      "name": "systematic_debugging",
-      "type": "internal",
-      "path": ".github/skills/systematic_debugging.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/systematic_debugging.md"
-    },
-    {
-      "name": "plan_and_execute_feature",
-      "type": "internal",
-      "path": ".github/skills/plan_and_execute_feature.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/plan_and_execute_feature.md"
+      "path": ".github/skills/research_current_info.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/research_current_info.md"
     },
     {
       "name": "brainstorm_quick",
@@ -346,52 +298,58 @@
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/brainstorm_quick.md"
     },
     {
+      "name": "generate_migration_plan",
+      "type": "internal",
+      "path": ".github/skills/generate_migration_plan.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/generate_migration_plan.md"
+    },
+    {
+      "name": "systematic_debugging",
+      "type": "internal",
+      "path": ".github/skills/systematic_debugging.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/systematic_debugging.md"
+    },
+    {
+      "name": "validate_module_structure",
+      "type": "internal",
+      "path": ".github/skills/validate_module_structure.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/validate_module_structure.md"
+    },
+    {
       "name": "retrospective",
       "type": "internal",
       "path": ".github/skills/retrospective.md",
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/retrospective.md"
     },
     {
-      "name": "ui-ux-pro-max",
-      "type": "external",
-      "path": ".github/skills-external/ui-ux-pro-max/SKILL.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/ui-ux-pro-max/SKILL.md"
+      "name": "verify_changes",
+      "type": "internal",
+      "path": ".github/skills/verify_changes.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/verify_changes.md"
     },
     {
-      "name": "using-git-worktrees",
-      "type": "external",
-      "path": ".github/skills-external/using-git-worktrees/SKILL.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/using-git-worktrees/SKILL.md"
+      "name": "bootstrap_project",
+      "type": "internal",
+      "path": ".github/skills/bootstrap_project.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/bootstrap_project.md"
     },
     {
-      "name": "test-driven-development",
-      "type": "external",
-      "path": ".github/skills-external/test-driven-development/SKILL.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/test-driven-development/SKILL.md"
+      "name": "create_domain_contract",
+      "type": "internal",
+      "path": ".github/skills/create_domain_contract.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/create_domain_contract.md"
     },
     {
-      "name": "executing-plans",
-      "type": "external",
-      "path": ".github/skills-external/executing-plans/SKILL.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/executing-plans/SKILL.md"
+      "name": "create_mle_agent_package",
+      "type": "internal",
+      "path": ".github/skills/create_mle_agent_package.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/create_mle_agent_package.md"
     },
     {
-      "name": "finishing-a-development-branch",
-      "type": "external",
-      "path": ".github/skills-external/finishing-a-development-branch/SKILL.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/finishing-a-development-branch/SKILL.md"
-    },
-    {
-      "name": "brainstorming",
-      "type": "external",
-      "path": ".github/skills-external/brainstorming/SKILL.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/brainstorming/SKILL.md"
-    },
-    {
-      "name": "writing-plans",
-      "type": "external",
-      "path": ".github/skills-external/writing-plans/SKILL.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/writing-plans/SKILL.md"
+      "name": "plan_and_execute_feature",
+      "type": "internal",
+      "path": ".github/skills/plan_and_execute_feature.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills/plan_and_execute_feature.md"
     },
     {
       "name": "writing-clearly-and-concisely",
@@ -406,22 +364,59 @@
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/requesting-code-review/SKILL.md"
     },
     {
+      "name": "executing-plans",
+      "type": "external",
+      "path": ".github/skills-external/executing-plans/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/executing-plans/SKILL.md"
+    },
+    {
       "name": "subagent-driven-development",
       "type": "external",
       "path": ".github/skills-external/subagent-driven-development/SKILL.md",
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/subagent-driven-development/SKILL.md"
+    },
+    {
+      "name": "finishing-a-development-branch",
+      "type": "external",
+      "path": ".github/skills-external/finishing-a-development-branch/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/finishing-a-development-branch/SKILL.md"
+    },
+    {
+      "name": "test-driven-development",
+      "type": "external",
+      "path": ".github/skills-external/test-driven-development/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/test-driven-development/SKILL.md"
+    },
+    {
+      "name": "using-git-worktrees",
+      "type": "external",
+      "path": ".github/skills-external/using-git-worktrees/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/using-git-worktrees/SKILL.md"
+    },
+    {
+      "name": "writing-plans",
+      "type": "external",
+      "path": ".github/skills-external/writing-plans/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/writing-plans/SKILL.md"
+    },
+    {
+      "name": "ui-ux-pro-max",
+      "type": "external",
+      "path": ".github/skills-external/ui-ux-pro-max/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/ui-ux-pro-max/SKILL.md"
+    },
+    {
+      "name": "brainstorming",
+      "type": "external",
+      "path": ".github/skills-external/brainstorming/SKILL.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/skills-external/brainstorming/SKILL.md"
     }
   ],
   "agents": [
     {
-      "name": "orchestrator",
-      "path": ".github/agents/orchestrator.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/orchestrator.md"
-    },
-    {
-      "name": "reviewer",
-      "path": ".github/agents/reviewer.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/reviewer.md"
+      "name": "planner",
+      "path": ".github/agents/planner.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/planner.md"
     },
     {
       "name": "documenter",
@@ -434,26 +429,31 @@
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/tester.md"
     },
     {
-      "name": "planner",
-      "path": ".github/agents/planner.md",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/planner.md"
+      "name": "orchestrator",
+      "path": ".github/agents/orchestrator.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/orchestrator.md"
     },
     {
       "name": "implementer",
       "path": ".github/agents/implementer.md",
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/implementer.md"
+    },
+    {
+      "name": "reviewer",
+      "path": ".github/agents/reviewer.md",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.github/agents/reviewer.md"
     }
   ],
   "hooks": [
     {
-      "name": "stop_nudge.sh",
-      "path": ".claude/hooks/stop_nudge.sh",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/stop_nudge.sh"
-    },
-    {
       "name": "session_start.sh",
       "path": ".claude/hooks/session_start.sh",
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/session_start.sh"
+    },
+    {
+      "name": "stop_nudge.sh",
+      "path": ".claude/hooks/stop_nudge.sh",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/stop_nudge.sh"
     }
   ],
   "adapters": [
@@ -463,19 +463,9 @@
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/registry.toml"
     },
     {
-      "name": "template: claude.md.j2",
-      "path": "adapters/templates/claude.md.j2",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/claude.md.j2"
-    },
-    {
       "name": "template: opencode.md.j2",
       "path": "adapters/templates/opencode.md.j2",
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/opencode.md.j2"
-    },
-    {
-      "name": "template: _skills_block.j2",
-      "path": "adapters/templates/_skills_block.j2",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/_skills_block.j2"
     },
     {
       "name": "template: agents.md.j2",
@@ -483,14 +473,24 @@
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/agents.md.j2"
     },
     {
-      "name": "template: gemini.md.j2",
-      "path": "adapters/templates/gemini.md.j2",
-      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/gemini.md.j2"
+      "name": "template: _skills_block.j2",
+      "path": "adapters/templates/_skills_block.j2",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/_skills_block.j2"
     },
     {
       "name": "template: copilot.md.j2",
       "path": "adapters/templates/copilot.md.j2",
       "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/copilot.md.j2"
+    },
+    {
+      "name": "template: gemini.md.j2",
+      "path": "adapters/templates/gemini.md.j2",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/gemini.md.j2"
+    },
+    {
+      "name": "template: claude.md.j2",
+      "path": "adapters/templates/claude.md.j2",
+      "source_link": "https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/adapters/templates/claude.md.j2"
     }
   ]
 }

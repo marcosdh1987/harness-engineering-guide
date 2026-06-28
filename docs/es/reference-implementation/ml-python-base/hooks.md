@@ -3,7 +3,7 @@
 > [!NOTE]
 > **Contenido generado**: Esta página se genera automáticamente a partir del snapshot de la plantilla.
 > - **Commit de referencia**: [587ac29](https://github.com/marcosdh1987/ml-python-base/commit/587ac29d30cb50d5c307f41e942c14d3f0bba298) en la rama `main`
-> - **Última sincronización**: `2026-06-25T14:51:49.011688Z`
+> - **Última sincronización**: `2026-06-28T00:52:06.059621Z`
 > - **Artefactos de referencia**:
 >   - [.claude/hooks/](https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/)
 > *Nota: Este es un resumen de estudio e índice. La implementación y gobernanza autoritativas permanecen en el repositorio de origen.*
@@ -15,8 +15,8 @@ Los hooks son scripts ejecutables que se activan automáticamente en puntos clav
 
 | Nombre del Hook | Ruta de destino | Propósito | Enlace |
 |---|---|---|---|
-| `stop_nudge.sh` | `.claude/hooks/stop_nudge.sh` | Warns developer of drift or uncommitted changes when the session remains idle | [Link](https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/stop_nudge.sh) |
 | `session_start.sh` | `.claude/hooks/session_start.sh` | Runs checks on environment setup, local lock state, and checks for uncommitted drift | [Link](https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/session_start.sh) |
+| `stop_nudge.sh` | `.claude/hooks/stop_nudge.sh` | Warns developer of drift or uncommitted changes when the session remains idle | [Link](https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/stop_nudge.sh) |
 
 ### Ajustes de configuración e integraciones
 
