@@ -2,10 +2,10 @@
 
 > [!NOTE]
 > **Contenido generado**: Esta página se genera automáticamente a partir del snapshot de la plantilla.
-> - **Commit de referencia**: [587ac29](https://github.com/marcosdh1987/ml-python-base/commit/587ac29d30cb50d5c307f41e942c14d3f0bba298) en la rama `main`
-> - **Última sincronización**: `2026-06-28T00:52:06.059621Z`
+> - **Commit de referencia**: [1fc65a8](https://github.com/marcosdh1987/ml-python-base/commit/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0) en la rama `main`
+> - **Última sincronización**: `2026-06-30T12:49:58.403597Z`
 > - **Artefactos de referencia**:
->   - [Makefile](https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/Makefile)
+>   - [Makefile](https://github.com/marcosdh1987/ml-python-base/blob/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0/Makefile)
 > *Nota: Este es un resumen de estudio e índice. La implementación y gobernanza autoritativas permanecen en el repositorio de origen.*
 ## Matriz de automatización de comandos
 
@@ -18,6 +18,7 @@ El repositorio de plantilla centraliza todos los comandos de desarrollo local y 
 | `make install` | Local-Modificador | Instala `uv`, fija la versión de Python y construye el `.venv` local exactamente de acuerdo con `uv.lock`. |
 | `make format` | Local-Modificador | Ejecuta automáticamente el formateo de Ruff y la ordenación de imports en `src/`, `tests/` y `scripts/`. |
 | `make fix` | Local-Modificador | Aplica correcciones automáticas seguras del linter y formateo. |
+| `make toolbelt-doctor` | Local seguro (Lectura) | Diagnóstico de CLIs instaladas en el toolbelt y de servicios locales opcionales. |
 | `make check` | Seguro para CI (Lectura) | **Gate de calidad de CI**: Sincroniza el `.venv` con `uv sync --locked --exact`, verifica el formato/lint de Ruff, ejecuta controles de seguridad (Bandit), realiza la comprobación de tipos de Mypy y ejecuta pruebas con cobertura. |
 | `make sync-skills` | Local-Modificador | Activa el motor de sincronización centralizado para enlazar skills, proyectar agentes y reescribir las regiones de skills generadas. |
 | `make check-sync` | Seguro para CI (Lectura) | **Gate de drift de CI**: Valida que ningún adaptador local, enlace de skill nativo o manifiesto se haya desviado de las fuentes gobernadas. |

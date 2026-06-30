@@ -2,10 +2,10 @@
 
 > [!NOTE]
 > **Contenido generado**: Esta página se genera automáticamente a partir del snapshot de la plantilla.
-> - **Commit de referencia**: [587ac29](https://github.com/marcosdh1987/ml-python-base/commit/587ac29d30cb50d5c307f41e942c14d3f0bba298) en la rama `main`
-> - **Última sincronización**: `2026-06-28T00:52:06.059621Z`
+> - **Commit de referencia**: [1fc65a8](https://github.com/marcosdh1987/ml-python-base/commit/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0) en la rama `main`
+> - **Última sincronización**: `2026-06-30T12:49:58.403597Z`
 > - **Artefactos de referencia**:
->   - [.claude/hooks/](https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/)
+>   - [.claude/hooks/](https://github.com/marcosdh1987/ml-python-base/blob/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0/.claude/hooks/)
 > *Nota: Este es un resumen de estudio e índice. La implementación y gobernanza autoritativas permanecen en el repositorio de origen.*
 ## Hooks como guardrails de calidad
 
@@ -15,8 +15,8 @@ Los hooks son scripts ejecutables que se activan automáticamente en puntos clav
 
 | Nombre del Hook | Ruta de destino | Propósito | Enlace |
 |---|---|---|---|
-| `session_start.sh` | `.claude/hooks/session_start.sh` | Runs checks on environment setup, local lock state, and checks for uncommitted drift | [Link](https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/session_start.sh) |
-| `stop_nudge.sh` | `.claude/hooks/stop_nudge.sh` | Warns developer of drift or uncommitted changes when the session remains idle | [Link](https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/.claude/hooks/stop_nudge.sh) |
+| `stop_nudge.sh` | `.claude/hooks/stop_nudge.sh` | Advierte al desarrollador sobre drift o cambios sin confirmar cuando la sesion queda inactiva | [Link](https://github.com/marcosdh1987/ml-python-base/blob/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0/.claude/hooks/stop_nudge.sh) |
+| `session_start.sh` | `.claude/hooks/session_start.sh` | Realiza comprobaciones de configuracion del entorno, estado de bloqueo local y drift sin confirmar | [Link](https://github.com/marcosdh1987/ml-python-base/blob/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0/.claude/hooks/session_start.sh) |
 
 ### Ajustes de configuración e integraciones
 

@@ -697,11 +697,18 @@ Los hooks son scripts ejecutables que se activan automáticamente en puntos clav
 """
 
     for h in data["hooks"]:
-        purpose = "Cleans up session leftovers, warns about untracked files"
-        if "start" in h["name"]:
-            purpose = "Runs checks on environment setup, local lock state, and checks for uncommitted drift"
-        elif "nudge" in h["name"]:
-            purpose = "Warns developer of drift or uncommitted changes when the session remains idle"
+        if lang == "en":
+            purpose = "Cleans up session leftovers, warns about untracked files"
+            if "start" in h["name"]:
+                purpose = "Runs checks on environment setup, local lock state, and checks for uncommitted drift"
+            elif "nudge" in h["name"]:
+                purpose = "Warns developer of drift or uncommitted changes when the session remains idle"
+        else:
+            purpose = "Limpia residuos de sesion y advierte sobre archivos no rastreados"
+            if "start" in h["name"]:
+                purpose = "Realiza comprobaciones de configuracion del entorno, estado de bloqueo local y drift sin confirmar"
+            elif "nudge" in h["name"]:
+                purpose = "Advierte al desarrollador sobre drift o cambios sin confirmar cuando la sesion queda inactiva"
             
         content += f"| `{h['name']}` | `{h['path']}` | {purpose} | [Link]({h['source_link']}) |\n"
 
@@ -805,6 +812,7 @@ The template repository centralizes all local development commands and quality g
 | `make install` | Local-Mutating | Installs `uv`, pins Python version, and builds the local `.venv` exactly according to `uv.lock`. |
 | `make format` | Local-Mutating | Automatically runs Ruff formatting and import sorting across `src/`, `tests/`, and `scripts/`. |
 | `make fix` | Local-Mutating | Applies safe linter autofixes and formatting. |
+| `make toolbelt-doctor` | Local-Safe (Read-Only) | Checks for installed CLIs and probes configured local service endpoints. |
 | `make check` | CI-Safe (Read-Only) | **CI Quality Gate**: Lock-syncs `.venv` with `uv sync --locked --exact`, checks Ruff formatting/linting, executes security checks (Bandit), runs Mypy type-checking, and executes tests with coverage. |
 | `make sync-skills` | Local-Mutating | Triggers the centralized sync engine to link skills, project agents, and rewrite generated adapter skill regions. |
 | `make check-sync` | CI-Safe (Read-Only) | **CI Drift Gate**: Validates that no local adapter files, native skill links, or manifests have drifted from the governed sources. |
@@ -827,6 +835,7 @@ El repositorio de plantilla centraliza todos los comandos de desarrollo local y 
 | `make install` | Local-Modificador | Instala `uv`, fija la versión de Python y construye el `.venv` local exactamente de acuerdo con `uv.lock`. |
 | `make format` | Local-Modificador | Ejecuta automáticamente el formateo de Ruff y la ordenación de imports en `src/`, `tests/` y `scripts/`. |
 | `make fix` | Local-Modificador | Aplica correcciones automáticas seguras del linter y formateo. |
+| `make toolbelt-doctor` | Local seguro (Lectura) | Diagnóstico de CLIs instaladas en el toolbelt y de servicios locales opcionales. |
 | `make check` | Seguro para CI (Lectura) | **Gate de calidad de CI**: Sincroniza el `.venv` con `uv sync --locked --exact`, verifica el formato/lint de Ruff, ejecuta controles de seguridad (Bandit), realiza la comprobación de tipos de Mypy y ejecuta pruebas con cobertura. |
 | `make sync-skills` | Local-Modificador | Activa el motor de sincronización centralizado para enlazar skills, proyectar agentes y reescribir las regiones de skills generadas. |
 | `make check-sync` | Seguro para CI (Lectura) | **Gate de drift de CI**: Valida que ningún adaptador local, enlace de skill nativo o manifiesto se haya desviado de las fuentes gobernadas. |

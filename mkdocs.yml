@@ -47,6 +47,7 @@ nav:
           - Governance, Skills, Automation, Orchestration: en/concepts/governance-skills-automation-orchestration.md
           - Skills vs Prompts: en/concepts/skills-vs-prompts.md
           - Context Engineering: en/concepts/context-engineering.md
+          - Agentic Architectures: en/concepts/agentic-architectures.md
       - Tools:
           - Tool Overview: en/tools/index.md
           - Claude Code: en/tools/claude-code.md
@@ -95,6 +96,7 @@ nav:
           - Gobernanza, skills, automatización y orquestación: es/concepts/governance-skills-automation-orchestration.md
           - Skills vs prompts: es/concepts/skills-vs-prompts.md
           - Context Engineering: es/concepts/context-engineering.md
+          - Arquitecturas de agentes: es/concepts/agentic-architectures.md
       - Herramientas:
           - Visión general: es/tools/index.md
           - Claude Code: es/tools/claude-code.md

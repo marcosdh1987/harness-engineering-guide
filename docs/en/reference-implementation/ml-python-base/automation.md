@@ -2,10 +2,10 @@
 
 > [!NOTE]
 > **Generated content**: This page is automatically generated from the template snapshot.
-> - **Reference Commit**: [587ac29](https://github.com/marcosdh1987/ml-python-base/commit/587ac29d30cb50d5c307f41e942c14d3f0bba298) on branch `main`
-> - **Last Synced**: `2026-06-28T00:52:06.059621Z`
+> - **Reference Commit**: [1fc65a8](https://github.com/marcosdh1987/ml-python-base/commit/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0) on branch `main`
+> - **Last Synced**: `2026-06-30T12:49:58.403597Z`
 > - **Reference Artifacts**:
->   - [Makefile](https://github.com/marcosdh1987/ml-python-base/blob/587ac29d30cb50d5c307f41e942c14d3f0bba298/Makefile)
+>   - [Makefile](https://github.com/marcosdh1987/ml-python-base/blob/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0/Makefile)
 > *Note: This is a study summary and index. The authoritative implementation and governance remain in the source repository.*
 ## Command Automation Matrix
 
@@ -18,6 +18,7 @@ The template repository centralizes all local development commands and quality g
 | `make install` | Local-Mutating | Installs `uv`, pins Python version, and builds the local `.venv` exactly according to `uv.lock`. |
 | `make format` | Local-Mutating | Automatically runs Ruff formatting and import sorting across `src/`, `tests/`, and `scripts/`. |
 | `make fix` | Local-Mutating | Applies safe linter autofixes and formatting. |
+| `make toolbelt-doctor` | Local-Safe (Read-Only) | Checks for installed CLIs and probes configured local service endpoints. |
 | `make check` | CI-Safe (Read-Only) | **CI Quality Gate**: Lock-syncs `.venv` with `uv sync --locked --exact`, checks Ruff formatting/linting, executes security checks (Bandit), runs Mypy type-checking, and executes tests with coverage. |
 | `make sync-skills` | Local-Mutating | Triggers the centralized sync engine to link skills, project agents, and rewrite generated adapter skill regions. |
 | `make check-sync` | CI-Safe (Read-Only) | **CI Drift Gate**: Validates that no local adapter files, native skill links, or manifests have drifted from the governed sources. |
