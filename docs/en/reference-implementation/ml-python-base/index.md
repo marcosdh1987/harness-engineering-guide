@@ -2,8 +2,8 @@
 
 > [!NOTE]
 > **Generated content**: This page is automatically generated from the template snapshot.
-> - **Reference Commit**: [587ac29](https://github.com/marcosdh1987/ml-python-base/commit/587ac29d30cb50d5c307f41e942c14d3f0bba298) on branch `main`
-> - **Last Synced**: `2026-06-28T00:52:06.059621Z`
+> - **Reference Commit**: [1fc65a8](https://github.com/marcosdh1987/ml-python-base/commit/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0) on branch `main`
+> - **Last Synced**: `2026-06-30T12:49:58.403597Z`
 > *Note: This is a study summary and index. The authoritative implementation and governance remain in the source repository.*
 ## Study Resource Overview
 
@@ -12,9 +12,9 @@ The `harness-engineering-guide` uses the public repository **[`marcosdh1987/ml-p
 ### Snapshot Information
 
 - **Reference Repository**: [https://github.com/marcosdh1987/ml-python-base](https://github.com/marcosdh1987/ml-python-base)
-- **Current Snapshot Commit SHA**: [587ac29d](https://github.com/marcosdh1987/ml-python-base/commit/587ac29d30cb50d5c307f41e942c14d3f0bba298)
+- **Current Snapshot Commit SHA**: [1fc65a8b](https://github.com/marcosdh1987/ml-python-base/commit/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0)
 - **Active Branch**: `main`
-- **Last Sync Timestamp**: `2026-06-28T00:52:06.059621Z`
+- **Last Sync Timestamp**: `2026-06-30T12:49:58.403597Z`
 
 ### Reference Sections
 
