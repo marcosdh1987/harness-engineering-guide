@@ -2,6 +2,11 @@
 
 Harness Engineering Guide is an educational resource for building durable systems around AI coding tools.
 
+!!! tip "New here? Start with the on-ramp"
+    Go to **[Getting Started with Claude Code](getting-started/index.md)** — a short,
+    hands-on path to using and creating skills (with Codex and OpenCode variants). Then
+    follow the [Learning Path](learning-path.md) for the full study sequence.
+
 ## What is Harness Engineering?
 
 Harness Engineering focuses on the system around the model: rules, context, skills, adapters, workflows, validation gates, drift control, and documentation.

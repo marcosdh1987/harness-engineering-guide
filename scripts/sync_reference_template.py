@@ -12,13 +12,12 @@ This script is idempotent. It:
 6. Generates English and Spanish evidence pages from evidence-sources.yml.
 """
 
-import os
-import sys
-import json
-import subprocess
-import tempfile
-import shutil
 import argparse
+import json
+import os
+import shutil
+import subprocess
+import sys
 from datetime import datetime, timezone
 
 # Import yaml (which is available in the environment as MkDocs depends on it)
@@ -28,12 +27,18 @@ except ImportError:
     print("Error: PyYAML is required. Please install it with 'pip install pyyaml'.")
     sys.exit(1)
 
+
 # Load environment variables from .env if present
 def load_dotenv():
-    paths = [".env", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")]
+    paths = [
+        ".env",
+        os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env"
+        ),
+    ]
     for path in paths:
         if os.path.exists(path):
-            with open(path, "r", encoding="utf-8") as f:
+            with open(path, encoding="utf-8") as f:
                 for line in f:
                     line = line.strip()
                     if not line or line.startswith("#"):
@@ -42,11 +47,14 @@ def load_dotenv():
                         key, val = line.split("=", 1)
                         key = key.strip()
                         val = val.strip()
-                        if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
+                        if (val.startswith('"') and val.endswith('"')) or (
+                            val.startswith("'") and val.endswith("'")
+                        ):
                             val = val[1:-1]
                         if key and key not in os.environ:
                             os.environ[key] = val
             break
+
 
 load_dotenv()
 
@@ -230,14 +238,20 @@ ARTIFACT_FAMILIES = [
         "purpose": "Explanatory guide on the skills sync engine, ideation routing, and adapter drift gates.",
         "tool_target": "General Developers",
         "source_of_truth": "Yes",
-    }
+    },
 ]
+
 
 def run_cmd(args, cwd=None):
     try:
-        return subprocess.check_output(args, cwd=cwd, stderr=subprocess.DEVNULL).decode("utf-8").strip()
+        return (
+            subprocess.check_output(args, cwd=cwd, stderr=subprocess.DEVNULL)
+            .decode("utf-8")
+            .strip()
+        )
     except Exception:
         return ""
+
 
 def locate_repository(local_path_arg=None):
     """
@@ -256,16 +270,19 @@ def locate_repository(local_path_arg=None):
     temp_dir = os.path.join(os.getcwd(), "docs", "reference-data", "temp_clone_repo")
     if os.path.exists(temp_dir):
         shutil.rmtree(temp_dir)
-    print(f"🔄 Reference repository not found locally. Cloning {REPO_URL} into temporary path...")
+    print(
+        f"🔄 Reference repository not found locally. Cloning {REPO_URL} into temporary path..."
+    )
     subprocess.check_call(["git", "clone", REPO_URL, temp_dir])
     return temp_dir, True
+
 
 def scan_repository(repo_path):
     # Get Git metadata
     commit_sha = run_cmd(["git", "rev-parse", "HEAD"], cwd=repo_path)
     if not commit_sha:
         commit_sha = "unknown"
-    
+
     branch = run_cmd(["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=repo_path)
     if not branch:
         branch = "main"
@@ -277,7 +294,7 @@ def scan_repository(repo_path):
         full_path = os.path.join(repo_path, rel_path)
         exists = os.path.exists(full_path)
         is_dir = os.path.isdir(full_path) if exists else False
-        
+
         size_or_children = "Not present in current snapshot"
         if exists:
             if is_dir:
@@ -292,41 +309,54 @@ def scan_repository(repo_path):
                     size_or_children = f"{size_bytes} bytes"
                 except Exception:
                     size_or_children = "Error size"
-                    
-        inventory.append({
-            "path": rel_path,
-            "exists": exists,
-            "is_dir": is_dir,
-            "size_or_children": size_or_children,
-            "purpose": item["purpose"],
-            "tool_target": item["tool_target"],
-            "source_of_truth": item["source_of_truth"]
-        })
+
+        inventory.append(
+            {
+                "path": rel_path,
+                "exists": exists,
+                "is_dir": is_dir,
+                "size_or_children": size_or_children,
+                "purpose": item["purpose"],
+                "tool_target": item["tool_target"],
+                "source_of_truth": item["source_of_truth"],
+            }
+        )
 
     # Detailed Skills scan
     skills = []
-    for skill_type, dir_path in [("internal", ".github/skills"), ("external", ".github/skills-external")]:
+    for skill_type, dir_path in [
+        ("internal", ".github/skills"),
+        ("external", ".github/skills-external"),
+    ]:
         full_dir = os.path.join(repo_path, dir_path)
         if os.path.exists(full_dir):
             for child in os.listdir(full_dir):
                 child_path = os.path.join(full_dir, child)
-                if skill_type == "internal" and child.endswith(".md") and child != "README.md":
+                if (
+                    skill_type == "internal"
+                    and child.endswith(".md")
+                    and child != "README.md"
+                ):
                     skill_name = child[:-3]
-                    skills.append({
-                        "name": skill_name,
-                        "type": "internal",
-                        "path": f"{dir_path}/{child}",
-                        "source_link": f"{REPO_URL}/blob/{commit_sha}/{dir_path}/{child}"
-                    })
+                    skills.append(
+                        {
+                            "name": skill_name,
+                            "type": "internal",
+                            "path": f"{dir_path}/{child}",
+                            "source_link": f"{REPO_URL}/blob/{commit_sha}/{dir_path}/{child}",
+                        }
+                    )
                 elif skill_type == "external" and os.path.isdir(child_path):
                     skill_file = os.path.join(child_path, "SKILL.md")
                     if os.path.exists(skill_file):
-                        skills.append({
-                            "name": child,
-                            "type": "external",
-                            "path": f"{dir_path}/{child}/SKILL.md",
-                            "source_link": f"{REPO_URL}/blob/{commit_sha}/{dir_path}/{child}/SKILL.md"
-                        })
+                        skills.append(
+                            {
+                                "name": child,
+                                "type": "external",
+                                "path": f"{dir_path}/{child}/SKILL.md",
+                                "source_link": f"{REPO_URL}/blob/{commit_sha}/{dir_path}/{child}/SKILL.md",
+                            }
+                        )
 
     # Detailed Agents scan
     agents = []
@@ -335,11 +365,13 @@ def scan_repository(repo_path):
         for child in os.listdir(agents_dir):
             if child.endswith(".md") and child != "README.md":
                 agent_name = child[:-3]
-                agents.append({
-                    "name": agent_name,
-                    "path": f".github/agents/{child}",
-                    "source_link": f"{REPO_URL}/blob/{commit_sha}/.github/agents/{child}"
-                })
+                agents.append(
+                    {
+                        "name": agent_name,
+                        "path": f".github/agents/{child}",
+                        "source_link": f"{REPO_URL}/blob/{commit_sha}/.github/agents/{child}",
+                    }
+                )
 
     # Detailed Hooks scan
     hooks = []
@@ -347,29 +379,35 @@ def scan_repository(repo_path):
     if os.path.exists(hooks_dir):
         for child in os.listdir(hooks_dir):
             if child.endswith(".sh"):
-                hooks.append({
-                    "name": child,
-                    "path": f".claude/hooks/{child}",
-                    "source_link": f"{REPO_URL}/blob/{commit_sha}/.claude/hooks/{child}"
-                })
+                hooks.append(
+                    {
+                        "name": child,
+                        "path": f".claude/hooks/{child}",
+                        "source_link": f"{REPO_URL}/blob/{commit_sha}/.claude/hooks/{child}",
+                    }
+                )
 
     # Detailed Adapters scan
     adapters = []
     registry_path = os.path.join(repo_path, "adapters/registry.toml")
     if os.path.exists(registry_path):
-        adapters.append({
-            "name": "registry.toml",
-            "path": "adapters/registry.toml",
-            "source_link": f"{REPO_URL}/blob/{commit_sha}/adapters/registry.toml"
-        })
+        adapters.append(
+            {
+                "name": "registry.toml",
+                "path": "adapters/registry.toml",
+                "source_link": f"{REPO_URL}/blob/{commit_sha}/adapters/registry.toml",
+            }
+        )
     templates_dir = os.path.join(repo_path, "adapters/templates")
     if os.path.exists(templates_dir):
         for child in os.listdir(templates_dir):
-            adapters.append({
-                "name": f"template: {child}",
-                "path": f"adapters/templates/{child}",
-                "source_link": f"{REPO_URL}/blob/{commit_sha}/adapters/templates/{child}"
-            })
+            adapters.append(
+                {
+                    "name": f"template: {child}",
+                    "path": f"adapters/templates/{child}",
+                    "source_link": f"{REPO_URL}/blob/{commit_sha}/adapters/templates/{child}",
+                }
+            )
 
     return {
         "repo_url": REPO_URL,
@@ -380,8 +418,9 @@ def scan_repository(repo_path):
         "skills": skills,
         "agents": agents,
         "hooks": hooks,
-        "adapters": adapters
+        "adapters": adapters,
     }
+
 
 def save_snapshot(data):
     os.makedirs(os.path.dirname(SNAPSHOT_PATH), exist_ok=True)
@@ -389,25 +428,27 @@ def save_snapshot(data):
         json.dump(data, f, indent=2)
     print(f"💾 Snapshot saved to {SNAPSHOT_PATH}")
 
+
 def load_evidence_sources():
     if not os.path.exists(EVIDENCE_YAML_PATH):
         print(f"⚠️ Evidence YAML path {EVIDENCE_YAML_PATH} not found!")
         return []
-    with open(EVIDENCE_YAML_PATH, "r", encoding="utf-8") as f:
+    with open(EVIDENCE_YAML_PATH, encoding="utf-8") as f:
         return yaml.safe_load(f)
+
 
 # Markdown rendering helpers
 def render_header(lang, title, data, file_paths=None):
     sha = data["commit_sha"]
     short_sha = sha[:7]
     ts = data["last_sync"]
-    
+
     if lang == "en":
         lines = [
             f"# {title}",
             "",
             "> [!NOTE]",
-            f"> **Generated content**: This page is automatically generated from the template snapshot.",
+            "> **Generated content**: This page is automatically generated from the template snapshot.",
             f"> - **Reference Commit**: [{short_sha}]({REPO_URL}/commit/{sha}) on branch `{data['branch']}`",
             f"> - **Last Synced**: `{ts}`",
         ]
@@ -415,13 +456,15 @@ def render_header(lang, title, data, file_paths=None):
             lines.append("> - **Reference Artifacts**:")
             for p in file_paths:
                 lines.append(f">   - [{p}]({REPO_URL}/blob/{sha}/{p})")
-        lines.append("> *Note: This is a study summary and index. The authoritative implementation and governance remain in the source repository.*")
+        lines.append(
+            "> *Note: This is a study summary and index. The authoritative implementation and governance remain in the source repository.*"
+        )
     else:
         lines = [
             f"# {title}",
             "",
             "> [!NOTE]",
-            f"> **Contenido generado**: Esta página se genera automáticamente a partir del snapshot de la plantilla.",
+            "> **Contenido generado**: Esta página se genera automáticamente a partir del snapshot de la plantilla.",
             f"> - **Commit de referencia**: [{short_sha}]({REPO_URL}/commit/{sha}) en la rama `{data['branch']}`",
             f"> - **Última sincronización**: `{ts}`",
         ]
@@ -429,15 +472,22 @@ def render_header(lang, title, data, file_paths=None):
             lines.append("> - **Artefactos de referencia**:")
             for p in file_paths:
                 lines.append(f">   - [{p}]({REPO_URL}/blob/{sha}/{p})")
-        lines.append("> *Nota: Este es un resumen de estudio e índice. La implementación y gobernanza autoritativas permanecen en el repositorio de origen.*")
-    
+        lines.append(
+            "> *Nota: Este es un resumen de estudio e índice. La implementación y gobernanza autoritativas permanecen en el repositorio de origen.*"
+        )
+
     lines.append("")
     return "\n".join(lines)
 
+
 def render_inventory_page(lang, data):
-    title = "Template Artifacts Inventory" if lang == "en" else "Inventario de artefactos de plantilla"
+    title = (
+        "Template Artifacts Inventory"
+        if lang == "en"
+        else "Inventario de artefactos de plantilla"
+    )
     content = render_header(lang, title, data)
-    
+
     if lang == "en":
         content += """## Artifact Catalog
 
@@ -459,26 +509,31 @@ Este catálogo detalla todos los artefactos estructurales, de gobernanza y de ad
         status = "Present" if item["exists"] else "Absent"
         if lang != "en":
             status = "Presente" if item["exists"] else "Ausente"
-            
+
         git_link = f"[Source]({REPO_URL}/blob/{data['commit_sha']}/{item['path']})"
         if item["is_dir"]:
             git_link = f"[Source]({REPO_URL}/tree/{data['commit_sha']}/{item['path']})"
-            
+
         content += f"| `{item['path']}` | {status} | `{item['size_or_children']}` | {item['purpose']} | `{item['tool_target']}` | {item['source_of_truth']} | {git_link} |\n"
-        
+
     return content
 
+
 def render_rules_page(lang, data):
-    title = "Governance & Rules System" if lang == "en" else "Sistema de reglas y gobernanza"
+    title = (
+        "Governance & Rules System"
+        if lang == "en"
+        else "Sistema de reglas y gobernanza"
+    )
     rules_files = [
         ".github/architecture.md",
         ".github/standards.md",
         ".github/domain-boundaries.md",
         ".github/automation.md",
-        ".github/orchestration.md"
+        ".github/orchestration.md",
     ]
     content = render_header(lang, title, data, rules_files)
-    
+
     if lang == "en":
         content += """## Structured Governance
 
@@ -559,10 +614,16 @@ Establece pautas de ejecución de flujos de trabajo de Nivel 4 para tareas de pr
 """
     return content
 
+
 def render_skills_page(lang, data):
     title = "Governed Skills" if lang == "en" else "Skills gobernados"
-    content = render_header(lang, title, data, [".github/skills/", ".github/skills-external/", "skills-lock.json"])
-    
+    content = render_header(
+        lang,
+        title,
+        data,
+        [".github/skills/", ".github/skills-external/", "skills-lock.json"],
+    )
+
     if lang == "en":
         content += """## Skills vs Prompts
 
@@ -617,10 +678,11 @@ Debido a que diferentes adaptadores de herramientas (Claude Code, OpenCode, Anti
 """
     return content
 
+
 def render_agents_page(lang, data):
     title = "Autonomous Agents & Roles" if lang == "en" else "Agentes autónomos y roles"
     content = render_header(lang, title, data, [".github/agents/"])
-    
+
     if lang == "en":
         content += """## Governed Agent Roles
 
@@ -671,10 +733,13 @@ Según los metadatos de la plantilla, se asignan los siguientes roles:
 """
     return content
 
+
 def render_hooks_page(lang, data):
-    title = "Session Hooks & Guardrails" if lang == "en" else "Hooks de sesión y guardrails"
+    title = (
+        "Session Hooks & Guardrails" if lang == "en" else "Hooks de sesión y guardrails"
+    )
     content = render_header(lang, title, data, [".claude/hooks/"])
-    
+
     if lang == "en":
         content += """## Hooks as Quality Guardrails
 
@@ -704,17 +769,21 @@ Los hooks son scripts ejecutables que se activan automáticamente en puntos clav
             elif "nudge" in h["name"]:
                 purpose = "Warns developer of drift or uncommitted changes when the session remains idle"
         else:
-            purpose = "Limpia residuos de sesion y advierte sobre archivos no rastreados"
+            purpose = (
+                "Limpia residuos de sesion y advierte sobre archivos no rastreados"
+            )
             if "start" in h["name"]:
                 purpose = "Realiza comprobaciones de configuracion del entorno, estado de bloqueo local y drift sin confirmar"
             elif "nudge" in h["name"]:
                 purpose = "Advierte al desarrollador sobre drift o cambios sin confirmar cuando la sesion queda inactiva"
-            
+
         content += f"| `{h['name']}` | `{h['path']}` | {purpose} | [Link]({h['source_link']}) |\n"
 
     if not data["hooks"]:
         if lang == "en":
-            content += "| *No explicit hooks found* | | Not present in current snapshot | |\n"
+            content += (
+                "| *No explicit hooks found* | | Not present in current snapshot | |\n"
+            )
         else:
             content += "| *No se encontraron hooks explícitos* | | No presente en el snapshot actual | |\n"
 
@@ -738,10 +807,26 @@ Si no se utilizan hooks de shell explícitos, los puntos de integración se defi
 """
     return content
 
+
 def render_adapters_page(lang, data):
-    title = "Tool Adapters Projection" if lang == "en" else "Proyección de adaptadores de herramientas"
-    content = render_header(lang, title, data, ["adapters/", "CLAUDE.md", "OPENCODE.md", "AGENTS.md", ".github/copilot-instructions.md"])
-    
+    title = (
+        "Tool Adapters Projection"
+        if lang == "en"
+        else "Proyección de adaptadores de herramientas"
+    )
+    content = render_header(
+        lang,
+        title,
+        data,
+        [
+            "adapters/",
+            "CLAUDE.md",
+            "OPENCODE.md",
+            "AGENTS.md",
+            ".github/copilot-instructions.md",
+        ],
+    )
+
     if lang == "en":
         content += """## Adapters Composition
 
@@ -791,15 +876,20 @@ Cada adaptador se compone de dos regiones distintas:
             tool = "GitHub Copilot"
         elif "agents" in ad["name"] or "codex" in ad["name"]:
             tool = "Codex"
-            
+
         content += f"| `{ad['name']}` | `{ad['path']}` | {tool} | [Link]({ad['source_link']}) |\n"
 
     return content
 
+
 def render_automation_page(lang, data):
-    title = "Makefile Automation Workflows" if lang == "en" else "Flujos de automatización del Makefile"
+    title = (
+        "Makefile Automation Workflows"
+        if lang == "en"
+        else "Flujos de automatización del Makefile"
+    )
     content = render_header(lang, title, data, ["Makefile"])
-    
+
     if lang == "en":
         content += """## Command Automation Matrix
 
@@ -848,10 +938,24 @@ El repositorio de plantilla centraliza todos los comandos de desarrollo local y 
 """
     return content
 
+
 def render_drift_control_page(lang, data):
-    title = "Drift Control & Sync Engine" if lang == "en" else "Control de drift y motor de sincronización"
-    content = render_header(lang, title, data, ["skills-lock.json", "src/ml_python_base/skills_sync/", "docs/skills-management.md"])
-    
+    title = (
+        "Drift Control & Sync Engine"
+        if lang == "en"
+        else "Control de drift y motor de sincronización"
+    )
+    content = render_header(
+        lang,
+        title,
+        data,
+        [
+            "skills-lock.json",
+            "src/ml_python_base/skills_sync/",
+            "docs/skills-management.md",
+        ],
+    )
+
     if lang == "en":
         content += """## Preventing Configuration Drift
 
@@ -910,10 +1014,11 @@ Actúa como un catálogo de bloqueo criptográfico para los skills externos. Cua
 """
     return content
 
+
 def render_working_loop_page(lang, data):
     title = "Harness Working Loop" if lang == "en" else "Ciclo de trabajo del Harness"
     content = render_header(lang, title, data)
-    
+
     if lang == "en":
         content += """## Development Cycle Steps
 
@@ -970,10 +1075,15 @@ graph TD
 """
     return content
 
+
 def render_overview_page(lang, data):
-    title = "Reference Implementation: ml-python-base" if lang == "en" else "Implementación de referencia: ml-python-base"
+    title = (
+        "Reference Implementation: ml-python-base"
+        if lang == "en"
+        else "Implementación de referencia: ml-python-base"
+    )
     content = render_header(lang, title, data)
-    
+
     if lang == "en":
         content += f"""## Study Resource Overview
 
@@ -982,9 +1092,9 @@ The `harness-engineering-guide` uses the public repository **[`marcosdh1987/ml-p
 ### Snapshot Information
 
 - **Reference Repository**: [{REPO_URL}]({REPO_URL})
-- **Current Snapshot Commit SHA**: [{data['commit_sha'][:8]}]({REPO_URL}/commit/{data['commit_sha']})
-- **Active Branch**: `{data['branch']}`
-- **Last Sync Timestamp**: `{data['last_sync']}`
+- **Current Snapshot Commit SHA**: [{data["commit_sha"][:8]}]({REPO_URL}/commit/{data["commit_sha"]})
+- **Active Branch**: `{data["branch"]}`
+- **Last Sync Timestamp**: `{data["last_sync"]}`
 
 ### Reference Sections
 
@@ -1007,9 +1117,9 @@ La guía `harness-engineering-guide` utiliza el repositorio público **[`marcosd
 ### Información del snapshot
 
 - **Repositorio de referencia**: [{REPO_URL}]({REPO_URL})
-- **Commit SHA del snapshot actual**: [{data['commit_sha'][:8]}]({REPO_URL}/commit/{data['commit_sha']})
-- **Rama activa**: `{data['branch']}`
-- **Última sincronización**: `{data['last_sync']}`
+- **Commit SHA del snapshot actual**: [{data["commit_sha"][:8]}]({REPO_URL}/commit/{data["commit_sha"]})
+- **Rama activa**: `{data["branch"]}`
+- **Última sincronización**: `{data["last_sync"]}`
 
 ### Secciones de referencia
 
@@ -1025,6 +1135,7 @@ Utilice la barra de navegación para explorar aspectos específicos de esta impl
 9. **[Ciclo de trabajo](working-loop.md)**: Flujos de trabajo paso a paso.
 """
     return content
+
 
 # Evidence Pages Rendering
 def render_evidence_index(lang, sources):
@@ -1057,51 +1168,73 @@ Esta sección alberga la base de datos curada de fuentes primarias, documentaci�
 
     return f"# {title}\n\n{desc}"
 
+
 def render_evidence_category(lang, category_type, sources):
     if category_type == "vendor-doc":
-        title = "Primary Vendor Documentation" if lang == "en" else "Documentación de proveedores primarios"
-        desc = "Official documentation and manuals from AI tool developers." if lang == "en" else "Documentación oficial y manuales de los desarrolladores de herramientas de IA."
+        title = (
+            "Primary Vendor Documentation"
+            if lang == "en"
+            else "Documentación de proveedores primarios"
+        )
+        desc = (
+            "Official documentation and manuals from AI tool developers."
+            if lang == "en"
+            else "Documentación oficial y manuales de los desarrolladores de herramientas de IA."
+        )
     elif category_type == "research":
         title = "Research Literature" if lang == "en" else "Literatura de investigación"
-        desc = "Peer-reviewed research and preprint papers on agentic coding systems." if lang == "en" else "Investigaciones revisadas por pares y preprints sobre sistemas de codificación agentic."
+        desc = (
+            "Peer-reviewed research and preprint papers on agentic coding systems."
+            if lang == "en"
+            else "Investigaciones revisadas por pares y preprints sobre sistemas de codificación agentic."
+        )
     elif category_type == "security":
-        title = "Security Advisories & Writeups" if lang == "en" else "Avisos y reportes de seguridad"
-        desc = "Security reports, threat modeling, and vulnerability disclosures." if lang == "en" else "Informes de seguridad, modelado de amenazas y divulgación de vulnerabilidades."
-        
+        title = (
+            "Security Advisories & Writeups"
+            if lang == "en"
+            else "Avisos y reportes de seguridad"
+        )
+        desc = (
+            "Security reports, threat modeling, and vulnerability disclosures."
+            if lang == "en"
+            else "Informes de seguridad, modelado de amenazas y divulgación de vulnerabilidades."
+        )
+
     content = f"# {title}\n\n>{desc}\n\n"
-    
+
     filtered = [s for s in sources if s["type"] == category_type]
     for s in filtered:
         topics = ", ".join([f"`{t}`" for t in s["related_topics"]])
-        
+
         if lang == "en":
-            content += f"""### {s['title']}
-- **Provider / Publisher**: {s['provider']}
-- **Direct Link**: [{s['url']}]({s['url']})
-- **Accessed Date**: `{s['date_accessed']}`
+            content += f"""### {s["title"]}
+- **Provider / Publisher**: {s["provider"]}
+- **Direct Link**: [{s["url"]}]({s["url"]})
+- **Accessed Date**: `{s["date_accessed"]}`
 - **Related Topics**: {topics}
 - **Summary & Notes**:
-  {s['notes']}
+  {s["notes"]}
 
 ---
 """
         else:
-            content += f"""### {s['title']}
-- **Proveedor / Editorial**: {s['provider']}
-- **Enlace directo**: [{s['url']}]({s['url']})
-- **Fecha de acceso**: `{s['date_accessed']}`
+            content += f"""### {s["title"]}
+- **Proveedor / Editorial**: {s["provider"]}
+- **Enlace directo**: [{s["url"]}]({s["url"]})
+- **Fecha de acceso**: `{s["date_accessed"]}`
 - **Temas relacionados**: {topics}
 - **Resumen y notas**:
-  {s['notes']}
+  {s["notes"]}
 
 ---
 """
-            
+
     return content
+
 
 def render_reading_list(lang, sources):
     title = "Curated Reading List" if lang == "en" else "Lista de lectura recomendada"
-    
+
     if lang == "en":
         content = f"""# {title}
 
@@ -1110,16 +1243,16 @@ Use this reading checklist to build expertise in Harness Engineering.
 ## Essential Core Readings
 
 ### 1. Tool Instruction Adapters
-- **[Claude Code Documentation]({[s['url'] for s in sources if s['id'] == 'anthropic-claude-code'][0]})**: Learn how CLAUDE.md governs local shell permissions and custom CLI commands.
-- **[Custom Instructions for GitHub Copilot]({[s['url'] for s in sources if s['id'] == 'github-copilot-instructions'][0]})**: Master repository-level Copilot guidelines.
+- **[Claude Code Documentation]({[s["url"] for s in sources if s["id"] == "anthropic-claude-code"][0]})**: Learn how CLAUDE.md governs local shell permissions and custom CLI commands.
+- **[Custom Instructions for GitHub Copilot]({[s["url"] for s in sources if s["id"] == "github-copilot-instructions"][0]})**: Master repository-level Copilot guidelines.
 
 ### 2. Academic Foundations
-- **[SWE-agent: Agent-Computer Interfaces]({[s['url'] for s in sources if s['id'] == 'swe-agent-paper'][0]})**: Understand the critical importance of Agent-Computer Interfaces (ACIs).
-- **[AutoDev Framework]({[s['url'] for s in sources if s['id'] == 'autodev-paper'][0]})**: Study sandbox design and programmatic validation pipelines.
+- **[SWE-agent: Agent-Computer Interfaces]({[s["url"] for s in sources if s["id"] == "swe-agent-paper"][0]})**: Understand the critical importance of Agent-Computer Interfaces (ACIs).
+- **[AutoDev Framework]({[s["url"] for s in sources if s["id"] == "autodev-paper"][0]})**: Study sandbox design and programmatic validation pipelines.
 
 ### 3. Threat Modeling & Security
-- **[OWASP Top 10 for LLM Applications]({[s['url'] for s in sources if s['id'] == 'owasp-llm-security'][0]})**: Security checklist for prompt injection and data exposure vectors.
-- **[Security Risks of AI Agents in Software Development]({[s['url'] for s in sources if s['id'] == 'ide-agent-security-risks'][0]})**: Learn about indirect prompt injections through repository files.
+- **[OWASP Top 10 for LLM Applications]({[s["url"] for s in sources if s["id"] == "owasp-llm-security"][0]})**: Security checklist for prompt injection and data exposure vectors.
+- **[Security Risks of AI Agents in Software Development]({[s["url"] for s in sources if s["id"] == "ide-agent-security-risks"][0]})**: Learn about indirect prompt injections through repository files.
 """
     else:
         content = f"""# {title}
@@ -1129,21 +1262,24 @@ Utilice esta lista de lectura para desarrollar su especialización en Harness En
 ## Lecturas esenciales recomendadas
 
 ### 1. Adaptadores de instrucciones de herramientas
-- **[Claude Code Documentation]({[s['url'] for s in sources if s['id'] == 'anthropic-claude-code'][0]})**: Aprenda cómo CLAUDE.md gobierna los permisos de shell locales y los comandos CLI personalizados.
-- **[Custom Instructions for GitHub Copilot]({[s['url'] for s in sources if s['id'] == 'github-copilot-instructions'][0]})**: Domine las directrices de Copilot a nivel de repositorio.
+- **[Claude Code Documentation]({[s["url"] for s in sources if s["id"] == "anthropic-claude-code"][0]})**: Aprenda cómo CLAUDE.md gobierna los permisos de shell locales y los comandos CLI personalizados.
+- **[Custom Instructions for GitHub Copilot]({[s["url"] for s in sources if s["id"] == "github-copilot-instructions"][0]})**: Domine las directrices de Copilot a nivel de repositorio.
 
 ### 2. Fundamentos académicos
-- **[SWE-agent: Agent-Computer Interfaces]({[s['url'] for s in sources if s['id'] == 'swe-agent-paper'][0]})**: Comprenda la importancia crítica de las interfaces Agente-Computadora (ACIs).
-- **[AutoDev Framework]({[s['url'] for s in sources if s['id'] == 'autodev-paper'][0]})**: Estudie el diseño de sandboxes y los pipelines de validación programática.
+- **[SWE-agent: Agent-Computer Interfaces]({[s["url"] for s in sources if s["id"] == "swe-agent-paper"][0]})**: Comprenda la importancia crítica de las interfaces Agente-Computadora (ACIs).
+- **[AutoDev Framework]({[s["url"] for s in sources if s["id"] == "autodev-paper"][0]})**: Estudie el diseño de sandboxes y los pipelines de validación programática.
 
 ### 3. Modelado de amenazas y seguridad
-- **[OWASP Top 10 for LLM Applications]({[s['url'] for s in sources if s['id'] == 'owasp-llm-security'][0]})**: Lista de verificación de seguridad para vectores de inyección de prompts y exposición de datos.
-- **[Security Risks of AI Agents in Software Development]({[s['url'] for s in sources if s['id'] == 'ide-agent-security-risks'][0]})**: Aprenda sobre inyecciones de prompts indirectas a través de archivos del repositorio.
+- **[OWASP Top 10 for LLM Applications]({[s["url"] for s in sources if s["id"] == "owasp-llm-security"][0]})**: Lista de verificación de seguridad para vectores de inyección de prompts y exposición de datos.
+- **[Security Risks of AI Agents in Software Development]({[s["url"] for s in sources if s["id"] == "ide-agent-security-risks"][0]})**: Aprenda sobre inyecciones de prompts indirectas a través de archivos del repositorio.
 """
     return content
 
+
 def main():
-    parser = argparse.ArgumentParser(description="Synchronize guide with ml-python-base template snapshot.")
+    parser = argparse.ArgumentParser(
+        description="Synchronize guide with ml-python-base template snapshot."
+    )
     parser.add_argument("--ref-dir", help="Path to local ml-python-base repository.")
     args = parser.parse_args()
 
@@ -1152,7 +1288,7 @@ def main():
         # Scan
         print("🔍 Scanning reference repository...")
         data = scan_repository(repo_path)
-        
+
         # Save JSON snapshot
         save_snapshot(data)
 
@@ -1184,14 +1320,18 @@ def main():
         }
 
         for filename, content in pages_en.items():
-            out_path = os.path.join("docs", "en", "reference-implementation", "ml-python-base", filename)
+            out_path = os.path.join(
+                "docs", "en", "reference-implementation", "ml-python-base", filename
+            )
             os.makedirs(os.path.dirname(out_path), exist_ok=True)
             with open(out_path, "w", encoding="utf-8") as f:
                 f.write(content)
             print(f"✍️ Wrote English page: {out_path}")
 
         for filename, content in pages_es.items():
-            out_path = os.path.join("docs", "es", "reference-implementation", "ml-python-base", filename)
+            out_path = os.path.join(
+                "docs", "es", "reference-implementation", "ml-python-base", filename
+            )
             os.makedirs(os.path.dirname(out_path), exist_ok=True)
             with open(out_path, "w", encoding="utf-8") as f:
                 f.write(content)
@@ -1200,7 +1340,7 @@ def main():
         # Clean old legacy ml-python-base.md files if they exist
         for old_file in [
             os.path.join("docs", "en", "reference-implementation", "ml-python-base.md"),
-            os.path.join("docs", "es", "reference-implementation", "ml-python-base.md")
+            os.path.join("docs", "es", "reference-implementation", "ml-python-base.md"),
         ]:
             if os.path.exists(old_file):
                 os.remove(old_file)
@@ -1209,20 +1349,20 @@ def main():
         # Render Evidence Pages
         print("📚 Rendering Evidence and Bibliography pages...")
         sources = load_evidence_sources()
-        
+
         evidence_en = {
             "index.md": render_evidence_index("en", sources),
             "vendor-docs.md": render_evidence_category("en", "vendor-doc", sources),
             "research.md": render_evidence_category("en", "research", sources),
             "security.md": render_evidence_category("en", "security", sources),
-            "reading-list.md": render_reading_list("en", sources)
+            "reading-list.md": render_reading_list("en", sources),
         }
         evidence_es = {
             "index.md": render_evidence_index("es", sources),
             "vendor-docs.md": render_evidence_category("es", "vendor-doc", sources),
             "research.md": render_evidence_category("es", "research", sources),
             "security.md": render_evidence_category("es", "security", sources),
-            "reading-list.md": render_reading_list("es", sources)
+            "reading-list.md": render_reading_list("es", sources),
         }
 
         for filename, content in evidence_en.items():
@@ -1245,6 +1385,7 @@ def main():
         if is_temp and os.path.exists(repo_path):
             print("🧹 Cleaning up temporary clone directory...")
             shutil.rmtree(repo_path)
+
 
 if __name__ == "__main__":
     main()

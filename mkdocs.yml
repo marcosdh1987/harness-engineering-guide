@@ -40,6 +40,15 @@ nav:
   - Home: index.md
   - English:
       - Overview: en/index.md
+      - Getting Started:
+          - Start Here: en/getting-started/index.md
+          - Claude Code Basics: en/getting-started/claude-code-basics.md
+          - Minimal Setup: en/getting-started/minimal-setup.md
+          - Use & Modify Skills: en/getting-started/use-and-modify-skills.md
+          - Create Your First Skill: en/getting-started/create-your-first-skill.md
+          - Leverage More Features: en/getting-started/leverage-more.md
+          - Getting Started with Codex: en/getting-started/codex.md
+          - Getting Started with OpenCode: en/getting-started/opencode.md
       - Learning Path: en/learning-path.md
       - Concepts:
           - Harness Engineering: en/concepts/harness-engineering.md
@@ -89,6 +98,15 @@ nav:
       - Open-Source Readiness: en/open-source-readiness.md
   - Español:
       - Visión general: es/index.md
+      - Primeros pasos:
+          - Empieza aquí: es/getting-started/index.md
+          - Fundamentos de Claude Code: es/getting-started/claude-code-basics.md
+          - Configuración mínima: es/getting-started/minimal-setup.md
+          - Usar y modificar skills: es/getting-started/use-and-modify-skills.md
+          - Crea tu primera skill: es/getting-started/create-your-first-skill.md
+          - Aprovecha más funciones: es/getting-started/leverage-more.md
+          - Primeros pasos con Codex: es/getting-started/codex.md
+          - Primeros pasos con OpenCode: es/getting-started/opencode.md
       - Ruta de aprendizaje: es/learning-path.md
       - Conceptos:
           - Harness Engineering: es/concepts/harness-engineering.md

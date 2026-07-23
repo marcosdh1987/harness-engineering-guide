@@ -16,3 +16,22 @@ dependencies = [
 
 [tool.setuptools]
 py-modules = []
+
+[dependency-groups]
+dev = [
+  "ruff>=0.14",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+extend-exclude = ["site", ".venv"]
+
+[tool.ruff.lint]
+# Pragmatic baseline for a docs repo whose only Python is the reference sync script.
+select = ["E", "W", "F", "I", "UP", "RUF"]
+ignore = [
+  "E501",    # line length is handled by the formatter
+  "RUF015",  # next(iter(x)) rewrite — unsafe fix; not worth changing a load-bearing script
+  "W291",    # a lone hit is trailing whitespace inside generated-markdown string data
+]
