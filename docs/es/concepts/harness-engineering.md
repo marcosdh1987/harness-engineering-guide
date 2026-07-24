@@ -1,6 +1,6 @@
 # Harness Engineering
 
-Harness Engineering es la práctica de diseñar el sistema operativo duradero alrededor del desarrollo asistido por IA.
+Harness Engineering es la práctica de diseñar el sistema operativo duradero alrededor del desarrollo asistido por IA. El harness conecta a los asistentes de IA con las reglas, el contexto, las capacidades, los workflows y los mecanismos de validación relevantes para su trabajo.
 
 ## Más allá del prompt engineering
 

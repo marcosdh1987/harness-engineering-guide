@@ -2,10 +2,10 @@
 
 > [!NOTE]
 > **Generated content**: This page is automatically generated from the template snapshot.
-> - **Reference Commit**: [1fc65a8](https://github.com/marcosdh1987/ml-python-base/commit/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0) on branch `main`
-> - **Last Synced**: `2026-06-30T13:26:01.964630Z`
+> - **Reference Commit**: [422e35c](https://github.com/marcosdh1987/ml-python-base/commit/422e35ca5e27c50ab3007d7b2e7756bbcae65843) on branch `main`
+> - **Last Synced**: `2026-07-24T15:35:41.166285Z`
 > - **Reference Artifacts**:
->   - [Makefile](https://github.com/marcosdh1987/ml-python-base/blob/1fc65a8b6cef84e9aa40ed333a8a78475cbb22a0/Makefile)
+>   - [Makefile](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/Makefile)
 > *Note: This is a study summary and index. The authoritative implementation and governance remain in the source repository.*
 ## Command Automation Matrix
 

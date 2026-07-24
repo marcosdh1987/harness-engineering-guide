@@ -32,6 +32,7 @@ Read these in order — each is short and builds on the last:
 3. **[Use and Modify Skills](use-and-modify-skills.md)** — run existing skills and change them safely.
 4. **[Create Your First Skill](create-your-first-skill.md)** — a new skill in three steps.
 5. **[Leverage More Features](leverage-more.md)** — the native features you're probably not using yet, and which ones this template actually uses.
+6. **[From Project to Organization](project-to-organization.md)** — how harness engineering principles scale from one repository to shared harnesses, teams, and governed organizational knowledge ([jump to Company Brain section](project-to-organization.md#company-brain-as-an-emerging-industry-term)).
 
 ## Using Codex or OpenCode?
 

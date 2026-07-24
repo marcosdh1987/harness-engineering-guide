@@ -32,6 +32,7 @@ Leé estas páginas en orden — cada una es corta y se apoya en la anterior:
 3. **[Usar y modificar skills](use-and-modify-skills.md)** — ejecutá skills existentes y modificalas de forma segura.
 4. **[Creá tu primera skill](create-your-first-skill.md)** — una skill nueva en tres pasos.
 5. **[Aprovechá más funciones](leverage-more.md)** — las funciones nativas que probablemente todavía no usás, y cuáles usa realmente este template.
+6. **[Del proyecto a la organización](proyecto-a-organizacion.md)** — cómo los principios de harness engineering evolucionan desde un repositorio individual hacia harnesses compartidos, equipos y conocimiento organizacional gobernado ([ver sección Company Brain](proyecto-a-organizacion.md#company-brain-como-termino-emergente-de-la-industria)).
 
 ## ¿Usás Codex u OpenCode?
 

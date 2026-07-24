@@ -1,6 +1,6 @@
 # Context Engineering
 
-Context quality strongly affects AI-assisted development.
+Context quality strongly affects AI-assisted development. Organizational knowledge and agent instructions are related but not identical. Knowledge should be retrieved when relevant, while mandatory policies and operating constraints should be projected into the harness explicitly.
 
 ## What good context looks like
 

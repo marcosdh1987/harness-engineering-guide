@@ -29,3 +29,12 @@
   Introduces the AutoDev framework, establishing autonomous agent collaborations where coding, compilation, testing, and Git operations are run within secure execution sandboxes under strict quality gates.
 
 ---
+### ISO 30401:2018 Knowledge management systems — Requirements
+- **Proveedor / Editorial**: International Organization for Standardization (ISO)
+- **Enlace directo**: [https://www.iso.org/standard/68683.html](https://www.iso.org/standard/68683.html)
+- **Fecha de acceso**: `2026-07-24`
+- **Temas relacionados**: `knowledge-management`, `organizational-governance`, `iso-standards`
+- **Resumen y notas**:
+  International standard defining requirement principles for establishing, implementing, and maintaining effective knowledge management systems in organizations.
+
+---

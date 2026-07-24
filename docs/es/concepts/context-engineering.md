@@ -1,6 +1,6 @@
 # Context Engineering
 
-La calidad del contexto afecta fuertemente el desarrollo asistido por IA.
+La calidad del contexto afecta fuertemente el desarrollo asistido por IA. El conocimiento organizacional y las instrucciones para agentes están relacionados, pero no son equivalentes. El conocimiento debe recuperarse cuando sea relevante, mientras que las políticas obligatorias y las restricciones operativas deben proyectarse explícitamente en el harness.
 
 ## Cómo se ve un buen contexto
 

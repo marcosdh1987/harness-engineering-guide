@@ -118,3 +118,28 @@
     - "skills-management"
     - "drift-control"
     - "validation-gate"
+
+- id: "iso-30401"
+  title: "ISO 30401:2018 Knowledge management systems — Requirements"
+  provider: "International Organization for Standardization (ISO)"
+  type: "research"
+  url: "https://www.iso.org/standard/68683.html"
+  date_accessed: "2026-07-24"
+  notes: "International standard defining requirement principles for establishing, implementing, and maintaining effective knowledge management systems in organizations."
+  related_topics:
+    - "knowledge-management"
+    - "organizational-governance"
+    - "iso-standards"
+
+- id: "nist-ai-rmf"
+  title: "NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)"
+  provider: "National Institute of Standards and Technology (NIST)"
+  type: "security"
+  url: "https://www.nist.gov/itl/ai-risk-management-framework"
+  date_accessed: "2026-07-24"
+  notes: "Government framework offering guidelines for managing risks in AI systems across organizational governance, mapping, measurement, and ongoing management."
+  related_topics:
+    - "ai-governance"
+    - "risk-management"
+    - "nist-standards"
+

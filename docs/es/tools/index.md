@@ -4,4 +4,4 @@ Distintas herramientas de programación con IA consumen el contexto de maneras d
 
 Algunas priorizan archivos del repositorio, otras aceptan instrucciones persistentes, otras dependen más de prompts por tarea y otras funcionan mejor cuando los adapters reformatean la misma guía fuente para cada herramienta.
 
-Un buen harness mantiene estable la fuente de verdad mientras adapta cómo se exponen las reglas, los ejemplos y los workflows a cada herramienta.
+Un buen harness mantiene estable la fuente de verdad mientras adapta cómo se exponen las reglas, los ejemplos y los workflows a cada herramienta. La fuente gobernada puede ser independiente de la herramienta, mientras que los adaptadores generados y el comportamiento en ejecución siguen siendo específicos de cada herramienta.

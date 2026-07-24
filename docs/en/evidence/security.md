@@ -20,3 +20,12 @@
   Security audit highlighting risks of delegating direct bash execution to AI tools in IDE workspaces. Details the danger of indirect prompt injection via untrusted pull request files or external dependencies.
 
 ---
+### NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)
+- **Provider / Publisher**: National Institute of Standards and Technology (NIST)
+- **Direct Link**: [https://www.nist.gov/itl/ai-risk-management-framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- **Accessed Date**: `2026-07-24`
+- **Related Topics**: `ai-governance`, `risk-management`, `nist-standards`
+- **Summary & Notes**:
+  Government framework offering guidelines for managing risks in AI systems across organizational governance, mapping, measurement, and ongoing management.
+
+---
