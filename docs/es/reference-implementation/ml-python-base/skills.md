@@ -2,12 +2,12 @@
 
 > [!NOTE]
 > **Contenido generado**: Esta página se genera automáticamente a partir del snapshot de la plantilla.
-> - **Commit de referencia**: [422e35c](https://github.com/marcosdh1987/ml-python-base/commit/422e35ca5e27c50ab3007d7b2e7756bbcae65843) en la rama `main`
-> - **Última sincronización**: `2026-07-24T15:35:41.166285Z`
+> - **Commit de referencia**: [a1f62c2](https://github.com/marcosdh1987/ml-python-base/commit/a1f62c29d9814d59f5e19a911913a0a43d46157b) en la rama `main`
+> - **Última sincronización**: `2026-07-24T20:30:15.716502Z`
 > - **Artefactos de referencia**:
->   - [.github/skills/](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/)
->   - [.github/skills-external/](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills-external/)
->   - [skills-lock.json](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/skills-lock.json)
+>   - [.github/skills/](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/)
+>   - [.github/skills-external/](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills-external/)
+>   - [skills-lock.json](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/skills-lock.json)
 > *Nota: Este es un resumen de estudio e índice. La implementación y gobernanza autoritativas permanecen en el repositorio de origen.*
 ## Skills vs Prompts
 
@@ -20,30 +20,30 @@ La plantilla contiene tanto skills internos (curados por la plantilla) como exte
 
 | Nombre de la Skill | Tipo | Ruta | Enlace de GitHub |
 |---|---|---|---|
-| `generate_e2e_tests` | internal | `.github/skills/generate_e2e_tests.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/generate_e2e_tests.md) |
-| `create_mle_agent_package` | internal | `.github/skills/create_mle_agent_package.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/create_mle_agent_package.md) |
-| `research_current_info` | internal | `.github/skills/research_current_info.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/research_current_info.md) |
-| `refactor_to_clean_architecture` | internal | `.github/skills/refactor_to_clean_architecture.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/refactor_to_clean_architecture.md) |
-| `validate_module_structure` | internal | `.github/skills/validate_module_structure.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/validate_module_structure.md) |
-| `generate_migration_plan` | internal | `.github/skills/generate_migration_plan.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/generate_migration_plan.md) |
-| `create_domain_contract` | internal | `.github/skills/create_domain_contract.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/create_domain_contract.md) |
-| `verify_changes` | internal | `.github/skills/verify_changes.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/verify_changes.md) |
-| `generate_implementation_docs` | internal | `.github/skills/generate_implementation_docs.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/generate_implementation_docs.md) |
-| `bootstrap_project` | internal | `.github/skills/bootstrap_project.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/bootstrap_project.md) |
-| `systematic_debugging` | internal | `.github/skills/systematic_debugging.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/systematic_debugging.md) |
-| `plan_and_execute_feature` | internal | `.github/skills/plan_and_execute_feature.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/plan_and_execute_feature.md) |
-| `brainstorm_quick` | internal | `.github/skills/brainstorm_quick.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/brainstorm_quick.md) |
-| `retrospective` | internal | `.github/skills/retrospective.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills/retrospective.md) |
-| `ui-ux-pro-max` | external | `.github/skills-external/ui-ux-pro-max/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills-external/ui-ux-pro-max/SKILL.md) |
-| `using-git-worktrees` | external | `.github/skills-external/using-git-worktrees/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills-external/using-git-worktrees/SKILL.md) |
-| `test-driven-development` | external | `.github/skills-external/test-driven-development/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills-external/test-driven-development/SKILL.md) |
-| `executing-plans` | external | `.github/skills-external/executing-plans/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills-external/executing-plans/SKILL.md) |
-| `finishing-a-development-branch` | external | `.github/skills-external/finishing-a-development-branch/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills-external/finishing-a-development-branch/SKILL.md) |
-| `brainstorming` | external | `.github/skills-external/brainstorming/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills-external/brainstorming/SKILL.md) |
-| `writing-plans` | external | `.github/skills-external/writing-plans/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills-external/writing-plans/SKILL.md) |
-| `writing-clearly-and-concisely` | external | `.github/skills-external/writing-clearly-and-concisely/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills-external/writing-clearly-and-concisely/SKILL.md) |
-| `requesting-code-review` | external | `.github/skills-external/requesting-code-review/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills-external/requesting-code-review/SKILL.md) |
-| `subagent-driven-development` | external | `.github/skills-external/subagent-driven-development/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/422e35ca5e27c50ab3007d7b2e7756bbcae65843/.github/skills-external/subagent-driven-development/SKILL.md) |
+| `generate_e2e_tests` | internal | `.github/skills/generate_e2e_tests.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/generate_e2e_tests.md) |
+| `create_mle_agent_package` | internal | `.github/skills/create_mle_agent_package.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/create_mle_agent_package.md) |
+| `research_current_info` | internal | `.github/skills/research_current_info.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/research_current_info.md) |
+| `refactor_to_clean_architecture` | internal | `.github/skills/refactor_to_clean_architecture.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/refactor_to_clean_architecture.md) |
+| `validate_module_structure` | internal | `.github/skills/validate_module_structure.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/validate_module_structure.md) |
+| `generate_migration_plan` | internal | `.github/skills/generate_migration_plan.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/generate_migration_plan.md) |
+| `create_domain_contract` | internal | `.github/skills/create_domain_contract.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/create_domain_contract.md) |
+| `verify_changes` | internal | `.github/skills/verify_changes.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/verify_changes.md) |
+| `generate_implementation_docs` | internal | `.github/skills/generate_implementation_docs.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/generate_implementation_docs.md) |
+| `bootstrap_project` | internal | `.github/skills/bootstrap_project.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/bootstrap_project.md) |
+| `systematic_debugging` | internal | `.github/skills/systematic_debugging.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/systematic_debugging.md) |
+| `plan_and_execute_feature` | internal | `.github/skills/plan_and_execute_feature.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/plan_and_execute_feature.md) |
+| `brainstorm_quick` | internal | `.github/skills/brainstorm_quick.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/brainstorm_quick.md) |
+| `retrospective` | internal | `.github/skills/retrospective.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills/retrospective.md) |
+| `ui-ux-pro-max` | external | `.github/skills-external/ui-ux-pro-max/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills-external/ui-ux-pro-max/SKILL.md) |
+| `using-git-worktrees` | external | `.github/skills-external/using-git-worktrees/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills-external/using-git-worktrees/SKILL.md) |
+| `test-driven-development` | external | `.github/skills-external/test-driven-development/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills-external/test-driven-development/SKILL.md) |
+| `executing-plans` | external | `.github/skills-external/executing-plans/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills-external/executing-plans/SKILL.md) |
+| `finishing-a-development-branch` | external | `.github/skills-external/finishing-a-development-branch/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills-external/finishing-a-development-branch/SKILL.md) |
+| `brainstorming` | external | `.github/skills-external/brainstorming/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills-external/brainstorming/SKILL.md) |
+| `writing-plans` | external | `.github/skills-external/writing-plans/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills-external/writing-plans/SKILL.md) |
+| `writing-clearly-and-concisely` | external | `.github/skills-external/writing-clearly-and-concisely/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills-external/writing-clearly-and-concisely/SKILL.md) |
+| `requesting-code-review` | external | `.github/skills-external/requesting-code-review/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills-external/requesting-code-review/SKILL.md) |
+| `subagent-driven-development` | external | `.github/skills-external/subagent-driven-development/SKILL.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/skills-external/subagent-driven-development/SKILL.md) |
 
 ### Detección y resolución de duplicados de skills
 
