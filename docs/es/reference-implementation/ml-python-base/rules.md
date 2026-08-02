@@ -2,14 +2,14 @@
 
 > [!NOTE]
 > **Contenido generado**: Esta página se genera automáticamente a partir del snapshot de la plantilla.
-> - **Commit de referencia**: [a1f62c2](https://github.com/marcosdh1987/ml-python-base/commit/a1f62c29d9814d59f5e19a911913a0a43d46157b) en la rama `main`
-> - **Última sincronización**: `2026-07-24T20:30:15.716502Z`
+> - **Commit de referencia**: [24cdd59](https://github.com/marcosdh1987/ml-python-base/commit/24cdd59e449e5662ba86234d1fab4b6dcf5f8947) en la rama `main`
+> - **Última sincronización**: `2026-08-02T00:37:57.887685Z`
 > - **Artefactos de referencia**:
->   - [.github/architecture.md](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/architecture.md)
->   - [.github/standards.md](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/standards.md)
->   - [.github/domain-boundaries.md](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/domain-boundaries.md)
->   - [.github/automation.md](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/automation.md)
->   - [.github/orchestration.md](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/orchestration.md)
+>   - [.github/architecture.md](https://github.com/marcosdh1987/ml-python-base/blob/24cdd59e449e5662ba86234d1fab4b6dcf5f8947/.github/architecture.md)
+>   - [.github/standards.md](https://github.com/marcosdh1987/ml-python-base/blob/24cdd59e449e5662ba86234d1fab4b6dcf5f8947/.github/standards.md)
+>   - [.github/domain-boundaries.md](https://github.com/marcosdh1987/ml-python-base/blob/24cdd59e449e5662ba86234d1fab4b6dcf5f8947/.github/domain-boundaries.md)
+>   - [.github/automation.md](https://github.com/marcosdh1987/ml-python-base/blob/24cdd59e449e5662ba86234d1fab4b6dcf5f8947/.github/automation.md)
+>   - [.github/orchestration.md](https://github.com/marcosdh1987/ml-python-base/blob/24cdd59e449e5662ba86234d1fab4b6dcf5f8947/.github/orchestration.md)
 > *Nota: Este es un resumen de estudio e índice. La implementación y gobernanza autoritativas permanecen en el repositorio de origen.*
 ## Gobernanza estructurada
 

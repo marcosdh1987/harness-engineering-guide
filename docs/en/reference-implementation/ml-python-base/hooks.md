@@ -2,10 +2,10 @@
 
 > [!NOTE]
 > **Generated content**: This page is automatically generated from the template snapshot.
-> - **Reference Commit**: [a1f62c2](https://github.com/marcosdh1987/ml-python-base/commit/a1f62c29d9814d59f5e19a911913a0a43d46157b) on branch `main`
-> - **Last Synced**: `2026-07-24T20:30:15.716502Z`
+> - **Reference Commit**: [24cdd59](https://github.com/marcosdh1987/ml-python-base/commit/24cdd59e449e5662ba86234d1fab4b6dcf5f8947) on branch `main`
+> - **Last Synced**: `2026-08-02T00:37:57.887685Z`
 > - **Reference Artifacts**:
->   - [.claude/hooks/](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.claude/hooks/)
+>   - [.claude/hooks/](https://github.com/marcosdh1987/ml-python-base/blob/24cdd59e449e5662ba86234d1fab4b6dcf5f8947/.claude/hooks/)
 > *Note: This is a study summary and index. The authoritative implementation and governance remain in the source repository.*
 ## Hooks as Quality Guardrails
 
@@ -15,8 +15,8 @@ Hooks are executable scripts triggered automatically at key interaction boundari
 
 | Hook Name | Target Path | Purpose | Link |
 |---|---|---|---|
-| `stop_nudge.sh` | `.claude/hooks/stop_nudge.sh` | Warns developer of drift or uncommitted changes when the session remains idle | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.claude/hooks/stop_nudge.sh) |
-| `session_start.sh` | `.claude/hooks/session_start.sh` | Runs checks on environment setup, local lock state, and checks for uncommitted drift | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.claude/hooks/session_start.sh) |
+| `stop_nudge.sh` | `.claude/hooks/stop_nudge.sh` | Warns developer of drift or uncommitted changes when the session remains idle | [Link](https://github.com/marcosdh1987/ml-python-base/blob/24cdd59e449e5662ba86234d1fab4b6dcf5f8947/.claude/hooks/stop_nudge.sh) |
+| `session_start.sh` | `.claude/hooks/session_start.sh` | Runs checks on environment setup, local lock state, and checks for uncommitted drift | [Link](https://github.com/marcosdh1987/ml-python-base/blob/24cdd59e449e5662ba86234d1fab4b6dcf5f8947/.claude/hooks/session_start.sh) |
 
 ### Configuration Settings and Integrations
 
