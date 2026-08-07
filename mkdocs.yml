@@ -48,6 +48,8 @@ nav:
           - Create Your First Skill: en/getting-started/create-your-first-skill.md
           - Leverage More Features: en/getting-started/leverage-more.md
           - From Project to Organization: en/getting-started/project-to-organization.md
+          - The Company Brain Template: en/getting-started/company-brain-template.md
+          - Adopting an Existing Project: en/getting-started/adopt-existing-project.md
           - Getting Started with Codex: en/getting-started/codex.md
           - Getting Started with OpenCode: en/getting-started/opencode.md
       - Learning Path: en/learning-path.md
@@ -90,6 +92,7 @@ nav:
           - Skill Design: en/patterns/skill-design.md
           - Adapter Design: en/patterns/adapter-design.md
           - Drift Control: en/patterns/drift-control.md
+          - Gated Delegation (Ticket to PR): en/patterns/gated-delegation.md
       - Labs:
           - Labs Overview: en/labs/index.md
           - Create a Rule: en/labs/create-a-rule.md
@@ -107,6 +110,8 @@ nav:
           - Crea tu primera skill: es/getting-started/create-your-first-skill.md
           - Aprovecha más funciones: es/getting-started/leverage-more.md
           - Del proyecto a la organización: es/getting-started/proyecto-a-organizacion.md
+          - El template de Company Brain: es/getting-started/company-brain-template.md
+          - Adopción en un proyecto existente: es/getting-started/adopt-existing-project.md
           - Primeros pasos con Codex: es/getting-started/codex.md
           - Primeros pasos con OpenCode: es/getting-started/opencode.md
       - Ruta de aprendizaje: es/learning-path.md
@@ -149,6 +154,7 @@ nav:
           - Diseño de skills: es/patterns/skill-design.md
           - Diseño de adapters: es/patterns/adapter-design.md
           - Control de drift: es/patterns/drift-control.md
+          - Delegación con gates (Ticket a PR): es/patterns/gated-delegation.md
       - Laboratorios:
           - Visión general: es/labs/index.md
           - Crear una regla: es/labs/create-a-rule.md
