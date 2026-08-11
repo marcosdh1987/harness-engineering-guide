@@ -91,7 +91,7 @@ promotion), `process_meeting` (transcript → minutes → promoted knowledge),
 `update_domain_context`, `record_decision`, `add_runbook`, and
 `quarterly_context_review` (the anti-drift audit). Validation is automated
 and semantic: `make validate` checks structure per config, links, duplicate
-IDs, decisions without sources, and reports placeholder/inbox debt.
+IDs, decisions without sources, and reports placeholder/inbox debt. The brain also **syncs working skills** (brainstorming, planning, research, writing) from the harness — declared in `brain.config.json`, locked per sha256 — and projects every skill into `.claude/`, `.codex/`, and `.agents/` layouts so Claude Code, Codex, and Antigravity discover them natively (`make sync-skills`).
 
 ## Relationship to the rest of the ecosystem
 

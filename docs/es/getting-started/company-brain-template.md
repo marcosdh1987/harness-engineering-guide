@@ -96,7 +96,7 @@ todo al inbox → source register con conflictos → promoción gradual),
 `quarterly_context_review` (la auditoría anti-drift). La validación es
 automática y semántica: `make validate` chequea estructura según config,
 links, IDs duplicados, decisiones sin fuente, y reporta deuda de
-placeholders e inbox.
+placeholders e inbox. El brain además **sincroniza skills de trabajo** (brainstorming, planificación, research, escritura) desde el harness — declaradas en `brain.config.json`, lockeadas por sha256 — y proyecta cada skill a los layouts `.claude/`, `.codex/` y `.agents/` para que Claude Code, Codex y Antigravity las descubran nativamente (`make sync-skills`).
 
 ## Relación con el resto del ecosistema
 
