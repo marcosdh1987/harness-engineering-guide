@@ -2,14 +2,14 @@
 
 > [!NOTE]
 > **Generated content**: This page is automatically generated from the template snapshot.
-> - **Reference Commit**: [a1f62c2](https://github.com/marcosdh1987/ml-python-base/commit/a1f62c29d9814d59f5e19a911913a0a43d46157b) on branch `main`
-> - **Last Synced**: `2026-07-24T20:30:15.716502Z`
+> - **Reference Commit**: [4f88f1f](https://github.com/marcosdh1987/ml-python-base/commit/4f88f1f0daf9b4e7bc9f322d4b4471c08710f365) on branch `main`
+> - **Last Synced**: `2026-08-16T01:11:28.025903Z`
 > - **Reference Artifacts**:
->   - [.github/architecture.md](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/architecture.md)
->   - [.github/standards.md](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/standards.md)
->   - [.github/domain-boundaries.md](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/domain-boundaries.md)
->   - [.github/automation.md](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/automation.md)
->   - [.github/orchestration.md](https://github.com/marcosdh1987/ml-python-base/blob/a1f62c29d9814d59f5e19a911913a0a43d46157b/.github/orchestration.md)
+>   - [.github/architecture.md](https://github.com/marcosdh1987/ml-python-base/blob/4f88f1f0daf9b4e7bc9f322d4b4471c08710f365/.github/architecture.md)
+>   - [.github/standards.md](https://github.com/marcosdh1987/ml-python-base/blob/4f88f1f0daf9b4e7bc9f322d4b4471c08710f365/.github/standards.md)
+>   - [.github/domain-boundaries.md](https://github.com/marcosdh1987/ml-python-base/blob/4f88f1f0daf9b4e7bc9f322d4b4471c08710f365/.github/domain-boundaries.md)
+>   - [.github/automation.md](https://github.com/marcosdh1987/ml-python-base/blob/4f88f1f0daf9b4e7bc9f322d4b4471c08710f365/.github/automation.md)
+>   - [.github/orchestration.md](https://github.com/marcosdh1987/ml-python-base/blob/4f88f1f0daf9b4e7bc9f322d4b4471c08710f365/.github/orchestration.md)
 > *Note: This is a study summary and index. The authoritative implementation and governance remain in the source repository.*
 ## Structured Governance
 
