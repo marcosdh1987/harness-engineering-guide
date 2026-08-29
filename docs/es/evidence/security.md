@@ -2,6 +2,15 @@
 
 >Informes de seguridad, modelado de amenazas y divulgación de vulnerabilidades.
 
+### Running Codex Safely: Architectural Controls and Sandboxing
+- **Proveedor / Editorial**: OpenAI
+- **Enlace directo**: [https://openai.com/index/running-codex-safely/](https://openai.com/index/running-codex-safely/)
+- **Fecha de acceso**: `2026-08-20`
+- **Temas relacionados**: `sandboxing`, `security-controls`, `network-isolation`, `telemetry`
+- **Resumen y notas**:
+  Comprehensive architectural playbook outlining defense-in-depth controls for autonomous coding agents: OS-level sandboxing (Seatbelt, Landlock), permission categorizations, managed network egress policies, and OpenTelemetry-based audit logging.
+
+---
 ### OWASP Top 10 for Large Language Model Applications
 - **Proveedor / Editorial**: OWASP Foundation
 - **Enlace directo**: [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)

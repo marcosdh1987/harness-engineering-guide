@@ -23,7 +23,11 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
@@ -40,36 +44,54 @@ nav:
   - Home: index.md
   - English:
       - Overview: en/index.md
-      - Getting Started:
-          - Start Here: en/getting-started/index.md
-          - Claude Code Basics: en/getting-started/claude-code-basics.md
-          - Minimal Setup: en/getting-started/minimal-setup.md
-          - Use & Modify Skills: en/getting-started/use-and-modify-skills.md
-          - Create Your First Skill: en/getting-started/create-your-first-skill.md
-          - Leverage More Features: en/getting-started/leverage-more.md
-          - From Project to Organization: en/getting-started/project-to-organization.md
-          - The Company Brain Template: en/getting-started/company-brain-template.md
-          - Adopting an Existing Project: en/getting-started/adopt-existing-project.md
-          - Getting Started with Codex: en/getting-started/codex.md
-          - Getting Started with OpenCode: en/getting-started/opencode.md
+      - Start Here:
+          - Overview: en/start-here/index.md
+          - What is Harness Engineering?: en/start-here/what-is-harness-engineering.md
+          - Standardize → Measure → Improve: en/start-here/standardize-measure-improve.md
+          - Agentic SDLC for Teams (10-min read): en/start-here/agentic-sdlc-for-teams.md
+          - Minimal Setup: en/start-here/minimal-setup.md
+          - Claude Code Basics: en/start-here/claude-code-basics.md
+          - Use & Modify Skills: en/start-here/use-and-modify-skills.md
+          - Create Your First Skill: en/start-here/create-your-first-skill.md
+          - Leverage More Features: en/start-here/leverage-more.md
+          - From Project to Organization: en/start-here/project-to-organization.md
+          - The Company Brain Template: en/start-here/company-brain-template.md
+          - Adopting an Existing Project: en/start-here/adopt-existing-project.md
+          - Getting Started with Codex: en/start-here/codex.md
+          - Getting Started with OpenCode: en/start-here/opencode.md
+          - Onboarding Guide: en/start-here/onboarding-guide.md
+      - Organizational Adoption:
+          - Agentic SDLC Maturity Model: en/adoption/maturity-model.md
+          - Building an Internal Evaluation Suite: en/adoption/internal-evaluation-suite.md
+          - From Failures to Regression Cases: en/adoption/failures-to-regression-cases.md
+          - Continuous Harness Improvement: en/adoption/continuous-harness-improvement.md
+          - Team Governance & Ownership: en/adoption/team-governance.md
       - Learning Path: en/learning-path.md
-      - Concepts:
+      - Core Concepts:
           - Harness Engineering: en/concepts/harness-engineering.md
+          - Observability vs Evaluation: en/concepts/observability-vs-evaluation.md
           - AI Rules Architecture: en/concepts/ai-rules-architecture.md
           - Governance, Skills, Automation, Orchestration: en/concepts/governance-skills-automation-orchestration.md
           - Skills vs Prompts: en/concepts/skills-vs-prompts.md
           - Context Engineering: en/concepts/context-engineering.md
           - Agentic Architectures: en/concepts/agentic-architectures.md
-      - Tools:
-          - Tool Overview: en/tools/index.md
-          - Claude Code: en/tools/claude-code.md
-          - GitHub Copilot: en/tools/github-copilot.md
-          - Codex: en/tools/codex.md
-          - OpenCode: en/tools/opencode.md
-          - Antigravity: en/tools/antigravity.md
-      - Reference Implementation:
-          - Overview: en/reference-implementation/index.md
-          - ml-python-base:
+      - Evaluation Engineering:
+          - What is an Agent Eval?: en/evaluation/what-is-an-eval.md
+          - Controlled Environments & Sandboxing: en/evaluation/controlled-environments-sandboxing.md
+          - Experimental Validity & Ablations: en/evaluation/experimental-validity-and-ablations.md
+          - Behavioral Audits & Scoring: en/evaluation/behavioral-audits-and-scoring.md
+          - Regression Suites: en/evaluation/regression-suites.md
+      - Patterns:
+          - Working Loop: en/patterns/working-loop.md
+          - Rule Layering: en/patterns/rule-layering.md
+          - Skill Design: en/patterns/skill-design.md
+          - Adapter Design: en/patterns/adapter-design.md
+          - Drift Control: en/patterns/drift-control.md
+          - Gated Delegation (Ticket to PR): en/patterns/gated-delegation.md
+          - Failure to Regression: en/patterns/failure-to-regression.md
+      - Reference Implementations:
+          - Ecosystem Overview: en/reference-implementation/index.md
+          - ml-python-base (Governed Harness):
               - Overview: en/reference-implementation/ml-python-base/index.md
               - Inventory: en/reference-implementation/ml-python-base/inventory.md
               - Rules: en/reference-implementation/ml-python-base/rules.md
@@ -80,21 +102,25 @@ nav:
               - Automation: en/reference-implementation/ml-python-base/automation.md
               - Drift Control: en/reference-implementation/ml-python-base/drift-control.md
               - Working Loop: en/reference-implementation/ml-python-base/working-loop.md
-      - Evidence:
+          - ai-agentic-harness-lab (Evaluation Platform):
+              - Overview: en/reference-implementation/ai-agentic-harness-lab/index.md
+              - Evaluation Workflow: en/reference-implementation/ai-agentic-harness-lab/evaluation-workflow.md
+      - Evidence & Research:
           - Overview: en/evidence/index.md
           - Vendor Docs: en/evidence/vendor-docs.md
           - Research: en/evidence/research.md
           - Security: en/evidence/security.md
           - Reading List: en/evidence/reading-list.md
-      - Patterns:
-          - Working Loop: en/patterns/working-loop.md
-          - Rule Layering: en/patterns/rule-layering.md
-          - Skill Design: en/patterns/skill-design.md
-          - Adapter Design: en/patterns/adapter-design.md
-          - Drift Control: en/patterns/drift-control.md
-          - Gated Delegation (Ticket to PR): en/patterns/gated-delegation.md
+      - Tools:
+          - Tool Overview: en/tools/index.md
+          - Claude Code: en/tools/claude-code.md
+          - GitHub Copilot: en/tools/github-copilot.md
+          - Codex: en/tools/codex.md
+          - OpenCode: en/tools/opencode.md
+          - Antigravity: en/tools/antigravity.md
       - Labs:
           - Labs Overview: en/labs/index.md
+          - Enterprise Migration Case: en/labs/enterprise-migration-case.md
           - Create a Rule: en/labs/create-a-rule.md
           - Create a Skill: en/labs/create-a-skill.md
           - Validate a Change: en/labs/validate-a-change.md
@@ -103,35 +129,53 @@ nav:
   - Español:
       - Visión general: es/index.md
       - Primeros pasos:
-          - Empieza aquí: es/getting-started/index.md
-          - Fundamentos de Claude Code: es/getting-started/claude-code-basics.md
-          - Configuración mínima: es/getting-started/minimal-setup.md
-          - Usar y modificar skills: es/getting-started/use-and-modify-skills.md
-          - Crea tu primera skill: es/getting-started/create-your-first-skill.md
-          - Aprovecha más funciones: es/getting-started/leverage-more.md
-          - Del proyecto a la organización: es/getting-started/proyecto-a-organizacion.md
-          - El template de Company Brain: es/getting-started/company-brain-template.md
-          - Adopción en un proyecto existente: es/getting-started/adopt-existing-project.md
-          - Primeros pasos con Codex: es/getting-started/codex.md
-          - Primeros pasos con OpenCode: es/getting-started/opencode.md
+          - Empieza aquí: es/start-here/index.md
+          - ¿Qué es Harness Engineering?: es/start-here/what-is-harness-engineering.md
+          - Estandarizar → Medir → Mejorar: es/start-here/standardize-measure-improve.md
+          - Agentic SDLC para equipos (Lectura 10 min): es/start-here/agentic-sdlc-for-teams.md
+          - Configuración mínima: es/start-here/minimal-setup.md
+          - Fundamentos de Claude Code: es/start-here/claude-code-basics.md
+          - Usar y modificar skills: es/start-here/use-and-modify-skills.md
+          - Crea tu primera skill: es/start-here/create-your-first-skill.md
+          - Aprovecha más funciones: es/start-here/leverage-more.md
+          - Del proyecto a la organización: es/start-here/proyecto-a-organizacion.md
+          - El template de Company Brain: es/start-here/company-brain-template.md
+          - Adopción en un proyecto existente: es/start-here/adopt-existing-project.md
+          - Primeros pasos con Codex: es/start-here/codex.md
+          - Primeros pasos con OpenCode: es/start-here/opencode.md
+          - Guía de Onboarding: es/start-here/onboarding-guide.md
+      - Adopción organizacional:
+          - Modelo de madurez del Agentic SDLC: es/adoption/maturity-model.md
+          - Construir una suite interna de evaluación: es/adoption/internal-evaluation-suite.md
+          - De fallos a casos de regresión: es/adoption/failures-to-regression-cases.md
+          - Mejora continua del harness: es/adoption/continuous-harness-improvement.md
+          - Gobernanza y ownership del equipo: es/adoption/team-governance.md
       - Ruta de aprendizaje: es/learning-path.md
-      - Conceptos:
+      - Conceptos clave:
           - Harness Engineering: es/concepts/harness-engineering.md
+          - Observabilidad vs Evaluación: es/concepts/observability-vs-evaluation.md
           - Arquitectura de reglas de IA: es/concepts/ai-rules-architecture.md
           - Gobernanza, skills, automatización y orquestación: es/concepts/governance-skills-automation-orchestration.md
           - Skills vs prompts: es/concepts/skills-vs-prompts.md
           - Context Engineering: es/concepts/context-engineering.md
           - Arquitecturas de agentes: es/concepts/agentic-architectures.md
-      - Herramientas:
-          - Visión general: es/tools/index.md
-          - Claude Code: es/tools/claude-code.md
-          - GitHub Copilot: es/tools/github-copilot.md
-          - Codex: es/tools/codex.md
-          - OpenCode: es/tools/opencode.md
-          - Antigravity: es/tools/antigravity.md
-      - Implementación de referencia:
-          - Visión general: es/reference-implementation/index.md
-          - ml-python-base:
+      - Ingeniería de evaluación:
+          - ¿Qué es una evaluación de agentes?: es/evaluation/what-is-an-eval.md
+          - Entornos controlados y Sandboxing: es/evaluation/controlled-environments-sandboxing.md
+          - Validez experimental y ablaciones: es/evaluation/experimental-validity-and-ablations.md
+          - Auditorías de comportamiento y Scoring: es/evaluation/behavioral-audits-and-scoring.md
+          - Suites de regresión: es/evaluation/regression-suites.md
+      - Patrones:
+          - Ciclo de trabajo: es/patterns/working-loop.md
+          - Capas de reglas: es/patterns/rule-layering.md
+          - Diseño de skills: es/patterns/skill-design.md
+          - Diseño de adapters: es/patterns/adapter-design.md
+          - Control de drift: es/patterns/drift-control.md
+          - Delegación con gates (Ticket a PR): es/patterns/gated-delegation.md
+          - De fallo a regresión: es/patterns/failure-to-regression.md
+      - Implementaciones de referencia:
+          - Visión general del ecosistema: es/reference-implementation/index.md
+          - ml-python-base (Harness gobernado):
               - Visión general: es/reference-implementation/ml-python-base/index.md
               - Inventario: es/reference-implementation/ml-python-base/inventory.md
               - Reglas: es/reference-implementation/ml-python-base/rules.md
@@ -142,21 +186,25 @@ nav:
               - Automatización: es/reference-implementation/ml-python-base/automation.md
               - Control de drift: es/reference-implementation/ml-python-base/drift-control.md
               - Ciclo de trabajo: es/reference-implementation/ml-python-base/working-loop.md
-      - Evidencia:
+          - ai-agentic-harness-lab (Plataforma de evaluación):
+              - Visión general: es/reference-implementation/ai-agentic-harness-lab/index.md
+              - Flujo de evaluación: es/reference-implementation/ai-agentic-harness-lab/evaluation-workflow.md
+      - Evidencia e investigación:
           - Visión general: es/evidence/index.md
           - Documentación de proveedores: es/evidence/vendor-docs.md
           - Investigación: es/evidence/research.md
           - Seguridad: es/evidence/security.md
           - Lista de lectura: es/evidence/reading-list.md
-      - Patrones:
-          - Ciclo de trabajo: es/patterns/working-loop.md
-          - Capas de reglas: es/patterns/rule-layering.md
-          - Diseño de skills: es/patterns/skill-design.md
-          - Diseño de adapters: es/patterns/adapter-design.md
-          - Control de drift: es/patterns/drift-control.md
-          - Delegación con gates (Ticket a PR): es/patterns/gated-delegation.md
+      - Herramientas:
+          - Visión general: es/tools/index.md
+          - Claude Code: es/tools/claude-code.md
+          - GitHub Copilot: es/tools/github-copilot.md
+          - Codex: es/tools/codex.md
+          - OpenCode: es/tools/opencode.md
+          - Antigravity: es/tools/antigravity.md
       - Laboratorios:
           - Visión general: es/labs/index.md
+          - Caso empresarial de migraciones: es/labs/enterprise-migration-case.md
           - Crear una regla: es/labs/create-a-rule.md
           - Crear una skill: es/labs/create-a-skill.md
           - Validar un cambio: es/labs/validate-a-change.md

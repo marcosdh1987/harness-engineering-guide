@@ -109,4 +109,4 @@ logical end.
 - **Context:** the spec phase reads the ticket *and the project's conventions* —
   ticketing rules, definition of ready, domain glossary — which is exactly what
   the project brain (and, at multi-repo scope, a shared brain) provides. See
-  [Adopting the Harness in an Existing Project](../getting-started/adopt-existing-project.md).
+  [Adopting the Harness in an Existing Project](../start-here/adopt-existing-project.md).

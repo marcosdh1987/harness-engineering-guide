@@ -114,4 +114,4 @@ lógico.
   reglas de ticketing, definition of ready, glosario del dominio — que es
   exactamente lo que provee el project brain (y, a escala multi-repo, un brain
   compartido). Ver
-  [Adopción del harness en un proyecto existente](../getting-started/adopt-existing-project.md).
+  [Adopción del harness en un proyecto existente](../start-here/adopt-existing-project.md).

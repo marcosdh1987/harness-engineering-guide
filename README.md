@@ -1,89 +1,103 @@
 # Harness Engineering Guide
 
-[Harness Engineering Guide](https://marcosdh1987.github.io/harness-engineering-guide/) is a public, bilingual documentation site about building durable systems around AI coding tools.
+**A public, vendor-neutral methodology and technical guide for designing, governing, evaluating, and continuously improving the systems around AI coding agents.**
 
-## What this repository is
+[![Docs](https://img.shields.io/badge/docs-live-brightgreen.svg)](https://marcosdh1987.github.io/harness-engineering-guide/)
+[![Bilingual](https://img.shields.io/badge/language-English%20%7C%20Espa%C3%B1ol-blue.svg)](https://marcosdh1987.github.io/harness-engineering-guide/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-This repository is a study guide and reference for AI-assisted software development. It is documentation-first, static, and safe for open-source sharing.
+---
 
-## What Harness Engineering means
+## 🎯 The Core Mission
 
-Harness Engineering is the practice of designing the durable system around AI tools: rules, context, skills, agents, adapters, workflows, validation gates, drift control, and documentation.
+> **How does an engineering organization transition from individual developers using AI coding tools to systematically managing, measuring, and continuously improving an agentic development system?**
 
-## Why the guide is bilingual
+As AI coding assistants evolve from simple single-turn autocompletion into multi-turn autonomous agents (reading files, executing bash, running test suites, and modifying repositories), prompt engineering alone is not enough.
 
-English is the canonical language for the guide. Spanish is a first-class translation so that the same ideas are accessible to a broader audience without mixing both languages on the same study page.
+**Harness Engineering** treats the complete system around the model—rules, context, skills, tools, sandboxed environments, quality gates, observability, and evaluation suites—as an engineered, version-controlled software product.
 
-## Reference implementation
+---
 
-The guide uses [`marcosdh1987/ml-python-base`](https://github.com/marcosdh1987/ml-python-base) as a public reference implementation. This guide features auto-generated reference implementation sections and evidence libraries.
+## 🔄 The Guiding Methodology: Standardize → Measure → Improve
 
-`ml-python-base` remains the authoritative source of truth for implementation patterns.
+$$\mathbf{STANDARDIZE} \longrightarrow \mathbf{MEASURE} \longrightarrow \mathbf{IMPROVE}$$
 
-## Local installation
-
-Create a local virtual environment and install the package dependencies:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -e .
+```mermaid
+flowchart LR
+    A["<b>1. STANDARDIZE</b><br/>• Architectural Rules<br/>• Governed Skills<br/>• Multi-Tool Adapters<br/>• CI Quality Gates"] --> B["<b>2. MEASURE</b><br/>• Docker Sandboxes<br/>• Objective Pass/Fail<br/>• Structured Attribution<br/>• Cost & Latency Traces"]
+    B --> C["<b>3. IMPROVE</b><br/>• Failure → Eval Case<br/>• Controlled A/B Trials<br/>• Governed Refinements<br/>• Regression Suites"]
+    C --> A
 ```
 
-## Local commands (Makefile)
+1. **Standardize**: Define and version how agents are expected to work—architectural boundaries, approved tools, reusable skills, and validation gates.
+2. **Measure**: Replace subjective perception with reproducible evaluation cases executed inside controlled Docker sandbox environments.
+3. **Improve**: Close the feedback loop. Transform agent failures into reproducible evaluation cases, test improvements under controlled conditions, and retain them as permanent regression tests.
 
-A helper `Makefile` is provided to run common operations locally:
+---
 
-- **Serve the site**:
-  ```bash
-  make docs-serve
-  ```
-  Launches a local development server at `http://localhost:8000`.
+## 🌐 The 3-Repository Ecosystem
 
-- **Build and validate the site**:
-  ```bash
-  make docs-build
-  ```
-  Performs a strict build validation (`mkdocs build --strict`). This is the same validation executed in CI.
+This guide is supported by two open-source reference implementations:
 
-- **Sync reference implementation**:
-  ```bash
-  make sync-reference
-  ```
-  Runs `scripts/sync_reference_template.py` to scan the local/remote `ml-python-base` template, generate the machine-readable snapshot JSON, and compile English and Spanish reference pages along with the evidence bibliography.
+```mermaid
+flowchart LR
+    GUIDE["<b>Harness Engineering Guide</b><br/><i>(Methodology, Theory, Patterns)</i>"]
+    MPB["<b>ml-python-base</b><br/><i>(Governed Reference Harness)</i>"]
+    LAB["<b>ai-agentic-harness-lab</b><br/><i>(Evaluation & Improvement Platform)</i>"]
 
-### Local sync folder configuration
-By default, the sync script clones `ml-python-base` into a temporary folder inside `docs/reference-data/` to perform the synchronization if no local path is configured.
-
-To use a local clone, copy `.env.example` to `.env` and set `REF_REPO_PATH` to the path of your local clone, or override the target folder path using the `REF_REPO_PATH` environment variable on execution:
-
-```bash
-REF_REPO_PATH=/path/to/my/ml-python-base make sync-reference
+    GUIDE -->|"Defines Architecture"| MPB
+    MPB -->|"Measured In"| LAB
+    LAB -->|"Sanitized Improvements"| MPB
+    LAB -->|"Empirical Evidence"| GUIDE
 ```
 
-## GitHub Pages deployment
+1. **[Harness Engineering Guide](https://github.com/marcosdh1987/harness-engineering-guide)**: The conceptual methodology, architecture patterns, and evaluation principles.
+2. **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: The production-ready reference harness featuring centralized `.github/` rules, governed skills, multi-tool adapters (Claude Code, OpenAI Codex, OpenCode, Antigravity, GitHub Copilot), and automated lockfile drift control.
+3. **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: The benchmarking and evaluation platform featuring Docker container sandboxes, condition hashing, structured attribution, behavioral audits, and closed-loop proposal generation.
 
-The site is deployed to GitHub Pages with the official GitHub Pages Actions workflow.
+---
 
-### One-time repository setup
+## 📖 Key Sections
 
-Enable GitHub Pages in **Settings → Pages** and set the source to:
+- **[Agentic SDLC for Engineering Teams](https://marcosdh1987.github.io/harness-engineering-guide/en/start-here/agentic-sdlc-for-teams/)**: A 10-minute briefing for engineering managers, staff engineers, and CTOs.
+- **[Agentic SDLC Maturity Model](https://marcosdh1987.github.io/harness-engineering-guide/en/adoption/maturity-model/)**: Progression from Level 0 (Ad-hoc AI) to Level 5 (Continuously Improving Agentic SDLC).
+- **[Controlled Environments & Sandboxing](https://marcosdh1987.github.io/harness-engineering-guide/en/evaluation/controlled-environments-sandboxing/)**: Why reproducible execution requires container isolation, backed by frontier lab research.
+- **[Building an Internal Evaluation Suite](https://marcosdh1987.github.io/harness-engineering-guide/en/adoption/internal-evaluation-suite/)**: Encoding company architecture and incident learnings into an organizational benchmark.
 
-- **Build and deployment source**: **GitHub Actions**
+---
 
-This only needs to be done once. The `Deploy GitHub Pages` workflow uploads the built `site/` artifact and publishes it through the `github-pages` environment on pushes to `main` or manual runs.
+## 🛠️ Local Development & Build
 
-### Workflows
+### Prerequisites
+- Python 3.11+
+- [uv](https://github.com/astral-sh/uv) (recommended)
 
-| Workflow | Trigger | What it does |
-|---|---|---|
-| `docs-check.yml` | Every PR and push to `main` | Validates the build with `mkdocs build --strict` |
-| `pages.yml` | Push to `main`, manual run | Builds the site, uploads the Pages artifact, and deploys with the official GitHub Pages Actions flow |
+### Commands (Makefile)
 
-## Open-source safety
+```bash
+# Serve docs locally with live reload (http://localhost:8000)
+make docs-serve
 
-This repository is intended for public use and does not include credentials, tokens, private URLs, client names, budgets, contractual details, copied private documentation, or sensitive prompts.
+# Build and validate strictly (CI gate check)
+make docs-build
 
-## License
+# Synchronize reference implementation metadata & evidence bibliography
+make sync-reference
 
-This repository includes the MIT License for an initial public `0.1` release. Review the license choice before accepting substantial outside contributions if project governance changes.
+# Run all quality checks (lint + strict build)
+make check
+```
+
+---
+
+## 🌍 Bilingual Documentation
+
+The guide is maintained with **English** as canonical and **Spanish** as a first-class translation:
+- 🇬🇧 [English Documentation](https://marcosdh1987.github.io/harness-engineering-guide/en/)
+- 🇪🇸 [Documentación en Español](https://marcosdh1987.github.io/harness-engineering-guide/es/)
+
+---
+
+## 📄 License
+
+This repository is open source and available under the [MIT License](LICENSE).
