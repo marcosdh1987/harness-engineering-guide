@@ -82,6 +82,25 @@ Ejecutar suites de regresión en docenas de casos y múltiples tiers de modelos 
 
 ---
 
+## La suite como productora de experimentos
+
+Una suite de regresión no debería necesitar su propio ejecutor, su propia agregación ni su propia definición de "regresión". La suite declara el **diseño** — qué casos son canónicos y cuántas repeticiones merece cada uno — y la validación de un release es un experimento controlado común: el release anterior como brazo de control, el candidato como tratamiento.
+
+```mermaid
+flowchart LR
+    SUITE["suite.yaml<br/>(casos canónicos × repeticiones por caso)"] --> EXP["Experimento<br/>control: v0.6 · tratamiento: v0.7"]
+    EXP --> MATRIX["Matriz de casos:<br/>arreglados / rotos / sin cambios"]
+    MATRIX -->|"nada roto"| SHIP["Publicar"]
+    MATRIX -->|"algo roto"| BLOCK["Investigar primero"]
+```
+
+Dos consecuencias que vale internalizar:
+
+- **Un release se lee por caso, nunca como un único compuesto.** "Arregló cuatro, no rompió ninguno, treinta sin cambios" es una frase publicable; "+3 puntos en total" es un lugar donde esconder regresiones.
+- **La suite puede rechazar una comparación.** Si los dos brazos varían un campo que la suite mantiene constante (el modelo, el presupuesto), el diseño se rechaza en lugar de aceptarse en silencio — las mismas reglas de validez que cualquier otro experimento, porque *es* cualquier otro experimento.
+
+---
+
 ### Recursos relacionados
 - **[Construir una suite interna de evaluación](../adoption/internal-evaluation-suite.md)**
 - **[Mejora continua del harness](../adoption/continuous-harness-improvement.md)**

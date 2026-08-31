@@ -93,6 +93,23 @@ When distributing harness improvements to downstream engineering repositories, t
 
 ---
 
+## Findings: Suggested by Machines, Signed by People
+
+Automated analysis is excellent at *noticing* — a case that regressed, a skill nobody consults, a failure that repeats. It must never be allowed to *conclude*. In a mature improvement loop, auto-generated patterns arrive labeled **suggested** and become findings of record only when a person reviews them, optionally edits them, and signs them; rejections are recorded too, so the same pattern is not re-raised every week. A finding nobody owns is an assertion nobody has to defend — and a client-facing report built on unsigned findings is marketing, not evidence.
+
+## Auditing a Repository You Have Never Seen
+
+The same loop scales to consulting: auditing a client's repository transparently. The mechanics that make it credible:
+
+- **Derive the benchmark from their own history** — commits that changed source and tests together become reproducible cases, so the evaluation measures *their* work, not a synthetic puzzle.
+- **Infer their quality gate from their own files** (Makefile targets, lockfiles, test configs) and adopt it explicitly — never guess it silently.
+- **Judge every run against the governance that run actually had.** A "native" control arm audited against *your* rules would look worse by construction; the comparison native-vs-injected is only honest when each arm is measured against its own surface.
+- **Report only what the evidence supports.** With no runs, the report says "reading, not measurement"; with exploratory repetitions, it says exploratory.
+
+The closing move of every audit is the same experiment: *their repo as-is* versus *their repo with your harness injected*, same cases, five or more repetitions per arm — the engagement question, answered as a measurement.
+
+---
+
 ### Related Resources
 - **[Building an Internal Evaluation Suite](internal-evaluation-suite.md)**
 - **[From Failures to Regression Cases](failures-to-regression-cases.md)**

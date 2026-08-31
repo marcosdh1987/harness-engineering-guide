@@ -1,5 +1,7 @@
 # Standardize → Measure → Improve
 
+It usually starts with a Slack thread. Someone says the agent "got worse this week"; someone else swears the new planning skill "makes everything slower"; a third person pastes one great transcript as proof that everything is fine. Three opinions, zero measurements — about a system the whole team depends on daily. The cycle below is the way out: not more discipline in the arguments, but a method that makes the arguments unnecessary.
+
 The guiding thread of Harness Engineering is the continuous engineering cycle:
 
 $$\mathbf{STANDARDIZE} \longrightarrow \mathbf{MEASURE} \longrightarrow \mathbf{IMPROVE}$$
@@ -82,6 +84,16 @@ flowchart LR
 3. **Structured Attribution**: Which governed rules, documentation files, and skills were actually consulted by the agent during its multi-step execution?
 4. **Efficiency Metrics**: Step count, token usage, financial cost, and wall-clock latency per run.
 5. **Behavioral Integrity**: LLM-driven behavioral audits detecting tool thrashing, hallucinated flags, or repetitive command loops.
+
+!!! tip "The honest instrument"
+    Measurement is only trustworthy if the instrument is honest about what each number *is*. Four rules that cost little and change everything:
+
+    1. **Label provenance**: a test exit code (*fact*), a value parsed from artifacts (*observation*), and an LLM judge's opinion (*judgement*) must never render as the same kind of number.
+    2. **"Not measured" is never zero** — a metric that could not be computed skips with a stated reason instead of poisoning the aggregate.
+    3. **Prudent verdict language**: with few repetitions, say *exploratory*; never say *significant* — a team-scale harness runs no hypothesis tests.
+    4. **Read the case matrix before the average**: "+8 points" can be "fixed four, broke two".
+
+    The full doctrine: **[The Three Questions (Evaluation Modes)](../evaluation/the-three-questions.md)**.
 
 ### Evaluation Sources
 Teams should combine diverse evaluation sources:

@@ -105,6 +105,10 @@ flowchart TB
 
 ---
 
+!!! note "Evaluar la madurez con honestidad"
+    Dos reglas evitan que una evaluación de madurez se convierta en un folleto. Primero, en los Niveles 4–5 la unidad de trabajo es el **experimento** (una pregunta enunciada, brazos declarados, un modo que licencia su conclusión — ver [Las tres preguntas](../evaluation/the-three-questions.md)), no la corrida individual. Segundo, la evaluación misma se mantiene **humana y respaldada por evidencia**: un nivel reclamado por encima de "gobernado" debería apuntar a corridas y experimentos concretos, y una dimensión sin evidencia se reporta como *desconocida*, nunca se puntúa por intuición — la metodología aplica también a evaluar tu propia madurez.
+
+
 ### Próximos pasos
 - Aprende a **[Construir una suite de evaluación interna](internal-evaluation-suite.md)**.
 - Comprende la analogía **[De fallos de agentes a casos de regresión](failures-to-regression-cases.md)**.

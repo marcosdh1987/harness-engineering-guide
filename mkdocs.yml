@@ -77,6 +77,7 @@ nav:
           - Agentic Architectures: en/concepts/agentic-architectures.md
       - Evaluation Engineering:
           - What is an Agent Eval?: en/evaluation/what-is-an-eval.md
+          - The Three Questions (Evaluation Modes): en/evaluation/the-three-questions.md
           - Controlled Environments & Sandboxing: en/evaluation/controlled-environments-sandboxing.md
           - Experimental Validity & Ablations: en/evaluation/experimental-validity-and-ablations.md
           - Behavioral Audits & Scoring: en/evaluation/behavioral-audits-and-scoring.md
@@ -161,6 +162,7 @@ nav:
           - Arquitecturas de agentes: es/concepts/agentic-architectures.md
       - Ingeniería de evaluación:
           - ¿Qué es una evaluación de agentes?: es/evaluation/what-is-an-eval.md
+          - Las tres preguntas (Modos de evaluación): es/evaluation/the-three-questions.md
           - Entornos controlados y Sandboxing: es/evaluation/controlled-environments-sandboxing.md
           - Validez experimental y ablaciones: es/evaluation/experimental-validity-and-ablations.md
           - Auditorías de comportamiento y Scoring: es/evaluation/behavioral-audits-and-scoring.md

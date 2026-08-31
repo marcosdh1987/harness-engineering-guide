@@ -1,112 +1,101 @@
 # Flujo de evaluación en el Lab
 
-Esta guía detalla el flujo de trabajo operativo integral para ejecutar evaluaciones, diagnosticar el comportamiento de los agentes y generar mejoras verificadas utilizando **Agentic Harness Lab** (`ai-agentic-harness-lab`).
+El lab se organiza alrededor de **cuatro recorridos**, uno por cada pregunta con la que un equipo realmente llega. Cada recorrido empieza en la pantalla de inicio ("¿Qué querés aprender?") y termina en evidencia accionable — un veredicto con matriz de casos, un mapa de robustez, un reporte de auditoría o una decisión de release.
 
 ---
 
-## El ciclo operativo de extremo a extremo
+## Recorrido A — Evaluar un cambio del harness (Modo A)
+
+*"¿Esta skill / regla / cambio de prompt realmente mejora algo?"*
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User as Ingeniero
-    participant UI as Web UI del Lab (:5173)
-    participant API as Backend FastAPI
+    actor User as Ingeniero/a
+    participant UI as Asistente de nueva evaluación
+    participant API as Servicio de experimentos
     participant Worker as Worker Celery
-    participant Runner as Contenedor Runner Docker
-    participant LLM as Auditor LLM
+    participant Runner as Contenedor runner
 
-    User->>UI: Selecciona Caso + Harness (Claude/OpenCode) + Modelo
-    UI->>API: POST /api/runs (Crea corrida)
-    API->>Worker: Encola tarea
-    Worker->>Runner: Levanta contenedor Docker con volumen montado
-    Runner->>Runner: Ejecuta ciclo multi-paso del agente
-    Runner-->>Worker: Transmite logs de pasos y artefactos
-    Worker->>API: Guarda resultado y calcula Hash de condición
-    Worker->>API: Ejecuta comandos de validación objetiva
-    User->>UI: Clic en "Audit Run"
-    API->>LLM: Analiza logs de pasos y artefactos
-    LLM-->>UI: Muestra diagnóstico de comportamiento
-    User->>UI: Clic en "Generar issue sanitizado"
-    UI-->>User: Copia issue en Markdown sanitizado (HEP-YYYY-NNN)
+    User->>UI: Elegir sede (este lab / un repo objetivo) + factor (agregar/quitar skills, cambiar harness, harness completo…)
+    User->>UI: Elegir casos + repeticiones (2 exploratorio / 5 útil / 10 más fuerte)
+    User->>UI: Configurar modelo, variante de prompt, presupuesto · Verificar configuración (preflight)
+    UI->>API: Crear y lanzar corridas (brazos × casos × repeticiones)
+    API->>API: Validación de diseño — rechaza un diseño que el modo no puede responder
+    API->>Worker: Encolar cada corrida, etiquetada por brazo
+    Worker->>Runner: Un contenedor por corrida (gobernanza nativa / inyectada según lo declarado)
+    Runner-->>API: Artefactos, scores y superficie de gobernanza por corrida
+    API-->>User: Veredicto ("mejora probable", nunca "significativo") + matriz de casos
 ```
 
----
+Propiedades clave:
 
-## Guía paso a paso del flujo de trabajo
-
-### Paso 1: Encolar una corrida de benchmark
-1. Abre la Web UI en `http://localhost:5173` (o ejecuta `make app-up`).
-2. Ve a la pantalla **Runs** y haz clic en **"New Run"** (o usa **Batch Runs** para encolar una matriz completa de combinaciones).
-3. Configura los parámetros del experimento:
-   - **Caso**: Selecciona un caso interno personalizado o una instancia de SWE-bench.
-   - **Harness**: Elige `claude` (Claude Code), `opencode`, `codex` o `antigravity`.
-   - **Modelo**: Selecciona modelos cloud (vía AI Gateway) o endpoints locales (Ollama/LM Studio).
-   - **Variante de Prompt**: Selecciona `swe_harness` o `sdlc` (para cargar reglas y skills gobernadas).
-   - **Ablación de Skills**: (Opcional) Desactiva o inyecta una skill específica para medir su impacto marginal.
+- **El formulario no puede expresar un diseño inválido.** Varía un factor; repositorio, casos y modelo quedan fijados entre brazos. El backend valida de nuevo y rechaza contradicciones.
+- **El factor "Harness completo"** corre la comparación fundacional: un brazo pelado (prompt plano, todas las skills gobernadas ocultas) contra el harness entero — un tratamiento, una afirmación sobre el harness como unidad.
+- **El lanzamiento bloquea la configuración.** Las rondas siguientes la reutilizan tal cual (así crecen las repeticiones); otro modelo es otro experimento.
+- **El resultado abre con un veredicto de diez segundos** — si mejoró, en qué métricas, a qué costo y con cuánta evidencia — seguido de la **matriz de casos** (arreglados / rotos / sin cambios), que es el número que sobrevive a un promedio.
 
 ---
 
-### Paso 2: Ejecución en contenedor aislado
-- El worker de Celery toma la tarea y levanta un contenedor Docker dedicado (`harness-runner`).
-- El workspace del repositorio se monta con permisos de lectura/escritura bajo un usuario sin privilegios.
-- El watchdog de ejecución supervisa los procesos, aplicando límites de CPU, RAM, tiempo y pasos máximos.
-- Las trazas de stdout/stderr, llamadas a herramientas (`read`, `edit`, `bash`) y permisos se transmiten a `data/runs/<id>/steps/step-*.log`.
+## Recorrido B — Probar entre repositorios (Modo B)
+
+*"¿Nuestro harness se sostiene fuera del repositorio donde nació?"*
+
+El mismo asistente, en modo cross-repo: el harness y el modelo quedan fijos, cada repositorio seleccionado se vuelve su propio brazo, y el primero es una **referencia** (un ancla de lectura, no un baseline — nada acá es causal). El resumen es deliberadamente por repositorio: agrupar scores de códigos distintos los trataría como una sola condición, que no son.
 
 ---
 
-### Paso 3: Indexación de atribución y validación
-Al completarse la corrida:
-- **Análisis de atribución**: La API analiza los logs de pasos para calcular el **Registro de atribución**:
-  - Archivos distintos leídos vs editados (`permission=edit`).
-  - Cobertura de la superficie de gobernanza (qué reglas de `.github/` fueron leídas).
-  - Consulta explícita de skills (eventos de lectura de `SKILL.md`).
-- **Validación objetiva**: El worker ejecuta los `validation_commands` del caso (ej. `pytest tests/test_case.py`).
-  - Si los tests pasan $\to$ Objetivo: `PASS`.
-  - Si los tests fallan $\to$ Objetivo: `FAIL` (Score compuesto limitado a 1.0).
+## Recorrido C — Auditar un repositorio (Modo C)
+
+*"¿Qué podemos aprender de cómo este proyecto o equipo trabaja hoy con IA?"* — incluido el repositorio de un cliente que nunca viste.
+
+```mermaid
+flowchart TD
+    S1["1. Seleccionar repositorio<br/>(registrar URL, fijar ref → commit)"] --> S2
+    S2["2. Readiness — leído, nunca inferido<br/>archivos de reglas · skills · CI · gates<br/>+ <b>comandos de setup/test inferidos</b> de los propios archivos del repo, adoptados con un click"] --> S3
+    S3["3. Derivar casos de la propia historia del repo<br/>(commits que cambiaron código + tests juntos)"] --> S4
+    S4["4. Correr discovery<br/>(un brazo 'as-is', gobernanza nativa, exploratorio)"] --> S5
+    S5["5. Revisar hallazgos sugeridos<br/>(aceptar con tu nombre, o rechazar — ambos quedan registrados)"] --> S6
+    S6["6. Convertir un hallazgo en experimento<br/>+ generar el reporte de auditoría para el cliente"]
+```
+
+Las afirmaciones de la auditoría se mantienen estrechas en cada paso: el readiness se *detecta* ("No detectado" cuando no es observable), los casos se *proponen* desde commits reales que el equipo ya hizo, los hallazgos son *sugeridos* hasta que alguien los firma, y el reporte markdown generado **solo dice lo que la evidencia sostiene** — sin corridas, dice "lectura, no medición".
+
+El experimento natural de cierre de cualquier auditoría: **nativo vs inyectado** — el repositorio exactamente como lo tiene el equipo, contra el mismo repositorio con tu harness proyectado adentro, mismos casos, 5+ repeticiones por brazo. Esa es la pregunta con la que termina todo engagement con un cliente, respondida como medición.
 
 ---
 
-### Paso 4: Auditoría de comportamiento y generación de propuestas
-1. En la Web UI, abre la corrida finalizada y haz clic en **"Audit"**.
-2. El Auditor LLM analiza la transcripción y genera `audit.md`, evaluando:
-   - Calidad de la planificación y adherencia al SDLC.
-   - Bucles de comandos y llamadas repetitivas que fallan.
-   - Flags alucinados o parámetros incorrectos.
-3. Haz clic en **"Generar issue sanitizado"** (o ejecuta `make harness-proposal RUN=<id>`).
-4. El sistema asigna un identificador inmutable `HEP-YYYY-NNN`, elimina tokens privados y rutas locales, y genera un issue formateado para `ml-python-base`.
+## Recorrido D — Validar un release del harness
+
+*"¿Es seguro publicar v0.7 sobre v0.6?"*
+
+La suite de regresión (`suite.yaml`) es un **productor de experimentos**, no un segundo ejecutor: aporta los casos canónicos y sus conteos de repetición por caso; vos aportás los dos brazos (release anterior como control, candidato como tratamiento). Todo lo que sigue — validación de diseño, la columna de "¿más allá del ruido?", la matriz de casos — es la misma maquinaria que cualquier otra comparación.
+
+```mermaid
+flowchart LR
+    SUITE["suite.yaml<br/>(casos canónicos × repeticiones declaradas)"] --> EXP["Experimento<br/>control: v0.6 · tratamiento: v0.7"]
+    EXP --> MATRIX["arreglados / rotos / sin cambios"]
+    MATRIX -->|"nada roto"| SHIP["Publicar el release"]
+    MATRIX -->|"algo roto"| BLOCK["Investigar primero los casos rotos"]
+```
+
+Un release se lee como *"arregló cuatro, no rompió ninguno, treinta sin cambios"* — nunca como un único número compuesto que podría esconder los dos que rompió.
 
 ---
 
-### Paso 5: Implementar la mejora en `ml-python-base`
-1. Abre el issue en [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base).
-2. Crea una rama de desarrollo y edita la skill gobernada bajo `.github/skills/`.
-3. Ejecuta los quality gates locales:
-   ```bash
-   make check        # Linting con Ruff, formateo y tipado
-   make check-sync   # Sincronización de CLAUDE.md, AGENTS.md, OPENCODE.md
-   ```
-4. Mergea el PR y crea un tag inmutable con SemVer (ej. `v1.4.0`).
+## El ciclo de mejora (mismo espíritu, forma más precisa)
 
----
+Cuando una corrida expone una debilidad del harness, el ciclo hacia el template gobernado sigue cerrándose igual:
 
-### Paso 6: Validar en worktree candidato y cerrar el ciclo
-1. Apunta el lab a la nueva versión de gobernanza mediante un worktree aislado:
-   ```bash
-   make harness-status                    # Compara versión actual vs último release
-   make harness-sync-preview REF=v1.4.0   # Previsualiza diff de solo lectura
-   make harness-sync-branch REF=v1.4.0    # Prepara worktree candidato
-   ```
-2. Vuelve a ejecutar exactamente el mismo caso de evaluación con la versión candidata.
-3. Verifica que:
-   - El síntoma original desapareció.
-   - La validación objetiva aprobó.
-   - La corrida produjo **cero propuestas nuevas** (Outcome Gate limpio).
-4. Mergea la rama candidata en tus repositorios de producción.
+1. Abrir la corrida — encabeza con su **condición** (experimento, brazo, repositorio @ commit, fuente de gobernanza) antes que con sus logs.
+2. Correr la **auditoría LLM** (juzgada contra la superficie de gobernanza que esa corrida realmente tuvo) y sintetizar **propuestas de mejora**.
+3. Reunir propuestas de varias corridas en la pantalla **Improvements** y generar un único **issue combinado y sanitizado** para el template gobernado (rutas privadas y tokens eliminados).
+4. Corregir, publicar release, y validar la versión nueva con el **Recorrido D**.
 
 ---
 
 ### Recursos relacionados
 - **[Visión general de Agentic Harness Lab](index.md)**
+- **[Las tres preguntas (Modos de evaluación)](../../evaluation/the-three-questions.md)**
+- **[Suites de regresión](../../evaluation/regression-suites.md)**
 - **[Mejora continua del harness](../../adoption/continuous-harness-improvement.md)**
-- **[Entornos controlados y Sandboxing](../../evaluation/controlled-environments-sandboxing.md)**

@@ -100,6 +100,17 @@ Si cualquier parámetro (una línea del prompt, un archivo de skill o una depend
 
 ---
 
+## Qué tiene permitido afirmar un diseño
+
+El aislamiento de variables responde *cómo* comparar; el **modo de evaluación** responde *qué puede concluir la comparación*. Un diseño de evaluación de harness licencia una afirmación causal solo cuando el repositorio, los casos y el modelo están fijados; un diseño cross-repo licencia una lectura de robustez por repositorio y nada agrupado; un diseño de discovery licencia observaciones, nunca veredictos. Un sistema de evaluación debería rechazar — en el momento del diseño, antes de gastar tokens — cualquier experimento que contradiga su modo declarado. Ver **[Las tres preguntas (Modos de evaluación)](the-three-questions.md)**.
+
+Dos reglas complementarias mantienen honestos los resultados multi-corrida a lo largo del tiempo:
+
+- **Lenguaje prudente en los veredictos.** Con 2 repeticiones decí *exploratorio*; con 5, *una comparación útil*; con 10, *evidencia más fuerte*. Nunca *significativo* — no corrió ningún test de hipótesis. Un delta dentro de la varianza entre corridas se reporta exactamente como eso.
+- **Un experimento, una medición.** Una vez que un experimento tiene corridas reales, relanzarlo con otro modelo, prompt o presupuesto debe rechazarse: archivaría dos mediciones bajo un nombre y cada resumen las promediaría como una sola condición. Relanzar con la misma configuración es cómo crecen las repeticiones; una configuración distinta es un experimento nuevo.
+
+---
+
 ### Recursos relacionados
 - **[Entornos controlados y Sandboxing](controlled-environments-sandboxing.md)**
 - **[Auditorías de comportamiento y Scoring](behavioral-audits-and-scoring.md)**

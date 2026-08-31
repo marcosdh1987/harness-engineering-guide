@@ -82,6 +82,25 @@ Executing regression suites across dozens of cases and multiple model tiers is a
 
 ---
 
+## The Suite as a Producer of Experiments
+
+A regression suite should not need its own runner, its own aggregation, or its own definition of "regression". The suite declares the **design** — which cases are canonical and how many repetitions each deserves — and release validation is an ordinary controlled experiment: previous release as the control arm, candidate as the treatment.
+
+```mermaid
+flowchart LR
+    SUITE["suite.yaml<br/>(canonical cases × per-case repetitions)"] --> EXP["Experiment<br/>control: v0.6 · treatment: v0.7"]
+    EXP --> MATRIX["Case matrix:<br/>fixed / broken / unchanged"]
+    MATRIX -->|"nothing broken"| SHIP["Ship"]
+    MATRIX -->|"anything broken"| BLOCK["Investigate first"]
+```
+
+Two consequences worth internalizing:
+
+- **A release is read per case, never as one composite.** "Fixed four, broke none, thirty unchanged" is a shippable sentence; "+3 points overall" is a place for regressions to hide.
+- **The suite can refuse a comparison.** If the two arms vary a field the suite holds constant (the model, the budget), the design is rejected rather than silently accepted — the same validity rules as every other experiment, because it *is* every other experiment.
+
+---
+
 ### Related Resources
 - **[Building an Internal Evaluation Suite](../adoption/internal-evaluation-suite.md)**
 - **[Continuous Harness Improvement](../adoption/continuous-harness-improvement.md)**

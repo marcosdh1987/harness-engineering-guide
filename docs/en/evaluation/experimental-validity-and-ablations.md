@@ -100,6 +100,17 @@ If any parameter (a prompt line, a skill file, or a container dependency) change
 
 ---
 
+## What a Design Is Allowed to Claim
+
+Variable isolation answers *how* to compare; the **evaluation mode** answers *what the comparison may conclude*. A harness-evaluation design licenses a causal claim only when the repository, cases and model are pinned; a cross-repo design licenses a per-repository robustness reading and nothing pooled; a discovery design licenses observations, never verdicts. An evaluation system should refuse — at design time, before spending tokens — any experiment that contradicts its declared mode. See **[The Three Questions (Evaluation Modes)](the-three-questions.md)**.
+
+Two companion rules keep multi-run results honest over time:
+
+- **Prudent verdict language.** With 2 repetitions say *exploratory*; with 5, *a useful comparison*; with 10, *stronger evidence*. Never *significant* — no hypothesis test ran. A delta inside run-to-run variance is reported as exactly that.
+- **One experiment, one measurement.** Once an experiment has real runs, relaunching it under a different model, prompt or budget must be refused: it would file two measurements under one name and every summary would average them as one condition. Same-configuration relaunches are how repetitions grow; a changed configuration is a new experiment.
+
+---
+
 ### Related Resources
 - **[Controlled Environments & Sandboxing](controlled-environments-sandboxing.md)**
 - **[Behavioral Audits & Scoring](behavioral-audits-and-scoring.md)**

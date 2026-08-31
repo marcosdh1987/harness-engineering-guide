@@ -6,6 +6,16 @@ En lugar de concebir la asistencia de IA simplemente como una sesión de chat ef
 
 ---
 
+## La conversación que todo equipo ya tuvo
+
+> "Probá el prompt nuevo, a mí me anda mejor."
+> "¿Mejor que qué?"
+> "No sé… se siente mejor."
+
+Todo equipo que adopta agentes de código vive un tiempo de anécdotas: la corrida espectacular que alguien vio el martes, el desastre que otro sufrió el miércoles, la skill que "seguro ayuda" y que nadie midió nunca. El costo no es solo en tokens — es que las decisiones sobre la herramienta más nueva del stack se toman con el método más viejo disponible: **la sensación**. Harness Engineering existe para reemplazar esa conversación por una que termina distinto: *"el éxito pasó de 60% a 85% con cinco repeticiones por brazo, y no se rompió nada — acá está la matriz de casos."*
+
+---
+
 ## Más allá del "Vibe Coding" y los prompts individuales
 
 En las primeras etapas de adopción, los desarrolladores suelen interactuar con los modelos mediante autocompleción de líneas o prompts manuales ("vibe coding"). Si bien esto acelera la creación rápida de prototipos individuales, no escala en una organización de ingeniería:

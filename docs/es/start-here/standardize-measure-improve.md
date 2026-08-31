@@ -1,5 +1,7 @@
 # Estandarizar → Medir → Mejorar
 
+Casi siempre empieza con un hilo de Slack. Alguien dice que el agente "empeoró esta semana"; otro jura que la skill nueva de planificación "hace todo más lento"; un tercero pega una transcripción brillante como prueba de que está todo bien. Tres opiniones, cero mediciones — sobre un sistema del que todo el equipo depende a diario. El ciclo de abajo es la salida: no más disciplina en las discusiones, sino un método que vuelve innecesarias las discusiones.
+
 El hilo conductor de Harness Engineering es el ciclo de ingeniería continua:
 
 $$\mathbf{ESTANDARIZAR} \longrightarrow \mathbf{MEDIR} \longrightarrow \mathbf{MEJORAR}$$
@@ -82,6 +84,17 @@ flowchart LR
 3. **Atribución estructurada**: ¿Qué reglas gobernadas, archivos de documentación y skills fueron efectivamente consultados por el agente durante su ejecución multi-paso?
 4. **Métricas de eficiencia**: Cantidad de pasos, consumo de tokens, costo económico y tiempo de respuesta (latencia).
 5. **Integridad de comportamiento**: Auditorías mediante LLM para detectar bloqueos en bucles de comandos, flags inexistentes o llamadas erráticas a herramientas.
+
+
+!!! tip "El instrumento honesto"
+    La medición solo es confiable si el instrumento es honesto sobre qué *es* cada número. Cuatro reglas que cuestan poco y cambian todo:
+
+    1. **Etiquetar la procedencia**: el exit code de un test (*hecho*), un valor parseado de artefactos (*observación*) y la opinión de un juez LLM (*juicio*) nunca deben verse como el mismo tipo de número.
+    2. **"No medido" nunca es cero** — una métrica que no pudo computarse se saltea con razón declarada en lugar de envenenar el agregado.
+    3. **Lenguaje prudente en los veredictos**: con pocas repeticiones, decí *exploratorio*; nunca digas *significativo* — un harness a escala de equipo no corre tests de hipótesis.
+    4. **Leer la matriz de casos antes que el promedio**: "+8 puntos" puede ser "arregló cuatro, rompió dos".
+
+    La doctrina completa: **[Las tres preguntas (Modos de evaluación)](../evaluation/the-three-questions.md)**.
 
 ### Fuentes de evaluación
 Los equipos deben combinar diferentes orígenes para sus casos de prueba:

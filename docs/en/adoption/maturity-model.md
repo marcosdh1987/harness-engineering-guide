@@ -105,6 +105,10 @@ flowchart TB
 
 ---
 
+!!! note "Assessing maturity honestly"
+    Two rules keep a maturity assessment from becoming a brochure. First, at Levels 4–5 the working unit is the **experiment** (a stated question, declared arms, a mode that licenses its conclusion — see [The Three Questions](../evaluation/the-three-questions.md)), not the individual run. Second, the assessment itself stays **human and evidence-backed**: a level claimed above "governed" should point at concrete runs and experiments, and a dimension without evidence is reported as *unknown*, never scored by intuition — the methodology applies to evaluating your own maturity too.
+
+
 ### Next Steps
 - Learn how to **[Build an Internal Evaluation Suite](internal-evaluation-suite.md)**.
 - Understand the **[Agent Failure → Regression Case](failures-to-regression-cases.md)** loop.

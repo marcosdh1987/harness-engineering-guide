@@ -1,112 +1,101 @@
 # Lab Evaluation Workflow
 
-This guide details the end-to-end operational workflow for executing evaluations, diagnosing agent behavior, and generating verified improvements using the **Agentic Harness Lab** (`ai-agentic-harness-lab`).
+The lab is organized around **four journeys**, one per question a team actually arrives with. Each journey starts on the home screen ("What do you want to learn?") and ends in evidence a team can act on — a verdict with a case matrix, a robustness map, an audit report, or a release decision.
 
 ---
 
-## The End-to-End Operational Loop
+## Journey A — Evaluate a Harness Change (Mode A)
+
+*"Does this skill / rule / prompt change actually improve anything?"*
 
 ```mermaid
 sequenceDiagram
     autonumber
     actor User as Engineer
-    participant UI as Lab Web UI (:5173)
-    participant API as FastAPI Backend
+    participant UI as New Evaluation Wizard
+    participant API as Experiment Service
     participant Worker as Celery Worker
-    participant Runner as Docker Runner Container
-    participant LLM as LLM Auditor
+    participant Runner as Runner Container
 
-    User->>UI: Select Case + Harness (Claude/OpenCode) + Model
-    UI->>API: POST /api/runs (Create Run)
-    API->>Worker: Enqueue Task
-    Worker->>Runner: Spawn Docker Container with Workspace Mount
-    Runner->>Runner: Execute Agent Multi-Step Loop
-    Runner-->>Worker: Stream Step Logs & Artifacts
-    Worker->>API: Record Result & Compute Condition Hash
-    Worker->>API: Run Objective Validation Commands
-    User->>UI: Click "Audit Run"
-    API->>LLM: Analyze Step Logs & Artifacts
-    LLM-->>UI: Display Behavioral Diagnosis
-    User->>UI: Click "Generar issue sanitizado"
-    UI-->>User: Copy Sanitized Markdown Issue (HEP-YYYY-NNN)
+    User->>UI: Pick venue (this lab / a target repo) + factor (add/remove skills, swap harness, full harness…)
+    User->>UI: Pick cases + repetitions (2 exploratory / 5 useful / 10 stronger)
+    User->>UI: Configure model, prompt variant, budget · Check configuration (preflight)
+    UI->>API: Create & launch runs (arms × cases × repetitions)
+    API->>API: Design validation — refuses a design the mode cannot answer
+    API->>Worker: Enqueue every run, tagged by arm
+    Worker->>Runner: One container per run (native / injected governance as declared)
+    Runner-->>API: Artifacts, scores, governance surface per run
+    API-->>User: Verdict ("likely improvement", never "significant") + case matrix
 ```
 
----
+Key properties:
 
-## Step-by-Step Workflow Guide
-
-### Step 1: Queue a Benchmark Run
-1. Open the Web UI at `http://localhost:5173` (or run `make app-up`).
-2. Navigate to the **Runs** screen and click **"New Run"** (or use **Batch Runs** to queue a full cross-product matrix).
-3. Configure the experimental parameters:
-   - **Case**: Choose an internal custom case or SWE-bench instance.
-   - **Harness**: Choose `claude` (Claude Code), `opencode`, `codex`, or `antigravity`.
-   - **Model**: Select cloud-routed models (via AI Gateway) or local endpoints (Ollama/LM Studio).
-   - **Prompt Variant**: Select `swe_harness` or `sdlc` (to load governed rules and skills).
-   - **Skill Ablation**: (Optional) Explicitly disable or stage a skill to measure its marginal impact.
+- **The form cannot express an invalid design.** One factor varies; repository, cases and model are pinned across arms. The backend validates again and refuses contradictions.
+- **The "Full harness" factor** runs the founding comparison: a bare arm (plain prompt, every governed skill hidden) against the whole harness — one treatment, one claim about the harness as a unit.
+- **Launch locks the configuration.** Further rounds reuse it verbatim (that is how repetitions grow); a different model is a different experiment.
+- **The result opens with a ten-second verdict** — did it improve, on which metrics, at what cost, with how much evidence — followed by the **case matrix** (fixed / broken / unchanged), which is the number that survives an average.
 
 ---
 
-### Step 2: Containerized Execution
-- The Celery worker pulls the task and spawns a dedicated, isolated Docker container (`harness-runner`).
-- The repository workspace is bind-mounted read-write inside the container under an unprivileged user.
-- The execution watchdog monitors process liveness, enforcing CPU, RAM, and maximum step/time thresholds.
-- Step-by-step stdout/stderr, tool calls (`read`, `edit`, `bash`), and permission events are streamed to `data/runs/<id>/steps/step-*.log`.
+## Journey B — Test Across Repositories (Mode B)
+
+*"Does our harness hold up outside the repository it was born in?"*
+
+Same wizard, cross-repo mode: the harness and model stay fixed, each selected repository becomes its own arm, and the first one is a **reference** (a reading anchor, not a baseline — nothing here is causal). The summary is deliberately per-repository: pooling scores across different codebases would treat them as one condition, which they are not.
 
 ---
 
-### Step 3: Attribution & Validation Indexing
-Upon run completion:
-- **Attribution Parsing**: The API parses the step logs to compute the **Attribution Record**:
-  - Distinct files read vs edited (`permission=edit`).
-  - Governance surface coverage (which `.github/` rules were read).
-  - Explicit skill consultation (`SKILL.md` read events).
-- **Objective Validation**: The worker executes the case's `validation_commands` (e.g., `pytest tests/test_case.py`).
-  - If tests pass $\to$ Objective: `PASS`.
-  - If tests fail $\to$ Objective: `FAIL` (Composite score capped at 1.0).
+## Journey C — Audit a Repository (Mode C)
+
+*"What can we learn from how this project or team works with AI today?"* — including a client's repository you have never seen.
+
+```mermaid
+flowchart TD
+    S1["1. Select repository<br/>(register URL, pin ref → commit)"] --> S2
+    S2["2. Readiness — read, never inferred<br/>rules files · skills · CI · gates<br/>+ <b>inferred setup/test commands</b> from the repo's own files, adopted with one click"] --> S3
+    S3["3. Derive cases from the repo's own history<br/>(commits that changed source + tests together)"] --> S4
+    S4["4. Run discovery<br/>(one 'as-is' arm, native governance, exploratory)"] --> S5
+    S5["5. Review suggested findings<br/>(accept with your name, or reject — recorded either way)"] --> S6
+    S6["6. Turn a finding into an experiment<br/>+ generate the client-facing audit report"]
+```
+
+The audit's claims stay narrow at every step: readiness is *detected* ("Not detected" when unobservable), cases are *proposed* from real commits the team already made, findings are *suggested* until signed, and the generated markdown report **only says what the evidence supports** — with no runs, it says "reading, not measurement".
+
+The natural closing experiment for any audit: **native vs injected** — the repository exactly as the team has it, against the same repository with your harness projected in, same cases, 5+ repetitions per arm. That is the question every client engagement ends on, answered as a measurement.
 
 ---
 
-### Step 4: Behavioral Audit & Proposal Generation
-1. In the Web UI, open the completed run and click **"Audit"**.
-2. The LLM Auditor analyzes the transcript and outputs `audit.md`, evaluating:
-   - Planning quality and SDLC adherence.
-   - Command loops, tool thrashing, or repetitive failing commands.
-   - Hallucinated flags or incorrect parameters.
-3. Click **"Generar issue sanitizado"** (or run `make harness-proposal RUN=<id>`).
-4. The system allocates an immutable `HEP-YYYY-NNN` identifier, strips private tokens and host paths, and generates a formatted issue for `ml-python-base`.
+## Journey D — Validate a Harness Release
+
+*"Is v0.7 safe to ship over v0.6?"*
+
+The regression suite (`suite.yaml`) is a **producer of experiments**, not a second runner: it contributes the canonical cases and their per-case repetition counts; you contribute the two arms (previous release as control, candidate as treatment). Everything downstream — design validation, the beyond-noise column, the case matrix — is the same machinery as every other comparison.
+
+```mermaid
+flowchart LR
+    SUITE["suite.yaml<br/>(canonical cases × declared repetitions)"] --> EXP["Experiment<br/>control: v0.6 · treatment: v0.7"]
+    EXP --> MATRIX["fixed / broken / unchanged"]
+    MATRIX -->|"nothing broken"| SHIP["Ship the release"]
+    MATRIX -->|"anything broken"| BLOCK["Investigate the broken cases first"]
+```
+
+A release is read as *"fixed four, broke none, thirty unchanged"* — never as a single composite number that could hide the two it broke.
 
 ---
 
-### Step 5: Implement Improvement in `ml-python-base`
-1. Open the issue in [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base).
-2. Create a development branch and edit the targeted governed skill under `.github/skills/`.
-3. Run local quality gates:
-   ```bash
-   make check        # Ruff linting, formatting, type checks
-   make check-sync   # Sychronize CLAUDE.md, AGENTS.md, OPENCODE.md
-   ```
-4. Merge the PR and tag an immutable SemVer release (e.g., `v1.4.0`).
+## The Improvement Loop (Unchanged in Spirit, Sharper in Form)
 
----
+When a run exposes a harness weakness, the loop into the governed template still closes the same way:
 
-### Step 6: Validate in Candidate Worktree & Close the Loop
-1. Point the lab at the new governance version using an isolated worktree:
-   ```bash
-   make harness-status                    # Compare current vs latest release
-   make harness-sync-preview REF=v1.4.0   # Preview read-only diff
-   make harness-sync-branch REF=v1.4.0    # Prepare candidate worktree
-   ```
-2. Re-run the exact same evaluation case with the candidate version.
-3. Verify that:
-   - The original symptom disappeared.
-   - Objective validation passes.
-   - The run produces **zero new proposals** (Clean Outcome Gate).
-4. Merge the candidate branch into your production repositories.
+1. Open the run — it leads with its **condition** (experiment, arm, repository @ commit, governance source) before its logs.
+2. Run the **LLM audit** (judged against the governance surface that run actually had) and synthesize **improvement proposals**.
+3. Collect proposals across runs on the **Improvements** screen and generate one **sanitized combined issue** for the governed template (private paths and tokens stripped).
+4. Fix, release, and validate the new version through **Journey D**.
 
 ---
 
 ### Related Resources
 - **[Agentic Harness Lab Overview](index.md)**
+- **[The Three Questions (Evaluation Modes)](../../evaluation/the-three-questions.md)**
+- **[Regression Suites](../../evaluation/regression-suites.md)**
 - **[Continuous Harness Improvement](../../adoption/continuous-harness-improvement.md)**
-- **[Controlled Environments & Sandboxing](../../evaluation/controlled-environments-sandboxing.md)**
