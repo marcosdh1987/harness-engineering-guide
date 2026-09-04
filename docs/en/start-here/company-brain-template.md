@@ -4,15 +4,15 @@ The [From Project to Organization](project-to-organization.md) page introduces
 the Company Brain as a concept. This page documents its **concrete
 implementation**: the
 [`company-brain-template`](https://github.com/marcosdh1987/company-brain-template)
-repository (v1.0) — a materialized starting point for the organizational
-context layer, consolidated from real client engagements.
+repository — a materialized starting point for the organizational
+context layer, consolidated from real-world operations and client engagements.
 
 !!! tip "When to reach for this template"
     Not on day one. A single-repo engagement keeps its context *inside* the
     repo (`memory/`, `docs/adr/`, domain docs) — that in-repo **project
-    brain** is enough. This template earns its place when the engagement
-    spans more than one repo, more than one project, or a consulting
-    relationship where evidence and decisions must outlive any codebase. The
+    brain** is enough. This template earns its place when the scope
+    spans more than one repo, more than one project, or an operational
+    relationship where evidence and decisions must outlive any individual codebase. The
     full progression is in [Adopting an Existing Project](adopt-existing-project.md).
 
 ## The core idea: an evidence → knowledge pipeline
@@ -23,7 +23,7 @@ not facts**; only cited, statused content becomes canonical knowledge:
 ```text
 raw material              promotion                canonical knowledge
 99-inbox/            →    analyze, extract,    →   06-decisions/   05-requirements/
-01-meetings/              validate, cite           00-context/     03-projects/ …
+01-meetings/              validate, cite           00-context/     03-work/ …
 09-references/
 ```
 
@@ -35,22 +35,48 @@ editing the original evidence. Decisions are immutable `DEC-XXX` entries.
 The single source of operating rules is `AGENTS.md`; every tool adapter
 (`CLAUDE.md`, Copilot) defers to it, so two rule sets can never drift apart.
 
+## Two Archetypes: Engagement Brain vs. Operating Company Brain
+
+A critical architectural insight from practice is that organizations operate two distinct archetypes of Company Brains depending on their operational horizon:
+
+```text
+┌──────────────────────────────────────┐     ┌──────────────────────────────────────┐
+│          Engagement Brain            │     │       Operating Company Brain        │
+├──────────────────────────────────────┤     ├──────────────────────────────────────┤
+│ • Client-facing / consulting mission │     │ • Internal function or org (e.g. XL) │
+│ • Time-bound lifecycle (weeks/months)│     │ • Continuous, evolving operations    │
+│ • Heavy external meeting transcripts │     │ • Work-unit taxonomy (03-work/)      │
+│ • Focus: Discovery & Client Handoff  │     │ • Focus: Execution & Capability Lib  │
+└──────────────────────────────────────┘     └──────────────────────────────────────┘
+```
+
+| Dimension | Engagement Brain | Operating Company Brain |
+|---|---|---|
+| **Primary Scope** | Specific client, audit, or consulting engagement | Department, engineering organization, or entire company |
+| **Lifecycle** | Time-bound (typically weeks to months) | Continuous and permanent |
+| **Core Work Unit** | Engagement milestones, client deliverables, review gates | Structured initiatives, discovery spikes, capabilities (`03-work/`) |
+| **Evidence Profile** | External client transcripts, uploaded artifacts, inbox intake | Systems of record (Jira, GitHub, Slack), internal retrospectives |
+| **Primary Stakeholders** | External client sponsors, consulting lead | Engineering managers, tech leads, internal autonomous agents |
+| **Key Output** | Recommendations, client reports, architectural handoff | Operational execution, company-wide ADRs, capability libraries |
+
+Recognizing which archetype you are building prevents structural mismatch: an engagement brain focuses heavily on evidence audit trails and client deliverables, while an operating company brain focuses on work taxonomies, internal capabilities, and role hubs.
+
 ## Structure (modular)
 
-Modules are activated per engagement in `brain.config.json`; the validator
+Modules are activated per deployment in `brain.config.json`; the validator
 enforces only active ones. `make init ORG="…" PROFILE=…` preselects them
-(profiles: `consulting`, `delivery-oversight`, `development`, `full`).
+(profiles: `consulting`, `delivery-oversight`, `management`, `development`, `full`).
 
 | Module | Core | Contents |
 |---|---|---|
-| `00-context/` | ✔ | company overview, engagement scope, stakeholders, glossary |
+| `00-context/` | ✔ | company overview, operating scope, stakeholders, glossary |
 | `01-meetings/` | ✔ | transcripts (evidence) + reviewed minutes + intake template |
 | `02-organization/` | | ways of working, conventions (engineering, git, **ticketing**, communication), AI policy, ownership, org runbooks |
-| `03-projects/` | | one folder per project: overview → current state → target state → plan → checklist → change log |
+| `03-work/` | | structured work units: initiatives, discovery, capabilities, operational cadences (overview → status → plan → execution log) |
 | `04-architecture/` | | systems map, `repos.yaml` (code repo registry), integrations |
 | `05-requirements/` | | functional, non-functional, business rules, open questions |
 | `06-decisions/` | ✔ | immutable `DEC-XXX` decision log |
-| `07-delivery/` | | status, roadmap, action items, validation matrix, periodic client-run check |
+| `07-delivery/` | | status, roadmap, action items, validation matrix, periodic health checks |
 | `08-vendors/` | | vendor register + evaluations |
 | `09-references/` | ✔ | primary sources + source registers with conflict tracking |
 | `99-inbox/` | ✔ | landing zone; files leave marked `processed--` |
@@ -60,6 +86,43 @@ enforces only active ones. `make init ORG="…" PROFILE=…` preselects them
 brain *declares* them once. This includes `conventions/ticketing.md`: generic
 skills ("plan from ticket") read it to adapt to the organization's tracker,
 workflow states, and definitions of ready/done.
+
+---
+
+## Lessons from Operating a Real Management Brain
+
+The evolution of the Company Brain from early consulting templates into production operating systems (such as executive engineering brains like `em-xl`) generated essential lessons learned:
+
+### 1. The Transition from `03-projects/` to `03-work/`
+Early brain architectures modeled organizational activity strictly as "projects" (`03-projects/`). In real management operations, this proved too rigid:
+- Much of organizational work consists of recurring operational rhythms, cross-cutting discovery spikes, infrastructure maintenance, or internal capability building—none of which are traditional software projects.
+- `03-work/` unifies all operational activity under a cohesive **work-unit taxonomy**.
+
+### 2. Stage vs. Folder (Decoupling Status from File Paths)
+A major anti-pattern is moving files between directories to reflect status changes (e.g., `work/active/` to `work/completed/`).
+- Moving files breaks internal markdown hyperlinks, invalidates agent memories, and pollutes Git commit history.
+- **Solution**: The folder structure reflects domain or hierarchy, while lifecycle state (`stage`: `draft`, `active`, `review`, `done`, `paused`) is stored in machine-readable YAML frontmatter metadata.
+
+### 3. Tier vs. Type
+Work units must be classified along two orthogonal dimensions:
+- **Type**: The nature of the work (`initiative`, `discovery`, `capability`, `operations`).
+- **Tier**: The organizational blast radius and operational impact (`Tier 1`: strategic/company-wide, `Tier 2`: team/departmental, `Tier 3`: local/operational).
+
+### 4. Graduated Rigor
+Not every task warrants the same administrative overhead:
+- Imposing heavy evidence registers and formal decision gates on a trivial operational script causes friction and abandonment.
+- Under **graduated rigor**, Tier 1 initiatives require formal problem statements, explicit source registers, stakeholder sign-offs, and immutable `DEC-XXX` entries; Tier 3 tasks require only a concise plan and verification checklist.
+
+### 5. Capability Library
+Operating an organization requires durable capabilities (e.g., standard evaluation rubrics, onboarding playbooks, incident post-mortem frameworks) that outlive individual projects or quarters. Separating reusable capabilities into a distinct library prevents organizational memory from being buried inside completed project archives.
+
+### 6. Generated Indexes to Prevent Context Flooding
+Agents should never perform recursive filesystem traversals across hundreds of files in `03-work/`. Instead, lightweight automation (`make index`) parses the YAML frontmatter of all work units to generate compact catalog tables (such as `work-index.md`). This enables agents to follow the [Selective Context Pattern](../concepts/context-engineering.md#the-selective-context-pattern) without exceeding token budgets.
+
+### 7. Role-Oriented Hubs
+Large organizations contain diverse participants: executive leadership, engineering managers, tech leads, and autonomous agents. Providing role-oriented hub files (e.g., `hub-leadership.md`, `hub-engineering.md`) provides high-signal entry points curated for the specific decisions and oversight needs of that persona.
+
+---
 
 ## The workspace model: brain + code repos
 

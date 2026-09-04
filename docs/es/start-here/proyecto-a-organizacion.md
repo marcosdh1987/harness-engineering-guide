@@ -107,22 +107,45 @@ Conceptualmente, se apoya en áreas de investigación maduras como la gestión d
 
 > En esta guía utilizamos “Company Brain” como una etiqueta práctica para referirnos al contexto organizacional gobernado que puede compartirse entre proyectos, equipos y agentes de IA.
 
-### Relación con Harness Engineering
+### La arquitectura de tres capas
 
-Es fundamental diferenciar la gobernanza del conocimiento organizacional de la ejecución técnica:
+Es fundamental diferenciar los sistemas de registro corporativos, la gobernanza del conocimiento organizacional y la ejecución técnica:
 
 ```text
-Company Brain
-    describe qué sabe la organización
-    y cómo se gobierna ese conocimiento.
-
-Harness Engineering
-    vuelve ejecutable una parte seleccionada
-    de ese conocimiento mediante reglas, skills,
-    herramientas, workflows, contexto y validación.
+┌────────────────────────────────────────┐
+│ Corporate Systems of Record            │
+│ Jira · GitHub · Notion · HRIS · CRM    │
+└──────────────────┬─────────────────────┘
+                   │ evidencia / refs
+                   ▼
+┌────────────────────────────────────────┐
+│ Company Brain                           │
+│ contexto organizacional gobernado      │
+│ procedencia · decisiones · capacidades │
+└──────────────────┬─────────────────────┘
+                   │ compilar / seleccionar
+                   ▼
+┌────────────────────────────────────────┐
+│ Engineering Harness                     │
+│ reglas · skills · tools · validaciones │
+│ contexto de agente para la tarea       │
+└────────────────────────────────────────┘
 ```
 
-En este modelo, **Harness Engineering puede funcionar como una capa de compilación entre el conocimiento organizacional y el comportamiento de los agentes.** La organización gobierna sus políticas y hallazgos del dominio, mientras que Harness Engineering proyecta subconjuntos relevantes de ese conocimiento en entornos de agentes accionables y validados.
+Este modelo de tres capas clarifica el flujo desde la operativa corporativa hasta la ejecución de los agentes:
+
+1. **Sistemas de Registro Corporativos (Evidencia y Actividad)**: Herramientas como Jira, GitHub, Notion, Slack, HRIS y CRM reflejan la realidad operativa cruda. Contienen actualizaciones fragmentadas, chats efímeros, cambios de estado y pull requests.
+2. **Company Brain (Contexto Organizacional Gobernado)**: Transforma la evidencia cruda en conocimiento canónico respaldado por trazabilidad y procedencia. Registra decisiones de arquitectura autoritativas (`DEC-XXX`), fronteras de dominio, capacidades transversales y convenciones de la organización, preservando siempre el historial de evidencia.
+3. **Engineering Harness (Capa de Compilación y Ejecución)**: Convierte el conocimiento organizacional gobernado en restricciones e instrucciones ejecutables. **Harness Engineering actúa como la capa de compilación entre el conocimiento organizacional y el comportamiento del agente.** Compila reglas, selecciona skills específicas para cada tarea, configura adaptadores (`CLAUDE.md`, `AGENTS.md`) y asegura compuertas de validación (`make check`) dentro de cada repositorio.
+
+### Dos arquetipos: Engagement Brain vs. Operating Company Brain
+
+En la práctica, las organizaciones adoptan uno de dos arquetipos de Company Brain según su alcance operativo:
+
+- **Engagement Brain**: Captura el conocimiento de un cliente específico o una misión acotada en el tiempo (p. ej., consultoría estratégica, auditoría técnica o supervisión de delivery). Enfatiza la evidencia de reuniones con el cliente, registros de fuentes externas, síntesis de entrevistas de descubrimiento y entregables de traspaso.
+- **Operating Company Brain**: Captura el conocimiento transversal utilizado internamente para operar una función de ingeniería o una empresa de forma continua (p. ej., brains de gestión ejecutiva como `em-xl`). Enfatiza taxonomías de trabajo continuas (`03-work/`), bibliotecas de capacidades internas, hubs orientados a roles y custodia arquitectónica persistente entre equipos.
+
+*(Consulta [El template de Company Brain](company-brain-template.md#dos-arquetipos-engagement-brain-vs-operating-company-brain) para una comparación detallada).*
 
 ## Qué no proporciona el template
 
@@ -168,7 +191,7 @@ Agregar controles de acceso, procedencia, gobernanza de políticas, descubrimien
 1. **No saltar niveles**: Intentar implementar gobernanza de Nivel 5 antes de dominar los fundamentos de Nivel 1 y Nivel 2 genera burocracia sin aportar utilidad real a la ingeniería.
 2. **Resolver problemas reales**: Avanzar de nivel únicamente cuando el drift o las necesidades de gobernanza generen fricción observable.
 3. **Preservar el ownership**: Cada regla compartida o skill del dominio debe contar con una persona o equipo responsable claro.
-4. **Evitar la saturación de contexto**: No transmitir todo el conocimiento organizacional a cada sesión del agente. Inyectar únicamente lo relevante para la tarea activa.
+4. **Evitar la saturación de contexto**: No transmitir todo el conocimiento organizacional a cada sesión del agente. Utiliza el [Patrón de Selective Context](../concepts/context-engineering.md#el-patron-de-selective-context) (`START_HERE → task routing → smallest useful read set`) para inyectar únicamente lo estrictamente relevante para la tarea activa.
 
 ## Distinciones clave
 

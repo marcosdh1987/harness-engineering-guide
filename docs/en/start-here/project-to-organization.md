@@ -107,22 +107,45 @@ Conceptually, the concept relies on mature foundational fields including organiz
 
 > In this guide, we use “Company Brain” as a convenient label for the governed organizational context that can be shared across projects, teams, and AI agents.
 
-### Relationship to Harness Engineering
+### The Three-Layer Architecture
 
-It is vital to distinguish between organizational knowledge governance and technical execution:
+It is vital to distinguish between enterprise systems of record, organizational knowledge governance, and technical execution:
 
 ```text
-Company Brain
-    describes what the organization knows
-    and how that knowledge is governed.
-
-Harness Engineering
-    makes selected knowledge executable
-    through rules, skills, tools, workflows,
-    context, and validation.
+┌────────────────────────────────────────┐
+│ Corporate Systems of Record            │
+│ Jira · GitHub · Notion · HRIS · CRM    │
+└──────────────────┬─────────────────────┘
+                   │ evidence / refs
+                   ▼
+┌────────────────────────────────────────┐
+│ Company Brain                           │
+│ governed organizational context        │
+│ provenance · decisions · capabilities  │
+└──────────────────┬─────────────────────┘
+                   │ compile / select
+                   ▼
+┌────────────────────────────────────────┐
+│ Engineering Harness                     │
+│ rules · skills · tools · validations   │
+│ task-specific agent context            │
+└────────────────────────────────────────┘
 ```
 
-In this model, **Harness Engineering can act as the compilation layer between organizational knowledge and agent behavior.** The organization governs its policies and domain insights, while harness engineering projects relevant subsets of that knowledge into actionable, validated agent environments.
+This three-layer model clarifies how information flows from enterprise operations to agent execution:
+
+1. **Corporate Systems of Record (Evidence & Activity)**: Tools like Jira, GitHub, Notion, Slack, HRIS, and CRM represent raw operational reality. They contain fragmented updates, ephemeral chats, status changes, and pull requests.
+2. **Company Brain (Governed Organizational Context)**: Curates raw evidence into canonical, provenance-backed organizational knowledge. It records authoritative architecture decisions (`DEC-XXX`), domain boundaries, cross-cutting capabilities, and organizational conventions, while maintaining a strict evidence audit trail.
+3. **Engineering Harness (Compilation & Execution Layer)**: Converts governed organizational knowledge into actionable, executable constraints. **Harness Engineering acts as the compilation layer between organizational knowledge and agent behavior.** It compiles rules, selects task-specific skills, configures tool adapters (`CLAUDE.md`, `AGENTS.md`), and enforces verification gates (`make check`) inside local repositories.
+
+### Two Archetypes: Engagement Brain vs. Operating Company Brain
+
+In practice, organizations adopt one of two Company Brain archetypes depending on operational scope:
+
+- **Engagement Brain**: Captures knowledge about a specific client or time-bound mission (e.g., strategic consulting, audit, or delivery oversight). Emphasizes client meeting evidence, external source registers, discovery interview synthesis, and milestone handoffs.
+- **Operating Company Brain**: Captures transversal knowledge used internally to operate an ongoing engineering function or company (e.g., executive management brains like `em-xl`). Emphasizes continuous work taxonomies (`03-work/`), internal capability libraries, role-oriented hubs, and persistent architectural stewardship across teams.
+
+*(See [The Company Brain Template](company-brain-template.md#two-archetypes-engagement-brain-vs-operating-company-brain) for detailed comparison).*
 
 ## What the template does not provide
 
@@ -168,7 +191,7 @@ Add access controls, provenance, policy governance, discovery, evaluation, and a
 1. **Do not skip levels**: Attempting to implement Level 5 governance before establishing Level 1 and Level 2 repository basics leads to bureaucratic overhead without practical engineering utility.
 2. **Target real bottlenecks**: Advance levels only when cross-repository drift or governance needs create observable friction.
 3. **Preserve ownership**: Every shared rule or domain skill must have an explicit human owner or team maintainer.
-4. **Avoid context flooding**: Do not broadcast all organizational knowledge to every agent session. Inject only what is relevant to the active task.
+4. **Avoid context flooding**: Do not broadcast all organizational knowledge to every agent session. Use the [Selective Context Pattern](../concepts/context-engineering.md#the-selective-context-pattern) (`START_HERE → task routing → smallest useful read set`) to inject only what is strictly relevant to the active task.
 
 ## Key distinctions
 
