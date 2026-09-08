@@ -1,6 +1,6 @@
 # Claude Code Basics: Your First Session
 
-Before any setup, get the mental model right. Claude Code is not a smarter chat box — it
+Before any setup, get the mental model right. Claude Code is not a smarter chat box, it
 is a semi-autonomous agent that reads, edits, and runs code, guided by a **durable
 operating layer** you control.
 
@@ -8,7 +8,7 @@ operating layer** you control.
 
 In raw chat you re-explain your project, conventions, and constraints every session, and
 none of it persists. A harness flips that: the rules, skills, and context live in the
-repository, so every teammate — and every session — starts from the same ground. This is
+repository, so every teammate (and every session) starts from the same ground. This is
 the difference between a one-off *prompt* and a reusable *skill*; see
 [Skills vs Prompts](../concepts/skills-vs-prompts.md).
 
@@ -24,11 +24,11 @@ At a glance, Claude Code picks up context from a few well-known places:
 | `.claude/settings.json` | Workspace settings |
 
 For the full breakdown of how the reference repo wires these, read
-[Tools › Claude Code](../tools/claude-code.md) — this page keeps it short on purpose.
+[Tools › Claude Code](../tools/claude-code.md), this page keeps it short on purpose.
 
 ## Project memory: the `CLAUDE.md` idea
 
-`CLAUDE.md` is your project's memory — persistent instructions Claude reads at the start
+`CLAUDE.md` is your project's memory, persistent instructions Claude reads at the start
 of work.
 
 !!! note "Native Claude Code capability"
@@ -38,7 +38,7 @@ of work.
 
 !!! tip "How ml-python-base applies it"
     The reference repo uses a **single governed `CLAUDE.md` adapter** with an
-    auto-generated skills region. It does **not** use `@path` imports — it directs context
+    auto-generated skills region. It does **not** use `@path` imports, it directs context
     by instruction (a short `## Governance` section that points to the governance docs).
     The full native-vs-applied map is on [Leverage More](leverage-more.md).
 
@@ -48,12 +48,12 @@ You build the minimal, understood version of this file on the next page.
 
 Match the mode to the change:
 
-- **Plan Mode** — for large or structural work (a refactor across many files, a
+- **Plan Mode**: for large or structural work (a refactor across many files, a
   migration). Claude explores and proposes a strategy that you validate *before* it edits
   anything. This mirrors the harness working loop **Ground → Plan → Delegate → Verify →
   Compound**; see [Patterns › Working Loop](../patterns/working-loop.md) and the reference
   [working loop](../reference-implementation/ml-python-base/working-loop.md).
-- **Direct Execution** — for small, well-scoped fixes where the error is obvious and no
+- **Direct Execution**: for small, well-scoped fixes where the error is obvious and no
   redesign is needed.
 
 !!! tip "Rule of thumb"
@@ -66,7 +66,7 @@ Long work spans sessions. Two habits matter:
 
 - **Resume** an existing session (`--resume`) instead of starting cold, so Claude keeps
   the prior context.
-- When **a human edits files** outside the session, tell Claude explicitly — it needs to
+- When **a human edits files** outside the session, tell Claude explicitly, it needs to
   re-read the changed state rather than assume it will notice on its own.
 
 !!! note "Native Claude Code capability"

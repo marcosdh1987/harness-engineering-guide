@@ -12,7 +12,7 @@ Rather than viewing AI assistance merely as an ephemeral chat session or a colle
 > "Better than what?"
 > "I don't know… it just feels better."
 
-Every team that adopts coding agents lives on anecdotes for a while: the great run somebody saw on Tuesday, the disaster somebody else hit on Wednesday, the skill that "definitely helps" and that nobody ever measured. The cost is not just tokens — it is that decisions about the newest tool in the stack get made with the oldest method available: **gut feeling**. Harness Engineering exists to replace that conversation with one that ends differently: *"success went from 60% to 85% over five repetitions per arm, and nothing broke — here is the case matrix."*
+Every team that adopts coding agents lives on anecdotes for a while: the great run somebody saw on Tuesday, the disaster somebody else hit on Wednesday, the skill that "definitely helps" and that nobody ever measured. The cost is not just tokens (it is that decisions about the newest tool in the stack get made with the oldest method available: **gut feeling**. Harness Engineering exists to replace that conversation with one that ends differently: *"success went from 60% to 85% over five repetitions per arm, and nothing broke) here is the case matrix."*
 
 ---
 

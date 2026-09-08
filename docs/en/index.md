@@ -2,7 +2,7 @@
 
 **The Engineering Discipline for Building, Evaluating, and Continuously Improving the Agentic SDLC.**
 
-[Harness Engineering Guide](https://marcosdh1987.github.io/harness-engineering-guide/) is a public, vendor-neutral methodology and reference guide for engineering organizations transitioning from *ad-hoc AI assistance* to a *systematic, measurable, and continuously improving agentic software development lifecycle*.
+[Harness Engineering Guide](https://marcosdh1987.github.io/harness-engineering-guide/) is a public, vendor-neutral methodology and reference guide for engineering organizations transitioning from individual, ad-hoc AI assistance to a systematic, measurable, and continuously improving agentic software development lifecycle.
 
 ---
 
@@ -21,18 +21,18 @@ flowchart LR
 
 As AI coding assistants evolve from single-turn autocompletion into multi-turn autonomous agents (executing shell commands, editing repositories, running test suites, and calling external tools), prompt engineering alone becomes insufficient. 
 
-Organizations face critical challenges:
-- **Silent Regressions & Drift**: Agents generate code that passes superficial checks but violates architectural boundaries, security policies, or database migration rules.
+Organizations face recurring challenges:
+- **Silent Regressions and Drift**: Agents generate code that passes superficial checks but violates architectural boundaries, security policies, or database migration rules.
 - **Perception-Driven Evaluation**: Teams judge agents by individual anecdotal feelings rather than reproducible, quantitative evidence.
-- **Ephemeral Learning**: Lessons from agent mistakes remain lost in chat transcripts or Slack channels instead of compounding into organizational capabilities.
+- **Ephemeral Learning**: Lessons from agent mistakes remain lost in chat transcripts instead of compounding into organizational capabilities.
 
-**Harness Engineering** solves this by treating the system around the model—the rules, context, skills, tools, execution environments, quality gates, observability, and evaluations—as an engineered, version-controlled software product.
+**Harness Engineering** solves this by treating the system around the model (the rules, context, skills, tools, execution environments, quality gates, observability, and evaluations) as an engineered, version-controlled software system.
 
 ---
 
 ## The Guiding Methodology: Standardize → Measure → Improve
 
-The entire framework is structured around three foundational pillars:
+The framework is structured around three foundational pillars:
 
 ```mermaid
 flowchart TB
@@ -66,7 +66,7 @@ flowchart TB
     S --> M --> I --> S
 ```
 
-1. **Standardize**: Define and version how agents are expected to work—architectural boundaries, approved tools, reusable skills, and validation gates.
+1. **Standardize**: Define and version how agents are expected to work, including architectural boundaries, approved tools, reusable skills, and validation gates.
 2. **Measure**: Replace subjective perception with reproducible evaluation cases executed inside controlled sandbox environments. Capture exact attribution, token costs, step traces, and behavioral audits.
 3. **Improve**: Close the feedback loop. Transform agent failures into reproducible evaluation cases, test improvements under controlled conditions, and retain them as permanent regression tests.
 
@@ -104,25 +104,29 @@ flowchart TB
 
 ---
 
-## The Closed-Loop Ecosystem
+## The Five-Layer Ecosystem
 
-This guide is supported by two public reference implementations:
+This guide connects five modular layers of agentic engineering into a closed continuous improvement loop:
 
 ```mermaid
-flowchart LR
-    GUIDE["Harness Engineering Guide<br/><i>(Methodology, Theory, Patterns)</i>"]
-    MPB["ml-python-base<br/><i>(Governed Reference Harness)</i>"]
-    LAB["ai-agentic-harness-lab<br/><i>(Evaluation & Continuous Improvement)</i>"]
+flowchart TD
+    GUIDE["<b>1. METHOD</b><br/>harness-engineering-guide<br/><i>Principles · Patterns · Evidence · Adoption</i>"]
+    BRAIN["<b>2. KNOWLEDGE</b><br/>company-brain-template<br/><i>Evidence · Decisions · Context · Requirements</i>"]
+    HARNESS["<b>3. GOVERNANCE</b><br/>ml-python-base<br/><i>Rules · Skills · Adapters · Quality Gates</i>"]
+    RUNTIME["<b>4. RUNTIME</b><br/>ml-langchain-agent<br/><i>Clean Architecture · LangGraph · Persistent APIs</i>"]
+    LAB["<b>5. EVALUATION</b><br/>sdlc-ml-python-harness-lab<br/><i>Experiments · Sandboxes · Attribution · Scoring</i>"]
 
-    GUIDE -->|"Informs"| MPB
-    MPB -->|"Measured by"| LAB
-    LAB -->|"Sanitized Improvements"| MPB
-    LAB -->|"Empirical Evidence"| GUIDE
+    GUIDE --> BRAIN --> HARNESS --> RUNTIME --> LAB
+    LAB -->|"Empirical Learnings"| HARNESS
+    LAB -->|"Empirical Learnings"| BRAIN
+    LAB -->|"Validation Evidence"| GUIDE
 ```
 
-1. **[Harness Engineering Guide](https://github.com/marcosdh1987/harness-engineering-guide)**: The conceptual methodology, architecture patterns, and evaluation principles.
-2. **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: The production-ready reference harness featuring centralized `.github/` rules, governed skills, multi-tool adapters (Claude Code, OpenAI Codex, OpenCode, Antigravity, GitHub Copilot), and automated lockfile drift control.
-3. **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: The benchmarking and evaluation platform featuring Docker container sandboxes, condition hashing, structured attribution, behavioral audits, and closed-loop proposal generation.
+1. **Methodology**: [`harness-engineering-guide`](https://github.com/marcosdh1987/harness-engineering-guide), providing the conceptual foundations, operational surfaces, and patterns.
+2. **Knowledge Plane**: [`company-brain-template`](https://github.com/marcosdh1987/company-brain-template), providing the persistent, agent-readable organizational memory and evidence promotion pipeline.
+3. **Engineering Governance**: [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base), providing the governed coding harness with centralized rules, skills, and multi-tool adapters.
+4. **Agent Product Runtime**: [`ml-langchain-agent`](https://github.com/marcosdh1987/ml-langchain-agent), providing the application template for shipping production agent services with LangGraph.
+5. **Evaluation Platform**: [`sdlc-ml-python-harness-lab`](https://github.com/xmartlabs/sdlc-ml-python-harness-lab), providing the containerized benchmarking, attribution, and regression platform.
 
 ---
 
@@ -130,6 +134,6 @@ flowchart LR
 
 To maintain scientific integrity and engineering clarity, this documentation strictly differentiates three levels of claims:
 
-1. **Industry Evidence**: Publicly documented research, empirical findings, and architecture papers from frontier labs and standard benchmarks (e.g., Anthropic, OpenAI, SWE-bench, Princeton, Microsoft Research).
+1. **Industry Evidence**: Publicly documented research, empirical findings, and architecture papers from frontier labs and standard benchmarks (such as Anthropic, OpenAI, SWE-bench, Princeton, and Microsoft Research).
 2. **Guide Recommendation**: Our proposed methodologies, maturity models, and architectural patterns for engineering organizations.
-3. **Reference Implementation**: The specific design decisions implemented in `ml-python-base` and `ai-agentic-harness-lab`.
+3. **Reference Implementation**: Specific design decisions implemented in our reference repositories (`ml-python-base`, `ml-langchain-agent`, `company-brain-template`, and `sdlc-ml-python-harness-lab`).

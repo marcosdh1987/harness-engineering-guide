@@ -2,7 +2,7 @@
 
 **Context Engineering** (Ingeniería de Contexto) es la práctica disciplinada de diseñar, estructurar, curar e inyectar información de forma selectiva en la ventana de contexto activa de un agente de IA.
 
-La calidad del contexto —no su volumen— es el factor determinante más importante en el rendimiento de los agentes de programación. Aunque los LLMs modernos ofrecen ventanas de contexto que superan el millón de tokens, saturar indiscriminadamente el modelo con documentación provoca una degradación catastrófica en su capacidad de razonamiento, precisión y adhesión a reglas.
+La calidad del contexto (no su volumen) es el factor determinante más importante en el rendimiento de los agentes de programación. Aunque los LLMs modernos ofrecen ventanas de contexto que superan el millón de tokens, saturar indiscriminadamente el modelo con documentación provoca una degradación catastrófica en su capacidad de razonamiento, precisión y adhesión a reglas.
 
 Una ingeniería de contexto eficaz trata la ventana de contexto como **memoria de trabajo finita y de alto coste**, reservando la gran mayoría de tokens para el código activo, árboles de sintaxis (AST), salida de tests y trazas de razonamiento.
 
@@ -17,7 +17,7 @@ Un error recurrente en la ingeniería de software asistida por IA es el **contex
 1. **Degradación "Aguja en un Pajar" (Needle-in-a-Haystack)**: A medida que el número de tokens crece, disminuye la capacidad del modelo para recordar y priorizar restricciones críticas. Reglas de seguridad sutiles o requisitos de tipado estricto se pierden entre cientos de líneas de explicaciones secundarias.
 2. **Confusión e instrucción drift**: Documentos históricos desactualizados o contradictorios hacen que el agente vacile entre convenciones obsoletas y estándares vigentes, llevando a decisiones arquitectónicas erróneas tomadas con falsa seguridad.
 3. **Dilución de tokens y latencia**: Prompts de gran volumen ralentizan la velocidad de inferencia, disparan los costes operativos y agotan los límites de peticiones sin mejorar la calidad del resultado.
-4. **Desplazamiento del estado de trabajo**: Llenar el prompt con contexto estático deja espacio insuficiente para el feedback dinámico en tiempo de ejecución —errores del compilador, salidas de tests y validación de diffs.
+4. **Desplazamiento del estado de trabajo**: Llenar el prompt con contexto estático deja espacio insuficiente para el feedback dinámico en tiempo de ejecución , errores del compilador, salidas de tests y validación de diffs.
 
 > **Regla fundamental**: Nunca transmitas conocimiento organizacional de forma indiscriminada. Una buena ingeniería de contexto se basa en la **curación de alta señal**, no en la ingesta exhaustiva.
 

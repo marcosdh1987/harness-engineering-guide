@@ -23,7 +23,7 @@ flowchart TB
 
 ## Las 6 etapas de madurez organizacional
 
-### Nivel 0 — IA Ad-hoc
+### Nivel 0, IA Ad-hoc
 *Experimentación individual sin estándares comunes.*
 
 - **Características**: Cada desarrollador elige sus herramientas de IA (ChatGPT, GitHub Copilot, Claude, Cursor) sin coordinación. Los prompts se introducen de forma manual e improvisada en chats.
@@ -33,7 +33,7 @@ flowchart TB
 
 ---
 
-### Nivel 1 — Instrucciones compartidas
+### Nivel 1, Instrucciones compartidas
 *Aparición de prompts compartidos y archivos de instrucciones básicos.*
 
 - **Características**: Los equipos empiezan a documentar prompts comunes en Notion o a compartir archivos de instrucciones base (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`) en la raíz de los repositorios.
@@ -43,7 +43,7 @@ flowchart TB
 
 ---
 
-### Nivel 2 — Harness gobernado
+### Nivel 2, Harness gobernado
 *Reglas centralizadas, skills estructuradas y control automatizado de drift.*
 
 - **Características**: Las reglas de arquitectura, los límites de capas y las skills modulares se centralizan en `.github/` como fuente única de verdad. Adaptadores automatizados proyectan las reglas a todas las herramientas compatibles. Gates de CI automatizados (`make check`, `make check-sync`) garantizan la integridad de los lockfiles y bloquean cambios no comprometidos.
@@ -54,7 +54,7 @@ flowchart TB
 
 ---
 
-### Nivel 3 — Harness observable
+### Nivel 3, Harness observable
 *Telemetría, trazas de ejecución y atribución estructurada.*
 
 - **Características**: Toda ejecución del agente queda instrumentada. Se registran logs paso a paso, consumo de tokens, costo económico, latencia, herramientas ejecutadas y tasas de error en plataformas de observabilidad (ej. OpenTelemetry, Langfuse).
@@ -64,7 +64,7 @@ flowchart TB
 
 ---
 
-### Nivel 4 — Harness evaluado
+### Nivel 4, Harness evaluado
 *Suites internas de evaluación, benchmarks en sandboxes y pruebas A/B controladas.*
 
 - **Características**: La organización dispone de un repositorio de **casos de evaluación reproducibles** representativos de su código y arquitectura. Las pruebas de agentes se corren en **sandboxes aislados en contenedores Docker** con límites estrictos de recursos.
@@ -76,7 +76,7 @@ flowchart TB
 
 ---
 
-### Nivel 5 — Agentic SDLC en mejora continua
+### Nivel 5, Agentic SDLC en mejora continua
 *Ciclo de retroalimentación cerrado: los fallos se acumulan como capacidades organizacionales.*
 
 - **Características**: El ciclo está totalmente integrado. Cuando un agente falla en producción o en una revisión de PR:
@@ -106,7 +106,7 @@ flowchart TB
 ---
 
 !!! note "Evaluar la madurez con honestidad"
-    Dos reglas evitan que una evaluación de madurez se convierta en un folleto. Primero, en los Niveles 4–5 la unidad de trabajo es el **experimento** (una pregunta enunciada, brazos declarados, un modo que licencia su conclusión — ver [Las tres preguntas](../evaluation/the-three-questions.md)), no la corrida individual. Segundo, la evaluación misma se mantiene **humana y respaldada por evidencia**: un nivel reclamado por encima de "gobernado" debería apuntar a corridas y experimentos concretos, y una dimensión sin evidencia se reporta como *desconocida*, nunca se puntúa por intuición — la metodología aplica también a evaluar tu propia madurez.
+    Dos reglas evitan que una evaluación de madurez se convierta en un folleto. Primero, en los Niveles 4-5 la unidad de trabajo es el **experimento** (una pregunta enunciada, brazos declarados, un modo que licencia su conclusión (ver [Las tres preguntas](../evaluation/the-three-questions.md)), no la corrida individual. Segundo, la evaluación misma se mantiene **humana y respaldada por evidencia**: un nivel reclamado por encima de "gobernado" debería apuntar a corridas y experimentos concretos, y una dimensión sin evidencia se reporta como *desconocida*, nunca se puntúa por intuición) la metodología aplica también a evaluar tu propia madurez.
 
 
 ### Próximos pasos

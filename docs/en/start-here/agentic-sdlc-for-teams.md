@@ -14,7 +14,7 @@ However, most organizations remain trapped in an **ad-hoc paradigm**:
 - Knowledge about how to guide AI models is trapped in individual chat sessions or shared via disconnected Slack messages.
 - AI agents make subtle architectural violations, bypass security patterns, or generate unsafe database migrations that slip past initial reviews.
 - Teams evaluate AI capabilities based on subjective "vibes" rather than reproducible benchmarks.
-- When an agent makes a mistake, someone fixes the code manually, but the system learns nothing—ensuring the same mistake will recur next week.
+- When an agent makes a mistake, someone fixes the code manually, but the system learns nothing, ensuring the same mistake will recur next week.
 
 **Harness Engineering** provides the methodology to solve this. It transforms AI development from an unpredictable tool into a version-controlled, observable, and continuously improving **Agentic Software Development Lifecycle (SDLC)**.
 
@@ -125,7 +125,7 @@ flowchart TD
 ### Industry Evidence
 - **SWE-bench**: Uses per-instance containerized Docker environments to evaluate patches against standardized test suites without cross-run pollution.
 - **OpenAI ("Running Codex safely at OpenAI")**: Documents OS-level sandboxing (Seatbelt, Landlock), permission policies, and OpenTelemetry logging to contain autonomous execution.
-- **Anthropic ("Demystifying evals for AI agents" & "Quantifying infrastructure noise in agentic coding evals")**: Proves that varying container CPU/RAM allocations can cause up to a **6 percentage point swing** on coding benchmarks—reinforcing that the environment is an active experimental variable that must be strictly controlled.
+- **Anthropic ("Demystifying evals for AI agents" & "Quantifying infrastructure noise in agentic coding evals")**: Proves that varying container CPU/RAM allocations can cause up to a **6 percentage point swing** on coding benchmarks, reinforcing that the environment is an active experimental variable that must be strictly controlled.
 
 ---
 
@@ -165,7 +165,7 @@ Over time, this suite becomes an **organizational benchmark for AI-assisted engi
 
 ## How to Get Started (The 4-Step Plan)
 
-1. **Standardize a Pilot Repository**: Centralize coding guidelines and 2–3 critical skills in `.github/`. Introduce automated quality gates (`make check`).
+1. **Standardize a Pilot Repository**: Centralize coding guidelines and 2-3 critical skills in `.github/`. Introduce automated quality gates (`make check`).
 2. **Setup Execution Sandboxes**: Ensure all agent evaluation runs take place inside isolated Docker containers.
 3. **Capture Your First 5 Internal Eval Cases**: Convert recent bug fixes or PR review friction points into reproducible evaluation instances.
 4. **Establish the Improvement Loop**: When an agent fails, draft a proposal, improve the skill, measure the delta, and lock the case into your regression suite.

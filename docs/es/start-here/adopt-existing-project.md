@@ -1,8 +1,8 @@
 # Adopción del harness en un proyecto existente
 
 La mayoría de los engagements reales no arrancan de un template limpio. El caso
-típico es un **proyecto existente** — un repositorio, o unos pocos servicios que
-comparten dominio — que ya tiene código, historia y costumbres. Esta página
+típico es un **proyecto existente**: un repositorio, o unos pocos servicios que
+comparten dominio, que ya tiene código, historia y costumbres. Esta página
 describe cómo adoptar el harness ahí de forma segura, cómo el contexto del
 proyecto crece hasta ser un **project brain**, y cuándo (y solo cuándo) ese brain
 debería extraerse a un repositorio compartido.
@@ -32,7 +32,7 @@ Nivel 3 — Brain compartido (solo con 2+ repos)
     (ver El template de Company Brain) y ambos repos lo apuntan.
 ```
 
-La mayoría de los engagements viven toda su vida en los niveles 1–2. Eso es
+La mayoría de los engagements viven toda su vida en los niveles 1-2. Eso es
 éxito, no un estado intermedio.
 
 ## Qué significa "project brain"
@@ -42,9 +42,9 @@ contexto in-repo** para la que `ml-python-base` ya trae contenedores:
 
 | Contenedor | Qué se acumula ahí |
 |---|---|
-| `memory/context.md` | Dónde está el proyecto ahora — se actualiza al abrir/cerrar sesión |
+| `memory/context.md` | Dónde está el proyecto ahora, se actualiza al abrir/cerrar sesión |
 | `memory/learnings.md`, `memory/patterns.md` | Lecciones durables y soluciones recurrentes |
-| `docs/adr/` | Decisiones y su racional — el "por qué" durable |
+| `docs/adr/` | Decisiones y su racional, el "por qué" durable |
 | `.github/domain-boundaries.md` | Reglas y límites del dominio del proyecto |
 | `docs/` (glosario, runbooks según necesidad) | Vocabulario y procedimientos, cuando se ganan su lugar |
 
@@ -55,7 +55,7 @@ vuelve runbook. Nada se escribe "por las dudas".
 
 ## Dos rutas de adopción seguras
 
-### Ruta A — Retrofit en el lugar
+### Ruta A, Retrofit en el lugar
 
 Para un repo que va a seguir evolucionando donde está. El sync selectivo de
 gobernanza trae rules, skills, agents y adapters desde una release tagueada del
@@ -73,15 +73,15 @@ Propiedades de seguridad que lo hacen de baja fricción:
   antes de escribir nada.
 - **Aditivo por defecto.** Los archivos de gobernanza aterrizan junto al
   proyecto; el CI y los scripts existentes no se modifican. Los gates se adoptan
-  de forma incremental — primero los read-only (`lint`, `test`) y recién después
+  de forma incremental, primero los read-only (`lint`, `test`) y recién después
   se vuelven obligatorios.
 - **Reversible.** Todo llega en un rango de commits; revertir la adopción es un
   `git revert`, no una migración de vuelta.
 
-### Ruta B — Expansión estranguladora (repo nuevo junto al legacy)
+### Ruta B, Expansión estranguladora (repo nuevo junto al legacy)
 
 Para proyectos donde retrofitear el repo legacy no vale la fricción (toolchains
-muy viejos, CI congelado, builds hostiles) — o donde el trabajo nuevo se puede
+muy viejos, CI congelado, builds hostiles), o donde el trabajo nuevo se puede
 separar limpio. En lugar de migrar el repo legacy, **el próximo módulo/servicio
 arranca como repo nuevo desde el template** (`make init`) y conviven:
 
@@ -92,7 +92,7 @@ servicio-nuevo/       harness completo desde el día 1 (make init)
 
 - El repo legacy recibe lo *mínimo*: adapters de instrucciones (`CLAUDE.md`,
   `AGENTS.md`) y checks read-only, para que la asistencia con IA también esté
-  gobernada ahí — pero nadie reescribe su build.
+  gobernada ahí, pero nadie reescribe su build.
 - El trabajo nuevo pasa en el repo nuevo con el working loop completo.
 - La migración avanza módulo a módulo, **tirada por tareas reales** ("esta
   feature toca el módulo X → X se muda"), nunca como reescritura big-bang.
@@ -104,17 +104,17 @@ agenda.
 !!! warning "En cuanto la Ruta B crea dos repos, vigilar la duplicación de contexto"
     El repo legacy y el nuevo comparten dominio. El día que copiás el glosario o
     una regla de negocio de uno al otro es el día en que el brain compartido se
-    gana su existencia — ver abajo.
+    gana su existencia, ver abajo.
 
 ## Cuándo extraer un brain compartido
 
 El disparador es concreto y observable: **un segundo repo empieza a duplicar el
-contexto del primero.** No antes. La extracción en sí es barata — es mover
+contexto del primero.** No antes. La extracción en sí es barata, es mover
 archivos Markdown, no migrar código:
 
 1. Instanciar el template de contexto
    ([company-brain-template](company-brain-template.md)) al alcance del
-   engagement — la "organización" puede ser simplemente *la plataforma de este
+   engagement, la "organización" puede ser simplemente *la plataforma de este
    cliente*.
 2. Mover (no copiar) las partes compartidas: glosario, reglas de dominio,
    decisiones cross-repo, convenciones comunes. Los ADRs y la memoria
@@ -132,11 +132,11 @@ herramienta correcta hasta que aparece el segundo repo.
 Una adopción sin baseline no puede demostrar valor. Medición mínima viable, en
 orden de esfuerzo:
 
-1. Rutear el uso de IA por un gateway desde el día uno — costo y adopción por
+1. Rutear el uso de IA por un gateway desde el día uno, costo y adopción por
    developer pasan a ser datos, no anécdota.
 2. Registrar el "antes": estado de los gates, tiempo de onboarding, dónde las
    sesiones pierden tiempo re-explicando contexto.
-3. Re-medir a las 4–6 semanas; el delta es la evidencia del engagement.
+3. Re-medir a las 4-6 semanas; el delta es la evidencia del engagement.
 
 ## Checklist
 

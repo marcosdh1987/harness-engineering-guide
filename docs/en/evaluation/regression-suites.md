@@ -4,7 +4,7 @@ Just as traditional software requires automated test suites to prevent regressio
 
 ---
 
-## Why Regressions Occur in Agentic Systems
+## 1. Why Regressions Occur in Agentic Systems
 
 In an agentic SDLC, regressions can be introduced by three distinct types of changes:
 
@@ -20,19 +20,19 @@ flowchart TD
 ```
 
 ### Common Regression Scenarios
-- **The Context Bloat Regression**: A team adds 5 detailed architectural guides to `.github/`. While domain knowledge improves, the enlarged prompt dilutes the agent's attention, causing it to overlook basic testing rules.
+- **The Context Bloat Regression**: A team adds five detailed architectural guides to `.github/`. While domain knowledge improves, the enlarged prompt dilutes the agent's attention, causing it to overlook basic testing rules.
 - **The Heuristic Shift**: An upstream model provider updates their Sonnet or GPT endpoint; the new model prefers direct execution over creating a `PLAN.md`, violating company SDLC policy.
 - **The Tool Format Conflict**: A skill update changes a bash command template from raw commands to a helper script that fails on Windows or restricted container environments.
 
 ---
 
-## Architecture of a Harness Regression Suite
+## 2. Architecture of a Harness Regression Suite
 
 A harness regression suite consists of curated, deterministic evaluation cases representing past bugs, edge cases, and core architectural workflows:
 
 ```mermaid
 flowchart LR
-    CAND["Candidate Harness (vX.Y.Z)"] --> RUNNER["Batch Test Runner (ai-agentic-harness-lab)"]
+    CAND["Candidate Harness (vX.Y.Z)"] --> RUNNER["Batch Test Runner<br/>(Harness Lab)"]
     
     subgraph SUITE["Permanent Regression Suite (N=10 runs each)"]
         CASE1["Case 01: Clean Architecture API Endpoint"]
@@ -51,7 +51,7 @@ flowchart LR
 
 ---
 
-## Release Gate Criteria
+## 3. Release Gate Criteria
 
 Before a new harness release (or a model migration) is deployed to production engineering teams, it must satisfy four automated release gate criteria:
 
@@ -72,19 +72,19 @@ release_gate_policy:
 
 ---
 
-## Batch Execution & Automation
+## 4. Batch Execution and Automation
 
 Executing regression suites across dozens of cases and multiple model tiers is automated through batch runs:
 
-- **Cross-Product Matrix**: Case IDs $\times$ Model Tiers (Haiku, Sonnet, GPT-4o) $\times$ Prompt Variants $\times$ Repetitions.
+- **Cross-Product Matrix**: Case IDs $\times$ Model Tiers $\times$ Prompt Variants $\times$ Repetitions.
 - **Worker Queues**: Isolated Celery workers pull runs and execute them in parallel Docker containers with watchdog timeouts.
 - **Regression Diff**: The lab UI generates an automated delta report highlighting any cases where pass rates dropped compared to the previous baseline release.
 
 ---
 
-## The Suite as a Producer of Experiments
+## 5. The Suite as a Producer of Experiments
 
-A regression suite should not need its own runner, its own aggregation, or its own definition of "regression". The suite declares the **design** — which cases are canonical and how many repetitions each deserves — and release validation is an ordinary controlled experiment: previous release as the control arm, candidate as the treatment.
+A regression suite should not need its own runner, its own aggregation, or its own custom definition of regression. The suite declares the **design** (which cases are canonical and how many repetitions each deserves) and release validation is an ordinary controlled experiment: previous release as the control arm, candidate as the treatment.
 
 ```mermaid
 flowchart LR
@@ -96,12 +96,13 @@ flowchart LR
 
 Two consequences worth internalizing:
 
-- **A release is read per case, never as one composite.** "Fixed four, broke none, thirty unchanged" is a shippable sentence; "+3 points overall" is a place for regressions to hide.
-- **The suite can refuse a comparison.** If the two arms vary a field the suite holds constant (the model, the budget), the design is rejected rather than silently accepted — the same validity rules as every other experiment, because it *is* every other experiment.
+- **A release is read per case, never as one composite**: "Fixed four, broke none, thirty unchanged" is a shippable sentence; "+3 points overall" is a place for regressions to hide.
+- **The suite can refuse a comparison**: If the two arms vary a field the suite holds constant (such as the model or the budget), the design is rejected rather than silently accepted. It follows the same validity rules as every other experiment.
 
 ---
 
 ### Related Resources
+
 - **[Building an Internal Evaluation Suite](../adoption/internal-evaluation-suite.md)**
 - **[Continuous Harness Improvement](../adoption/continuous-harness-improvement.md)**
 - **[What is an Agent Evaluation?](what-is-an-eval.md)**

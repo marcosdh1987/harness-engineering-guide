@@ -1,81 +1,103 @@
-# Agentic Harness Lab: Visión general
+# Harness Lab: Plataforma de evaluación
 
-**Agentic Harness Lab** (`ai-agentic-harness-lab`) es un instrumento de evaluación open source y local para harnesses de programación con IA. Su identidad en una frase: *un instrumento de evaluación para mejorar continuamente sistemas de ingeniería de software asistida por IA* — no un dashboard de corridas de benchmark.
+El **Harness Lab** es la implementación de referencia del **Plano de Evaluación** en Harness Engineering. Proporciona un instrumento empírico para evaluar harnesses de programación con IA, comparar modelos de frontera en tareas reales y alimentar las fallas observadas de regreso a las plantillas de gobernanza compartida.
 
-La plataforma v2 se organiza por **intención**, no por entidades internas. La pantalla de inicio hace una sola pregunta — **"¿Qué querés aprender?"** — y ofrece los [tres modos de evaluación](../../evaluation/the-three-questions.md) como puertas de entrada:
+La plataforma existe en dos implementaciones relacionadas:
 
-- **Evaluar un cambio del harness** (Modo A): ¿esta skill, regla, prompt o cambio del harness realmente mejora el rendimiento? El único modo que soporta una afirmación causal — y solo con suficientes repeticiones.
-- **Probar entre repositorios** (Modo B): ¿este harness generaliza? Los resultados quedan por repositorio, nunca agrupados.
-- **Auditar un repositorio** (Modo C): ¿qué podemos aprender de cómo trabaja hoy este proyecto con IA? Exploratorio por diseño — produce casos, observaciones y hallazgos sugeridos, nunca un veredicto causal.
+1. **`sdlc-ml-python-harness-lab`**: La plataforma empresarial activa desarrollada en Xmartlabs, que incorpora verificaciones completas de validez experimental (ADR-0046), exploración de fuentes locales y reportes de auditoría para clientes.
+2. **`ai-agentic-harness-lab`**: La línea base abierta inicial que demostró el aislamiento de ejecuciones en contenedores Docker, hashes de condición y atribución estructurada.
 
 ---
+
+## 1. Arquitectura central: El Experimento sobre la Corrida
+
+Una decisión arquitectónica fundamental del lab es que **la entidad Experimento se sitúa por encima de la Corrida (Run)** (ADR-0033).
+
+Una corrida individual es solo un dato aislado. Un experimento define la pregunta científica *antes* de que comience la ejecución, declara sus brazos, fija la condición de control y rechaza diseños experimentales que el modo declarado no pueda responder.
 
 ```mermaid
 flowchart TB
-    subgraph STACK["Stack de Agentic Harness Lab (Docker Compose)"]
-        UI["Web UI<br/>(React / Vite :5173)"] --> API["Backend FastAPI<br/>(:8009)"]
-        API --> DB[(SQLite / DB)]
-        API --> W["Worker Celery (+ Redis)"]
-        W --> RUNNER["Contenedor runner (uno por corrida)<br/><i>harness: claude / opencode / codex</i>"]
+    subgraph STACK["Arquitectura del Harness Lab"]
+        UI["Web UI<br/>(React / TypeScript / Vite)"] --> API["FastAPI Backend<br/>(SQLModel / SQLite WAL)"]
+        API --> W["Celery Worker (+ Redis)"]
+        W --> RUNNER["Contenedor Runner (uno por corrida)<br/><i>Claude Code · OpenCode · Codex</i>"]
     end
 
-    EXP["EXPERIMENTO<br/>(pregunta · modo · brazos declarados · repeticiones)"] -->|"se expande en"| RUNS["Corridas, etiquetadas por brazo"]
+    EXP["<b>EXPERIMENTO</b><br/>(pregunta · modo · brazos declarados · repeticiones)"] -->|"Se expande en"| RUNS["Corridas etiquetadas por brazo"]
     RUNS --> RUNNER
-    RUNNER --> ART["Artefactos de la corrida<br/>(diff, pasos, consumo, hash de condición,<br/>superficie de gobernanza)"]
-    ART --> SCORE["Registro de scores<br/>(hecho / observación / juicio)"]
+    RUNNER --> ART["Artefactos de corrida<br/>(diff, pasos, llamadas, hash de condición,<br/>huella del harness)"]
+    ART --> SCORE["Registro de Scores<br/>(Hecho / Observación / Juicio)"]
     ART --> AUDIT["Auditor de comportamiento con LLM"]
-    SCORE & AUDIT --> VERDICT["Veredicto del experimento<br/>+ matriz de casos (arreglados/rotos/sin cambios)"]
-    VERDICT --> FIND["Hallazgos<br/>(sugeridos → firmados por una persona)"]
-    FIND -->|"Crear experimento"| EXP
+    SCORE & AUDIT --> VERDICT["Veredicto del experimento<br/>+ Matriz de casos (Arreglado / Roto / Sin cambios)"]
+    VERDICT --> FIND["Hallazgos<br/>(Sugeridos por máquina; firmados por personas)"]
+    FIND -->|"Hipótesis"| EXP
 ```
 
-La abstracción que sostiene todo es que **el experimento está por encima de la corrida**. Una corrida es un dato; un experimento enuncia la pregunta *antes* de ejecutar nada, declara sus brazos y su control, y rechaza diseños que su modo no puede responder. El resultado llega como un veredicto prudente ("mejora probable", nunca "significativo") más la matriz por caso.
+---
+
+## 2. Los tres modos de evaluación
+
+El lab estructura los experimentos en tres modos explícitos (ADR-0028), previniendo afirmaciones causales inválidas:
+
+- **Modo A (Evaluación de Harness)**: ¿Mejora el rendimiento este cambio de skill, regla, prompt o harness? El repositorio objetivo, el caso de prueba, el modelo y el entorno se mantienen estrictamente constantes; solo varía el harness. Es el único modo que permite sostener una conclusión causal.
+- **Modo B (Validación cruzada entre repositorios)**: ¿Generaliza este harness a diferentes bases de código? Los resultados se desglosan por repositorio y nunca se promedian en una media global engañosa.
+- **Modo C (Auditoría exploratoria de repositorio)**: ¿Qué podemos aprender de cómo trabaja hoy con IA un repositorio desconocido? Genera casos de línea base, observaciones y hallazgos sugeridos, sin emitir un veredicto comparativo.
 
 ---
 
-## Capacidades principales
+## 3. Capacidades verificadas de la plataforma
 
-### 1. Experimentación guiada por intención
-Un asistente construye diseños de Modo A / Modo B que **no pueden expresar un experimento inválido**: varía un factor a la vez (agregar/quitar skills, cambiar el harness, gobernanza nativa vs inyectada, modelo pelado vs **harness completo**), todo lo demás queda fijado, y configuración + preflight + lanzamiento ocurren en un solo lugar. Una vez lanzado, la configuración del experimento queda **bloqueada** — relanzar con otro modelo se rechaza, porque un experimento es una medición.
+### Preflight de validez de comparaciones (ADR-0046)
 
-### 2. Repositorios objetivo y la condición de gobernanza
-Los casos pueden correr contra cualquier repositorio registrado, clonado fresco y fijado a un commit por corrida. El harness que el agente *ve* es una condición de primera clase: `native` (el setup propio del repo — un control verdadero), `injected` (el harness del lab proyectado adentro) o `lab_root`. Cada corrida se audita contra la superficie de gobernanza **que realmente tuvo**, con la lista de archivos y su huella persistidas.
+Antes de reportar un veredicto comparativo entre dos brazos, el lab ejecuta verificaciones automatizadas de validez:
 
-### 3. Auditoría guiada de repositorios (Modo C)
-Un flujo de seis pasos para auditar cualquier repositorio — incluido el de un cliente: detección de readiness (nunca inferida: "No detectado" cuando no es observable), **inferencia del gate de validación** desde los archivos del propio repo (targets del Makefile, lockfiles, config de pytest — adoptada con un click, nunca en silencio), **derivación de casos desde la propia historia de commits**, un experimento de discovery explícito, hallazgos sugeridos, y un **reporte de auditoría para el cliente** generado en markdown que solo afirma lo que la evidencia sostiene.
+- Comprueba que ambos brazos se hayan evaluado sobre conjuntos de casos y commits idénticos.
+- Verifica que las condiciones de infraestructura (límites de sandbox, imágenes Docker) hayan sido constantes.
+- Rechaza comparaciones donde existan factores de confusión (como cambiar el modelo y el harness a la vez) que invaliden la atribución.
 
-### 4. Registro de scores con procedencia
-Cada métrica se archiva bajo una definición versionada (`name@version`) y se etiqueta como **hecho** (un comando terminó), **observación** (parseada de artefactos) o **juicio** (la opinión de un modelo). Una métrica que no puede computarse devuelve *ningún score con razón declarada* — nunca un cero.
+### Registro de scores con procedencia (ADR-0034, ADR-0038)
 
-### 5. Métricas de trayectoria (DeepEval) en el perfil por defecto
-`task_completion`, `step_efficiency` y `tool_correctness` viajan en el scoring ordinario, juzgadas a través del propio gateway de modelos del lab sin configuración extra. Cada métrica se saltea con gracia — sin librería, sin juez, sin trayectoria → sin score. Las métricas juzgadas importan más en repositorios **sin** gate objetivo de tests: aportan un juicio etiquetado donde un pass/fail no puede existir.
+Las métricas están versionadas (`nombre@version`) y categorizadas explícitamente según su autoridad:
 
-### 6. Hallazgos: las máquinas sugieren, las personas firman
-El corpus se mina en busca de patrones — regresiones, casos que nunca pasaron, skills que el auditor sigue juzgando sin uso — y llegan a una cola de revisión etiquetados como **sugeridos**. Aceptar uno requiere el nombre de un autor; los rechazos se registran para que los patrones no se re-propongan. Un hallazgo aceptado enlaza a un experimento pre-cargado que puede zanjarlo.
+- **Hecho (Fact)**: reproducible sin necesidad de juicio (como códigos de salida de procesos o existencia de archivos).
+- **Observación (Observation)**: extraída de artefactos de ejecución (como conteo de pasos o llamadas a herramientas).
+- **Juicio (Judgment)**: opiniones evaluativas emitidas por modelos o humanos (como legibilidad del código o utilidad de una skill).
 
-### 7. Suite de regresión como experimento
-`suite.yaml` es un *productor* de experimentos, no un segundo ejecutor: harness `v0.6` vs `v0.7` sobre los casos canónicos, leído como **arreglados / rotos / sin cambios** a través de la misma matriz de casos que cualquier otra comparación. Es el mecanismo estándar para validar un release del harness.
+### Métricas de trayectoria con DeepEval y auditorías de comportamiento
 
-### 8. Ciclo de vida honesto
-Los experimentos pueden **abandonarse** (se ocultan; sus corridas quedan en el corpus — "dejá de mostrarme esto", nunca "esto nunca pasó") o **borrarse** junto con sus corridas, scores y artefactos (media eliminación dejaría mediciones huérfanas sesgando cada agregado, así que se rechaza).
+El lab incorpora la evaluación de trayectorias directamente en el scoring:
+
+- **Completitud de tarea (Task Completion)**: verificada contra runners de tests objetivos.
+- **Eficiencia de pasos (Step Efficiency)**: proporción de acciones productivas frente a bucles exploratorios.
+- **Corrección de herramientas (Tool Correctness)**: cumplimiento de esquemas y recuperación de errores.
+
+### Atribución estructurada y hashes de condición (ADR-0003, ADR-0005)
+
+Cada corrida captura un `condition_hash` y una `harness_fingerprint` inmutables. El rastreo de atribución registra qué skills gobernadas estaban disponibles, cuáles leyó realmente el agente y cuáles contribuyeron directamente a resolver la tarea.
+
+### Hallazgos y evaluación de madurez curada por humanos (ADR-0035)
+
+Los logs de auditoría se analizan para detectar patrones de fallo recurrentes. Las debilidades detectadas se presentan en una cola de revisión como hallazgos sugeridos. Un hallazgo requiere revisión y firma humana antes de convertirse en una tarea o suite de regresión.
 
 ---
 
-## Stack técnico
+## 4. Stack técnico
 
 | Capa | Tecnología |
 |---|---|
-| **Frontend** | React, TypeScript, Vite — tokens de diseño semánticos, set de íconos SVG local (sin framework CSS) |
-| **Backend** | Python 3.11+, FastAPI, Pydantic v2, SQLModel, SQLite (WAL) |
-| **Ejecución asíncrona** | Celery, Redis, Docker (un contenedor runner por corrida; node + pnpm/yarn + uv incluidos) |
-| **Evaluación** | Registro de scores versionado, auditorías de comportamiento con LLM, adapter de trayectoria DeepEval |
-| **Telemetría y gateway** | AI Gateway LiteLLM, trazas con Langfuse |
-| **Tooling y gates** | `uv`, `ruff`, `pytest`, `make app-up`, `make ci` (solo lectura) |
+| **Frontend** | React, TypeScript, Vite, tokens semánticos, iconografía SVG local |
+| **Backend** | Python 3.11+, FastAPI, Pydantic v2, SQLModel, SQLite con modo WAL |
+| **Ejecución** | Celery, Redis, sandboxes aislados en contenedores Docker por corrida |
+| **Evaluación** | Registro de scores, auditor de comportamiento con LLM, adaptador DeepEval |
+| **Telemetría** | LiteLLM AI Gateway, trazabilidad con Langfuse |
+| **Gates de calidad** | `uv`, `ruff`, `pytest`, `make check` |
 
 ---
 
 ### Recursos relacionados
-- **[Flujo de evaluación en el Lab](evaluation-workflow.md)** — los cuatro recorridos, paso a paso.
-- **[Las tres preguntas (Modos de evaluación)](../../evaluation/the-three-questions.md)** — la metodología que el lab implementa.
-- **[Mejora continua del harness](../../adoption/continuous-harness-improvement.md)**
-- **[Repositorio en GitHub](https://github.com/marcosdh1987/ai-agentic-harness-lab)**
+
+- **[Flujo de evaluación en el Lab](evaluation-workflow.md)**: recorrido paso a paso de un experimento.
+- **[Las tres preguntas (Modos de evaluación)](../../evaluation/the-three-questions.md)**: metodología de evaluación.
+- **[Harnesses adaptativos y desmantelamiento de scaffolding](../../evaluation/adaptive-harnesses.md)**: retiro de scaffolding obsoleto.
+- **[Repositorio del Lab Empresarial](https://github.com/xmartlabs/sdlc-ml-python-harness-lab)**: plataforma corporativa de evaluación.
+- **[Repositorio de la Línea Base Abierta](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: implementación abierta inicial.

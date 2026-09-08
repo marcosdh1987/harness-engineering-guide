@@ -1,87 +1,102 @@
 # Validez experimental y ablaciones
 
-En el machine learning tradicional, evaluar un sistema suele consistir en mantener fijo el dataset mientras se intercambian los checkpoints del modelo.
+En el machine learning tradicional, evaluar un sistema solía significar mantener fijo un conjunto de datos mientras se intercambiaban checkpoints del modelo.
 
-En **Harness Engineering**, el modelo es solo un componente del sistema. Un equipo de ingeniería debe ser capaz de aislar, medir y evaluar **cualquier componente del harness stack**.
+En **Harness Engineering**, el modelo base es solo un componente del sistema evaluado:
 
----
+$$\mathbf{Modelo\ Aislado} \neq \mathbf{Sistema\ Evaluado}$$
 
-## Evaluación a lo largo de todo el stack
-
-El objeto de evaluación no tiene por qué limitarse al modelo base. Es posible diseñar experimentos controlados orientados a siete dimensiones distintas:
+Una evaluación fiable mide el sistema completo a lo largo de todo su envoltorio operacional:
 
 ```mermaid
-flowchart TD
-    subgraph Dimensions["Componentes sujetos a evaluación controlada"]
-        D1["<b>1. Brazo de Modelo</b><br/>Claude Sonnet vs GPT-4o vs Qwen 2.5 Coder vs DeepSeek"]
-        D2["<b>2. Versión de Harness</b><br/>Harness v1.2.0 vs Harness v1.3.0"]
-        D3["<b>3. Ablación de Skills</b><br/>Con vs Sin una skill específica (ej. safe_db_migration)"]
-        D4["<b>4. Herramienta / Servidor MCP</b><br/>Herramienta nativa AST vs Grep/Bash genérico"]
-        D5["<b>5. Topología de Agentes</b><br/>Agente único vs Orquestador + Subagentes revisores"]
-        D6["<b>6. Variante de Prompt</b><br/>Instrucción mínima vs Prompt guiado por SDLC"]
-        D7["<b>7. Política de Flujo de Trabajo</b><br/>Ejecución plan-first con gates vs Implementación directa"]
+flowchart LR
+    subgraph SYSTEM["El sistema evaluado"]
+        M["Modelo + Configuración de razonamiento"]
+        H["Reglas del harness + Skills"]
+        T["Definiciones de herramientas + MCP"]
+        B["Presupuestos de tokens, turnos y tiempo"]
+        E["Entorno de sandbox + Hardware"]
     end
+
+    SYSTEM --> RUN["Ejecución multi-paso"]
+    RUN --> OUT["Resultado empírico"]
 ```
 
 ---
 
-## El principio de oro: Modificar una sola variable a la vez
+## 1. Componentes del sistema evaluado
 
-Para establecer causalidad real —demostrar que una modificación específica fue la causa directa de una mejora observada—, los experimentos deben mantener un aislamiento estricto de variables:
+Como establece la metodología de evaluación de frontera (OpenAI, 2026), una evaluación mide el comportamiento combinado de:
 
-$$\text{Resultado Tratamiento} - \text{Resultado Control} = \Delta_{\text{Variable Aislada}}$$
+1. **Modelo y configuración de razonamiento**: checkpoint del modelo, esfuerzo de razonamiento y temperatura.
+2. **Reglas y skills del harness**: la capa activa de reglas (`AGENTS.md`, `.github/standards.md`) y skills operacionales.
+3. **Herramientas y esquemas**: herramientas provistas, descripciones de parámetros y formatos de respuesta.
+4. **Salvaguardas del agente**: políticas de seguridad, permisos y condiciones de parada de bucles.
+5. **Presupuestos operacionales**: tokens máximos, límite de turnos, intentos permitidos y timeouts.
+6. **Entorno de ejecución**: sistema operativo, runtime de contenedores, dependencias, CPU y límites de memoria.
 
-Si un experimento actualiza simultáneamente el modelo (ej. Sonnet 3.5 $\to$ Sonnet 4), modifica el prompt del sistema, agrega dos skills nuevas y altera la imagen base de Docker, **resulta imposible atribuir cualquier cambio en la tasa de éxito o costo a una intervención concreta.**
+Modificar cualquier componente altera la condición experimental.
+
+---
+
+## 2. Ruido de infraestructura en evaluaciones de código
+
+Investigaciones empíricas de Anthropic (2026) demuestran que la infraestructura de ejecución es una variable experimental activa:
+
+- Variaciones en asignación de CPU, límites de memoria y latencia de red pueden alterar la tasa de éxito hasta en 6 puntos porcentuales en benchmarks como Terminal-Bench.
+- Descargas de paquetes con fallos intermitentes de red generan errores artificiales ajenos al razonamiento del modelo.
+- Diferencias en las imágenes base de contenedores (como versiones de glibc o utilidades instaladas) modifican el resultado de los comandos ejecutados por el agente.
+
+**Regla de oro**: Dos ejecuciones realizadas en infraestructuras diferentes no pueden interpretarse como una comparación limpia entre modelos o harnesses. El entorno debe estar contenerizado, congelado y registrado como parte explícita de la condición experimental.
+
+---
+
+## 3. La regla fundamental: Cambiar una sola variable a la vez
+
+Para establecer causalidad real, demostrando que una modificación específica causó la mejora observada, los experimentos deben aislar variables con rigor:
+
+$$\text{Resultado del Tratamiento} - \text{Resultado del Control} = \Delta_{\text{Variable Aislada}}$$
+
+Si un experimento actualiza simultáneamente el modelo (de Sonnet 3.5 a Sonnet 4), modifica el system prompt, añade dos skills nuevas y cambia la imagen de Docker, es imposible atribuir el cambio en la tasa de éxito a una intervención concreta.
 
 ```mermaid
 flowchart LR
     subgraph Control["Brazo de Control"]
-        C_M["Modelo: Sonnet 3.7"]
+        C_M["Modelo: Checkpoint congelado"]
         C_H["Prompt: sdlc_v1"]
         C_S["Skill: Ninguna"]
-        C_E["Entorno: Imagen v2.1"]
+        C_E["Entorno: Imagen v2.1 (Congelada)"]
     end
 
-    subgraph Treatment["Brazo de Tratamiento (Ablación de Skill)"]
-        T_M["Modelo: Sonnet 3.7 (Idéntico)"]
+    subgraph Treatment["Brazo de Tratamiento (Ablación)"]
+        T_M["Modelo: Checkpoint congelado (Idéntico)"]
         T_H["Prompt: sdlc_v1 (Idéntico)"]
         T_S["Skill: safe_db_migration (Variable)"]
-        T_E["Entorno: Imagen v2.1 (Idéntico)"]
+        T_E["Entorno: Imagen v2.1 (Idéntica)"]
     end
 
-    Control -->|"Ejecutar N=10"| RES_C["Tasa de éxito: 20%"]
-    Treatment -->|"Ejecutar N=10"| RES_T["Tasa de éxito: 100%"]
+    Control -->|"Corrida N=10"| RES_C["Éxito: 20%"]
+    Treatment -->|"Corrida N=10"| RES_T["Éxito: 100%"]
     RES_C & RES_T --> DIFF["Δ = +80% Atribuible a la Skill"]
 ```
 
 ---
 
-## ¿Qué es la ablación de skills?
+## 4. ¿Qué es la ablación de skills?
 
-La **Ablación de skills** es una técnica experimental donde una skill específica se desactiva o inyecta temporalmente para medir su contribución marginal exacta:
+La **Ablación de Skills** es una técnica experimental donde una skill específica se desactiva o inyecta temporalmente para medir su contribución marginal exacta:
 
-- **Brazo de Baseline (Control)**: El agente se ejecuta frente al caso de evaluación con todas las reglas estándar del repositorio, pero sin la skill evaluada.
-- **Brazo Ablacionado (Tratamiento)**: El agente se ejecuta frente al mismo caso con la skill evaluada habilitada.
-- **Comparación**: Se comparan las tasas de éxito objetivo, cantidad de pasos, consumo de tokens y matrices de atribución.
+- **Brazo de línea base (Control)**: El agente ejecuta el caso con las reglas estándar del repositorio, pero sin la skill evaluada.
+- **Brazo de ablación (Tratamiento)**: El agente ejecuta exactamente el mismo caso con la skill evaluada activa.
+- **Comparación**: Se comparan tasas objetivas de éxito, conteo de pasos, consumo de tokens y matrices de atribución.
 
-Si el grupo de tratamiento alcanza una mayor tasa de éxito con menos pasos y alta atribución de la skill, la skill ha demostrado empíricamente su utilidad. Si la tasa de éxito no varía, la skill puede ser redundante o estar mal estructurada.
-
----
-
-## Gestión del no-determinismo y la varianza estocástica
-
-Los agentes basados en LLMs son sistemas estocásticos. El mismo prompt ejecutado dos veces sobre el mismo repositorio puede generar pasos intermedios diferentes.
-
-### Reglas experimentales para sistemas estocásticos:
-1. **Nunca evaluar a partir de una sola corrida**: Una única corrida exitosa puede ser simple azar; una única corrida fallida puede ser una anomalía aislada.
-2. **Ejecutar lotes multi-corrida**: Ejecutar al menos $N=5$ (para iteración rápida) o $N=10$ (para gates formales de promoción) repeticiones por condición evaluada.
-3. **Calcular distribuciones estadísticas**: Reportar tasas de éxito con intervalos de confianza y calcular el costo promedio de tokens con su desviación estándar.
+Si el tratamiento logra mayor tasa de éxito con menos pasos y atribución positiva, la skill demuestra utilidad empírica. Si la tasa de éxito no varía, la skill es una candidata directa para desmantelamiento y retiro.
 
 ---
 
-## Hash de condición y procedencia experimental
+## 5. Hashes de condición y procedencia experimental
 
-Para garantizar que los resultados de benchmarks pasados sigan siendo interpretables y comparables con el tiempo, cada trial de evaluación debe registrar un **hash de condición determinista**:
+Para asegurar que los resultados históricos sigan siendo interpretables y comparables a lo largo del tiempo, cada corrida captura un **hash de condición** determinista:
 
 ```json
 {
@@ -96,22 +111,16 @@ Para garantizar que los resultados de benchmarks pasados sigan siendo interpreta
 }
 ```
 
-Si cualquier parámetro (una línea del prompt, un archivo de skill o una dependencia del contenedor) cambia, el `condition_hash` cambia automáticamente, asegurando que corridas de condiciones experimentales distintas nunca se agrupen erróneamente.
+Si cualquier parámetro (una línea de prompt, una skill o una dependencia del contenedor) cambia, el `condition_hash` cambia de inmediato, impidiendo agregar corridas de condiciones experimentales distintas.
 
 ---
 
-## Qué tiene permitido afirmar un diseño
+## 6. Lenguaje prudente en los veredictos
 
-El aislamiento de variables responde *cómo* comparar; el **modo de evaluación** responde *qué puede concluir la comparación*. Un diseño de evaluación de harness licencia una afirmación causal solo cuando el repositorio, los casos y el modelo están fijados; un diseño cross-repo licencia una lectura de robustez por repositorio y nada agrupado; un diseño de discovery licencia observaciones, nunca veredictos. Un sistema de evaluación debería rechazar — en el momento del diseño, antes de gastar tokens — cualquier experimento que contradiga su modo declarado. Ver **[Las tres preguntas (Modos de evaluación)](the-three-questions.md)**.
+Dado que los LLMs son estocásticos, los reportes deben mantener rigor conceptual:
 
-Dos reglas complementarias mantienen honestos los resultados multi-corrida a lo largo del tiempo:
-
-- **Lenguaje prudente en los veredictos.** Con 2 repeticiones decí *exploratorio*; con 5, *una comparación útil*; con 10, *evidencia más fuerte*. Nunca *significativo* — no corrió ningún test de hipótesis. Un delta dentro de la varianza entre corridas se reporta exactamente como eso.
-- **Un experimento, una medición.** Una vez que un experimento tiene corridas reales, relanzarlo con otro modelo, prompt o presupuesto debe rechazarse: archivaría dos mediciones bajo un nombre y cada resumen las promediaría como una sola condición. Relanzar con la misma configuración es cómo crecen las repeticiones; una configuración distinta es un experimento nuevo.
-
----
-
-### Recursos relacionados
-- **[Entornos controlados y Sandboxing](controlled-environments-sandboxing.md)**
-- **[Auditorías de comportamiento y Scoring](behavioral-audits-and-scoring.md)**
-- **[Construir una suite interna de evaluación](../adoption/internal-evaluation-suite.md)**
+- Con $N=2$ repeticiones, califica los resultados como **exploratorios**.
+- Con $N=5$ repeticiones, califica los resultados como **una comparación direccional útil**.
+- Con $N=10$ repeticiones, califica los resultados como **evidencia sólida**.
+- Nunca afirmes que un cambio es **estadísticamente significativo** sin un test de hipótesis explícito.
+- Toda diferencia que caiga dentro de la varianza natural entre corridas debe reportarse como margen de ruido.

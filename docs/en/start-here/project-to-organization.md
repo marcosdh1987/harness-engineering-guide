@@ -34,7 +34,7 @@ Rather than reinventing these structures for every project, teams can adopt `ml-
 
 ## What remains project-specific
 
-While template structures can be shared, every repository possesses unique domain context that cannot—and should not—be standardized globally.
+While template structures can be shared, every repository possesses unique domain context that cannot (and should not) be standardized globally.
 
 Project-specific elements include:
 

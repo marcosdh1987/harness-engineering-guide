@@ -95,18 +95,18 @@ Al distribuir las mejoras del harness a los repositorios de desarrollo, los equi
 
 ## Hallazgos: las máquinas sugieren, las personas firman
 
-El análisis automático es excelente para *notar* — un caso que regresionó, una skill que nadie consulta, una falla que se repite. Nunca debe tener permitido *concluir*. En un ciclo de mejora maduro, los patrones autogenerados llegan etiquetados como **sugeridos** y se vuelven hallazgos de registro solo cuando una persona los revisa, opcionalmente los edita y los firma; los rechazos también se registran, para que el mismo patrón no se re-proponga cada semana. Un hallazgo sin dueño es una afirmación que nadie tiene que defender — y un reporte para un cliente construido sobre hallazgos sin firma es marketing, no evidencia.
+El análisis automático es excelente para *notar* (un caso que regresionó, una skill que nadie consulta, una falla que se repite. Nunca debe tener permitido *concluir*. En un ciclo de mejora maduro, los patrones autogenerados llegan etiquetados como **sugeridos** y se vuelven hallazgos de registro solo cuando una persona los revisa, opcionalmente los edita y los firma; los rechazos también se registran, para que el mismo patrón no se re-proponga cada semana. Un hallazgo sin dueño es una afirmación que nadie tiene que defender) y un reporte para un cliente construido sobre hallazgos sin firma es marketing, no evidencia.
 
 ## Auditar un repositorio que nunca viste
 
 El mismo ciclo escala a la consultoría: auditar el repositorio de un cliente con transparencia. La mecánica que lo hace creíble:
 
-- **Derivar el benchmark de su propia historia** — los commits que cambiaron código y tests juntos se vuelven casos reproducibles, así la evaluación mide *su* trabajo, no un rompecabezas sintético.
-- **Inferir su quality gate desde sus propios archivos** (targets del Makefile, lockfiles, configs de test) y adoptarlo explícitamente — nunca adivinarlo en silencio.
+- **Derivar el benchmark de su propia historia**: los commits que cambiaron código y tests juntos se vuelven casos reproducibles, así la evaluación mide *su* trabajo, no un rompecabezas sintético.
+- **Inferir su quality gate desde sus propios archivos** (targets del Makefile, lockfiles, configs de test) y adoptarlo explícitamente, nunca adivinarlo en silencio.
 - **Juzgar cada corrida contra la gobernanza que esa corrida realmente tuvo.** Un brazo de control "nativo" auditado contra *tus* reglas se vería peor por construcción; la comparación nativo-vs-inyectado solo es honesta cuando cada brazo se mide contra su propia superficie.
 - **Reportar solo lo que la evidencia sostiene.** Sin corridas, el reporte dice "lectura, no medición"; con repeticiones exploratorias, dice exploratorio.
 
-La jugada de cierre de toda auditoría es el mismo experimento: *su repo tal cual está* versus *su repo con tu harness inyectado*, mismos casos, cinco o más repeticiones por brazo — la pregunta del engagement, respondida como medición.
+La jugada de cierre de toda auditoría es el mismo experimento: *su repo tal cual está* versus *su repo con tu harness inyectado*, mismos casos, cinco o más repeticiones por brazo, la pregunta del engagement, respondida como medición.
 
 ---
 

@@ -1,49 +1,75 @@
-# Experimental Validity & Ablations
+# Experimental Validity and Ablations
 
-In traditional machine learning, evaluating a system often means holding the dataset constant while swapping model checkpoints.
+In traditional machine learning, evaluating a system often meant holding a dataset constant while swapping model checkpoints.
 
-In **Harness Engineering**, the model is only one component of the system. An engineering team should be able to isolate, benchmark, and evaluate **any component of the harness stack**.
+In **Harness Engineering**, the base model is only one component of the system under test:
 
----
+$$\mathbf{Model\ Alone} \neq \mathbf{Evaluated\ System}$$
 
-## Evaluating Across the Complete Stack
-
-The object of evaluation does not have to be solely the base model. You can design controlled experiments targeting seven distinct dimensions:
+A trustworthy evaluation measures the complete system across its entire operational envelope:
 
 ```mermaid
-flowchart TD
-    subgraph Dimensions["Components Subject to Controlled Evaluation"]
-        D1["<b>1. Model Arm</b><br/>Claude Sonnet vs GPT-4o vs Qwen 2.5 Coder vs DeepSeek"]
-        D2["<b>2. Harness Version</b><br/>Harness v1.2.0 vs Harness v1.3.0"]
-        D3["<b>3. Skill Ablation</b><br/>With vs Without a specific skill (e.g., safe_db_migration)"]
-        D4["<b>4. Tool / MCP Server</b><br/>Native AST tool vs Generic Grep/Bash"]
-        D5["<b>5. Agentic Topology</b><br/>Single agent vs Orchestrator + Reviewer subagents"]
-        D6["<b>6. Prompt Variant</b><br/>Minimal instruction vs SDLC-guided prompt"]
-        D7["<b>7. Workflow Policy</b><br/>Plan-first gated execution vs Direct patch implementation"]
+flowchart LR
+    subgraph SYSTEM["The Evaluated System"]
+        M["Model + Reasoning Config"]
+        H["Harness Rules + Skills"]
+        T["Tool Definitions + MCP"]
+        B["Token, Turn & Time Budgets"]
+        E["Sandbox Environment + Hardware"]
     end
+
+    SYSTEM --> RUN["Multi-Step Execution"]
+    RUN --> OUT["Empirical Outcome"]
 ```
 
 ---
 
-## The Golden Principle: Change One Variable at a Time
+## 1. Components of the Evaluated System
 
-To establish true causality—proving that a specific modification was responsible for an observed improvement—experiments must follow strict variable isolation:
+As established in frontier evaluation methodology (OpenAI, 2026), an evaluation measures the combined behavior of:
+
+1. **Model & Reasoning Configuration**: the model checkpoint, reasoning effort level, and sampling temperature.
+2. **Harness Rules & Skills**: the active rules layer (`AGENTS.md`, `.github/standards.md`) and operational skills.
+3. **Tool Access & Schemas**: the specific tools provided, their parameter descriptions, and return formats.
+4. **Agent Safeguards**: security policies, permission boundaries, and loop break invariants.
+5. **Operational Budgets**: max tokens, maximum turn counts, retry limits, and wall-clock execution timeouts.
+6. **Execution Environment**: operating system, container runtime, package dependencies, CPU, and memory limits.
+
+Changing any single component changes the experimental condition.
+
+---
+
+## 2. Infrastructure Noise in Coding Evals
+
+Empirical research by Anthropic (2026) demonstrates that runtime infrastructure is an active experimental variable in agent evaluations:
+
+- Variations in CPU allocation, memory throttling, and network latency can swing benchmark pass rates by up to 6 percentage points on coding benchmarks like Terminal-Bench.
+- Non-deterministic package downloads or mirror timeouts create artificial failures unrelated to model reasoning.
+- Differences in container base images (such as glibc versions or pre-installed utilities) alter agent command execution success.
+
+**Core Rule**: Two evaluation runs executed on different infrastructure cannot be interpreted as a clean comparison between models or harnesses. The execution environment must be containerized, pinned, and tracked as an explicit part of the experimental condition.
+
+---
+
+## 3. The Golden Rule: Change One Variable at a Time
+
+To establish true causality, proving that a specific modification was responsible for an observed improvement, experiments must follow strict variable isolation:
 
 $$\text{Treatment Outcome} - \text{Control Outcome} = \Delta_{\text{Isolated Variable}}$$
 
-If an experiment simultaneously upgrades the model (e.g., Sonnet 3.5 $\to$ Sonnet 4), changes the system prompt, adds two new skills, and alters the Docker base image, **you cannot attribute any change in pass rate or token cost to a specific intervention.**
+If an experiment simultaneously upgrades the model (from Sonnet 3.5 to Sonnet 4), modifies the system prompt, adds two new skills, and alters the container base image, you cannot attribute any change in pass rate to a specific intervention.
 
 ```mermaid
 flowchart LR
     subgraph Control["Control Arm"]
-        C_M["Model: Sonnet 3.7"]
+        C_M["Model: Pinned Checkpoint"]
         C_H["Prompt: sdlc_v1"]
         C_S["Skill: None"]
-        C_E["Env: Image v2.1"]
+        C_E["Env: Image v2.1 (Pinned)"]
     end
 
     subgraph Treatment["Treatment Arm (Skill Ablation)"]
-        T_M["Model: Sonnet 3.7 (Identical)"]
+        T_M["Model: Pinned Checkpoint (Identical)"]
         T_H["Prompt: sdlc_v1 (Identical)"]
         T_S["Skill: safe_db_migration (Variable)"]
         T_E["Env: Image v2.1 (Identical)"]
@@ -56,7 +82,7 @@ flowchart LR
 
 ---
 
-## What is Skill Ablation?
+## 4. What is Skill Ablation?
 
 **Skill Ablation** is an experimental technique where a specific skill is temporarily disabled or injected to measure its exact marginal contribution:
 
@@ -64,24 +90,13 @@ flowchart LR
 - **Ablated Arm (Treatment)**: The agent runs against the exact same case with the targeted skill enabled.
 - **Comparison**: We compare objective pass rates, step counts, token costs, and attribution matrices.
 
-If the treatment arm achieves a higher pass rate with fewer steps and higher skill attribution, the skill has proven its empirical utility. If the pass rate remains unchanged, the skill may be redundant or poorly structured.
+If the treatment arm achieves a higher pass rate with fewer steps and positive attribution, the skill has proven its empirical utility. If the pass rate remains unchanged, the skill is a prime candidate for de-scaffolding and retirement.
 
 ---
 
-## Managing Non-Determinism & Stochastic Variance
+## 5. Condition Hashing and Experiment Provenance
 
-LLM agents are stochastic systems. The same prompt run twice against the same repository can produce different intermediate steps.
-
-### Experimental Rules for Stochastic Systems:
-1. **Never Evaluate on a Single Run**: A single passing run might be pure luck; a single failing run might be an anomalous outlier.
-2. **Execute Multi-Run Batches**: Run at least $N=5$ (for quick iteration) or $N=10$ (for formal promotion gates) repetitions per condition arm.
-3. **Calculate Statistical Distributions**: Report pass rates with confidence intervals and calculate mean token costs and standard deviations.
-
----
-
-## Condition Hashing & Experiment Provenance
-
-To guarantee that past benchmark results remain interpretable and comparable over time, every evaluation trial should capture a deterministic **condition hash**:
+To guarantee that past benchmark results remain interpretable and comparable over time, every evaluation trial captures a deterministic **condition hash**:
 
 ```json
 {
@@ -100,18 +115,12 @@ If any parameter (a prompt line, a skill file, or a container dependency) change
 
 ---
 
-## What a Design Is Allowed to Claim
+## 6. Prudent Verdict Language
 
-Variable isolation answers *how* to compare; the **evaluation mode** answers *what the comparison may conclude*. A harness-evaluation design licenses a causal claim only when the repository, cases and model are pinned; a cross-repo design licenses a per-repository robustness reading and nothing pooled; a discovery design licenses observations, never verdicts. An evaluation system should refuse — at design time, before spending tokens — any experiment that contradicts its declared mode. See **[The Three Questions (Evaluation Modes)](the-three-questions.md)**.
+Because LLMs are non-deterministic, reports must maintain intellectual humility:
 
-Two companion rules keep multi-run results honest over time:
-
-- **Prudent verdict language.** With 2 repetitions say *exploratory*; with 5, *a useful comparison*; with 10, *stronger evidence*. Never *significant* — no hypothesis test ran. A delta inside run-to-run variance is reported as exactly that.
-- **One experiment, one measurement.** Once an experiment has real runs, relaunching it under a different model, prompt or budget must be refused: it would file two measurements under one name and every summary would average them as one condition. Same-configuration relaunches are how repetitions grow; a changed configuration is a new experiment.
-
----
-
-### Related Resources
-- **[Controlled Environments & Sandboxing](controlled-environments-sandboxing.md)**
-- **[Behavioral Audits & Scoring](behavioral-audits-and-scoring.md)**
-- **[Building an Internal Evaluation Suite](../adoption/internal-evaluation-suite.md)**
+- With $N=2$ repetitions, label results as **exploratory**.
+- With $N=5$ repetitions, label results as **a useful directional comparison**.
+- With $N=10$ repetitions, label results as **strong evidence**.
+- Never claim a change is **statistically significant** unless an explicit statistical hypothesis test was conducted.
+- A score difference that falls within run-to-run variance must be reported as within noise margin.

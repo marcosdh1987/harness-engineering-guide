@@ -12,7 +12,7 @@ En lugar de concebir la asistencia de IA simplemente como una sesión de chat ef
 > "¿Mejor que qué?"
 > "No sé… se siente mejor."
 
-Todo equipo que adopta agentes de código vive un tiempo de anécdotas: la corrida espectacular que alguien vio el martes, el desastre que otro sufrió el miércoles, la skill que "seguro ayuda" y que nadie midió nunca. El costo no es solo en tokens — es que las decisiones sobre la herramienta más nueva del stack se toman con el método más viejo disponible: **la sensación**. Harness Engineering existe para reemplazar esa conversación por una que termina distinto: *"el éxito pasó de 60% a 85% con cinco repeticiones por brazo, y no se rompió nada — acá está la matriz de casos."*
+Todo equipo que adopta agentes de código vive un tiempo de anécdotas: la corrida espectacular que alguien vio el martes, el desastre que otro sufrió el miércoles, la skill que "seguro ayuda" y que nadie midió nunca. El costo no es solo en tokens (es que las decisiones sobre la herramienta más nueva del stack se toman con el método más viejo disponible: **la sensación**. Harness Engineering existe para reemplazar esa conversación por una que termina distinto: *"el éxito pasó de 60% a 85% con cinco repeticiones por brazo, y no se rompió nada) acá está la matriz de casos."*
 
 ---
 

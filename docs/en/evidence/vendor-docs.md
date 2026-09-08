@@ -2,6 +2,15 @@
 
 >Official documentation and manuals from AI tool developers.
 
+### GitHub Spec Kit 1.x: Specification-Driven Development for Agentic Workflows
+- **Provider / Publisher**: GitHub
+- **Direct Link**: [https://github.com/github/spec-kit](https://github.com/github/spec-kit)
+- **Accessed Date**: `2026-05-01`
+- **Related Topics**: `spec-driven-development`, `spec-kit`, `acceptance-criteria`, `task-enrichment`
+- **Summary & Notes**:
+  Vendor-neutral reference for spec-driven workflows with AI agents. Formulates the progression: Specify (WHAT), Plan (HOW), Tasks (Breakdown), Implement (Delegate), and Converge (Verification against specification).
+
+---
 ### Claude Code Documentation
 - **Provider / Publisher**: Anthropic
 - **Direct Link**: [https://docs.anthropic.com/en/docs/agents-and-subagents/claude-code](https://docs.anthropic.com/en/docs/agents-and-subagents/claude-code)

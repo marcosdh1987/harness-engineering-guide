@@ -75,7 +75,7 @@ flowchart TB
 ### The Compounding Effect:
 - **Month 1**: 10 baseline evaluation cases protect core architecture boundaries.
 - **Month 3**: 50 cases encode database migrations, concurrency patterns, and security constraints.
-- **Month 6**: 200+ cases form an automated benchmark. When Anthropic, OpenAI, or Google releases a new model, the organization tests the entire model against the suite in hours—knowing exactly which skills improve and which regress before deploying to engineers.
+- **Month 6**: 200+ cases form an automated benchmark. When Anthropic, OpenAI, or Google releases a new model, the organization tests the entire model against the suite in hours, knowing exactly which skills improve and which regress before deploying to engineers.
 
 ---
 
@@ -94,7 +94,7 @@ Define the case in your internal evaluation harness:
 - **Validation Commands**: Deterministic shell commands (unit test, linter, policy check) that fail when the symptom is present and pass when resolved.
 
 ### Step 3: Measure the Baseline
-Run the case 5–10 times using your current harness and model without any changes. Document the baseline pass rate (e.g., `2/10 pass (20%)`).
+Run the case 5-10 times using your current harness and model without any changes. Document the baseline pass rate (e.g., `2/10 pass (20%)`).
 
 ### Step 4: Refine the Harness
 Address the root cause by improving the system around the agent:
@@ -103,7 +103,7 @@ Address the root cause by improving the system around the agent:
 - Add an automated CI quality gate (`make check`).
 
 ### Step 5: Re-evaluate and Verify
-Run the case 5–10 times under the improved harness condition (*Treatment*). Verify that the pass rate increases to the target threshold (e.g., `10/10 pass (100%)`) and that no tool thrashing occurred.
+Run the case 5-10 times under the improved harness condition (*Treatment*). Verify that the pass rate increases to the target threshold (e.g., `10/10 pass (100%)`) and that no tool thrashing occurred.
 
 ### Step 6: Lock into the Regression Suite
 Commit the evaluation case to your internal evaluation repository. Every future harness release or model migration must pass this case before promotion.

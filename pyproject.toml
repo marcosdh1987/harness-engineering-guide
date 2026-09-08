@@ -19,8 +19,13 @@ py-modules = []
 
 [dependency-groups]
 dev = [
+  "pytest>=8.0",
   "ruff>=0.14",
 ]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 88
@@ -32,6 +37,9 @@ extend-exclude = ["site", ".venv"]
 select = ["E", "W", "F", "I", "UP", "RUF"]
 ignore = [
   "E501",    # line length is handled by the formatter
+  "RUF001",  # ambiguous unicode character in strings (needed for prose dash checker/tests)
+  "RUF002",  # ambiguous unicode character in docstrings
+  "RUF003",  # ambiguous unicode character in comments
   "RUF015",  # next(iter(x)) rewrite — unsafe fix; not worth changing a load-bearing script
   "W291",    # a lone hit is trailing whitespace inside generated-markdown string data
 ]

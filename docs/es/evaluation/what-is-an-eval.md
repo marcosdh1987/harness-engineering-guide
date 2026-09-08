@@ -1,134 +1,132 @@
 # ¿Qué es una evaluación de agentes?
 
-Una **Evaluación de Agentes** (o *eval*) es un procedimiento riguroso, automatizado o semi-automatizado, que mide con qué eficacia un agente de IA resuelve una tarea específica dentro de un entorno determinado.
+Una **Evaluación de Agentes** (o *eval*) es un procedimiento riguroso y automatizado que mide con qué eficacia un agente de IA resuelve una tarea concreta dentro de un entorno.
 
-A diferencia de las evaluaciones tradicionales de LLMs que miden la compleción de texto en un único paso (como MMLU o HumanEval), las evaluaciones de agentes evalúan el **sistema completo: modelo + harness + herramientas + entorno** a lo largo de interacciones multi-paso.
+A diferencia de las evaluaciones tradicionales de modelos que miden la generación de texto en un solo turno (como MMLU o HumanEval), las evaluaciones de agentes ponen a prueba el **sistema completo: modelo + harness + herramientas + entorno** a lo largo de interacciones de múltiples turnos.
 
 > [!NOTE]
-> **Referencia de la industria**: Los marcos conceptuales de esta sección sintetizan principios publicados por organizaciones líderes de investigación en IA, en particular la guía *Demystifying Evals for AI Agents* de Anthropic (2026), las investigaciones de *SWE-bench* (Princeton) y los manuales de evaluación de OpenAI.
+> **Referencia de la industria**: Los marcos de esta sección sintetizan principios publicados por organizaciones líderes en investigación de IA, en particular *Demystifying Evals for AI Agents* de Anthropic (2026), la investigación de *SWE-bench* de Princeton y las directrices de evaluación de OpenAI (2026).
 
 ---
 
-## Anatomía de una evaluación de agentes
+## 1. Vocabulario formal de evaluación
 
-Una evaluación de agentes consta de cuatro componentes coordinados:
+Para evitar confusiones entre corridas de benchmark, experimentos y puntuaciones, Harness Engineering define una taxonomía estricta:
 
-```mermaid
-flowchart LR
-    TASK["1. Tarea y Contexto<br/>(Descripción del issue, commit inicial)"] --> RUN["2. Ejecución multi-paso<br/>(El agente lee, edita y corre bash en sandbox)"]
-    RUN --> OUT["3. Artefactos y Resultado<br/>(Git diff, archivos modificados, log de pasos)"]
-    OUT --> GRADER["4. Caja de herramientas de evaluadores<br/>(Evaluador de código, Juez LLM, Humano)"]
-    GRADER --> SCORE["Puntuación multidimensional"]
-```
-
-1. **Tarea y estado inicial**: Un prompt con el problema claramente especificado y un commit inicial determinista del repositorio.
-2. **Entorno de ejecución controlado**: Un sandbox aislado donde el agente puede inspeccionar código, ejecutar comandos en terminal y editar archivos.
-3. **Interacción multi-paso**: El agente observa las salidas de las herramientas, formula hipótesis e itera hacia la solución.
-4. **Grading y puntuación**: Evaluación cuantitativa y cualitativa de si el estado final del entorno resuelve la tarea sin efectos colaterales indeseados.
+| Término | Definición | Principio clave |
+|---|---|---|
+| **Tarea (Task)** | Especificación concreta de un problema y estado inicial pineado del repositorio. | Commit congelado, prompt inequívoco, verificación definida. |
+| **Prueba (Trial)** | Una única ejecución de una tarea bajo una condición específica. | No determinista; un solo trial nunca es un veredicto. |
+| **Experimento (Experiment)** | Comparación declarada de condiciones a lo largo de múltiples pruebas para responder una pregunta. | **Experimento > Pruebas**: El experimento gobierna el diseño. |
+| **Evaluador (Grader)** | Instrumento de evaluación que califica la ejecución (Código, Juez LLM o Humano). | Separa hechos, observaciones y juicios. |
+| **Trayectoria (Trajectory)** | Secuencia registrada de razonamientos, llamadas a herramientas, comandos y salidas. | Mide eficiencia, bucles y cumplimiento de protocolos. |
+| **Resultado (Outcome)** | El estado ambiental final producido por el agente. | **Resultado > Afirmación del agente**: Verifica códigos de salida. |
+| **Condición (Condition)** | La tupla completa: modelo, configuración del harness, herramientas, presupuestos y sandbox. | Modificar cualquier elemento cambia la condición. |
+| **Harness** | El sistema de reglas, skills, adaptadores y herramientas que envuelve al modelo. | La variable independiente principal bajo prueba. |
+| **Suite de evaluación** | Colección curada de tareas categorizadas como benchmarks de capacidad o de regresión. | Las evals de capacidad miden margen; las regresiones protegen la calidad. |
 
 ---
 
-## Transcripción vs Resultado: Las dos lentes de evaluación
+## 2. Axiomas centrales de la evaluación de agentes
 
-Al evaluar coding agents, los equipos de ingeniería deben examinar tanto el **camino recorrido** como el **destino final**:
+### Axioma 1: El Experimento sobre la Prueba
+
+Una corrida aislada es solo un dato. Las afirmaciones válidas de ingeniería exigen un **Experimento**:
+
+$$\mathbf{Experimento} > \mathbf{Pruebas}$$
+
+Un experimento declara la pregunta *antes* de que comience la ejecución, declara sus brazos de control y tratamiento, mantiene constantes todas las demás variables y corre suficientes repeticiones para controlar la estocasticidad de los LLMs.
+
+### Axioma 2: El Resultado sobre la Afirmación del Agente
+
+El éxito afirmado por el propio agente es solo una declaración no verificada en la transcripción:
+
+$$\mathbf{Resultado} > \mathbf{Afirmación\ del\ Agente}$$
+
+Si un agente afirma en el chat "He corregido el error y todos los tests pasan", pero el runner de pruebas en el sandbox termina con código de salida 1, el resultado es un fallo. Las evaluaciones deben inspeccionar siempre el estado del entorno real en lugar de confiar en el texto de la conversación.
+
+---
+
+## 3. Transcripción vs Resultado: Dos lentes de evaluación
 
 ```mermaid
 flowchart TB
-    subgraph T["Transcripción (El Camino)"]
-        T1["¿Cuántos pasos le tomó al agente?"]
-        T2["¿Cayó en bucles de comandos erráticos?"]
+    subgraph T["Transcripción (El camino)"]
+        T1["¿Cuántos pasos tomó?"]
+        T2["¿El agente entró en bucles de comandos?"]
         T3["¿Qué skills gobernadas consultó?"]
         T4["¿Cuál fue el costo en tokens y latencia?"]
     end
 
-    subgraph O["Resultado (El Destino)"]
-        O1["¿Pasaron las pruebas unitarias?"]
-        O2["¿El git diff es limpio y minimalista?"]
-        O3["¿Se respetaron las capas de arquitectura?"]
-        O4["¿Se introdujeron vulnerabilidades de seguridad?"]
+    subgraph O["Resultado (El destino)"]
+        O1["¿La suite de tests terminó con código 0?"]
+        O2["¿El diff de git es limpio y mínimo?"]
+        O3["¿Se preservaron los invariantes de arquitectura?"]
+        O4["¿Se introdujeron regresiones de seguridad?"]
     end
 ```
 
-- **El Resultado (Outcome)**: Valida la corrección funcional. Si el patch no pasa las pruebas unitarias, la corrida es un fallo funcional, sin importar lo elocuente que haya sido la explicación del agente.
-- **La Transcripción (Transcript)**: Valida la eficiencia y la adherencia al SDLC. Un agente podría lograr pasar un test por fuerza bruta (ej. probando 40 modificaciones aleatorias en 100 pasos), pero ese comportamiento representa un fallo costoso e inaceptable de disciplina ingenieril.
+- **El Resultado**: Valida la corrección funcional. Si el parche no pasa las pruebas unitarias, la corrida es un fallo funcional sin importar cuán elocuente haya sido la explicación del agente.
+- **La Transcripción**: Valida la disciplina de ingeniería. Un agente podría lograr que un test pase mediante fuerza bruta (por ejemplo, probando 40 cambios al azar en 100 pasos), pero ese comportamiento representa un fallo costoso y frágil de metodología.
 
 ---
 
-## La caja de herramientas de los tres evaluadores (Three-Grader Toolbox)
+## 4. La caja de herramientas de tres evaluadores
 
-Ningún método de evaluación individual es suficiente para tareas complejas de agentes. Los equipos combinan tres tipos de evaluadores:
+Ningún método de calificación individual es suficiente para tareas complejas de ingeniería:
 
 ```mermaid
 flowchart TD
-    G["Caja de herramientas de evaluadores"] --> G1["1. Evaluadores basados en código<br/><i>(Deterministas, Rápidos, Objetivos)</i>"]
-    G --> G2["2. Evaluadores basados en modelos (Juez LLM)<br/><i>(Flexibles, Cualitativos, Matizados)</i>"]
-    G --> G3["3. Evaluadores humanos<br/><i>(Gold Standard, Calibración estratégica)</i>"]
+    G["Caja de tres evaluadores"] --> G1["1. Evaluadores por código<br/><i>(Deterministas, Rápidos, Objetivos)</i>"]
+    G --> G2["2. Evaluadores por modelo (Juez LLM)<br/><i>(Cualitativos, Comportamiento, Matices)</i>"]
+    G --> G3["3. Evaluadores humanos<br/><i>(Verdad base, Calibración)</i>"]
 
-    G1 -->|"Pruebas unitarias, Linters, Análisis estático"| SCORE["Veredicto compuesto"]
-    G2 -->|"Scoring de rúbricas, Auditoría de adherencia SDLC"| SCORE
-    G3 -->|"Revisión manual de casos límite ambiguos"| SCORE
+    G1 -->|"Tests unitarios, Linters, Tipos"| SCORE["Registro de Scores"]
+    G2 -->|"Rúbricas, Auditoría de SDLC"| SCORE
+    G3 -->|"Inspección de casos ambiguos"| SCORE
 ```
 
-| Tipo de evaluador | Fortalezas | Limitaciones | Uso recomendado |
+| Tipo de evaluador | Fortalezas | Limitaciones | Uso principal |
 |---|---|---|---|
-| **Evaluadores de código** | 100% deterministas, instantáneos, costo cero en tokens. | No pueden evaluar elegancia estilística ni matices de arquitectura. | Aprobación de tests, linters, compilación, control de drift de lockfiles. |
-| **Evaluadores de modelo (LLM Judge)** | Manejan matices cualitativos, leen diffs, puntúan rúbricas. | Ligero no-determinismo; requiere calibrar prompts cuidadosamente. | Auditorías de comportamiento, calidad del plan, completitud de documentación. |
-| **Evaluadores humanos** | Fuente suprema de verdad y calibración. | Costosos, lentos, no escalables para ejecución continua en CI. | Calibración inicial de benchmarks, revisión de fallos ambiguos. |
+| **Evaluadores por código** | Deterministas, instantáneos, costo cero en tokens. | No evalúan elegancia de estilo ni sutilezas de arquitectura. | Tests pasados, códigos de salida de linters, drift de lockfiles. |
+| **Evaluadores por modelo (Juez LLM)** | Evalúan matices, leen diffs, puntúan rúbricas. | Ligero no determinismo; exigen calibración cuidadosa de prompts. | Auditorías de comportamiento, calidad del plan, documentación. |
+| **Evaluadores humanos** | Fuente definitiva de calibración y verdad base. | Costosos, lentos, no escalan para integración continua en CI. | Calibrar benchmarks nuevos, revisar regresiones complejas. |
 
 ---
 
-## Gestión de la estocasticidad: Métricas de fiabilidad
-
-Dado que los agentes basados en LLMs son no deterministas, evaluar a un agente a partir de una única corrida es un antipatrón de ingeniería. Los equipos emplean métricas estandarizadas multi-corrida:
-
-### 1. `pass@k` (Flujos con humano en el loop)
-Mide la probabilidad de que el agente tenga éxito **al menos una vez** en $k$ intentos independientes:
-$$\text{pass}@k = 1 - \frac{\binom{n - c}{k}}{\binom{n}{k}}$$
-*(Donde $n$ es el total de corridas y $c$ son las corridas correctas).*  
-- **Caso de uso**: Flujos de trabajo donde un desarrollador interactúa con el agente y puede descartar 2 intentos fallidos siempre que 1 tenga éxito rápido.
-
-### 2. `pass^k` (Automatización autónoma)
-Mide la probabilidad de que el agente tenga éxito **consistentemente en todos los $k$ intentos**:
-$$\text{pass}^k = \left(\frac{c}{n}\right)^k$$
-- **Caso de uso**: Pipelines automatizados de alta fiabilidad (ej. actualizaciones desatendidas de dependencias, corrección autónoma de bugs en background) donde cualquier fallo genera alarmas.
-
----
-
-## Evals de capacidad vs Evals de regresión
+## 5. Evals de capacidad vs Evals de regresión
 
 ```mermaid
 flowchart LR
-    subgraph CAP["Evals de Capacidad"]
+    subgraph CAP["Evals de capacidad"]
         C1["Prueban lo que el agente PUEDE hacer"]
-        C2["Tareas exploratorias de frontera"]
-        C3["Mayor tolerancia al fallo"]
+        C2["Tareas complejas de frontera"]
+        C3["Miden margen de crecimiento"]
     end
 
-    subgraph REG["Evals de Regresión"]
+    subgraph REG["Evals de regresión"]
         R1["Verifican que lo existente NO se rompa"]
-        R2["Colección fija de bugs e incidentes pasados"]
-        R3["Exigen tasa de éxito del 100%"]
+        R2["Suite congelada de bugs pasados"]
+        R3["Cero tolerancia al fallo (100% pass)"]
     end
+
+    CAP -->|"Se satura al 100% de éxito"| GRAD["<b>Graduación</b>"]
+    GRAD --> REG
 ```
 
-- **Evaluaciones de capacidad**: Miden el desempeño de nuevos modelos o skills ambiciosas en desafíos complejos.
-- **Evaluaciones de regresión**: Suite fija de problemas resueltos en el pasado que todo nuevo harness debe superar antes de publicarse.
+- **Evaluaciones de capacidad**: Miden nuevos modelos o skills ambiciosas en desafíos difíciles. Ofrecen espacio para mejorar.
+- **Evaluaciones de regresión**: Una suite congelada y estable de problemas resueltos previamente que todo harness candidato debe aprobar antes del release.
+- **Graduación**: Cuando una tarea de capacidad se resuelve de forma consistente (alcanzando 100% de éxito en corridas repetidas), se gradúa a la suite de regresión para proteger contra regresiones futuras.
 
 ---
 
-## Evaluation-Driven Development (EDD) para agentes
+## 6. Desarrollo guiado por evaluaciones (EDD)
 
-En el desarrollo de software tradicional, **Test-Driven Development (TDD)** establece escribir las pruebas antes de implementar el código.
+En la ingeniería de software clásica, Test-Driven Development (TDD) dicta escribir pruebas antes de implementar el código.
 
-En Harness Engineering practicamos **Evaluation-Driven Development (EDD)**:
-1. Al crear o mejorar una skill, primero defines el caso de evaluación en el lab.
-2. Ejecutas corridas de baseline para medir la tasa de fallos e identificar los modos de fallo exactos.
-3. Escribes la skill o regla gobernada.
-4. Iteras hasta que el agente alcance la tasa de éxito objetivo en todos tus tiers de modelos.
-
----
-
-### Recursos relacionados
-- **[Entornos controlados y Sandboxing](controlled-environments-sandboxing.md)**
-- **[Validez experimental y ablaciones](experimental-validity-and-ablations.md)**
-- **[Auditorías de comportamiento y Scoring](behavioral-audits-and-scoring.md)**
+En Harness Engineering, practicamos **Evaluation-Driven Development (EDD)**:
+1. Al diseñar o mejorar una skill, primero define el caso de evaluación en el Harness Lab.
+2. Ejecuta pruebas de línea base para medir la tasa de fallos y observar los modos de error.
+3. Escribe la skill gobernada, regla o adaptador.
+4. Itera hasta que el agente alcance la tasa de éxito objetivo en los modelos soportados.
+5. Desmantela scaffolding redundante cuando las mediciones de ablación confirmen que ya no es necesario.

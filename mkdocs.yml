@@ -62,6 +62,7 @@ nav:
           - Onboarding Guide: en/start-here/onboarding-guide.md
       - Organizational Adoption:
           - Agentic SDLC Maturity Model: en/adoption/maturity-model.md
+          - The Harness Engineer / AI Champion: en/adoption/harness-engineer-role.md
           - Building an Internal Evaluation Suite: en/adoption/internal-evaluation-suite.md
           - From Failures to Regression Cases: en/adoption/failures-to-regression-cases.md
           - Continuous Harness Improvement: en/adoption/continuous-harness-improvement.md
@@ -69,11 +70,13 @@ nav:
       - Learning Path: en/learning-path.md
       - Core Concepts:
           - Harness Engineering: en/concepts/harness-engineering.md
-          - Observability vs Evaluation: en/concepts/observability-vs-evaluation.md
+          - Five Operational Surfaces: en/concepts/five-operational-surfaces.md
+          - State & Continuity: en/concepts/state-and-continuity.md
+          - Context Engineering: en/concepts/context-engineering.md
           - AI Rules Architecture: en/concepts/ai-rules-architecture.md
           - Governance, Skills, Automation, Orchestration: en/concepts/governance-skills-automation-orchestration.md
           - Skills vs Prompts: en/concepts/skills-vs-prompts.md
-          - Context Engineering: en/concepts/context-engineering.md
+          - Observability vs Evaluation: en/concepts/observability-vs-evaluation.md
           - Agentic Architectures: en/concepts/agentic-architectures.md
       - Evaluation Engineering:
           - What is an Agent Eval?: en/evaluation/what-is-an-eval.md
@@ -82,8 +85,11 @@ nav:
           - Experimental Validity & Ablations: en/evaluation/experimental-validity-and-ablations.md
           - Behavioral Audits & Scoring: en/evaluation/behavioral-audits-and-scoring.md
           - Regression Suites: en/evaluation/regression-suites.md
+          - Adaptive Harnesses & De-Scaffolding: en/evaluation/adaptive-harnesses.md
       - Patterns:
           - Working Loop: en/patterns/working-loop.md
+          - Spec-Driven Agentic Work: en/patterns/spec-driven-agentic-work.md
+          - Parallel Agent Execution: en/patterns/parallel-agent-execution.md
           - Rule Layering: en/patterns/rule-layering.md
           - Skill Design: en/patterns/skill-design.md
           - Adapter Design: en/patterns/adapter-design.md
@@ -92,6 +98,7 @@ nav:
           - Failure to Regression: en/patterns/failure-to-regression.md
       - Reference Implementations:
           - Ecosystem Overview: en/reference-implementation/index.md
+          - company-brain-template (Knowledge Plane): en/reference-implementation/company-brain-template/index.md
           - ml-python-base (Governed Harness):
               - Overview: en/reference-implementation/ml-python-base/index.md
               - Inventory: en/reference-implementation/ml-python-base/inventory.md
@@ -103,7 +110,8 @@ nav:
               - Automation: en/reference-implementation/ml-python-base/automation.md
               - Drift Control: en/reference-implementation/ml-python-base/drift-control.md
               - Working Loop: en/reference-implementation/ml-python-base/working-loop.md
-          - ai-agentic-harness-lab (Evaluation Platform):
+          - ml-langchain-agent (Agent Product Runtime): en/reference-implementation/ml-langchain-agent/index.md
+          - Harness Lab (Evaluation Platform):
               - Overview: en/reference-implementation/ai-agentic-harness-lab/index.md
               - Evaluation Workflow: en/reference-implementation/ai-agentic-harness-lab/evaluation-workflow.md
       - Evidence & Research:
@@ -126,6 +134,8 @@ nav:
           - Create a Skill: en/labs/create-a-skill.md
           - Validate a Change: en/labs/validate-a-change.md
           - Publish Safe Docs: en/labs/publish-safe-docs.md
+      - Contributing:
+          - Writing Style Guide: en/contributing/writing-style.md
       - Open-Source Readiness: en/open-source-readiness.md
   - Español:
       - Visión general: es/index.md
@@ -147,6 +157,7 @@ nav:
           - Guía de Onboarding: es/start-here/onboarding-guide.md
       - Adopción organizacional:
           - Modelo de madurez del Agentic SDLC: es/adoption/maturity-model.md
+          - El rol de Harness Engineer / AI Champion: es/adoption/harness-engineer-role.md
           - Construir una suite interna de evaluación: es/adoption/internal-evaluation-suite.md
           - De fallos a casos de regresión: es/adoption/failures-to-regression-cases.md
           - Mejora continua del harness: es/adoption/continuous-harness-improvement.md
@@ -154,11 +165,13 @@ nav:
       - Ruta de aprendizaje: es/learning-path.md
       - Conceptos clave:
           - Harness Engineering: es/concepts/harness-engineering.md
-          - Observabilidad vs Evaluación: es/concepts/observability-vs-evaluation.md
+          - Las cinco superficies operativas: es/concepts/five-operational-surfaces.md
+          - Estado y continuidad: es/concepts/state-and-continuity.md
+          - Context Engineering: es/concepts/context-engineering.md
           - Arquitectura de reglas de IA: es/concepts/ai-rules-architecture.md
           - Gobernanza, skills, automatización y orquestación: es/concepts/governance-skills-automation-orchestration.md
           - Skills vs prompts: es/concepts/skills-vs-prompts.md
-          - Context Engineering: es/concepts/context-engineering.md
+          - Observabilidad vs Evaluación: es/concepts/observability-vs-evaluation.md
           - Arquitecturas de agentes: es/concepts/agentic-architectures.md
       - Ingeniería de evaluación:
           - ¿Qué es una evaluación de agentes?: es/evaluation/what-is-an-eval.md
@@ -167,8 +180,11 @@ nav:
           - Validez experimental y ablaciones: es/evaluation/experimental-validity-and-ablations.md
           - Auditorías de comportamiento y Scoring: es/evaluation/behavioral-audits-and-scoring.md
           - Suites de regresión: es/evaluation/regression-suites.md
+          - Harnesses adaptativos y desmantelamiento de scaffolding: es/evaluation/adaptive-harnesses.md
       - Patrones:
           - Ciclo de trabajo: es/patterns/working-loop.md
+          - Trabajo guiado por especificaciones (Spec-Driven): es/patterns/spec-driven-agentic-work.md
+          - Ejecución paralela de agentes: es/patterns/parallel-agent-execution.md
           - Capas de reglas: es/patterns/rule-layering.md
           - Diseño de skills: es/patterns/skill-design.md
           - Diseño de adapters: es/patterns/adapter-design.md
@@ -177,6 +193,7 @@ nav:
           - De fallo a regresión: es/patterns/failure-to-regression.md
       - Implementaciones de referencia:
           - Visión general del ecosistema: es/reference-implementation/index.md
+          - company-brain-template (Plano de Conocimiento): es/reference-implementation/company-brain-template/index.md
           - ml-python-base (Harness gobernado):
               - Visión general: es/reference-implementation/ml-python-base/index.md
               - Inventario: es/reference-implementation/ml-python-base/inventory.md
@@ -188,7 +205,8 @@ nav:
               - Automatización: es/reference-implementation/ml-python-base/automation.md
               - Control de drift: es/reference-implementation/ml-python-base/drift-control.md
               - Ciclo de trabajo: es/reference-implementation/ml-python-base/working-loop.md
-          - ai-agentic-harness-lab (Plataforma de evaluación):
+          - ml-langchain-agent (Runtime de Productos Agentic): es/reference-implementation/ml-langchain-agent/index.md
+          - Harness Lab (Plataforma de evaluación):
               - Visión general: es/reference-implementation/ai-agentic-harness-lab/index.md
               - Flujo de evaluación: es/reference-implementation/ai-agentic-harness-lab/evaluation-workflow.md
       - Evidencia e investigación:
@@ -211,4 +229,6 @@ nav:
           - Crear una skill: es/labs/create-a-skill.md
           - Validar un cambio: es/labs/validate-a-change.md
           - Publicar documentación segura: es/labs/publish-safe-docs.md
+      - Contribución:
+          - Guía de estilo de redacción: es/contributing/writing-style.md
       - Preparación para open source: es/open-source-readiness.md

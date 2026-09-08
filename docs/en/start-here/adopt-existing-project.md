@@ -1,7 +1,7 @@
 # Adopting the Harness in an Existing Project
 
 Most real engagements do not start from a fresh template. The typical case is an
-**existing project** — one repository, or a few services that share a domain —
+**existing project**: one repository, or a few services that share a domain , 
 that already has code, history, and habits. This page describes how to adopt the
 harness there safely, how the project's context grows into a **project brain**,
 and when (and only when) that brain should be extracted into a shared repository.
@@ -31,7 +31,7 @@ Level 3 — Shared brain (only at 2+ repos)
     (see The Company Brain Template) and both repos point at it.
 ```
 
-Most engagements live their whole life at Levels 1–2. That is success, not an
+Most engagements live their whole life at Levels 1-2. That is success, not an
 intermediate state.
 
 ## What "project brain" means
@@ -41,9 +41,9 @@ context layer** that `ml-python-base` already ships containers for:
 
 | Container | What accumulates there |
 |---|---|
-| `memory/context.md` | Where the project is right now — updated at session start/end |
+| `memory/context.md` | Where the project is right now, updated at session start/end |
 | `memory/learnings.md`, `memory/patterns.md` | Durable lessons and recurring solutions |
-| `docs/adr/` | Decisions and their rationale — the durable "why" |
+| `docs/adr/` | Decisions and their rationale, the durable "why" |
 | `.github/domain-boundaries.md` | The project's domain rules and boundaries |
 | `docs/` (glossary, runbooks as needed) | Vocabulary and procedures, added when they earn their place |
 
@@ -54,7 +54,7 @@ runbook. Nothing is written "just in case".
 
 ## Two safe adoption paths
 
-### Path A — Retrofit in place
+### Path A, Retrofit in place
 
 For a repo that will keep evolving where it is. The selective governance sync
 brings rules, skills, agents and adapters from a tagged template release
@@ -71,15 +71,15 @@ Safety properties that make this low-friction:
 - **Read-only first.** The preview shows every file the sync would write before
   anything is written.
 - **Additive by default.** Governance files land next to the project; existing
-  CI and scripts are not modified. Gates are adopted incrementally — start with
+  CI and scripts are not modified. Gates are adopted incrementally, start with
   the read-only ones (`lint`, `test`) and only then make them required.
 - **Reversible.** Everything arrives in one commit range; reverting the adoption
   is a `git revert`, not a migration back.
 
-### Path B — Strangler expansion (new repo beside the legacy)
+### Path B, Strangler expansion (new repo beside the legacy)
 
 For projects where retrofitting the legacy repo is not worth the friction (very
-old toolchains, frozen CI, hostile build systems) — or where new work can be
+old toolchains, frozen CI, hostile build systems), or where new work can be
 cleanly separated. Instead of migrating the legacy repo, **start the next
 module/service as a fresh repo from the template** (`make init`) and let it
 coexist:
@@ -90,7 +90,7 @@ new-service/          full harness from day 1 (make init)
 ```
 
 - The legacy repo gets the *minimum*: instruction adapters (`CLAUDE.md`,
-  `AGENTS.md`) and read-only checks, so AI assistance is governed there too —
+  `AGENTS.md`) and read-only checks, so AI assistance is governed there too , 
   but nobody rewrites its build.
 - New work happens in the new repo with the full working loop.
 - Migration proceeds module by module, **pulled by real tasks** ("this feature
@@ -102,17 +102,17 @@ migration friction is avoided because full migration is never scheduled.
 !!! warning "The moment Path B creates two repos, watch for context duplication"
     The legacy repo and the new repo share a domain. The day you copy the
     glossary or a business rule from one to the other is the day the shared
-    brain earns its existence — see below.
+    brain earns its existence, see below.
 
 ## When to extract a shared brain
 
 The trigger is concrete and observable: **a second repo starts duplicating the
-first repo's context.** Not before. The extraction itself is cheap — it is
+first repo's context.** Not before. The extraction itself is cheap, it is
 moving Markdown files, not migrating code:
 
 1. Instantiate the context template
    ([company-brain-template](company-brain-template.md)) at the scope of the
-   engagement — the "organization" can simply be *this client's platform*.
+   engagement, the "organization" can simply be *this client's platform*.
 2. Move (not copy) the shared parts: glossary, domain rules, cross-repo
    decisions, shared conventions. Project-specific ADRs and memory stay in each
    repo.
@@ -129,11 +129,11 @@ the second repo appears.
 Adoption without a baseline cannot demonstrate value. Minimum viable
 measurement, in order of effort:
 
-1. Route AI usage through a gateway from day one — cost and adoption per
+1. Route AI usage through a gateway from day one, cost and adoption per
    developer become data, not anecdote.
 2. Record the "before": gate status, time-to-onboard, where sessions lose time
    re-explaining context.
-3. Re-measure after 4–6 weeks; the delta is the engagement's evidence.
+3. Re-measure after 4-6 weeks; the delta is the engagement's evidence.
 
 ## Checklist
 

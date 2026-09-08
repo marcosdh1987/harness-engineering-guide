@@ -1,15 +1,15 @@
 # Guía de Harness Engineering
 
-**La disciplina de ingeniería para diseñar, evaluar y mejorar de forma continua el Agentic SDLC.**
+**La disciplina de ingeniería para construir, evaluar y mejorar continuamente el ciclo de vida del software asistido por agentes.**
 
-[Harness Engineering Guide](https://marcosdh1987.github.io/harness-engineering-guide/es/) es una guía metodológica y técnica, pública y neutral frente a proveedores, para organizaciones de ingeniería que buscan pasar del *uso ad-hoc de herramientas de IA* a un *ciclo de vida de desarrollo de software asistido por agentes sistemático, medible y mejorable*.
+[Harness Engineering Guide](https://marcosdh1987.github.io/harness-engineering-guide/) es una metodología pública y neutral frente a proveedores para organizaciones de ingeniería que buscan pasar del uso individual y ad-hoc de IA a un ciclo de vida sistemático, medible y en mejora continua.
 
 ---
 
 ```mermaid
 flowchart LR
     A["Estandarizar<br/>(Reglas, Skills, Adaptadores, Gates)"] --> B["Medir<br/>(Sandboxes, Atribución, Auditorías)"]
-    B --> C["Mejorar<br/>(Propuestas, Ajustes, Regresiones)"]
+    B --> C["Mejorar<br/>(Propuestas, Arreglos, Regresiones)"]
     C --> A
 ```
 
@@ -17,40 +17,40 @@ flowchart LR
 
 ## La pregunta central
 
-> **¿Cómo pasa una organización de ingeniería de que cada desarrollador use herramientas de IA por su cuenta a gestionar, medir y mejorar de forma sistemática un sistema de desarrollo asistido por agentes?**
+> **¿Cómo pasa una organización de desarrolladores individuales usando herramientas de IA a gestionar, medir y mejorar sistemáticamente un sistema de desarrollo asistido por agentes?**
 
-A medida que los asistentes de programación con IA evolucionan de la simple autocompleción de código a agentes autónomos de múltiples pasos (capaces de ejecutar comandos en la terminal, editar repositorios, correr suites de pruebas e interactuar con herramientas externas), la ingeniería de prompts resulta insuficiente.
+A medida que los asistentes de programación con IA evolucionan desde el autocompletado de un solo turno hacia agentes autónomos de múltiples turnos (que ejecutan comandos de terminal, editan repositorios, corren suites de pruebas y llaman a herramientas externas), el prompt engineering aislado resulta insuficiente.
 
-Las organizaciones enfrentan retos críticos:
-- **Regresiones silenciosas y drift**: Los agentes generan código que supera revisiones superficiales pero vulnera límites de arquitectura, políticas de seguridad o pautas de migración de bases de datos.
-- **Evaluación basada en percepción**: Los equipos juzgan a los agentes por impresiones anecdóticas individuales en lugar de contar con evidencia reproducible y cuantitativa.
-- **Aprendizaje efímero**: Las lecciones aprendidas de los errores de los agentes se pierden en conversaciones de chat o hilos de Slack en lugar de acumularse como capacidades de la organización.
+Las organizaciones enfrentan desafíos recurrentes:
+- **Regresiones silenciosas y drift**: Los agentes generan código que pasa verificaciones superficiales pero viola límites de arquitectura, políticas de seguridad o reglas de migración de bases de datos.
+- **Evaluación basada en percepciones**: Los equipos juzgan a los agentes por impresiones anecdóticas individuales en lugar de evidencia cuantitativa y reproducible.
+- **Aprendizaje efímero**: Las lecciones aprendidas de los errores de los agentes quedan perdidas en historiales de chat en lugar de acumularse en capacidades organizacionales permanentes.
 
-**Harness Engineering** resuelve esto tratando al sistema alrededor del modelo —reglas, contexto, skills, herramientas, entornos de ejecución, gates de calidad, observabilidad y evaluaciones— como un producto de software ingenieril y versionado.
+**Harness Engineering** resuelve esto tratando al sistema alrededor del modelo (las reglas, contexto, skills, herramientas, entornos de ejecución, gates de calidad, observabilidad y evaluaciones) como un sistema de software formal bajo control de versiones.
 
 ---
 
-## Metodología rectora: Estandarizar → Medir → Mejorar
+## La metodología guía: Estandarizar → Medir → Mejorar
 
-Todo el marco conceptual se articula en tres pilares fundamentales:
+El marco completo se organiza en torno a tres pilares fundamentales:
 
 ```mermaid
 flowchart TB
     subgraph S["1. ESTANDARIZAR"]
         direction TB
         S1["Reglas y restricciones de ingeniería"]
-        S2["Skills gobernadas y reutilizables"]
+        S2["Skills operacionales gobernadas"]
         S3["Roles de agentes y subagentes"]
-        S4["Adaptadores para herramientas (Claude, Codex, OpenCode)"]
+        S4["Adaptadores de herramientas (Claude, Codex, OpenCode)"]
         S5["Control de drift y gates de calidad"]
     end
 
     subgraph M["2. MEDIR"]
         direction TB
-        M1["Sandboxes en contenedores aislados"]
-        M2["Verificación objetiva de tests (Pass/Fail)"]
-        M3["Atribución estructurada (Usado vs Disponible)"]
-        M4["Telemetría (Tokens, Costo, Pasos, Tiempo)"]
+        M1["Sandboxes aislados en contenedores"]
+        M2["Verificación objetiva pasa/falla"]
+        M3["Atribución estructurada (usadas vs disponibles)"]
+        M4["Telemetría (tokens, costo, pasos, tiempo)"]
         M5["Auditorías de comportamiento con LLM"]
     end
 
@@ -59,20 +59,20 @@ flowchart TB
         I1["Fallo → Caso de evaluación"]
         I2["Experimentos controlados A/B"]
         I3["Refinamiento de harness y skills"]
-        I4["Publicación validada con gates"]
-        I5["Suites de regresión permanentes"]
+        I4["Release verificado por gates"]
+        I5["Suites permanentes de regresión"]
     end
 
     S --> M --> I --> S
 ```
 
-1. **Estandarizar**: Definir y versionar cómo esperamos que trabajen los agentes: límites arquitectónicos, herramientas aprobadas, skills reutilizables y gates de validación.
-2. **Medir**: Dejar de evaluar agentes por percepción. Ejecutar casos reproducibles dentro de entornos sandbox controlados, midiendo atribución exacta, consumo de tokens, trazas de pasos y auditorías de comportamiento.
-3. **Mejorar**: Cerrar el ciclo de retroalimentación. Convertir los fallos de los agentes en casos de evaluación reproducibles, evaluar las mejoras bajo condiciones controladas y conservarlas como tests de regresión permanentes.
+1. **Estandarizar**: Definir y versionar cómo deben trabajar los agentes, incluyendo límites arquitectónicos, herramientas aprobadas, skills reutilizables y gates de validación.
+2. **Medir**: Reemplazar la percepción subjetiva con casos de evaluación reproducibles ejecutados dentro de entornos controlados. Registrar atribución exacta, costos en tokens, trazas de pasos y auditorías de comportamiento.
+3. **Mejorar**: Cerrar el ciclo de feedback. Convertir fallos en casos reproducibles de evaluación, probar mejoras en condiciones controladas y preservarlas como pruebas permanentes de regresión.
 
 ---
 
-## Por dónde empezar
+## Dónde comenzar
 
 <div class="grid cards" markdown>
 
@@ -80,13 +80,13 @@ flowchart TB
 
     ---
 
-    Un resumen ejecutivo y técnico de 10 minutos. Explica el problema, el modelo de madurez, el caso de estudio de migraciones de bases de datos y los próximos pasos.
+    Un informe técnico y ejecutivo de 10 minutos. Cubre el problema central, el Modelo de Madurez, el caso de estudio de migración de bases de datos y la hoja de ruta de adopción.
 
 -   :material-school: **[¿Qué es Harness Engineering?](start-here/what-is-harness-engineering.md)**
 
     ---
 
-    Descubre el Harness Stack completo: context engineering, arquitectura de reglas, skills gobernadas, gates de calidad y adaptadores para herramientas.
+    Explora el Harness Stack completo: context engineering, arquitectura de reglas, skills gobernadas, gates de calidad y adaptadores de herramientas.
 
 -   :material-chart-line: **[Modelo de madurez del Agentic SDLC](adoption/maturity-model.md)**
 
@@ -104,25 +104,29 @@ flowchart TB
 
 ---
 
-## El ecosistema de ciclo cerrado
+## El ecosistema de cinco capas
 
-Esta guía se respalda en dos implementaciones de referencia públicas:
+Esta guía articula cinco capas modulares de ingeniería con agentes en un ciclo cerrado de mejora continua:
 
 ```mermaid
-flowchart LR
-    GUIDE["Harness Engineering Guide<br/><i>(Metodología, Teoría, Patrones)</i>"]
-    MPB["ml-python-base<br/><i>(Harness gobernado de referencia)</i>"]
-    LAB["ai-agentic-harness-lab<br/><i>(Plataforma de evaluación y mejora continua)</i>"]
+flowchart TD
+    GUIDE["<b>1. MÉTODO</b><br/>harness-engineering-guide<br/><i>Principios · Patrones · Evidencia · Adopción</i>"]
+    BRAIN["<b>2. CONOCIMIENTO</b><br/>company-brain-template<br/><i>Evidencia · Decisiones · Contexto · Requerimientos</i>"]
+    HARNESS["<b>3. GOBERNANZA</b><br/>ml-python-base<br/><i>Reglas · Skills · Adaptadores · Gates de calidad</i>"]
+    RUNTIME["<b>4. RUNTIME</b><br/>ml-langchain-agent<br/><i>Clean Architecture · LangGraph · APIs persistentes</i>"]
+    LAB["<b>5. EVALUACIÓN</b><br/>sdlc-ml-python-harness-lab<br/><i>Experimentos · Sandboxes · Atribución · Scoring</i>"]
 
-    GUIDE -->|"Informa"| MPB
-    MPB -->|"Medido por"| LAB
-    LAB -->|"Propuestas sanitizadas"| MPB
-    LAB -->|"Evidencia empírica"| GUIDE
+    GUIDE --> BRAIN --> HARNESS --> RUNTIME --> LAB
+    LAB -->|"Aprendizajes empíricos"| HARNESS
+    LAB -->|"Aprendizajes empíricos"| BRAIN
+    LAB -->|"Evidencia de validación"| GUIDE
 ```
 
-1. **[Harness Engineering Guide](https://github.com/marcosdh1987/harness-engineering-guide)**: La metodología conceptual, los patrones de arquitectura y los principios de evaluación.
-2. **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: El harness de referencia listo para producción con reglas centralizadas en `.github/`, skills gobernadas, adaptadores multi-herramienta (Claude Code, OpenAI Codex, OpenCode, Antigravity, GitHub Copilot) y control automatizado de drift de lockfiles.
-3. **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: La plataforma de evaluación y benchmarking que incluye sandboxes en Docker, hashes de condición, atribución estructurada, auditorías de comportamiento y generación de propuestas sanitizadas.
+1. **Metodología**: [`harness-engineering-guide`](https://github.com/marcosdh1987/harness-engineering-guide), que define las bases conceptuales, superficies operativas y patrones.
+2. **Plano de Conocimiento**: [`company-brain-template`](https://github.com/marcosdh1987/company-brain-template), que estructura la memoria organizacional y el pipeline de promoción de evidencia.
+3. **Gobernanza de Ingeniería**: [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base), el harness de repositorio gobernado con reglas centralizadas, skills y adaptadores multi-herramienta.
+4. **Runtime de Productos Agentic**: [`ml-langchain-agent`](https://github.com/marcosdh1987/ml-langchain-agent), la plantilla para construir y desplegar servicios de agentes con LangGraph.
+5. **Plano de Evaluación**: [`sdlc-ml-python-harness-lab`](https://github.com/xmartlabs/sdlc-ml-python-harness-lab), la plataforma de evaluación continua, benchmarking en Docker y suites de regresión.
 
 ---
 
@@ -132,4 +136,4 @@ Para mantener la claridad ingenieril y el rigor metodológico, esta documentaci�
 
 1. **Evidencia de la industria**: Investigaciones públicas, hallazgos empíricos y documentos técnicos de laboratorios de frontera y benchmarks estándar (ej. Anthropic, OpenAI, SWE-bench, Princeton, Microsoft Research).
 2. **Recomendación de la guía**: Las propuestas metodológicas, modelos de madurez y patrones arquitectónicos desarrollados en esta guía.
-3. **Implementación de referencia**: Las decisiones de diseño específicas implementadas en `ml-python-base` y `ai-agentic-harness-lab`.
+3. **Implementación de referencia**: Las decisiones de diseño específicas implementadas en nuestros repositorios de referencia (`ml-python-base`, `ml-langchain-agent`, `company-brain-template` y `sdlc-ml-python-harness-lab`).

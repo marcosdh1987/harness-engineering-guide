@@ -165,7 +165,7 @@ Con el tiempo, esta suite se transforma en un **benchmark organizacional para el
 
 ## Plan de adopción en 4 pasos
 
-1. **Estandarizar un repositorio piloto**: Centralizar guías de código y 2–3 skills clave en `.github/`. Implementar quality gates automatizados (`make check`).
+1. **Estandarizar un repositorio piloto**: Centralizar guías de código y 2-3 skills clave en `.github/`. Implementar quality gates automatizados (`make check`).
 2. **Configurar sandboxes de ejecución**: Asegurar que las evaluaciones de agentes se ejecuten en contenedores Docker aislados.
 3. **Crear los primeros 5 casos de evaluación internos**: Convertir fallos recientes o fricciones de code review en instancias reproducibles.
 4. **Establecer el ciclo de mejora**: Cuando un agente falle, generar una propuesta, mejorar la skill, medir el impacto e incorporar el caso a la suite de regresión permanente.

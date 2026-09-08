@@ -14,7 +14,7 @@
 
 As AI coding assistants evolve from simple single-turn autocompletion into multi-turn autonomous agents (reading files, executing bash, running test suites, and modifying repositories), prompt engineering alone is not enough.
 
-**Harness Engineering** treats the complete system around the model—rules, context, skills, tools, sandboxed environments, quality gates, observability, and evaluation suites—as an engineered, version-controlled software product.
+**Harness Engineering** treats the complete system around the model (rules, context, skills, tools, sandboxed environments, quality gates, observability, and evaluation suites) as an engineered, version-controlled software product.
 
 ---
 
@@ -29,7 +29,7 @@ flowchart LR
     C --> A
 ```
 
-1. **Standardize**: Define and version how agents are expected to work—architectural boundaries, approved tools, reusable skills, and validation gates.
+1. **Standardize**: Define and version how agents are expected to work, architectural boundaries, approved tools, reusable skills, and validation gates.
 2. **Measure**: Replace subjective perception with reproducible evaluation cases executed inside controlled Docker sandbox environments.
 3. **Improve**: Close the feedback loop. Transform agent failures into reproducible evaluation cases, test improvements under controlled conditions, and retain them as permanent regression tests.
 

@@ -3,7 +3,7 @@
 > [!NOTE]
 > **Generated content**: This page is automatically generated from the template snapshot.
 > - **Reference Commit**: [d4e673b](https://github.com/marcosdh1987/ml-python-base/commit/d4e673b10064376b40cb165f9a166d0501aca87e) on branch `main`
-> - **Last Synced**: `2026-08-29T18:16:26.030804Z`
+> - **Last Synced**: `2026-09-08T22:20:01.991439Z`
 > - **Reference Artifacts**:
 >   - [Makefile](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/Makefile)
 > *Note: This is a study summary and index. The authoritative implementation and governance remain in the source repository.*

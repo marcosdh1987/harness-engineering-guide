@@ -91,7 +91,7 @@ En [Running Codex safely at OpenAI (2026)](https://openai.com/index/running-code
 ### 3. Anthropic: Desmitificando evals y ruido de infraestructura
 En [Demystifying evals for AI agents (2026)](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents), Anthropic resalta que las evaluaciones de agentes ponen a prueba el sistema completo (modelo + harness + entorno) y que las trazas de pasos deben capturarse junto con el estado final.
 
-Asimismo, en [Quantifying infrastructure noise in agentic coding evals (2026)](https://www.anthropic.com/engineering/infrastructure-noise), Anthropic publicó evidencia empírica que demuestra que variar los recursos de infraestructura (CPU, RAM, timeouts) provocó una oscilación de hasta **6 puntos porcentuales** en benchmarks de código (como Terminal-Bench 2.0) —un margen superior a la diferencia en leaderboards entre modelos de frontera líderes. Esta investigación confirma que la infraestructura debe configurarse con el mismo rigor que el formateo de prompts o la temperatura del modelo.
+Asimismo, en [Quantifying infrastructure noise in agentic coding evals (2026)](https://www.anthropic.com/engineering/infrastructure-noise), Anthropic publicó evidencia empírica que demuestra que variar los recursos de infraestructura (CPU, RAM, timeouts) provocó una oscilación de hasta **6 puntos porcentuales** en benchmarks de código (como Terminal-Bench 2.0) , un margen superior a la diferencia en leaderboards entre modelos de frontera líderes. Esta investigación confirma que la infraestructura debe configurarse con el mismo rigor que el formateo de prompts o la temperatura del modelo.
 
 ---
 

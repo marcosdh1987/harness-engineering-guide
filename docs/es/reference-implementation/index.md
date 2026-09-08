@@ -1,87 +1,122 @@
-# Implementaciones de referencia y el ecosistema de 3 repositorios
+# Implementaciones de referencia y el ecosistema de cinco capas
 
-La metodología de **Harness Engineering** no es una abstracción teórica. Está completamente respaldada en un **ecosistema público de tres repositorios en funcionamiento** que conecta metodología, gobernanza técnica y evaluación empírica en un ciclo continuo de mejora:
-
----
+La metodología de **Harness Engineering** no es una teoría abstracta. Está fundamentada en un ecosistema modular de cinco capas en funcionamiento que conecta metodología, conocimiento canónico, gobernanza técnica, runtimes de productos y evaluación empírica en un ciclo continuo de mejora.
 
 ```mermaid
-flowchart LR
-    GUIDE["<b>1. Teoría y Metodología</b><br/>harness-engineering-guide<br/><i>(Patrones, Principios, Evals)</i>"]
-    MPB["<b>2. Harness Gobernado</b><br/>ml-python-base<br/><i>(Reglas, Skills, Adaptadores, Gates)</i>"]
-    LAB["<b>3. Plataforma de Evaluación</b><br/>ai-agentic-harness-lab<br/><i>(Sandboxes, Atribución, Auditorías)</i>"]
+flowchart TD
+    GUIDE["<b>1. MÉTODO</b><br/>harness-engineering-guide<br/><i>Principios · Patrones · Evidencia · Adopción</i>"]
+    BRAIN["<b>2. CONOCIMIENTO</b><br/>company-brain-template<br/><i>Evidencia · Decisiones · Contexto · Requerimientos</i>"]
+    HARNESS["<b>3. GOBERNANZA</b><br/>ml-python-base<br/><i>Reglas · Skills · Adaptadores · Gates de calidad</i>"]
+    RUNTIME["<b>4. RUNTIME</b><br/>ml-langchain-agent<br/><i>Clean Architecture · LangGraph · APIs persistentes</i>"]
+    LAB["<b>5. EVALUACIÓN</b><br/>sdlc-ml-python-harness-lab<br/><i>Experimentos · Sandboxes · Atribución · Scoring</i>"]
 
-    GUIDE -->|"Define la Arquitectura"| MPB
-    MPB -->|"Se Mide En"| LAB
-    LAB -->|"Propuestas HEP Sanitizadas"| MPB
-    LAB -->|"Benchmarks Empíricos"| GUIDE
+    GUIDE -->|"Define arquitectura"| BRAIN
+    GUIDE -->|"Define estándares"| HARNESS
+    GUIDE -->|"Define diseño"| RUNTIME
+    BRAIN -->|"Plano de contexto"| HARNESS
+    HARNESS -->|"Gobierna ingeniería"| RUNTIME
+    RUNTIME -->|"Probado en"| LAB
+    HARNESS -->|"Evaluado en"| LAB
+    LAB -->|"Aprendizajes empíricos"| HARNESS
+    LAB -->|"Aprendizajes empíricos"| BRAIN
+    LAB -->|"Evidencia de validación"| GUIDE
 ```
 
-$$\mathbf{MÉTODO} \longrightarrow \mathbf{IMPLEMENTAR} \longrightarrow \mathbf{MEDIR} \longrightarrow \mathbf{APRENDER} \longrightarrow \mathbf{MEJORAR} \circlearrowleft$$
+---
+
+## Las dos perspectivas arquitectónicas
+
+El ecosistema resuelve dos necesidades complementarias:
+
+### 1. Perspectiva de contexto organizacional
+
+Cómo fluye el conocimiento desde los sistemas corporativos hacia los repositorios de desarrollo:
+
+```text
+Sistemas de registro corporativos
+GitHub · Jira · Slack · Notion · Fuentes de clientes
+                    │
+                    ▼
+               COMPANY BRAIN
+           Plano de Conocimiento
+ evidencia · decisiones · requerimientos · capacidades · contexto
+                    │
+                    ▼
+            ENGINEERING HARNESS
+               ml-python-base
+ reglas · skills · herramientas · gates · entorno · ciclo de trabajo
+```
+
+### 2. Perspectiva del ciclo de vida completo
+
+Cómo el sistema de agentes opera, mide, aprende y mejora de forma continua:
+
+```text
+Evidencia
+   ↓
+Conocimiento gobernado
+   ↓
+Contexto seleccionado + Gobernanza ejecutable
+   ↓
+Ejecución del agente
+   ↓
+Resultados medidos
+   ↓
+Aprendizaje revisado
+   ↓
+Mejora del harness y del conocimiento
+   ↺
+```
 
 ---
 
-## Los tres repositorios
+## Los cinco repositorios del ecosistema
 
-### 1. Guía de Harness Engineering (`harness-engineering-guide`)
-*La base de conocimiento pública y la metodología.*
-- **Rol**: Explica los conceptos, el Modelo de Madurez del Agentic SDLC, el ciclo Estandarizar-Medir-Mejorar, principios de sandboxing, ingeniería de evaluación y patrones de diseño.
-- **Independencia**: **Autocontenida.** No necesitas clonar ni ejecutar los otros repositorios para aprender y aplicar esta metodología en tu propia organización.
+### 1. Metodología: `harness-engineering-guide`
+*La base de conocimiento pública, referencia de arquitectura y catálogo de patrones.*
+- **Rol**: Explica principios centrales, las Cinco Superficies Operativas, Estado y Continuidad, Desarrollo guiado por especificaciones (Spec-Driven) e Ingeniería de evaluación.
 - **Repositorio**: [`marcosdh1987/harness-engineering-guide`](https://github.com/marcosdh1987/harness-engineering-guide).
 
----
+### 2. Plano de Conocimiento: `company-brain-template`
+*La memoria persistente y legible por agentes para una organización o proyecto.*
+- **Rol**: Estructura la evidencia organizacional en conocimiento canónico mediante un pipeline de promoción con vocabulario estandarizado de estados (`CONFIRMED`, `PENDING VALIDATION`, `INFERRED`, `SUPERSEDED`, `BLOCKED`).
+- **Repositorio**: [`marcosdh1987/company-brain-template`](https://github.com/marcosdh1987/company-brain-template).
+- **Documentación**: [Guía de referencia de Company Brain](company-brain-template/index.md).
 
-### 2. ML Python Base (`ml-python-base`)
-*La implementación de referencia de un harness gobernado.*
-- **Rol**: Funciona como un template listo para producción para repositorios de ingeniería.
-- **Características clave**:
-  - Capa centralizada de reglas bajo `.github/` (`standards.md`, `architecture.md`, `automation.md`).
-  - Catálogo de skills gobernadas (`.github/skills/`) con procedimientos estructurados.
-  - Motor de sincronización declarativo en Python que genera adaptadores nativos (`CLAUDE.md`, `AGENTS.md`, `OPENCODE.md`, `GEMINI.md`, `.github/copilot-instructions.md`).
-  - Quality gates de CI de solo lectura (`make check`, `make check-sync`) que verifican la integridad de lockfiles y evitan el drift no comprometido.
+### 3. Gobernanza de Ingeniería: `ml-python-base`
+*La plantilla de nivel de producción para un harness de repositorio gobernado.*
+- **Rol**: Gobierna cómo programan los agentes de código dentro del repositorio mediante reglas centralizadas (`.github/`), skills gobernadas (`.github/skills/`), adaptadores de herramientas (Claude Code, Codex, OpenCode, Antigravity, Copilot) y gates estrictos de CI (`make check`).
 - **Repositorio**: [`marcosdh1987/ml-python-base`](https://github.com/marcosdh1987/ml-python-base).
 - **Documentación**: [Guía de referencia de ml-python-base](ml-python-base/index.md).
 
----
+### 4. Runtime de Productos Agentic: `ml-langchain-agent`
+*La plantilla de aplicación para construir y desplegar productos basados en agentes.*
+- **Rol**: Provee Clean Architecture, bucles de LangGraph dirigidos por stop reasons del proveedor, persistencia de conversaciones (thread_id, resume, fork) y contratos de servicio FastAPI para redes de agentes.
+- **Repositorio**: [`marcosdh1987/ml-langchain-agent`](https://github.com/marcosdh1987/ml-langchain-agent).
+- **Documentación**: [Guía de referencia de ml-langchain-agent](ml-langchain-agent/index.md).
 
-### 3. Agentic Harness Lab (`ai-agentic-harness-lab`)
-*La implementación de referencia de una plataforma de evaluación, benchmarking y mejora continua.*
-- **Rol**: Proporciona una aplicación web local y backend de ejecución para evaluar harnesses de agentes y retroalimentar las observaciones en los templates de gobernanza.
-- **Características clave**:
-  - Ejecución aislada en contenedores Docker por corrida con workers en Celery + Redis.
-  - Soporte multi-harness (Claude Code, OpenCode, Codex, Antigravity).
-  - Hash de condición (`condition_hash`) y fingerprinting de harness.
-  - Atribución estructurada (skills usadas vs disponibles).
-  - Auditorías de comportamiento mediante LLMs y scoring multidimensional.
-  - Generador de propuestas sanitizadas de ciclo cerrado (`HEP-YYYY-NNN`).
-- **Repositorio**: [`marcosdh1987/ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab).
-- **Documentación**: [Guía de referencia de ai-agentic-harness-lab](ai-agentic-harness-lab/index.md).
+### 5. Plano de Evaluación: `sdlc-ml-python-harness-lab`
+*La plataforma empresarial de evaluación, benchmarking y mejora continua.*
+- **Rol**: Ejecuta experimentos controlados entre harnesses candidatos y modelos en sandboxes de Docker. Implementa Modos de evaluación A/B/C, hashes de condición, huellas digitales de harness, atribución, métricas de DeepEval, auditorías de comportamiento y un registro de scores que separa Hechos, Observaciones y Juicios.
+- **Repositorio**: `git@github.com:xmartlabs/sdlc-ml-python-harness-lab.git` (con línea base abierta inicial en [`marcosdh1987/ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)).
+- **Documentación**: [Guía de referencia del Harness Lab](ai-agentic-harness-lab/index.md).
 
 ---
 
-## Cómo se cierra el ciclo en la práctica
+## Adopción incremental: La complejidad debe ganarse
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Engineer as Ingeniero / Lead
-    participant Lab as ai-agentic-harness-lab
-    participant MPB as ml-python-base
-    
-    Engineer->>Lab: Ejecuta caso de evaluación (ej. migración de BD)
-    Lab->>Lab: Ejecuta en sandbox Docker y analiza logs de pasos
-    Lab->>Engineer: Atribución + Auditoría muestran debilidad en una skill
-    Engineer->>Lab: Clic en "Generar issue sanitizado" (HEP-YYYY-NNN)
-    Engineer->>MPB: Abre issue sanitizado y mejora la skill en .github/skills/
-    MPB->>MPB: Ejecuta quality gates locales (make check && make check-sync)
-    MPB->>MPB: Publica release SemVer (v1.4.0)
-    Engineer->>Lab: make harness-sync-branch REF=v1.4.0
-    Engineer->>Lab: Re-ejecuta el mismo caso en todo el tier de modelos
-    Lab->>Engineer: Verificación aprobada: 0 propuestas generadas (Ciclo Cerrado)
-```
+No todos los proyectos requieren los cinco componentes desde el primer día. Los equipos adoptan el ecosistema paso a paso:
+
+- **Proyecto Python normal**: `ml-python-base` por sí solo provee reglas, skills y gates de calidad inmediatos.
+- **Proyecto de producto agentic**: `ml-python-base` para la gobernanza del código y `ml-langchain-agent` para el runtime del producto.
+- **Cliente u organización multi-repositorio**: Se incorpora Company Brain para enlazar requerimientos y arquitectura entre servicios.
+- **Organización madura**: Company Brain centralizado, harnesses compartidos, múltiples runtimes de dominio y una plataforma de evaluación ejecutando suites de regresión continuas.
 
 ---
 
-### Explorar las implementaciones
-- **[ml-python-base: Harness gobernado](ml-python-base/index.md)**
-- **[ai-agentic-harness-lab: Plataforma de evaluación](ai-agentic-harness-lab/index.md)**
-- **[Flujos de evaluación en el Lab](ai-agentic-harness-lab/evaluation-workflow.md)**
+### Explora las implementaciones
+
+- **[Template de Company Brain: Plano de Conocimiento](company-brain-template/index.md)**
+- **[ml-python-base: Harness Gobernado](ml-python-base/index.md)**
+- **[ml-langchain-agent: Runtime de Productos Agentic](ml-langchain-agent/index.md)**
+- **[Harness Lab: Plataforma de Evaluación](ai-agentic-harness-lab/index.md)**

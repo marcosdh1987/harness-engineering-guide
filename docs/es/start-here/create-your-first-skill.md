@@ -15,7 +15,7 @@ description: <one line — when Claude should use this>
 ```
 
 `name` debe ser igual al nombre del archivo sin `.md`. El `description` es el disparador
-semántico — escribilo como "Use when …" para que Claude sepa cuándo recurrir a la skill.
+semántico, escribilo como "Use when …" para que Claude sepa cuándo recurrir a la skill.
 
 ## El flujo de 3 pasos
 
@@ -35,7 +35,7 @@ semántico — escribilo como "Use when …" para que Claude sepa cuándo recurr
 
 ## Qué hace el motor por vos
 
-`make sync-skills` no solo copia un archivo — conecta la skill en cada adapter de herramienta:
+`make sync-skills` no solo copia un archivo, conecta la skill en cada adapter de herramienta:
 
 - crea el symlink `.claude/skills/<name>/SKILL.md → ../../../.github/skills/<name>.md`;
 - regenera la región gestionada **entre los sentinelas** en `CLAUDE.md`, para que tu nueva
@@ -48,7 +48,7 @@ Ver [Referencia › Adapters](../reference-implementation/ml-python-base/adapter
 
 ## Un ejemplo trabajado
 
-Una skill diminuta y realista — resumir un pull request:
+Una skill diminuta y realista, resumir un pull request:
 
 ```markdown
 ---
@@ -79,8 +79,8 @@ check-sync`. Ahora aparece en `.claude/skills/` y en la región de skills de `CL
 
 ## Profundizá más
 
-Esta página es el inicio rápido. Para la disciplina completa de autoría — encuadre de
-escenarios, validación, modos de falla y reflexión — hacé el lab:
+Esta página es el inicio rápido. Para la disciplina completa de autoría, encuadre de
+escenarios, validación, modos de falla y reflexión, hacé el lab:
 
 - [Lab: Crear una skill](../labs/create-a-skill.md)
 - [Patrones › Diseño de skills](../patterns/skill-design.md)

@@ -24,7 +24,21 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install .
+          pip install . pytest ruff
+
+      - name: Check code formatting and lint
+        run: |
+          ruff check scripts tests
+          ruff format --check scripts tests
+
+      - name: Run unit tests
+        run: pytest tests
+
+      - name: Check reference drift
+        run: python scripts/check_reference_drift.py
+
+      - name: Check prose style
+        run: python scripts/check_prose_style.py --strict docs README.md
 
       - name: Build documentation
         run: mkdocs build --strict

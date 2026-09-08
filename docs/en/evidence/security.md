@@ -17,7 +17,7 @@
 - **Accessed Date**: `2026-06-24`
 - **Related Topics**: `prompt-injection`, `output-handling`, `data-disclosure`
 - **Summary & Notes**:
-  Industry standard security guidance highlighting vulnerabilities in LLM-integrated systems, specifically Prompt Injection (LLM01), Insecure Output Handling (LLM02), and Sensitive Information Disclosure (LLM06) in agentic pipelines.
+  Industry security guidance highlighting vulnerabilities in LLM-integrated systems, specifically Prompt Injection (LLM01), Insecure Output Handling (LLM02), and Sensitive Information Disclosure (LLM06) in agentic pipelines.
 
 ---
 ### The Security Threat Model of Agentic IDE Integrations

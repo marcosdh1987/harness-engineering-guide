@@ -23,7 +23,7 @@ flowchart TB
 
 ## The 6 Stages of Organizational Maturity
 
-### Level 0 — Ad-hoc AI
+### Level 0, Ad-hoc AI
 *Individual experimentation without shared standards.*
 
 - **Characteristics**: Developers choose their own AI tools (ChatGPT, GitHub Copilot, Claude, Cursor) without coordination. Prompts are entered ad-hoc into chat interfaces.
@@ -33,7 +33,7 @@ flowchart TB
 
 ---
 
-### Level 1 — Shared Instructions
+### Level 1, Shared Instructions
 *Emergence of shared prompts and basic instruction files.*
 
 - **Characteristics**: Teams begin documenting common prompts in Notion or sharing baseline instruction files (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`) in repository roots.
@@ -43,7 +43,7 @@ flowchart TB
 
 ---
 
-### Level 2 — Governed Harness
+### Level 2, Governed Harness
 *Centralized rules, structured skills, and automated drift control.*
 
 - **Characteristics**: Rules, architectural layering guidelines, and modular skills are centralized (e.g., in `.github/`) as the single source of truth. Automated adapters project rules to all supported AI tools. Automated CI quality gates (`make check`, `make check-sync`) enforce lockfile consistency and block uncommitted drift.
@@ -54,17 +54,17 @@ flowchart TB
 
 ---
 
-### Level 3 — Observable Harness
+### Level 3, Observable Harness
 *Telemetry, execution tracing, and structured attribution.*
 
 - **Characteristics**: Every agent execution is instrumented. Step logs, token consumption, financial cost, wall-clock latency, tool invocations, and error rates are captured into tracing backends (e.g., OpenTelemetry, Langfuse).
-- **Attribution**: The system measures **used vs available attribution**—explicitly tracking which repository documentation, rules, and skills the agent actually read and exercised during execution.
+- **Attribution**: The system measures **used vs available attribution**, explicitly tracking which repository documentation, rules, and skills the agent actually read and exercised during execution.
 - **Failure Mode**: Teams have high observability ("what happened") but lack objective validation of whether changes improved agent capability ("was it good").
 - **Key Artifacts**: Step log parsers, tracing integrations, attribution matrices, token cost dashboards.
 
 ---
 
-### Level 4 — Evaluated Harness
+### Level 4, Evaluated Harness
 *Internal evaluation suites, sandboxed benchmarks, and controlled A/B testing.*
 
 - **Characteristics**: The organization maintains a repository of **reproducible evaluation cases** reflecting its real-world codebase and architecture. Agent trials run in **isolated container sandboxes** (Docker) with strict resource controls.
@@ -76,7 +76,7 @@ flowchart TB
 
 ---
 
-### Level 5 — Continuously Improving Agentic SDLC
+### Level 5, Continuously Improving Agentic SDLC
 *Closed-loop feedback: failures automatically compound into organizational capabilities.*
 
 - **Characteristics**: The feedback loop is fully closed. When an agent fails in production or during code review:
@@ -106,7 +106,7 @@ flowchart TB
 ---
 
 !!! note "Assessing maturity honestly"
-    Two rules keep a maturity assessment from becoming a brochure. First, at Levels 4–5 the working unit is the **experiment** (a stated question, declared arms, a mode that licenses its conclusion — see [The Three Questions](../evaluation/the-three-questions.md)), not the individual run. Second, the assessment itself stays **human and evidence-backed**: a level claimed above "governed" should point at concrete runs and experiments, and a dimension without evidence is reported as *unknown*, never scored by intuition — the methodology applies to evaluating your own maturity too.
+    Two rules keep a maturity assessment from becoming a brochure. First, at Levels 4-5 the working unit is the **experiment** (a stated question, declared arms, a mode that licenses its conclusion (see [The Three Questions](../evaluation/the-three-questions.md)), not the individual run. Second, the assessment itself stays **human and evidence-backed**: a level claimed above "governed" should point at concrete runs and experiments, and a dimension without evidence is reported as *unknown*, never scored by intuition) the methodology applies to evaluating your own maturity too.
 
 
 ### Next Steps

@@ -8,7 +8,7 @@ ships, and to *change* them safely.
 A skill packages a repeatable engineering task with explicit input and structured output,
 so Claude performs it consistently instead of improvising. For the conceptual framing see
 [Skills vs Prompts](../concepts/skills-vs-prompts.md) and
-[Patterns › Skill Design](../patterns/skill-design.md) — this page is about the mechanics.
+[Patterns › Skill Design](../patterns/skill-design.md), this page is about the mechanics.
 
 ## Internal vs. external vs. projected
 
@@ -22,7 +22,7 @@ Three locations, and only one is yours to edit:
 
 !!! warning "Edit the source, never the projection"
     `.claude/skills/` is generated output (symlinks back to the source). If you change a
-    projected copy, the change is fragile and will be overwritten on the next sync — and it
+    projected copy, the change is fragile and will be overwritten on the next sync, and it
     won't reach the other tool adapters. Always edit `.github/skills/<name>.md`.
 
 ## Using a skill in a session
@@ -52,7 +52,7 @@ Two native skill-frontmatter fields are worth knowing early:
 !!! note "Native Claude Code capability"
     - **`context: fork`** runs the skill in an isolated subagent, so a high-output task
       (like exploring a large codebase) doesn't flood your main conversation's context.
-    - **`allowed-tools`** restricts which tools a skill may use — e.g. read-only, to
+    - **`allowed-tools`** restricts which tools a skill may use, e.g. read-only, to
       prevent accidental destructive edits.
 
 !!! tip "How ml-python-base applies it"

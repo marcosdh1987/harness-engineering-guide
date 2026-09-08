@@ -4,12 +4,12 @@ The [From Project to Organization](project-to-organization.md) page introduces
 the Company Brain as a concept. This page documents its **concrete
 implementation**: the
 [`company-brain-template`](https://github.com/marcosdh1987/company-brain-template)
-repository — a materialized starting point for the organizational
+repository, a materialized starting point for the organizational
 context layer, consolidated from real-world operations and client engagements.
 
 !!! tip "When to reach for this template"
     Not on day one. A single-repo engagement keeps its context *inside* the
-    repo (`memory/`, `docs/adr/`, domain docs) — that in-repo **project
+    repo (`memory/`, `docs/adr/`, domain docs), that in-repo **project
     brain** is enough. This template earns its place when the scope
     spans more than one repo, more than one project, or an operational
     relationship where evidence and decisions must outlive any individual codebase. The
@@ -27,8 +27,8 @@ raw material              promotion                canonical knowledge
 09-references/
 ```
 
-Every non-obvious statement carries one of five statuses — `CONFIRMED`,
-`PENDING VALIDATION`, `INFERRED`, `SUPERSEDED`, `BLOCKED` — and a source.
+Every non-obvious statement carries one of five statuses, `CONFIRMED`,
+`PENDING VALIDATION`, `INFERRED`, `SUPERSEDED`, `BLOCKED`, and a source.
 Sources get IDs (`SRC-XXX`) in a **source register** that also records
 conflicts between sources and the precedence rule adopted, without ever
 editing the original evidence. Decisions are immutable `DEC-XXX` entries.
@@ -82,7 +82,7 @@ enforces only active ones. `make init ORG="…" PROFILE=…` preselects them
 | `99-inbox/` | ✔ | landing zone; files leave marked `processed--` |
 
 `02-organization/` is where the organization's ways of working live as
-**declarations** — the engineering harness *enforces* them in each repo; the
+**declarations**: the engineering harness *enforces* them in each repo; the
 brain *declares* them once. This includes `conventions/ticketing.md`: generic
 skills ("plan from ticket") read it to adapt to the organization's tracker,
 workflow states, and definitions of ready/done.
@@ -95,7 +95,7 @@ The evolution of the Company Brain from early consulting templates into producti
 
 ### 1. The Transition from `03-projects/` to `03-work/`
 Early brain architectures modeled organizational activity strictly as "projects" (`03-projects/`). In real management operations, this proved too rigid:
-- Much of organizational work consists of recurring operational rhythms, cross-cutting discovery spikes, infrastructure maintenance, or internal capability building—none of which are traditional software projects.
+- Much of organizational work consists of recurring operational rhythms, cross-cutting discovery spikes, infrastructure maintenance, or internal capability building, none of which are traditional software projects.
 - `03-work/` unifies all operational activity under a cohesive **work-unit taxonomy**.
 
 ### 2. Stage vs. Folder (Decoupling Status from File Paths)
@@ -127,7 +127,7 @@ Large organizations contain diverse participants: executive leadership, engineer
 ## The workspace model: brain + code repos
 
 When the organization has code repositories, the layout is **hub-and-spoke
-with sibling clones — never submodules, never nested**:
+with sibling clones, never submodules, never nested**:
 
 ```text
 ~/work/acme/
@@ -136,11 +136,11 @@ with sibling clones — never submodules, never nested**:
 └── web-portal/          ← spoke
 ```
 
-A developer's day 1 is `git clone <brain> && make workspace` — the target
+A developer's day 1 is `git clone <brain> && make workspace`, the target
 reads `04-architecture/repos.yaml` and clones every registered repo
 alongside. Submodules are rejected deliberately: a submodule pins a commit
 (stale context by design), adds clone/permission friction, and inverts the
-dependency — context must not depend on code. The sibling convention makes
+dependency, context must not depend on code. The sibling convention makes
 the relative import path predictable on every machine; if the brain is
 missing, imports degrade gracefully, and CI checks the brain out as a second
 repo instead. Full rationale: the template's `docs/workspace.md`.
@@ -154,7 +154,7 @@ promotion), `process_meeting` (transcript → minutes → promoted knowledge),
 `update_domain_context`, `record_decision`, `add_runbook`, and
 `quarterly_context_review` (the anti-drift audit). Validation is automated
 and semantic: `make validate` checks structure per config, links, duplicate
-IDs, decisions without sources, and reports placeholder/inbox debt. The brain also **syncs working skills** (brainstorming, planning, research, writing) from the harness — declared in `brain.config.json`, locked per sha256 — and projects every skill into `.claude/`, `.codex/`, and `.agents/` layouts so Claude Code, Codex, and Antigravity discover them natively (`make sync-skills`).
+IDs, decisions without sources, and reports placeholder/inbox debt. The brain also **syncs working skills** (brainstorming, planning, research, writing) from the harness (declared in `brain.config.json`, locked per sha256) and projects every skill into `.claude/`, `.codex/`, and `.agents/` layouts so Claude Code, Codex, and Antigravity discover them natively (`make sync-skills`).
 
 ## Relationship to the rest of the ecosystem
 

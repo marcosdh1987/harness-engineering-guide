@@ -34,7 +34,7 @@ En lugar de reinventar estas estructuras en cada proyecto, los equipos pueden ad
 
 ## Qué sigue siendo específico del proyecto
 
-Aunque las estructuras de templates se pueden compartir, cada repositorio posee un contexto de dominio único que no puede—ni debe—estandarizarse globalmente.
+Aunque las estructuras de templates se pueden compartir, cada repositorio posee un contexto de dominio único que no puede (ni debe) estandarizarse globalmente.
 
 Los elementos específicos del proyecto incluyen:
 

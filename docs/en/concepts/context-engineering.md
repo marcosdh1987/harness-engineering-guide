@@ -2,7 +2,7 @@
 
 **Context Engineering** is the disciplined practice of designing, structuring, curating, and selectively injecting information into an AI agent's active context window.
 
-Context quality—not context volume—is the single greatest determinant of AI coding performance. While modern LLMs boast context windows exceeding one million tokens, indiscriminately flooding the model with documentation causes catastrophic degradation in reasoning, precision, and adherence to rules.
+Context quality (not context volume) is the single greatest determinant of AI coding performance. While modern LLMs boast context windows exceeding one million tokens, indiscriminately flooding the model with documentation causes catastrophic degradation in reasoning, precision, and adherence to rules.
 
 Effective context engineering treats the context window as **finite, high-cost working memory**, reserving the vast majority of tokens for the active code, syntax trees, test output, and reasoning traces.
 
@@ -17,7 +17,7 @@ A frequent mistake in AI-assisted software engineering is **context flooding** (
 1. **Needle-in-a-Haystack Degradation**: As token counts grow, the model's ability to recall and strictly prioritize critical constraints diminishes. Subtle security rules or typing requirements get lost amidst hundreds of lines of background explanations.
 2. **Instruction Confusion & Drift**: Stale or conflicting historical documents cause the agent to vacillate between deprecated conventions and current standards, leading to confident but incorrect architectural decisions.
 3. **Token Dilution & Latency**: High-volume prompts slow down inference speed, increase operational costs, and exhaust rate limits without improving output quality.
-4. **Displacement of Working State**: Filling the prompt with static context leaves insufficient room for dynamic runtime feedback—compiler errors, test outputs, and diff validations.
+4. **Displacement of Working State**: Filling the prompt with static context leaves insufficient room for dynamic runtime feedback, compiler errors, test outputs, and diff validations.
 
 > **Core Rule**: Never broadcast organizational knowledge indiscriminately. Good context engineering is about **high-signal curation**, not exhaustive ingestion.
 

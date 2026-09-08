@@ -14,7 +14,7 @@ description: <one line — when Claude should use this>
 ---
 ```
 
-`name` must equal the filename without `.md`. The `description` is the semantic trigger —
+`name` must equal the filename without `.md`. The `description` is the semantic trigger , 
 write it as "Use when …" so Claude knows when to reach for the skill.
 
 ## The 3-step flow
@@ -35,7 +35,7 @@ write it as "Use when …" so Claude knows when to reach for the skill.
 
 ## What the engine does for you
 
-`make sync-skills` doesn't just copy a file — it wires the skill into every tool adapter:
+`make sync-skills` doesn't just copy a file, it wires the skill into every tool adapter:
 
 - creates the symlink `.claude/skills/<name>/SKILL.md → ../../../.github/skills/<name>.md`;
 - regenerates the managed region **between the sentinels** in `CLAUDE.md`, so your new
@@ -48,7 +48,7 @@ See [Reference › Adapters](../reference-implementation/ml-python-base/adapters
 
 ## A worked example
 
-A tiny, realistic skill — summarize a pull request:
+A tiny, realistic skill, summarize a pull request:
 
 ```markdown
 ---
@@ -79,8 +79,8 @@ check-sync`. It now shows up in `.claude/skills/` and in the `CLAUDE.md` skills 
 
 ## Go deeper
 
-This page is the quickstart. For the full authoring discipline — scenario framing,
-validation, failure modes, and reflection — do the lab:
+This page is the quickstart. For the full authoring discipline, scenario framing,
+validation, failure modes, and reflection, do the lab:
 
 - [Lab: Create a Skill](../labs/create-a-skill.md)
 - [Patterns › Skill Design](../patterns/skill-design.md)

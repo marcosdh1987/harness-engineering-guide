@@ -8,7 +8,7 @@ que un repo ya trae, y a *modificarlas* de forma segura.
 Una skill empaqueta una tarea de ingeniería repetible con entrada explícita y salida
 estructurada, de modo que Claude la realiza de forma consistente en lugar de improvisar. Para
 el marco conceptual ver [Skills vs prompts](../concepts/skills-vs-prompts.md) y
-[Patrones › Diseño de skills](../patterns/skill-design.md) — esta página es sobre la mecánica.
+[Patrones › Diseño de skills](../patterns/skill-design.md), esta página es sobre la mecánica.
 
 ## Interna vs. externa vs. proyectada
 
@@ -22,7 +22,7 @@ Tres ubicaciones, y solo una es tuya para editar:
 
 !!! warning "Editá la fuente, nunca la proyección"
     `.claude/skills/` es salida generada (symlinks de vuelta a la fuente). Si cambiás una
-    copia proyectada, el cambio es frágil y se va a sobreescribir en el próximo sync — y no
+    copia proyectada, el cambio es frágil y se va a sobreescribir en el próximo sync, y no
     va a llegar a los otros adapters de herramientas. Editá siempre `.github/skills/<name>.md`.
 
 ## Usar una skill en una sesión
@@ -52,7 +52,7 @@ Dos campos nativos del frontmatter de skills vale la pena conocer temprano:
 !!! note "Capacidad nativa de Claude Code"
     - **`context: fork`** ejecuta la skill en un subagente aislado, para que una tarea de alta
       salida (como explorar un codebase grande) no inunde el contexto de tu conversación principal.
-    - **`allowed-tools`** restringe qué herramientas puede usar una skill — por ejemplo,
+    - **`allowed-tools`** restringe qué herramientas puede usar una skill, por ejemplo,
       solo lectura, para prevenir ediciones destructivas accidentales.
 
 !!! tip "Cómo lo aplica ml-python-base"
