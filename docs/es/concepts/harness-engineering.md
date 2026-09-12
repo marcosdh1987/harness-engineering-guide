@@ -1,8 +1,15 @@
 # Harness Engineering
 
-**Harness Engineering** es la práctica de diseñar, gobernar, observar, evaluar y mejorar de forma continua el sistema completo alrededor de los agentes de inteligencia artificial aplicados al desarrollo de software.
+!!! info "Sobre esta página"
+    **Qué vas a aprender:** los principios estables detrás de contexto, reglas, skills, herramientas, verificación y evaluación.
 
-En lugar de concebir la asistencia de IA como una simple conversación de chat efímera, Harness Engineering estructura todo el sistema operativo del desarrollo: reglas de arquitectura persistentes, skills modulares, memoria contextual del repositorio, adaptadores multi-herramienta, sandboxes en contenedores, gates de calidad y suites de regresión automatizadas.
+    **Para quién:** todos, con profundidad adicional para practitioners técnicos.
+
+    **Leela cuando:** quieras la base conceptual antes de explorar implementaciones.
+
+**Harness Engineering** es la práctica de diseñar, gobernar, observar, evaluar y mejorar de forma continua el sistema completo alrededor de agentes de inteligencia artificial aplicados al software y al trabajo de conocimiento.
+
+En lugar de concebir el trabajo con IA como una conversación efímera, Harness Engineering estructura el sistema operativo que lo rodea: contexto confiable, reglas persistentes, skills modulares, adaptadores de herramientas, verificación, gates de calidad, observabilidad y evaluación. Los mismos principios pueden sostener un Engineering Harness o un Knowledge Harness.
 
 ---
 

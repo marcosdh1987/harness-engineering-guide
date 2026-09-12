@@ -1,5 +1,12 @@
 # Agentic SDLC para equipos de ingeniería
 
+!!! info "Sobre esta página"
+    **Qué vas a aprender:** cómo pasar del uso individual de herramientas de IA a un Engineering Harness gobernado.
+
+    **Para quién:** developers, tech leads, engineering managers y AI champions.
+
+    **Leela cuando:** quieras un plan de adopción que termine en una base de repositorio funcional, no solo en un marco conceptual.
+
 **Del uso individual de herramientas de IA a un sistema de desarrollo asistido por agentes, medible y en mejora continua**
 
 *Tiempo estimado de lectura: ~10 minutos*
@@ -165,16 +172,27 @@ Con el tiempo, esta suite se transforma en un **benchmark organizacional para el
 
 ## Plan de adopción en 4 pasos
 
-1. **Estandarizar un repositorio piloto**: Centralizar guías de código y 2-3 skills clave en `.github/`. Implementar quality gates automatizados (`make check`).
-2. **Configurar sandboxes de ejecución**: Asegurar que las evaluaciones de agentes se ejecuten en contenedores Docker aislados.
-3. **Crear los primeros 5 casos de evaluación internos**: Convertir fallos recientes o fricciones de code review en instancias reproducibles.
-4. **Establecer el ciclo de mejora**: Cuando un agente falle, generar una propuesta, mejorar la skill, medir el impacto e incorporar el caso a la suite de regresión permanente.
+1. **Empezar desde una base de Engineering Harness**: Para un developer o equipo de software, cloná [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base) y usalo como punto de inicio avanzado. Provee reglas gobernadas, skills, adapters, gates de calidad y el ciclo de ingeniería común. Para una adopción conceptual, un manager puede empezar por los mismos principios sin operar el repositorio.
+2. **Adaptar la base al equipo**: Mantené la fuente de verdad compartida en `.github/`, entendé las skills por [familia e intención](../use/skills-por-intencion.md) y agregá solo la guía de dominio que el equipo pueda mantener. Usá [Crear tu primera skill](create-your-first-skill.md) para agregar una capacidad y [Usar y modificar skills](use-and-modify-skills.md) para cambiar una existente.
+3. **Medir trabajo representativo**: Configurá sandboxes de ejecución cuando haga falta y capturá los primeros casos internos a partir de fallos, incidentes o fricciones recientes de code review. Usá [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) cuando corresponda una comparación controlada.
+4. **Establecer el ciclo de mejora**: Cuando un agente falle, generá una propuesta, mejorá la regla o skill, medí el impacto, revisá la [proyección de adapters](../reference-implementation/ml-python-base/adapters.md) e incorporá el caso a [regresión](../evaluation/regression-suites.md).
+
+!!! tip "Punto de inicio para developers"
+    Si construís software, cloná [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base) como tu workspace gobernado inicial:
+
+    ```bash
+    git clone https://github.com/marcosdh1987/ml-python-base.git
+    cd ml-python-base
+    make check
+    ```
+
+    Después leé [Skills por intención](../use/skills-por-intencion.md) para la ruta corta, [Skills gobernadas](../reference-implementation/ml-python-base/skills.md) para el inventario completo y [Diseño de skills](../patterns/skill-design.md) antes de crear o cambiar una skill. La implementación autoritativa permanece en el repositorio clonado.
 
 ---
 
 ## Implementaciones de referencia
 
-Esta guía se respalda en dos repositorios de referencia abiertos:
+Esta guía se respalda en las referencias de ingeniería más relevantes para este camino:
 
 - **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: Implementación de referencia de un **Harness gobernado** (reglas centralizadas, sincronización de skills, adaptadores multi-herramienta, gates de CI).
 - **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: Implementación de referencia de una **Plataforma de evaluación y mejora continua** (ejecución en Docker, atribución, auditorías con LLM, generación de propuestas sanitizadas).

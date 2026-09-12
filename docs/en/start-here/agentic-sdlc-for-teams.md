@@ -1,5 +1,12 @@
 # Agentic SDLC for Engineering Teams
 
+!!! info "About this page"
+    **What you will learn:** how a team can move from individual AI tooling to a governed Engineering Harness.
+
+    **For:** developers, tech leads, engineering managers, and AI champions.
+
+    **Read this when:** you want an adoption plan that ends in a working repository baseline, not only a conceptual framework.
+
 **From Individual AI Tooling to an Engineered, Measurable, and Continuously Improving System**
 
 *Reading time: ~10 minutes*
@@ -165,16 +172,27 @@ Over time, this suite becomes an **organizational benchmark for AI-assisted engi
 
 ## How to Get Started (The 4-Step Plan)
 
-1. **Standardize a Pilot Repository**: Centralize coding guidelines and 2-3 critical skills in `.github/`. Introduce automated quality gates (`make check`).
-2. **Setup Execution Sandboxes**: Ensure all agent evaluation runs take place inside isolated Docker containers.
-3. **Capture Your First 5 Internal Eval Cases**: Convert recent bug fixes or PR review friction points into reproducible evaluation instances.
-4. **Establish the Improvement Loop**: When an agent fails, draft a proposal, improve the skill, measure the delta, and lock the case into your regression suite.
+1. **Start from an Engineering Harness baseline**: For a developer or software team, clone [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base) and use it as the advanced starting point. It provides governed rules, skills, adapters, quality gates, and the common engineering loop. For a conceptual adoption, a manager can start with the same principles without operating the repository.
+2. **Adapt the baseline to your team**: Keep the shared source of truth under `.github/`, understand skills by [family and intention](../use/skills-by-intention.md), and add only the domain guidance your team can own. Use [Create Your First Skill](create-your-first-skill.md) to add a new capability and [Use and Modify Skills](use-and-modify-skills.md) to change an existing one.
+3. **Measure representative work**: Set up execution sandboxes where needed and capture your first internal evaluation cases from recent bug fixes, incidents, or PR review friction. Use the [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) when a controlled comparison is justified.
+4. **Establish the improvement loop**: When an agent fails, draft a proposal, improve the rule or skill, measure the delta, review the [adapter projection](../reference-implementation/ml-python-base/adapters.md), and lock the case into [regression](../evaluation/regression-suites.md).
+
+!!! tip "Developer starting point"
+    If you are building software, clone [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base) as your initial governed workspace:
+
+    ```bash
+    git clone https://github.com/marcosdh1987/ml-python-base.git
+    cd ml-python-base
+    make check
+    ```
+
+    Then read [Skills by intention](../use/skills-by-intention.md) for the short route, [Governed Skills](../reference-implementation/ml-python-base/skills.md) for the complete inventory, and [Skill Design](../patterns/skill-design.md) before creating or changing a skill. The authoritative implementation remains in the cloned repository.
 
 ---
 
 ## Reference Implementations
 
-This guide is backed by two open-source reference repositories:
+This guide is backed by the engineering references most relevant to this path:
 
 - **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: A reference implementation of a **Governed Harness** (centralized rules, skills sync, multi-tool adapters, CI lockfile gates).
 - **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: A reference implementation of an **Evaluation & Continuous Improvement Platform** (Docker execution, attribution, LLM audits, sanitized proposal generator).

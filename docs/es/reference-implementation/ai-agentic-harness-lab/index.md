@@ -1,5 +1,12 @@
 # Harness Lab: Plataforma de evaluación
 
+!!! info "Sobre esta página"
+    **Qué vas a aprender:** cómo el plano de evaluación compara configuraciones de harness y convierte fallos en mejoras.
+
+    **Para quién:** Harness Engineers, AI champions, tech leads y equipos que ejecutan experimentos controlados.
+
+    **Leela cuando:** necesites entender el lab de referencia después de conocer la diferencia con observabilidad.
+
 El **Harness Lab** es la implementación de referencia del **Plano de Evaluación** en Harness Engineering. Proporciona un instrumento empírico para evaluar harnesses de programación con IA, comparar modelos de frontera en tareas reales y alimentar las fallas observadas de regreso a las plantillas de gobernanza compartida.
 
 La plataforma existe en dos implementaciones relacionadas:

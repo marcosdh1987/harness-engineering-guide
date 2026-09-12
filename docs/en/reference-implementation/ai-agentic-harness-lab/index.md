@@ -1,5 +1,12 @@
 # Harness Lab: Evaluation Platform
 
+!!! info "About this page"
+    **What you will learn:** how the evaluation plane compares harness configurations and feeds failures into improvement.
+
+    **For:** Harness Engineers, AI champions, technical leads, and teams running controlled experiments.
+
+    **Read this when:** you need to understand the reference lab after learning the observability distinction.
+
 The **Harness Lab** is the reference implementation of the **Evaluation Plane** in Harness Engineering. It provides an empirical evaluation instrument for testing AI coding harnesses, benchmarking frontier models on real tasks, and feeding observed failures back into shared governance templates.
 
 The platform exists in two related implementations:

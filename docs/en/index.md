@@ -1,139 +1,89 @@
 # Harness Engineering Guide
 
-**The Engineering Discipline for Building, Evaluating, and Continuously Improving the Agentic SDLC.**
+!!! info "About this guide"
+    **What you will learn:** how context, rules, skills, tools, verification, and evaluation form a durable way to work with AI.
 
-[Harness Engineering Guide](https://marcosdh1987.github.io/harness-engineering-guide/) is a public, vendor-neutral methodology and reference guide for engineering organizations transitioning from individual, ad-hoc AI assistance to a systematic, measurable, and continuously improving agentic software development lifecycle.
+    **For:** developers, tech leads, engineering managers, PMs, AI champions, and knowledge workers.
 
----
+    **Read this when:** you want the shortest explanation of the system and a route to the right depth.
+
+Harness Engineering does not try to predict the best tool, model, or agent six months from now. It defines a stable base of context, rules, skills, tools, verification, and evaluation so teams can evolve without redefining how they work each time the ecosystem changes.
+
+Claude, Codex, OpenCode, Copilot, Gemini, open-source models, frameworks, MCP servers, and runtimes can change. The principles can remain useful.
+
+## Standardize, Measure, Improve
 
 ```mermaid
 flowchart LR
-    A["Standardize<br/>(Rules, Skills, Adapters, Gates)"] --> B["Measure<br/>(Sandboxes, Attribution, Audits)"]
-    B --> C["Improve<br/>(Proposals, Fixes, Regressions)"]
-    C --> A
+    S["STANDARDIZE<br/>context · rules · skills · verification"] --> M["MEASURE<br/>real usage · evaluation · evidence"]
+    M --> I["IMPROVE<br/>learn · change · regression"]
+    I --> S
 ```
 
----
+This cycle applies to software engineering and knowledge work. Standardize the way work is grounded and checked. Measure what happens in practice and under controlled conditions. Improve the shared system, then standardize the learning.
 
-## The Core Question
-
-> **How does an engineering organization transition from individual developers using AI coding tools to systematically managing, measuring, and improving an agentic development system?**
-
-As AI coding assistants evolve from single-turn autocompletion into multi-turn autonomous agents (executing shell commands, editing repositories, running test suites, and calling external tools), prompt engineering alone becomes insufficient. 
-
-Organizations face recurring challenges:
-- **Silent Regressions and Drift**: Agents generate code that passes superficial checks but violates architectural boundaries, security policies, or database migration rules.
-- **Perception-Driven Evaluation**: Teams judge agents by individual anecdotal feelings rather than reproducible, quantitative evidence.
-- **Ephemeral Learning**: Lessons from agent mistakes remain lost in chat transcripts instead of compounding into organizational capabilities.
-
-**Harness Engineering** solves this by treating the system around the model (the rules, context, skills, tools, execution environments, quality gates, observability, and evaluations) as an engineered, version-controlled software system.
-
----
-
-## The Guiding Methodology: Standardize → Measure → Improve
-
-The framework is structured around three foundational pillars:
-
-```mermaid
-flowchart TB
-    subgraph S["1. STANDARDIZE"]
-        direction TB
-        S1["Engineering Rules & Constraints"]
-        S2["Reusable Governed Skills"]
-        S3["Agent & Subagent Roles"]
-        S4["Tool Adapters (Claude, Codex, OpenCode)"]
-        S5["Drift Control & Quality Gates"]
-    end
-
-    subgraph M["2. MEASURE"]
-        direction TB
-        M1["Isolated Container Sandboxes"]
-        M2["Objective Pass/Fail Verification"]
-        M3["Structured Attribution (Used vs Available)"]
-        M4["Telemetry (Tokens, Cost, Steps, Time)"]
-        M5["LLM Behavioral Audits"]
-    end
-
-    subgraph I["3. IMPROVE"]
-        direction TB
-        I1["Failure → Evaluation Case"]
-        I2["Controlled A/B Experiments"]
-        I3["Harness & Skill Refinement"]
-        I4["Gate-Verified Release"]
-        I5["Permanent Regression Suites"]
-    end
-
-    S --> M --> I --> S
-```
-
-1. **Standardize**: Define and version how agents are expected to work, including architectural boundaries, approved tools, reusable skills, and validation gates.
-2. **Measure**: Replace subjective perception with reproducible evaluation cases executed inside controlled sandbox environments. Capture exact attribution, token costs, step traces, and behavioral audits.
-3. **Improve**: Close the feedback loop. Transform agent failures into reproducible evaluation cases, test improvements under controlled conditions, and retain them as permanent regression tests.
-
----
-
-## Where to Start
+## Choose your path
 
 <div class="grid cards" markdown>
 
--   :material-presentation: **[Agentic SDLC for Teams](start-here/agentic-sdlc-for-teams.md)**
+-   :material-map-marker-path: **[Choose your path](use/choose-your-path.md)**
 
     ---
 
-    A 10-minute executive and technical briefing. Covers the core problem, the Maturity Model, the database migration case study, and implementation roadmaps.
+    Find a starting point by role or goal.
 
--   :material-school: **[What is Harness Engineering?](start-here/what-is-harness-engineering.md)**
-
-    ---
-
-    Explore the complete Harness Stack: context engineering, rules architecture, governed skills, quality gates, and tool adapters.
-
--   :material-chart-line: **[Agentic SDLC Maturity Model](adoption/maturity-model.md)**
+-   :material-code-braces: **[Build software](start-here/agentic-sdlc-for-teams.md)**
 
     ---
 
-    Assess your organization across 6 levels (from Level 0: Ad-hoc AI to Level 5: Continuously Improving Agentic SDLC).
+    Follow the Engineering Harness route toward `ml-python-base`.
 
--   :material-flask: **[Controlled Environments & Sandboxing](evaluation/controlled-environments-sandboxing.md)**
+-   :material-book-open-variant: **[Organize knowledge](use/knowledge-work.md)**
 
     ---
 
-    Understand why evaluating agents requires isolated execution environments for reproducibility, safety, and experimental validity, backed by industry research.
+    Start a Company Brain, Team Brain, Role Brain, or Second Brain conceptually.
+
+-   :material-chart-timeline-variant: **[Measure and improve](measure-and-improve/index.md)**
+
+    ---
+
+    Connect real usage in the Observatory with controlled work in Harness Lab.
 
 </div>
 
----
-
-## The Five-Layer Ecosystem
-
-This guide connects five modular layers of agentic engineering into a closed continuous improvement loop:
+## The ecosystem
 
 ```mermaid
-flowchart TD
-    GUIDE["<b>1. METHOD</b><br/>harness-engineering-guide<br/><i>Principles · Patterns · Evidence · Adoption</i>"]
-    BRAIN["<b>2. KNOWLEDGE</b><br/>company-brain-template<br/><i>Evidence · Decisions · Context · Requirements</i>"]
-    HARNESS["<b>3. GOVERNANCE</b><br/>ml-python-base<br/><i>Rules · Skills · Adapters · Quality Gates</i>"]
-    RUNTIME["<b>4. RUNTIME</b><br/>ml-langchain-agent<br/><i>Clean Architecture · LangGraph · Persistent APIs</i>"]
-    LAB["<b>5. EVALUATION</b><br/>sdlc-ml-python-harness-lab<br/><i>Experiments · Sandboxes · Attribution · Scoring</i>"]
-
-    GUIDE --> BRAIN --> HARNESS --> RUNTIME --> LAB
-    LAB -->|"Empirical Learnings"| HARNESS
-    LAB -->|"Empirical Learnings"| BRAIN
-    LAB -->|"Validation Evidence"| GUIDE
+flowchart TB
+    GUIDE["Guide<br/>methodology"] --> EH["Engineering Harness<br/>ml-python-base"]
+    GUIDE --> KH["Knowledge Harness<br/>company-brain-template"]
+    EH --> USE["Real work"]
+    KH --> USE
+    USE --> OBS["Engineering Delivery Observatory<br/>operational evidence"]
+    OBS --> LAB["Harness Lab<br/>controlled evaluation"]
+    LAB --> LEARN["Learning"]
+    LEARN --> GUIDE
+    LEARN --> EH
+    LEARN --> KH
 ```
 
-1. **Methodology**: [`harness-engineering-guide`](https://github.com/marcosdh1987/harness-engineering-guide), providing the conceptual foundations, operational surfaces, and patterns.
-2. **Knowledge Plane**: [`company-brain-template`](https://github.com/marcosdh1987/company-brain-template), providing the persistent, agent-readable organizational memory and evidence promotion pipeline.
-3. **Engineering Governance**: [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base), providing the governed coding harness with centralized rules, skills, and multi-tool adapters.
-4. **Agent Product Runtime**: [`ml-langchain-agent`](https://github.com/marcosdh1987/ml-langchain-agent), providing the application template for shipping production agent services with LangGraph.
-5. **Evaluation Platform**: [`sdlc-ml-python-harness-lab`](https://github.com/xmartlabs/sdlc-ml-python-harness-lab), providing the containerized benchmarking, attribution, and regression platform.
+| Piece | Role |
+| --- | --- |
+| Harness Engineering Guide | Methodology, concepts, patterns, and adoption guidance |
+| `ml-python-base` | Engineering Harness for developers and software teams |
+| `company-brain-template` | Knowledge Harness for shared organizational context |
+| Engineering Delivery Observatory | Operational view of AI use and engineering evidence |
+| Harness Lab | Evaluation plane for controlled experiments and regressions |
 
----
+The guide is not a runtime or a product. The reference repositories show possible implementations and remain separate from the method.
 
-## Claim Levels & Academic Rigor
+## A common working loop
 
-To maintain scientific integrity and engineering clarity, this documentation strictly differentiates three levels of claims:
+**Understand → Plan or Design when needed → Execute → Test → Verify → Review → Learn**
 
-1. **Industry Evidence**: Publicly documented research, empirical findings, and architecture papers from frontier labs and standard benchmarks (such as Anthropic, OpenAI, SWE-bench, Princeton, and Microsoft Research).
-2. **Guide Recommendation**: Our proposed methodologies, maturity models, and architectural patterns for engineering organizations.
-3. **Reference Implementation**: Specific design decisions implemented in our reference repositories (`ml-python-base`, `ml-langchain-agent`, `company-brain-template`, and `sdlc-ml-python-harness-lab`).
+A small change can move through this loop quickly. An architectural change may need brainstorming, a specification, an incremental plan, and several review points. The harness should reduce uncertainty, not add ceremony for its own sake. See the [working loop](patterns/working-loop.md).
+
+## Evidence levels
+
+This guide keeps three claims distinct: industry evidence, guide recommendations, and reference implementation facts. That distinction is part of the system's trust model. Start with [Understand](concepts/harness-engineering.md) or go directly to [Reference](reference-implementation/index.md).

@@ -1,6 +1,6 @@
 # Harness Engineering Guide
 
-**A public, vendor-neutral methodology and technical guide for designing, governing, evaluating, and continuously improving the systems around AI coding agents.**
+**A public, vendor-neutral methodology and technical guide for designing, governing, evaluating, and continuously improving the systems around AI agents in software and knowledge work.**
 
 [![Docs](https://img.shields.io/badge/docs-live-brightgreen.svg)](https://marcosdh1987.github.io/harness-engineering-guide/)
 [![Bilingual](https://img.shields.io/badge/language-English%20%7C%20Espa%C3%B1ol-blue.svg)](https://marcosdh1987.github.io/harness-engineering-guide/)
@@ -10,11 +10,11 @@
 
 ## 🎯 The Core Mission
 
-> **How does an engineering organization transition from individual developers using AI coding tools to systematically managing, measuring, and continuously improving an agentic development system?**
+> **How can people and organizations build a reliable way to work with AI, measure what happens, and improve the system over time?**
 
-As AI coding assistants evolve from simple single-turn autocompletion into multi-turn autonomous agents (reading files, executing bash, running test suites, and modifying repositories), prompt engineering alone is not enough.
+As AI assistants evolve across software and knowledge work, prompt engineering alone is not enough. Context becomes scattered, decisions disappear, and the quality of a workflow is difficult to verify.
 
-**Harness Engineering** treats the complete system around the model (rules, context, skills, tools, sandboxed environments, quality gates, observability, and evaluation suites) as an engineered, version-controlled software product.
+**Harness Engineering** treats the complete system around the model (rules, context, skills, tools, verification, observability, and evaluation) as an engineered, owned, and continuously improved system. The provider, model, or runtime can change without changing the stable core.
 
 ---
 
@@ -35,25 +35,32 @@ flowchart LR
 
 ---
 
-## 🌐 The 3-Repository Ecosystem
+## 🌐 The Reference Ecosystem
 
-This guide is supported by two open-source reference implementations:
+This guide is supported by separate reference implementations with different responsibilities:
 
 ```mermaid
 flowchart LR
     GUIDE["<b>Harness Engineering Guide</b><br/><i>(Methodology, Theory, Patterns)</i>"]
     MPB["<b>ml-python-base</b><br/><i>(Governed Reference Harness)</i>"]
-    LAB["<b>ai-agentic-harness-lab</b><br/><i>(Evaluation & Improvement Platform)</i>"]
+    BRAIN["<b>company-brain-template</b><br/><i>(Knowledge Harness)</i>"]
+    OBS["<b>ai-gateway</b><br/><i>(Operational Observatory reference)</i>"]
+    LAB["<b>ai-agentic-harness-lab</b><br/><i>(Evaluation Plane)</i>"]
 
-    GUIDE -->|"Defines Architecture"| MPB
-    MPB -->|"Measured In"| LAB
-    LAB -->|"Sanitized Improvements"| MPB
-    LAB -->|"Empirical Evidence"| GUIDE
+    GUIDE -->|"Defines principles"| MPB
+    GUIDE -->|"Defines knowledge patterns"| BRAIN
+    MPB -->|"Real usage"| OBS
+    BRAIN -->|"Real usage"| OBS
+    OBS -->|"Candidate cases"| LAB
+    LAB -->|"Validated improvements"| MPB
+    LAB -->|"Empirical evidence"| GUIDE
 ```
 
-1. **[Harness Engineering Guide](https://github.com/marcosdh1987/harness-engineering-guide)**: The conceptual methodology, architecture patterns, and evaluation principles.
-2. **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: The production-ready reference harness featuring centralized `.github/` rules, governed skills, multi-tool adapters (Claude Code, OpenAI Codex, OpenCode, Antigravity, GitHub Copilot), and automated lockfile drift control.
-3. **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: The benchmarking and evaluation platform featuring Docker container sandboxes, condition hashing, structured attribution, behavioral audits, and closed-loop proposal generation.
+1. **[Harness Engineering Guide](https://github.com/marcosdh1987/harness-engineering-guide)**: The methodology, concepts, patterns, and adoption guidance.
+2. **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: The Engineering Harness reference with rules, skills, adapters, gates, and multi-tool support.
+3. **[`company-brain-template`](https://github.com/marcosdh1987/company-brain-template)**: The Knowledge Harness reference for sources, decisions, provenance, and trusted organizational context.
+4. **[`ai-gateway`](https://github.com/marcosdh1987/ai-gateway)**: An operational observability reference with LiteLLM routing, metadata-only usage capture, reports, and optional Langfuse export.
+5. **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: The evaluation plane with sandboxed runs, attribution, behavioral audits, and improvement proposals.
 
 ---
 
@@ -63,6 +70,7 @@ flowchart LR
 - **[Agentic SDLC Maturity Model](https://marcosdh1987.github.io/harness-engineering-guide/en/adoption/maturity-model/)**: Progression from Level 0 (Ad-hoc AI) to Level 5 (Continuously Improving Agentic SDLC).
 - **[Controlled Environments & Sandboxing](https://marcosdh1987.github.io/harness-engineering-guide/en/evaluation/controlled-environments-sandboxing/)**: Why reproducible execution requires container isolation, backed by frontier lab research.
 - **[Building an Internal Evaluation Suite](https://marcosdh1987.github.io/harness-engineering-guide/en/adoption/internal-evaluation-suite/)**: Encoding company architecture and incident learnings into an organizational benchmark.
+- **[Choose your path](https://marcosdh1987.github.io/harness-engineering-guide/en/use/choose-your-path/)**: Find an entry point by role or goal.
 
 ---
 

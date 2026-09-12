@@ -1,10 +1,21 @@
-# The Engineering Working Loop: Ground, Plan, Delegate, Verify, Compound
+# The Working Loop: Understand, Execute, Verify, Learn
 
-The core discipline of Harness Engineering is the five-stage operational working loop:
+!!! info "About this page"
+    **What you will learn:** a common loop for human and agent work, from understanding intent to retaining the lesson.
+
+    **For:** developers, tech leads, engineering managers, and anyone designing repeatable work.
+
+    **Read this when:** you want a lightweight operating rhythm that scales with task risk.
+
+The common loop is broad enough for software engineering and knowledge work:
+
+**Understand → Plan or Design when needed → Execute → Test → Verify → Review → Learn**
+
+The engineering reference implementation compresses these ideas into a five-stage operational loop:
 
 $$\mathbf{Ground} \longrightarrow \mathbf{Plan} \longrightarrow \mathbf{Delegate} \longrightarrow \mathbf{Verify} \longrightarrow \mathbf{Compound} \circlearrowleft$$
 
-This loop governs how human developers and autonomous coding agents collaborate within a repository. It replaces erratic trial-and-error editing with a disciplined, reproducible engineering cadence.
+This loop governs how people and agents collaborate. A small task can move through it quickly. A risky architectural change can expand the planning, design, testing, and review steps without imposing the same ceremony on every task.
 
 ```mermaid
 flowchart LR

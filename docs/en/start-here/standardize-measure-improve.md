@@ -1,5 +1,12 @@
 # Standardize → Measure → Improve
 
+!!! info "About this page"
+    **What you will learn:** how the improvement cycle applies to engineering and knowledge work.
+
+    **For:** everyone, especially managers, tech leads, AI champions, and Harness Engineers.
+
+    **Read this when:** you want to turn recurring lessons into a stable operating practice.
+
 It usually starts with a Slack thread. Someone says the agent "got worse this week"; someone else swears the new planning skill "makes everything slower"; a third person pastes one great transcript as proof that everything is fine. Three opinions, zero measurements, about a system the whole team depends on daily. The cycle below is the way out: not more discipline in the arguments, but a method that makes the arguments unnecessary.
 
 The guiding thread of Harness Engineering is the continuous engineering cycle:

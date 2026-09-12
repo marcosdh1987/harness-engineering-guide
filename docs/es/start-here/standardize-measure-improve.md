@@ -1,5 +1,12 @@
 # Estandarizar → Medir → Mejorar
 
+!!! info "Sobre esta página"
+    **Qué vas a aprender:** cómo aplica el ciclo de mejora a ingeniería y knowledge work.
+
+    **Para quién:** todos, especialmente managers, tech leads, AI champions y Harness Engineers.
+
+    **Leela cuando:** quieras convertir aprendizajes recurrentes en una práctica operativa estable.
+
 Casi siempre empieza con un hilo de Slack. Alguien dice que el agente "empeoró esta semana"; otro jura que la skill nueva de planificación "hace todo más lento"; un tercero pega una transcripción brillante como prueba de que está todo bien. Tres opiniones, cero mediciones, sobre un sistema del que todo el equipo depende a diario. El ciclo de abajo es la salida: no más disciplina en las discusiones, sino un método que vuelve innecesarias las discusiones.
 
 El hilo conductor de Harness Engineering es el ciclo de ingeniería continua:

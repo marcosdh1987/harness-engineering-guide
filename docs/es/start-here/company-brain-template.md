@@ -1,5 +1,12 @@
 # El template de Company Brain
 
+!!! info "Sobre esta página"
+    **Qué vas a aprender:** cuándo sirve un Company Brain compartido y cómo la evidencia se convierte en conocimiento confiable.
+
+    **Para quién:** managers, PMs, AI champions, knowledge workers y equipos que trabajan entre varios proyectos o repositorios.
+
+    **Leela cuando:** quieras la implementación de referencia después de conocer los alcances conceptuales.
+
 La página [Del proyecto a la organización](proyecto-a-organizacion.md)
 introduce el Company Brain como concepto. Esta página documenta su
 **implementación concreta**: el repositorio

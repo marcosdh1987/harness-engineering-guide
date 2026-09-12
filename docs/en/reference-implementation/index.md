@@ -1,122 +1,57 @@
-# Reference Implementations and the Five-Layer Ecosystem
+# Reference implementations and ecosystem
 
-The **Harness Engineering** methodology is not an abstract theory. It is grounded in a working, modular five-layer ecosystem that connects methodology, canonical knowledge, execution governance, product runtimes, and empirical evaluation into a continuous improvement loop.
+!!! info "About this page"
+    **What you will learn:** which repositories illustrate the methodology and what each one is responsible for.
+
+    **For:** technical practitioners, managers evaluating adoption, and readers moving from concepts to implementation.
+
+    **Read this when:** you want to inspect evidence without treating one repository as the whole method.
+
+The guide defines the method. The repositories below illustrate separate responsibilities. They can be adopted incrementally and do not form a mandatory stack.
 
 ```mermaid
-flowchart TD
-    GUIDE["<b>1. METHOD</b><br/>harness-engineering-guide<br/><i>Principles · Patterns · Evidence · Adoption</i>"]
-    BRAIN["<b>2. KNOWLEDGE</b><br/>company-brain-template<br/><i>Evidence · Decisions · Context · Requirements</i>"]
-    HARNESS["<b>3. GOVERNANCE</b><br/>ml-python-base<br/><i>Rules · Skills · Adapters · Quality Gates</i>"]
-    RUNTIME["<b>4. RUNTIME</b><br/>ml-langchain-agent<br/><i>Clean Architecture · LangGraph · Persistent APIs</i>"]
-    LAB["<b>5. EVALUATION</b><br/>sdlc-ml-python-harness-lab<br/><i>Experiments · Sandboxes · Attribution · Scoring</i>"]
-
-    GUIDE -->|"Defines Architecture"| BRAIN
-    GUIDE -->|"Defines Standards"| HARNESS
-    GUIDE -->|"Defines Design"| RUNTIME
-    BRAIN -->|"Context Plane"| HARNESS
-    HARNESS -->|"Governs Engineering"| RUNTIME
-    RUNTIME -->|"Tested In"| LAB
-    HARNESS -->|"Evaluated In"| LAB
-    LAB -->|"Empirical Learnings"| HARNESS
-    LAB -->|"Empirical Learnings"| BRAIN
-    LAB -->|"Validation Evidence"| GUIDE
+flowchart TB
+    GUIDE["Guide<br/>methodology"] --> H["Engineering Harness<br/>ml-python-base"]
+    GUIDE --> K["Knowledge Harness<br/>company-brain-template"]
+    H --> USE["Real use"]
+    K --> USE
+    USE --> O["Engineering Delivery Observatory<br/>ai-gateway reference"]
+    O --> LAB["Harness Lab<br/>evaluation plane"]
+    LAB --> LEARN["Evidence and learning"]
+    LEARN --> GUIDE
+    LEARN --> H
+    LEARN --> K
 ```
 
----
+## Five responsibilities
 
-## The Two Architectural Perspectives
+| Piece | Role | Do not confuse it with |
+| --- | --- | --- |
+| Harness Engineering Guide | Methodology, concepts, patterns, and adoption | A runtime or product |
+| `ml-python-base` | Engineering Harness for developers and software teams | A requirement for non-technical readers |
+| `company-brain-template` | Knowledge Harness for sources, decisions, provenance, and organizational context | A personal Second Brain by default |
+| `ai-gateway` | Operational observability reference for AI usage and metadata | A complete delivery or productivity measurement system |
+| Harness Lab | Evaluation plane for controlled experiments, attribution, and regressions | A production observability dashboard |
 
-The ecosystem addresses two distinct but complementary concerns:
+`ml-langchain-agent` remains a useful product runtime reference. It is linked from the Reference navigation, but it is not the conceptual center of Harness Engineering.
 
-### 1. Organizational Context Perspective
+## Adopt incrementally
 
-How knowledge flows from corporate systems into active developer workspaces:
+- **Individual or small team:** begin with the working loop, a source register or repository rules, and one verification habit.
+- **Software team:** adopt `ml-python-base` for rules, skills, adapters, quality gates, and a common engineering baseline.
+- **Knowledge team:** use Company Brain concepts for sources, decisions, provenance, and ownership. Infrastructure is optional at the start.
+- **Adoption team:** add the Observatory to understand real usage and the Lab to test changes under comparable conditions.
 
-```text
-Corporate Systems of Record
-GitHub · Jira · Slack · Notion · Client Sources
-                    │
-                    ▼
-               COMPANY BRAIN
-              Knowledge Plane
- evidence · decisions · requirements · capabilities · context
-                    │
-                    ▼
-            ENGINEERING HARNESS
-               ml-python-base
- rules · skills · tools · gates · environment · working loop
-```
+The [Engineering Harness vs Knowledge Harness](../understand/engineering-vs-knowledge-harness.md) page explains how the two main applications relate.
 
-### 2. Full System Lifecycle Perspective
+## Claim levels
 
-How the entire agentic system learns, operates, measures, and improves:
+Each reference page should distinguish industry evidence, guide recommendation, and implementation fact. A capability documented in a repository is not automatically a universal standard.
 
-```text
-Evidence
-   ↓
-Governed Knowledge
-   ↓
-Selected Context + Executable Governance
-   ↓
-Agent Execution
-   ↓
-Measured Outcomes
-   ↓
-Reviewed Learning
-   ↓
-Harness / Knowledge Improvement
-   ↺
-```
+### Explore
 
----
-
-## The Five Ecosystem Repositories
-
-### 1. Methodology: `harness-engineering-guide`
-*The public knowledge base, architecture reference, and patterns catalog.*
-- **Role**: Explains core principles, the Five Operational Surfaces, State & Continuity, Spec-Driven Development, and Evaluation Engineering.
-- **Repository**: [`marcosdh1987/harness-engineering-guide`](https://github.com/marcosdh1987/harness-engineering-guide).
-
-### 2. Knowledge Plane: `company-brain-template`
-*The persistent, agent-readable memory for an organization or engagement.*
-- **Role**: Structures organizational evidence into canonical knowledge through an explicit promotion pipeline with standardized status tracking (`CONFIRMED`, `PENDING VALIDATION`, `INFERRED`, `SUPERSEDED`, `BLOCKED`).
-- **Repository**: [`marcosdh1987/company-brain-template`](https://github.com/marcosdh1987/company-brain-template).
-- **Documentation**: [Company Brain Reference Guide](company-brain-template/index.md).
-
-### 3. Engineering Governance: `ml-python-base`
-*The production-ready reference implementation of a governed repository harness.*
-- **Role**: Governs how coding agents work inside a codebase via centralized rules (`.github/`), governed skills (`.github/skills/`), multi-tool projection engines (Claude Code, Codex, OpenCode, Antigravity, Copilot), and strict read-only CI gates (`make check`).
-- **Repository**: [`marcosdh1987/ml-python-base`](https://github.com/marcosdh1987/ml-python-base).
-- **Documentation**: [ml-python-base Reference Guide](ml-python-base/index.md).
-
-### 4. Agent Product Runtime: `ml-langchain-agent`
-*The production-ready application template for shipping agentic software products.*
-- **Role**: Governs how teams build agentic products and services using Clean Architecture, LangGraph loops terminated by provider stop reasons, conversation persistence (thread_id, resume, fork), and standardized agent-to-agent FastAPI contracts.
-- **Repository**: [`marcosdh1987/ml-langchain-agent`](https://github.com/marcosdh1987/ml-langchain-agent).
-- **Documentation**: [ml-langchain-agent Reference Guide](ml-langchain-agent/index.md).
-
-### 5. Evaluation Plane: `sdlc-ml-python-harness-lab`
-*The enterprise benchmarking, evaluation, and continuous improvement platform.*
-- **Role**: Runs controlled experiments across candidate harnesses and models in isolated Docker sandboxes. Features Mode A/B/C comparisons, condition hashing, harness fingerprinting, attribution tracking, DeepEval metrics, LLM behavioral audits, and score registries separating Facts, Observations, and Judgments.
-- **Repository**: `git@github.com:xmartlabs/sdlc-ml-python-harness-lab.git` (with early open baseline at [`marcosdh1987/ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)).
-- **Documentation**: [Harness Lab Reference Guide](ai-agentic-harness-lab/index.md).
-
----
-
-## Incremental Adoption: Complexity Must Be Earned
-
-Not every project requires all five repositories. Teams adopt the ecosystem incrementally:
-
-- **Standard Python Project**: `ml-python-base` alone provides immediate rules, skills, and quality gates.
-- **Agent Product Initiative**: `ml-python-base` for repo governance paired with `ml-langchain-agent` for the agent runtime.
-- **Multi-Repo Organization**: Company Brain template introduced to link requirements and architecture decisions across repos.
-- **Mature Enterprise**: Centralized Company Brain, shared engineering harnesses, multiple domain runtimes, and an active evaluation lab running continuous regression suites.
-
----
-
-### Explore the Implementations
-
-- **[Company Brain Template: Knowledge Plane](company-brain-template/index.md)**
-- **[ml-python-base: Governed Harness](ml-python-base/index.md)**
-- **[ml-langchain-agent: Agent Product Runtime](ml-langchain-agent/index.md)**
-- **[Harness Lab: Evaluation Platform](ai-agentic-harness-lab/index.md)**
+- [Engineering Harness: `ml-python-base`](ml-python-base/index.md)
+- [Knowledge Harness: `company-brain-template`](company-brain-template/index.md)
+- [Engineering Delivery Observatory](../measure-and-improve/engineering-delivery-observatory.md)
+- [Harness Lab](ai-agentic-harness-lab/index.md)
+- [Product runtime: `ml-langchain-agent`](ml-langchain-agent/index.md)

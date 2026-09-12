@@ -1,5 +1,12 @@
 # The Company Brain Template
 
+!!! info "About this page"
+    **What you will learn:** when a shared Company Brain is useful and how evidence becomes trusted knowledge.
+
+    **For:** managers, PMs, AI champions, knowledge workers, and teams spanning multiple projects or repositories.
+
+    **Read this when:** you want the concrete reference implementation after learning the conceptual scopes.
+
 The [From Project to Organization](project-to-organization.md) page introduces
 the Company Brain as a concept. This page documents its **concrete
 implementation**: the

@@ -1,10 +1,21 @@
-# El ciclo de trabajo de ingeniería: Ground, Plan, Delegate, Verify, Compound
+# El ciclo de trabajo: Understand, Execute, Verify, Learn
 
-La disciplina central de Harness Engineering es el ciclo operativo de cinco etapas:
+!!! info "Sobre esta página"
+    **Qué vas a aprender:** un ciclo común para el trabajo humano y agentic, desde entender la intención hasta conservar el aprendizaje.
+
+    **Para quién:** developers, tech leads, engineering managers y quienes diseñan trabajos repetibles.
+
+    **Leela cuando:** quieras un ritmo operativo liviano que escale según el riesgo de la tarea.
+
+El ciclo común es suficientemente amplio para software engineering y knowledge work:
+
+**Understand → Planificar o diseñar cuando haga falta → Execute → Testear → Verify → Review → Learn**
+
+La implementación de referencia de ingeniería comprime estas ideas en un ciclo operativo de cinco etapas:
 
 $$\mathbf{Ground} \longrightarrow \mathbf{Plan} \longrightarrow \mathbf{Delegate} \longrightarrow \mathbf{Verify} \longrightarrow \mathbf{Compound} \circlearrowleft$$
 
-Este ciclo gobierna cómo colaboran los desarrolladores humanos y los agentes autónomos de código dentro de un repositorio. Reemplaza la edición caótica de prueba y error con una cadencia de ingeniería disciplinada y reproducible.
+Este ciclo gobierna cómo colaboran personas y agentes. Una tarea pequeña puede recorrerlo rápidamente. Un cambio arquitectónico riesgoso puede ampliar la planificación, el diseño, el testing y la review sin imponer la misma ceremonia a todas las tareas.
 
 ```mermaid
 flowchart LR

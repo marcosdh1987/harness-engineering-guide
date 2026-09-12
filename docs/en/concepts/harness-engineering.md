@@ -1,8 +1,15 @@
 # Harness Engineering
 
-**Harness Engineering** is the practice of designing, governing, observing, evaluating, and continuously improving the complete system around AI coding agents.
+!!! info "About this page"
+    **What you will learn:** the stable principles behind context, rules, skills, tools, verification, and evaluation.
 
-Rather than treating AI code generation as an ephemeral conversation, Harness Engineering structures the entire development operating system: persistent architectural rules, modular skills, contextual repository memory, multi-tool adapters, containerized sandboxes, quality gates, and automated regression suites.
+    **For:** everyone who wants to understand the methodology, with extra depth for technical practitioners.
+
+    **Read this when:** you want the conceptual foundation before exploring implementations.
+
+**Harness Engineering** is the practice of designing, governing, observing, evaluating, and continuously improving the complete system around AI agents used for software and knowledge work.
+
+Rather than treating AI work as an ephemeral conversation, Harness Engineering structures the surrounding operating system: trusted context, persistent rules, modular skills, tool adapters, verification, quality gates, observability, and evaluation. The same principles can support an Engineering Harness or a Knowledge Harness.
 
 ---
 
