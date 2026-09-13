@@ -13,42 +13,51 @@ Observability and evaluation are complementary. Observability describes activity
 | --- | --- |
 | What happened | Which alternative works better |
 | Production or everyday use | Controlled environment |
-| Gateway, traces, and delivery data | Harness Lab |
-| Detects patterns | Tests hypotheses |
-| Generates candidate cases | Confirms improvements or regressions |
+| Gateway, process telemetry, and delivery data | Harness Lab |
+| Detects patterns and associations | Tests hypotheses and proves causality |
+| Generates candidate cases and anomalies | Confirms improvements or regressions |
 
-## The bridge from usage to learning
+## The Bridge from Usage to Learning
 
 ```mermaid
 flowchart TB
-    REAL["REAL USAGE"] --> OBS["Observability"]
-    OBS --> PATTERN["Interesting failure or pattern"]
-    PATTERN --> CASE["Evaluation case"]
-    CASE --> EXP["Controlled experiment"]
-    EXP --> CHANGE["Harness improvement"]
-    CHANGE --> REG["Regression suite"]
+    REAL["REAL USAGE<br/>Everyday SDLC"] --> OBS["Observability<br/>Process & Gateway Signals"]
+    OBS --> PATTERN["Interesting failure or pattern<br/>Descriptive Association"]
+    PATTERN --> CASE["Evaluation case<br/>Sanitized Input & Criteria"]
+    CASE --> EXP["Controlled experiment<br/>Ablations in Sandbox"]
+    EXP --> CHANGE["Harness improvement<br/>Rules, Skills, Adapters"]
+    CHANGE --> REG["Regression suite<br/>Permanent Quality Gate"]
     REG --> REAL
 ```
 
-## Observability: what is happening?
+## Observability: What Is Happening?
 
-Observability captures the runtime signals needed to understand how the system is being used: requests, models, tokens, latency, failures, tags, traces, and, when integrated, delivery events. It can reveal a repeated failure, an expensive workflow, a noisy source, or a skill that is rarely selected.
+Observability captures the runtime signals needed to understand how the system is being used: process telemetry, commits, active engineering windows, model selections, token spend, latencies, and delivery milestones. It follows the core principle:
 
-It does not prove that a model, skill, or rule caused an outcome. It also cannot infer delivery or individual performance from gateway traffic alone.
+> "Measure the engineering process without observing the engineering content."
 
-## Evaluation: does it work better?
+Process telemetry reveals empirical patterns: an expensive workflow, a repeated verification failure, an underutilized skill, or a cohort of work units with elevated cycle time.
 
-Evaluation runs a case with explicit inputs, a candidate system, and objective or calibrated criteria. The Harness Lab can compare a baseline and a candidate harness, vary one factor, record attribution, and preserve a regression case after a failure is fixed.
+However, observational telemetry does not prove that a model, skill, or rule caused a specific outcome. Concluding that "AI caused a cycle time reduction" from observational telemetry commits a post hoc fallacy. Observability yields descriptive associations, not causal proof.
+
+## Evaluation: Does It Work Better?
+
+Evaluation executes reproducible test cases under controlled conditions, varying one parameter while holding the prompt, environment, and inputs constant. The [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) runs:
+
+- **Ablation Studies:** testing performance with and without a specific rule or skill.
+- **Controlled Benchmarks:** executing multi-run trials inside isolated Docker containers.
+- **Multidimensional Scoring:** combining deterministic test passes, behavioral rubrics, and token efficiency.
+- **Regression Suites:** freezing sanitized production failures into permanent checks to prevent behavioral regression.
 
 The object of evaluation is the system around the model: context, rules, skills, tools, routing, execution environment, verification, and workflow. The model is one variable in that system.
 
-## A useful handoff
+## A Useful Handoff
 
-1. Observe a real pattern without treating it as a conclusion.
-2. Sanitize the situation and define a reproducible evaluation case.
-3. Run a controlled comparison with a clear baseline.
-4. Improve the harness or knowledge source if the result supports it.
-5. Add the case to a regression suite and watch future real usage.
+1. **Observe real activity:** identify a pattern, bottleneck, or verification anomaly in the [Engineering Delivery Observatory](../measure-and-improve/engineering-delivery-observatory.md) without jumping to causal conclusions.
+2. **Sanitize into a case:** strip proprietary data, isolate the minimal reproducible context, and define clear success criteria.
+3. **Run a controlled comparison:** benchmark the baseline harness against the proposed candidate inside the [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md).
+4. **Deploy verified improvements:** release the upgraded rules, skills, or adapters to the development team once causal evidence supports the change.
+5. **Protect with regression suites:** add the test case to the permanent evaluation suite and observe future operational telemetry.
 
 !!! note "Read next"
-    See the [Engineering Delivery Observatory](../measure-and-improve/engineering-delivery-observatory.md) for the operational plane and [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) for the evaluation plane.
+    See the [Engineering Delivery Observatory Pattern](../measure-and-improve/engineering-delivery-observatory.md) for the operational plane and [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) for the evaluation plane.

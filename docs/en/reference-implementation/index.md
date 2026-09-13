@@ -15,7 +15,7 @@ flowchart TB
     GUIDE --> K["Knowledge Harness<br/>company-brain-template"]
     H --> USE["Real use"]
     K --> USE
-    USE --> O["Engineering Delivery Observatory<br/>ai-gateway reference"]
+    USE --> O["Engineering Delivery Observatory<br/>telemetry and gateway plane"]
     O --> LAB["Harness Lab<br/>evaluation plane"]
     LAB --> LEARN["Evidence and learning"]
     LEARN --> GUIDE
@@ -30,7 +30,7 @@ flowchart TB
 | Harness Engineering Guide | Methodology, concepts, patterns, and adoption | A runtime or product |
 | `ml-python-base` | Engineering Harness for developers and software teams | A requirement for non-technical readers |
 | `company-brain-template` | Knowledge Harness for sources, decisions, provenance, and organizational context | A personal Second Brain by default |
-| `ai-gateway` | Operational observability reference for AI usage and metadata | A complete delivery or productivity measurement system |
+| Engineering Delivery Observatory | Operational telemetry and gateway measurement plane | An invasive surveillance tool or a single productivity score |
 | Harness Lab | Evaluation plane for controlled experiments, attribution, and regressions | A production observability dashboard |
 
 `ml-langchain-agent` remains a useful product runtime reference. It is linked from the Reference navigation, but it is not the conceptual center of Harness Engineering.
