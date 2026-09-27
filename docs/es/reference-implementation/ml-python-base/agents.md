@@ -2,10 +2,10 @@
 
 > [!NOTE]
 > **Contenido generado**: Esta página se genera automáticamente a partir del snapshot de la plantilla.
-> - **Commit de referencia**: [d4e673b](https://github.com/marcosdh1987/ml-python-base/commit/d4e673b10064376b40cb165f9a166d0501aca87e) en la rama `main`
-> - **Última sincronización**: `2026-09-08T22:20:01.991439Z`
+> - **Commit de referencia**: [a13a7ba](https://github.com/marcosdh1987/ml-python-base/commit/a13a7ba3a107d6810ee15f05851acd873cfdf316) en la rama `main`
+> - **Última sincronización**: `2026-09-27T03:46:08.533808Z`
 > - **Artefactos de referencia**:
->   - [.github/agents/](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/.github/agents/)
+>   - [.github/agents/](https://github.com/marcosdh1987/ml-python-base/blob/a13a7ba3a107d6810ee15f05851acd873cfdf316/.github/agents/)
 > *Nota: Este es un resumen de estudio e índice. La implementación y gobernanza autoritativas permanecen en el repositorio de origen.*
 ## Roles de agentes gobernados
 
@@ -15,12 +15,12 @@ La implementación de referencia define personas de agentes especializados bajo 
 
 | Persona del agente | Ruta de configuración | Enlace de GitHub |
 |---|---|---|
-| `orchestrator` | `.github/agents/orchestrator.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/.github/agents/orchestrator.md) |
-| `reviewer` | `.github/agents/reviewer.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/.github/agents/reviewer.md) |
-| `documenter` | `.github/agents/documenter.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/.github/agents/documenter.md) |
-| `tester` | `.github/agents/tester.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/.github/agents/tester.md) |
-| `planner` | `.github/agents/planner.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/.github/agents/planner.md) |
-| `implementer` | `.github/agents/implementer.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/.github/agents/implementer.md) |
+| `documenter` | `.github/agents/documenter.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a13a7ba3a107d6810ee15f05851acd873cfdf316/.github/agents/documenter.md) |
+| `orchestrator` | `.github/agents/orchestrator.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a13a7ba3a107d6810ee15f05851acd873cfdf316/.github/agents/orchestrator.md) |
+| `tester` | `.github/agents/tester.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a13a7ba3a107d6810ee15f05851acd873cfdf316/.github/agents/tester.md) |
+| `planner` | `.github/agents/planner.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a13a7ba3a107d6810ee15f05851acd873cfdf316/.github/agents/planner.md) |
+| `implementer` | `.github/agents/implementer.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a13a7ba3a107d6810ee15f05851acd873cfdf316/.github/agents/implementer.md) |
+| `reviewer` | `.github/agents/reviewer.md` | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a13a7ba3a107d6810ee15f05851acd873cfdf316/.github/agents/reviewer.md) |
 
 ### Roles y capacidades de los agentes
 
