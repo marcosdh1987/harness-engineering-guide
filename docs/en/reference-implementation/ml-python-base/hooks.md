@@ -2,10 +2,10 @@
 
 > [!NOTE]
 > **Generated content**: This page is automatically generated from the template snapshot.
-> - **Reference Commit**: [d4e673b](https://github.com/marcosdh1987/ml-python-base/commit/d4e673b10064376b40cb165f9a166d0501aca87e) on branch `main`
-> - **Last Synced**: `2026-09-08T22:20:01.991439Z`
+> - **Reference Commit**: [a13a7ba](https://github.com/marcosdh1987/ml-python-base/commit/a13a7ba3a107d6810ee15f05851acd873cfdf316) on branch `main`
+> - **Last Synced**: `2026-10-04T04:23:41.467419Z`
 > - **Reference Artifacts**:
->   - [.claude/hooks/](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/.claude/hooks/)
+>   - [.claude/hooks/](https://github.com/marcosdh1987/ml-python-base/blob/a13a7ba3a107d6810ee15f05851acd873cfdf316/.claude/hooks/)
 > *Note: This is a study summary and index. The authoritative implementation and governance remain in the source repository.*
 ## Hooks as Quality Guardrails
 
@@ -15,8 +15,8 @@ Hooks are executable scripts triggered automatically at key interaction boundari
 
 | Hook Name | Target Path | Purpose | Link |
 |---|---|---|---|
-| `stop_nudge.sh` | `.claude/hooks/stop_nudge.sh` | Warns developer of drift or uncommitted changes when the session remains idle | [Link](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/.claude/hooks/stop_nudge.sh) |
-| `session_start.sh` | `.claude/hooks/session_start.sh` | Runs checks on environment setup, local lock state, and checks for uncommitted drift | [Link](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/.claude/hooks/session_start.sh) |
+| `session_start.sh` | `.claude/hooks/session_start.sh` | Runs checks on environment setup, local lock state, and checks for uncommitted drift | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a13a7ba3a107d6810ee15f05851acd873cfdf316/.claude/hooks/session_start.sh) |
+| `stop_nudge.sh` | `.claude/hooks/stop_nudge.sh` | Warns developer of drift or uncommitted changes when the session remains idle | [Link](https://github.com/marcosdh1987/ml-python-base/blob/a13a7ba3a107d6810ee15f05851acd873cfdf316/.claude/hooks/stop_nudge.sh) |
 
 ### Configuration Settings and Integrations
 
