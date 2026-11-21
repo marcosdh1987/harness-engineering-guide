@@ -41,14 +41,16 @@ This guide is supported by separate reference implementations with different res
 
 ```mermaid
 flowchart LR
-    GUIDE["<b>Harness Engineering Guide</b><br/><i>(Methodology, Theory, Patterns)</i>"]
-    MPB["<b>ml-python-base</b><br/><i>(Governed Reference Harness)</i>"]
+    GUIDE["<b>Harness Engineering Guide</b><br/><i>(Method)</i>"]
+    MPB["<b>ml-python-base</b><br/><i>(Engineering Harness template)</i>"]
     BRAIN["<b>company-brain-template</b><br/><i>(Knowledge Harness)</i>"]
-    OBS["<b>ai-gateway</b><br/><i>(Operational Observatory reference)</i>"]
-    LAB["<b>ai-agentic-harness-lab</b><br/><i>(Evaluation Plane)</i>"]
+    OBS["<b>Engineering Delivery Observatory</b><br/><i>(ai-gateway reference)</i>"]
+    LAB["<b>Harness Lab</b><br/><i>(Evaluation)</i>"]
+    RT["<b>ml-langchain-agent</b><br/><i>(Product runtime reference)</i>"]
 
     GUIDE -->|"Defines principles"| MPB
     GUIDE -->|"Defines knowledge patterns"| BRAIN
+    GUIDE -.->|"Applies to agent products"| RT
     MPB -->|"Real usage"| OBS
     BRAIN -->|"Real usage"| OBS
     OBS -->|"Candidate cases"| LAB
@@ -56,11 +58,12 @@ flowchart LR
     LAB -->|"Empirical evidence"| GUIDE
 ```
 
-1. **[Harness Engineering Guide](https://github.com/marcosdh1987/harness-engineering-guide)**: The methodology, concepts, patterns, and adoption guidance.
-2. **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: The Engineering Harness reference with rules, skills, adapters, gates, and multi-tool support.
-3. **[`company-brain-template`](https://github.com/marcosdh1987/company-brain-template)**: The Knowledge Harness reference for sources, decisions, provenance, and trusted organizational context.
-4. **[`ai-gateway`](https://github.com/marcosdh1987/ai-gateway)**: An operational observability reference with LiteLLM routing, metadata-only usage capture, reports, and optional Langfuse export.
-5. **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: The evaluation plane with sandboxed runs, attribution, behavioral audits, and improvement proposals.
+1. **[Harness Engineering Guide](https://github.com/marcosdh1987/harness-engineering-guide)**: The method: concepts, patterns, routes, and adoption guidance.
+2. **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: The Engineering Harness template with rules, skills, adapters, gates, and multi-tool support. It mirrors [`xmartlabs/sdlc-ml-python-template`](https://github.com/xmartlabs/sdlc-ml-python-template).
+3. **[`company-brain-template`](https://github.com/marcosdh1987/company-brain-template)**: The Knowledge Harness for sources, decisions, provenance, and trusted organizational context.
+4. **Engineering Delivery Observatory**: The operational observability pattern. Its reference, [`ai-gateway`](https://github.com/marcosdh1987/ai-gateway) (not public yet), covers LiteLLM routing, metadata-only usage capture, reports, and optional Langfuse export.
+5. **[Harness Lab](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: The evaluation plane with guided flows, sandboxed runs, attribution, behavioral audits, and `make harness-check`. It mirrors [`xmartlabs/sdlc-ml-python-harness-lab`](https://github.com/xmartlabs/sdlc-ml-python-harness-lab), where development happens.
+6. **[`ml-langchain-agent`](https://github.com/marcosdh1987/ml-langchain-agent)** (not public yet): The product runtime reference for teams building agent products.
 
 ---
 

@@ -72,7 +72,7 @@ flowchart TB
 - **Evaluation Graders**: Multi-grader toolbox combining objective test runners, LLM-based behavioral auditors, and human scoring.
 - **Failure Mode**: Eval creation is manual and disconnected from day-to-day production incidents.
 - **Key Artifacts**: Internal eval suites, container runner images, multidimensional scoring rubrics, ablation harnesses.
-- **Reference Example**: [`marcosdh1987/ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab).
+- **Reference Example**: [Harness Lab](https://github.com/marcosdh1987/ai-agentic-harness-lab).
 
 ---
 

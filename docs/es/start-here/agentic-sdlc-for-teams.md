@@ -72,6 +72,9 @@ graph LR
 
 ## Ejemplo empresarial concreto: Seguridad en migraciones de base de datos
 
+!!! warning "Escenario ilustrativo"
+    Este ejemplo y sus números (80% de fallas, 10 corridas, 100% de cumplimiento) son un escenario didáctico, no un resultado medido. Hacé tu propia comparación en el [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) antes de citar números.
+
 Un reto frecuente en organizaciones de ingeniería: **los coding agents generan migraciones de base de datos inseguras que bloquean tablas en producción.**
 
 ### El enfoque tradicional (Ad-Hoc)
@@ -98,7 +101,7 @@ flowchart TD
 3. **Mejora del harness**: El equipo escribe una skill gobernada (`.github/skills/safe_db_migration.md`) que instruye patrones de zero-downtime (columnas nullable, backfills por lotes, creación de índices en background).
 4. **Experimento controlado**: El laboratorio de evaluación ejecuta un trial A/B (*Control* vs *Tratamiento con Skill*).
 5. **Validación**: El grupo de tratamiento alcanza el 100% de cumplimiento sin bloqueos de tabla y con atribución confirmada de la skill.
-6. **Conocimiento acumulativo**: La skill se mergea al repositorio compartido y el caso de evaluación se convierte en un test de regresión permanente. La organización no vuelve a sufrir ese fallo.
+6. **Conocimiento acumulativo**: La skill se mergea al repositorio compartido y el caso de evaluación se convierte en un test de regresión permanente. Desde entonces, la suite de regresión detecta ese modo de falla antes de que llegue a la revisión.
 
 ---
 
@@ -195,7 +198,7 @@ Con el tiempo, esta suite se transforma en un **benchmark organizacional para el
 Esta guía se respalda en las referencias de ingeniería más relevantes para este camino:
 
 - **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: Implementación de referencia de un **Harness gobernado** (reglas centralizadas, sincronización de skills, adaptadores multi-herramienta, gates de CI).
-- **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: Implementación de referencia de una **Plataforma de evaluación y mejora continua** (ejecución en Docker, atribución, auditorías con LLM, generación de propuestas sanitizadas).
+- **[Harness Lab](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: Implementación de referencia de una **Plataforma de evaluación y mejora continua** (ejecución en Docker, atribución, auditorías con LLM, generación de propuestas sanitizadas).
 
 ---
 

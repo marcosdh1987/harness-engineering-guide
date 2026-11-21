@@ -80,6 +80,9 @@ flowchart LR
     RES_C & RES_T --> DIFF["Δ = +80% Attributable to Skill"]
 ```
 
+!!! note "Illustrative numbers"
+    The pass rates in this diagram are an example, not a measured result.
+
 ---
 
 ## 4. What is Skill Ablation?

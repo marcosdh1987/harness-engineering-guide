@@ -115,4 +115,4 @@ Los equipos que adoptan esto dejan de discutir desde anécdotas. El hilo de Slac
 - **[Validez experimental y ablaciones](experimental-validity-and-ablations.md)**: aislamiento de variables y hashing de condiciones.
 - **[Suites de regresión](regression-suites.md)**: convertir la validación de releases en un experimento.
 - **[Auditorías de comportamiento y scoring](behavioral-audits-and-scoring.md)**: la caja de graders detrás de los números.
-- **[Agentic Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md)**: la implementación de referencia de todo lo anterior.
+- **[Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md)**: la implementación de referencia de todo lo anterior.

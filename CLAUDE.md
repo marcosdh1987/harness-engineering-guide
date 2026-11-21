@@ -32,12 +32,14 @@ See `docs/contributing/writing-style.md` for complete guidelines.
 
 ## Content & Architectural Guidelines
 
-- **5-Layer Ecosystem**:
-  1. Method: `harness-engineering-guide`
-  2. Knowledge: `company-brain-template`
-  3. Governance: `ml-python-base`
-  4. Runtime: `ml-langchain-agent`
-  5. Evaluation: `sdlc-ml-python-harness-lab`
+- **Ecosystem** (the same list appears in `README.md`, `AGENTS.md`, and the reference index pages):
+  1. Method: `harness-engineering-guide` (this repository)
+  2. Engineering Harness template: `ml-python-base` (mirror of `xmartlabs/sdlc-ml-python-template`)
+  3. Knowledge Harness: `company-brain-template`
+  4. Engineering Delivery Observatory: `ai-gateway` reference (not public yet)
+  5. Evaluation: Harness Lab, `ai-agentic-harness-lab` (mirror of `xmartlabs/sdlc-ml-python-harness-lab`)
+  6. Product runtime reference: `ml-langchain-agent` (not public yet)
+- **Privacy**: evidence from private projects appears only anonymized and aggregated ("a production backend (anonymized)"), never with project, company, client, people, or domain names.
 - **Context Architecture**: Systems of Record → Company Brain → Engineering Harness.
 - **Bilingual Parity**: Every content change must exist in both English (`docs/en/`) and Spanish (`docs/es/`).
 - **Assertion Rigor**: Explicitly distinguish Industry Evidence (cited with primary source), Guide Recommendation, and Reference Implementation.

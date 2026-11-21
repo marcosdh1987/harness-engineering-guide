@@ -72,6 +72,9 @@ graph LR
 
 ## Concrete Enterprise Example: Database Migration Safety
 
+!!! warning "Illustrative scenario"
+    This example and its numbers (an 80% failure rate, 10 trials, 100% compliance) are a teaching scenario, not a measured result. Run your own comparison in the [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) before quoting numbers.
+
 Consider a challenge faced by many engineering teams: **AI coding agents generating unsafe, table-locking database migrations.**
 
 ### The Traditional (Ad-Hoc) Approach
@@ -98,7 +101,7 @@ flowchart TD
 3. **Harness Improvement**: The team authors a governed skill (`.github/skills/safe_db_migration.md`) specifying zero-downtime migration patterns (adding nullable columns, backfilling in batches, separate index creation).
 4. **Controlled Experiment**: The evaluation lab runs an A/B trial (*Control* vs *Treatment with Skill*).
 5. **Validation**: The treatment arm achieves 100% compliance with zero table-locking operations and verified skill attribution.
-6. **Compound Knowledge**: The skill is merged to the shared repository, and the evaluation case becomes a permanent regression test. The organization will never suffer that failure mode again.
+6. **Compound Knowledge**: The skill is merged to the shared repository, and the evaluation case becomes a permanent regression test. From then on, the regression suite catches that failure mode before it reaches review.
 
 ---
 
@@ -195,7 +198,7 @@ Over time, this suite becomes an **organizational benchmark for AI-assisted engi
 This guide is backed by the engineering references most relevant to this path:
 
 - **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: A reference implementation of a **Governed Harness** (centralized rules, skills sync, multi-tool adapters, CI lockfile gates).
-- **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: A reference implementation of an **Evaluation & Continuous Improvement Platform** (Docker execution, attribution, LLM audits, sanitized proposal generator).
+- **[Harness Lab](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: A reference implementation of an **Evaluation & Continuous Improvement Platform** (Docker execution, attribution, LLM audits, sanitized proposal generator).
 
 ---
 

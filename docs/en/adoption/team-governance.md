@@ -32,7 +32,7 @@ flowchart TD
 ### 1. Central Platform Responsibilities (The Core Harness)
 - Maintains base repository templates (`ml-python-base`).
 - Maintains the synchronization engine for multi-tool adapters (`CLAUDE.md`, `AGENTS.md`, `OPENCODE.md`).
-- Operates shared evaluation infrastructure (`ai-agentic-harness-lab`) and Docker base images.
+- Operates shared evaluation infrastructure (the Harness Lab) and Docker base images.
 - Sets global security constraints, credential protection, and token spend guardrails.
 
 ### 2. Domain Team Responsibilities (Domain Extensions)

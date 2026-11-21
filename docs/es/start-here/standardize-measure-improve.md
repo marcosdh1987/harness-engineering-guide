@@ -111,7 +111,7 @@ Los equipos deben combinar diferentes orígenes para sus casos de prueba:
 - **Suites de regresión**: Un banco creciente de desafíos internos que todo nuevo harness debe superar.
 
 > [!NOTE]
-> **Implementación de referencia**: [`marcosdh1987/ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab) demuestra la evaluación por ejecuciones en contenedores Docker, análisis automatizado de atribución y scoring multidimensional.
+> **Implementación de referencia**: [Harness Lab](https://github.com/marcosdh1987/ai-agentic-harness-lab) demuestra la evaluación por ejecuciones en contenedores Docker, análisis automatizado de atribución y scoring multidimensional.
 
 ---
 

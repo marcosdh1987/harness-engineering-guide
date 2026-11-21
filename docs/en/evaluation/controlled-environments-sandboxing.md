@@ -99,7 +99,7 @@ Furthermore, in [Quantifying infrastructure noise in agentic coding evals (2026)
 
 > [!IMPORTANT]
 > **Engineering Scope Clarification**:  
-> Our open evaluation reference platform ([`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)) does not pretend to replicate the multi-million-dollar proprietary infrastructure of frontier AI labs.  
+> Our open evaluation reference platform ([Harness Lab](https://github.com/marcosdh1987/ai-agentic-harness-lab)) does not pretend to replicate the multi-million-dollar proprietary infrastructure of frontier AI labs.  
 > 
 > Instead, it adopts the **exact same fundamental principles** at an accessible, practical scale for engineering teams:
 > - One Docker container per evaluation run.

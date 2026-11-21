@@ -12,7 +12,7 @@ The continuous improvement loop operates across two synchronized boundaries: the
 
 ```mermaid
 flowchart TB
-    subgraph LAB["1. Evaluation Platform (e.g. ai-agentic-harness-lab)"]
+    subgraph LAB["1. Evaluation Platform (e.g. Harness Lab)"]
         RUN["Run Evaluation Case in Docker Sandbox"]
         ATTR["Capture Structured Attribution & Telemetry"]
         AUD["Generate LLM Behavioral Audit"]

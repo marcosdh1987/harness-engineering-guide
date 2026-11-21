@@ -33,7 +33,7 @@ flowchart TB
 | Engineering Delivery Observatory | Plano de medición de telemetría operacional y gateway | Una herramienta de vigilancia invasiva o un score único de productividad |
 | Harness Lab | Plano de evaluación para experimentos controlados, atribución y regresiones | Un dashboard de observabilidad de producción |
 
-`ml-langchain-agent` sigue siendo una referencia útil de runtime de producto. Está enlazado desde la navegación de Referencia, pero no es el centro conceptual de Harness Engineering.
+`ml-langchain-agent` sigue siendo una referencia útil de runtime de producto (su repositorio todavía no es público). Está enlazado desde la navegación de Referencia, pero no es el centro conceptual de Harness Engineering.
 
 ## Adoptá de forma incremental
 

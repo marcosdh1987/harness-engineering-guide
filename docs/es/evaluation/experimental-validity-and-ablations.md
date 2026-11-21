@@ -80,6 +80,9 @@ flowchart LR
     RES_C & RES_T --> DIFF["Δ = +80% Atribuible a la Skill"]
 ```
 
+!!! note "Números ilustrativos"
+    Las tasas de éxito de este diagrama son un ejemplo, no un resultado medido.
+
 ---
 
 ## 4. ¿Qué es la ablación de skills?
