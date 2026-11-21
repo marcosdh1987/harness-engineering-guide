@@ -171,3 +171,6 @@ make init NAME=my_project LEVEL=minimal
 ## Pages in this section
 
 - [Start with few skills](few-skills.md): the seven starter skills and when to add more.
+- [Project memory](project-memory.md): three files that keep what the code does not say.
+- [Decision records (ADRs)](decision-records.md): one page per decision that is hard to reverse.
+- [Plans and specs](plans-and-specs.md): approved design, then plan, then execution.

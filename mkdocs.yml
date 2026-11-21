@@ -71,6 +71,9 @@ nav:
       - The complete harness:
           - Overview and starter kit: en/harness-kit/index.md
           - Start with few skills: en/harness-kit/few-skills.md
+          - Project memory: en/harness-kit/project-memory.md
+          - Decision records (ADRs): en/harness-kit/decision-records.md
+          - Plans and specs: en/harness-kit/plans-and-specs.md
           - Tool and task guides:
               - Claude Code basics: en/start-here/claude-code-basics.md
               - Codex: en/start-here/codex.md
@@ -174,6 +177,9 @@ nav:
       - El harness completo:
           - Visión general y kit inicial: es/harness-completo/index.md
           - Empezá con pocas skills: es/harness-completo/pocas-skills.md
+          - Memoria del proyecto: es/harness-completo/memoria-del-proyecto.md
+          - Registros de decisión (ADRs): es/harness-completo/registros-de-decision.md
+          - Planes y specs: es/harness-completo/planes-y-specs.md
           - Guías por herramienta y tarea:
               - Fundamentos de Claude Code: es/start-here/claude-code-basics.md
               - Codex: es/start-here/codex.md

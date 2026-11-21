@@ -171,3 +171,6 @@ make init NAME=mi_proyecto LEVEL=minimal
 ## Páginas de esta sección
 
 - [Empezá con pocas skills](pocas-skills.md): las siete skills iniciales y cuándo sumar más.
+- [Memoria del proyecto](memoria-del-proyecto.md): tres archivos que guardan lo que el código no dice.
+- [Registros de decisión (ADRs)](registros-de-decision.md): una página por cada decisión difícil de revertir.
+- [Planes y specs](planes-y-specs.md): diseño aprobado, después plan, después ejecución.

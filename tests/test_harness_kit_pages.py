@@ -33,12 +33,22 @@ ES_H2 = [
 # EN file -> ES file. Extended as practice pages are added.
 KIT_PAGES = {
     "few-skills.md": "pocas-skills.md",
+    "project-memory.md": "memoria-del-proyecto.md",
+    "decision-records.md": "registros-de-decision.md",
+    "plans-and-specs.md": "planes-y-specs.md",
 }
 
 
 def h2s(path: Path) -> list[str]:
-    lines = path.read_text(encoding="utf-8").splitlines()
-    return [line[3:].strip() for line in lines if line.startswith("## ")]
+    """Second-level headings outside fenced code blocks."""
+    headings: list[str] = []
+    in_fence = False
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.lstrip().startswith("```"):
+            in_fence = not in_fence
+        elif not in_fence and line.startswith("## "):
+            headings.append(line[3:].strip())
+    return headings
 
 
 def test_practice_pages_follow_the_template_in_both_languages():
