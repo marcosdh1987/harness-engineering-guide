@@ -174,3 +174,7 @@ make init NAME=mi_proyecto LEVEL=minimal
 - [Memoria del proyecto](memoria-del-proyecto.md): tres archivos que guardan lo que el código no dice.
 - [Registros de decisión (ADRs)](registros-de-decision.md): una página por cada decisión difícil de revertir.
 - [Planes y specs](planes-y-specs.md): diseño aprobado, después plan, después ejecución.
+- [Comandos](comandos.md): `/plan`, `/adr`, `/retro`, `/verify` como atajos delgados.
+- [Hooks](hooks.md): recordatorios en los bordes de la sesión, y un hook que puede bloquear.
+- [Gates de calidad](gates-de-calidad.md): un comando que puede fallar, que corren personas, agentes y CI.
+- [Chequeo de salud del harness](chequeo-de-salud.md): ocho chequeos que podés hacer leyendo tu repositorio.

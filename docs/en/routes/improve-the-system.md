@@ -56,7 +56,7 @@ Sanitize the failure into a reproducible case. Run the current harness and your 
 
 Change the template only with what the comparison supports. Add skills one at a time and keep the case as a regression check, so a later model or tool change cannot quietly undo the gain.
 
-[Use and modify skills](../start-here/use-and-modify-skills.md)
+[Start with few skills](../harness-kit/few-skills.md) · [Use and modify skills](../start-here/use-and-modify-skills.md)
 
 </div>
 

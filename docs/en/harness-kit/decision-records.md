@@ -31,7 +31,7 @@ agent) would otherwise have to reverse-engineer it.
 6. Add the record to the index at the end of this file.
 ```
 
-A `/adr` command can scaffold a new record from the template, add it to the index, and ask you for anything it had to assume. See [Claude Code basics](../start-here/claude-code-basics.md) for how slash commands work.
+A `/adr` command can scaffold a new record from the template, add it to the index, and ask you for anything it had to assume. See [Commands](commands.md) for the other shortcuts.
 
 ## When to use it and when to skip it
 

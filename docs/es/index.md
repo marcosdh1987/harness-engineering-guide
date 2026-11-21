@@ -63,11 +63,11 @@ Trabajá con IA de una forma en la que puedas confiar, que puedas medir y mejora
 **Las piezas del ecosistema**
 
 - [Guía](patterns/working-loop.md){ data-node="guide" }: el método. Cómo trabajar con IA sin depender de una herramienta.
-- [Template](start-here/minimal-setup.md){ data-node="template" }: tu repo con IA. Reglas, skills y gates de calidad versionados en el repositorio.
+- [Template](harness-completo/index.md){ data-node="template" }: tu repo con IA. Reglas, skills y gates de calidad versionados en el repositorio.
 - [Company Brain](start-here/company-brain-template.md){ data-node="brain" }: contexto compartido. Fuentes, decisiones, procedencia y dueños.
-- [Trabajo real](patterns/working-loop.md){ data-node="work" }: el ciclo y unas pocas skills, todos los días.
+- [Trabajo real](harness-completo/index.md){ data-node="work" }: el ciclo y unas pocas skills, todos los días.
 - [Observatorio](medir-y-mejorar/engineering-delivery-observatory.md){ data-node="observatory" }: qué pasa en el día a día, medido como proceso, nunca como personas.
-- [Harness Lab](reference-implementation/ai-agentic-harness-lab/index.md){ data-node="lab" }: ¿esto ayuda de verdad? Dos configuraciones, el mismo caso, un veredicto.
+- [Harness Lab](harness-completo/chequeo-de-salud.md){ data-node="lab" }: ¿esto ayuda de verdad? Dos configuraciones, el mismo caso, un veredicto.
 
 </div>
 

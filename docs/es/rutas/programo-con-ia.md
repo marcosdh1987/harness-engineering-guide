@@ -64,7 +64,7 @@ tu-repo/
 !!! info "Nivel de evidencia: implementación de referencia"
     En el Harness Lab cada corrida cargaba 25 skills, y en 18 corridas con seis modelos los agentes abrieron solo 3. Un backend de producción (anonimizado) pasó de 27 skills sueltas a 9 puntos de entrada y achicó un 19% sus instrucciones generadas. Son muestras chicas: leelas como señales, no como leyes.
 
-[Configuración mínima](../start-here/minimal-setup.md)
+[El kit inicial](../harness-completo/index.md)
 
 </div>
 
@@ -76,7 +76,7 @@ tu-repo/
 
 Trabajá como siempre, pero elegí el camino de cada tarea según su tamaño. Cada vez que la IA cometa el mismo error dos veces, agregá una entrada en `memory/learnings.md`: el hecho, por qué importa y cómo aplicarlo la próxima vez. Esa lista es tu próximo cambio al harness.
 
-[Estado y continuidad](../concepts/state-and-continuity.md)
+[Memoria del proyecto](../harness-completo/memoria-del-proyecto.md)
 
 </div>
 
@@ -96,7 +96,7 @@ make harness-check REPO=../tu-proyecto
 
 Necesita `git`, `uv` y `make`; no necesita Docker ni modelo. Cada corrida tarda unos 30 segundos. Si dudás de una skill, el lab la compara contra no tenerla, en el mismo caso.
 
-[Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md)
+[Chequeo de salud del harness](../harness-completo/chequeo-de-salud.md) · [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md)
 
 </div>
 

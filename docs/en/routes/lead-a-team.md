@@ -56,7 +56,7 @@ Start with the questions your team answers again and again. For each one, record
 
 One repository, one team, the working loop, and a one-page decision record for anything hard to reverse. Agree upfront on what good looks like: fewer repeated review comments, fewer reverted changes, faster onboarding of a new person.
 
-[Agentic SDLC for teams](../start-here/agentic-sdlc-for-teams.md)
+[Decision records](../harness-kit/decision-records.md) · [Agentic SDLC for teams](../start-here/agentic-sdlc-for-teams.md)
 
 </div>
 

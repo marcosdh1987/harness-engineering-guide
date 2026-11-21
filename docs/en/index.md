@@ -63,11 +63,11 @@ Work with AI in a way you can trust, measure, and improve, whatever tool or mode
 **The pieces of the ecosystem**
 
 - [Guide](patterns/working-loop.md){ data-node="guide" }: the method. How to work with AI without depending on one tool.
-- [Template](start-here/minimal-setup.md){ data-node="template" }: your repo with AI. Rules, skills, and quality gates versioned in the repository.
+- [Template](harness-kit/index.md){ data-node="template" }: your repo with AI. Rules, skills, and quality gates versioned in the repository.
 - [Company Brain](start-here/company-brain-template.md){ data-node="brain" }: shared context. Sources, decisions, provenance, and owners.
-- [Real work](patterns/working-loop.md){ data-node="work" }: the loop plus a few skills, every day.
+- [Real work](harness-kit/index.md){ data-node="work" }: the loop plus a few skills, every day.
 - [Observatory](measure-and-improve/engineering-delivery-observatory.md){ data-node="observatory" }: what happens day to day, measured as a process, never as people.
-- [Harness Lab](reference-implementation/ai-agentic-harness-lab/index.md){ data-node="lab" }: does this really help? Two configurations, same case, one verdict.
+- [Harness Lab](harness-kit/health-check.md){ data-node="lab" }: does this really help? Two configurations, same case, one verdict.
 
 </div>
 

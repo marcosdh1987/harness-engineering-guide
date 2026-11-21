@@ -64,7 +64,7 @@ your-repo/
 !!! info "Evidence level: reference implementation"
     In the Harness Lab every run carried 25 skills, and across 18 runs on six models the agents opened only 3. A production backend (anonymized) went from 27 flat skills to 9 entry points and cut its generated instructions by 19%. Small samples: read them as signals, not laws.
 
-[Minimal setup](../start-here/minimal-setup.md)
+[The starter kit](../harness-kit/index.md)
 
 </div>
 
@@ -76,7 +76,7 @@ your-repo/
 
 Work as usual, but route each task by its size. Every time the AI makes the same mistake twice, add one entry to `memory/learnings.md`: the fact, why it matters, and how to apply it next time. That list is your next harness change.
 
-[State and continuity](../concepts/state-and-continuity.md)
+[Project memory](../harness-kit/project-memory.md)
 
 </div>
 
@@ -96,7 +96,7 @@ make harness-check REPO=../your-project
 
 It needs `git`, `uv`, and `make`; no Docker and no model. Each run takes about 30 seconds. If you doubt a skill, the lab compares it against not having it, on the same case.
 
-[Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md)
+[Harness health check](../harness-kit/health-check.md) · [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md)
 
 </div>
 

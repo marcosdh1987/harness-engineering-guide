@@ -36,7 +36,32 @@ KIT_PAGES = {
     "project-memory.md": "memoria-del-proyecto.md",
     "decision-records.md": "registros-de-decision.md",
     "plans-and-specs.md": "planes-y-specs.md",
+    "commands.md": "comandos.md",
+    "hooks.md": "hooks.md",
+    "quality-gates.md": "gates-de-calidad.md",
 }
+
+# The eight deterministic checks of the Harness Lab's `make harness-check`.
+HEALTH_CHECKS_EN = [
+    "Verification can fail",
+    "Verification does not rewrite the tree",
+    "Hooks can enforce, not only remind",
+    "Always-loaded instructions stay a map",
+    "Skills are discoverable",
+    "MCP servers are pinned",
+    "CI runs the same gate the agent runs",
+    "The harness version is declared",
+]
+HEALTH_CHECKS_ES = [
+    "La verificación puede fallar",
+    "La verificación no reescribe el árbol",
+    "Los hooks pueden hacer cumplir, no solo recordar",
+    "Las instrucciones que se cargan siempre siguen siendo un mapa",
+    "Las skills se pueden descubrir",
+    "Los servidores MCP están fijados",
+    "CI corre el mismo gate que corre el agente",
+    "La versión del harness está declarada",
+]
 
 
 def h2s(path: Path) -> list[str]:
@@ -61,6 +86,18 @@ def test_every_kit_page_has_an_evidence_box():
     for en, es in KIT_PAGES.items():
         assert '"Evidence level:' in (EN_DIR / en).read_text(encoding="utf-8"), en
         assert '"Nivel de evidencia:' in (ES_DIR / es).read_text(encoding="utf-8"), es
+
+
+def test_health_check_lists_the_eight_checks():
+    en = (EN_DIR / "health-check.md").read_text(encoding="utf-8")
+    es = (ES_DIR / "chequeo-de-salud.md").read_text(encoding="utf-8")
+    for name in HEALTH_CHECKS_EN:
+        assert name in en, name
+    for name in HEALTH_CHECKS_ES:
+        assert name in es, name
+    for text in (en, es):
+        assert "make harness-check" in text
+        assert "github.com/marcosdh1987/ai-agentic-harness-lab" in text
 
 
 def test_kit_index_shows_the_starter_tree_and_routing_table():

@@ -174,3 +174,7 @@ make init NAME=my_project LEVEL=minimal
 - [Project memory](project-memory.md): three files that keep what the code does not say.
 - [Decision records (ADRs)](decision-records.md): one page per decision that is hard to reverse.
 - [Plans and specs](plans-and-specs.md): approved design, then plan, then execution.
+- [Commands](commands.md): `/plan`, `/adr`, `/retro`, `/verify` as thin shortcuts.
+- [Hooks](hooks.md): reminders at the edges of a session, and one hook that can block.
+- [Quality gates](quality-gates.md): one command that can fail, run by people, agents, and CI.
+- [Harness health check](health-check.md): eight checks you can run by reading your repository.

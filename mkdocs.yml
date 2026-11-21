@@ -74,6 +74,10 @@ nav:
           - Project memory: en/harness-kit/project-memory.md
           - Decision records (ADRs): en/harness-kit/decision-records.md
           - Plans and specs: en/harness-kit/plans-and-specs.md
+          - Commands: en/harness-kit/commands.md
+          - Hooks: en/harness-kit/hooks.md
+          - Quality gates: en/harness-kit/quality-gates.md
+          - Harness health check: en/harness-kit/health-check.md
           - Tool and task guides:
               - Claude Code basics: en/start-here/claude-code-basics.md
               - Codex: en/start-here/codex.md
@@ -180,6 +184,10 @@ nav:
           - Memoria del proyecto: es/harness-completo/memoria-del-proyecto.md
           - Registros de decisión (ADRs): es/harness-completo/registros-de-decision.md
           - Planes y specs: es/harness-completo/planes-y-specs.md
+          - Comandos: es/harness-completo/comandos.md
+          - Hooks: es/harness-completo/hooks.md
+          - Gates de calidad: es/harness-completo/gates-de-calidad.md
+          - Chequeo de salud del harness: es/harness-completo/chequeo-de-salud.md
           - Guías por herramienta y tarea:
               - Fundamentos de Claude Code: es/start-here/claude-code-basics.md
               - Codex: es/start-here/codex.md

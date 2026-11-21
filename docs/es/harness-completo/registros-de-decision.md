@@ -31,7 +31,7 @@ persona o un agente) tendría que adivinarla de otra forma.
 6. Agregá el registro al índice al final de este archivo.
 ```
 
-Un comando `/adr` puede armar un registro nuevo desde la plantilla, agregarlo al índice y preguntarte lo que tuvo que suponer. En [Fundamentos de Claude Code](../start-here/claude-code-basics.md) está cómo funcionan los comandos con barra.
+Un comando `/adr` puede armar un registro nuevo desde la plantilla, agregarlo al índice y preguntarte lo que tuvo que suponer. Mirá [Comandos](comandos.md) para los otros atajos.
 
 ## Cuándo usarlo y cuándo no
 

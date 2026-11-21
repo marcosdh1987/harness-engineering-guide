@@ -56,7 +56,7 @@ Limpiá la falla hasta tener un caso reproducible. Corré el harness actual y tu
 
 Cambiá el template solo con lo que respalda la comparación. Agregá skills de a una y guardá el caso como chequeo de regresión, así un cambio posterior de modelo o de herramienta no deshace la mejora sin que nadie lo note.
 
-[Usar y modificar skills](../start-here/use-and-modify-skills.md)
+[Empezá con pocas skills](../harness-completo/pocas-skills.md) · [Usar y modificar skills](../start-here/use-and-modify-skills.md)
 
 </div>
 

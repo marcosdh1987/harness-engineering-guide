@@ -56,7 +56,7 @@ Empezá por las preguntas que tu equipo responde una y otra vez. Para cada una, 
 
 Un repositorio, un equipo, el ciclo de trabajo y un registro de decisión de una página para todo lo que sea difícil de revertir. Acordá de entrada qué es un buen resultado: menos comentarios repetidos en las revisiones, menos cambios revertidos, una persona nueva que se integra más rápido.
 
-[Agentic SDLC para equipos](../start-here/agentic-sdlc-for-teams.md)
+[Registros de decisión](../harness-completo/registros-de-decision.md) · [Agentic SDLC para equipos](../start-here/agentic-sdlc-for-teams.md)
 
 </div>
 
