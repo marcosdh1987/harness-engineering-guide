@@ -315,7 +315,7 @@
     - "provenance"
 
 - id: "ml-langchain-agent-ref"
-  title: "ml-langchain-agent: Agent Product Runtime and Clean Architecture Template"
+  title: "ml-langchain-agent: Agent Product Runtime and Clean Architecture Template (not public yet)"
   provider: "marcosdh1987"
   type: "reference-implementation"
   url: "https://github.com/marcosdh1987/ml-langchain-agent"
@@ -328,7 +328,7 @@
     - "clean-architecture"
 
 - id: "sdlc-ml-python-harness-lab-ref"
-  title: "sdlc-ml-python-harness-lab: Enterprise Evaluation Platform"
+  title: "Harness Lab: organization repository (where development happens)"
   provider: "Xmartlabs"
   type: "reference-implementation"
   url: "https://github.com/xmartlabs/sdlc-ml-python-harness-lab"
@@ -341,12 +341,12 @@
     - "score-registry"
 
 - id: "ai-agentic-harness-lab-ref"
-  title: "Agentic Harness Lab (Initial Open Baseline)"
+  title: "Harness Lab: public mirror of the organization repository"
   provider: "marcosdh1987"
   type: "reference-implementation"
   url: "https://github.com/marcosdh1987/ai-agentic-harness-lab"
   date_accessed: "2026-08-20"
-  notes: "Initial open-source evaluation and benchmarking platform for agentic coding harnesses. Featured containerized per-run execution, condition hashing, structured attribution, LLM behavioral audits, and closed-loop proposal generation."
+  notes: "Public mirror of xmartlabs/sdlc-ml-python-harness-lab, kept in sync on each upstream release. Includes guided flows, skill profiles, make harness-check, make harness-export, containerized per-run execution, condition hashing, structured attribution, and LLM behavioral audits."
   related_topics:
     - "reference-implementation"
     - "evaluation-platform"

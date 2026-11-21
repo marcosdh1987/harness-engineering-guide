@@ -72,6 +72,9 @@ graph LR
 
 ## Concrete Enterprise Example: Database Migration Safety
 
+!!! warning "Illustrative scenario"
+    This example and its numbers (an 80% failure rate, 10 trials, 100% compliance) are a teaching scenario, not a measured result. Run your own comparison in the [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) before quoting numbers.
+
 Consider a challenge faced by many engineering teams: **AI coding agents generating unsafe, table-locking database migrations.**
 
 ### The Traditional (Ad-Hoc) Approach
@@ -98,7 +101,7 @@ flowchart TD
 3. **Harness Improvement**: The team authors a governed skill (`.github/skills/safe_db_migration.md`) specifying zero-downtime migration patterns (adding nullable columns, backfilling in batches, separate index creation).
 4. **Controlled Experiment**: The evaluation lab runs an A/B trial (*Control* vs *Treatment with Skill*).
 5. **Validation**: The treatment arm achieves 100% compliance with zero table-locking operations and verified skill attribution.
-6. **Compound Knowledge**: The skill is merged to the shared repository, and the evaluation case becomes a permanent regression test. The organization will never suffer that failure mode again.
+6. **Compound Knowledge**: The skill is merged to the shared repository, and the evaluation case becomes a permanent regression test. From then on, the regression suite catches that failure mode before it reaches review.
 
 ---
 
@@ -173,7 +176,7 @@ Over time, this suite becomes an **organizational benchmark for AI-assisted engi
 ## How to Get Started (The 4-Step Plan)
 
 1. **Start from an Engineering Harness baseline**: For a developer or software team, clone [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base) and use it as the advanced starting point. It provides governed rules, skills, adapters, quality gates, and the common engineering loop. For a conceptual adoption, a manager can start with the same principles without operating the repository.
-2. **Adapt the baseline to your team**: Keep the shared source of truth under `.github/`, understand skills by [family and intention](../use/skills-by-intention.md), and add only the domain guidance your team can own. Use [Create Your First Skill](create-your-first-skill.md) to add a new capability and [Use and Modify Skills](use-and-modify-skills.md) to change an existing one.
+2. **Adapt the baseline to your team**: Keep the shared source of truth under `.github/`, start with [a few skills](../harness-kit/few-skills.md), and add only the domain guidance your team can own. Use [Create Your First Skill](create-your-first-skill.md) to add a new capability and [Use and Modify Skills](use-and-modify-skills.md) to change an existing one.
 3. **Measure representative work**: Set up execution sandboxes where needed and capture your first internal evaluation cases from recent bug fixes, incidents, or PR review friction. Use the [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) when a controlled comparison is justified.
 4. **Establish the improvement loop**: When an agent fails, draft a proposal, improve the rule or skill, measure the delta, review the [adapter projection](../reference-implementation/ml-python-base/adapters.md), and lock the case into [regression](../evaluation/regression-suites.md).
 
@@ -186,7 +189,7 @@ Over time, this suite becomes an **organizational benchmark for AI-assisted engi
     make check
     ```
 
-    Then read [Skills by intention](../use/skills-by-intention.md) for the short route, [Governed Skills](../reference-implementation/ml-python-base/skills.md) for the complete inventory, and [Skill Design](../patterns/skill-design.md) before creating or changing a skill. The authoritative implementation remains in the cloned repository.
+    Then read [Start with few skills](../harness-kit/few-skills.md) for the short route, [Governed Skills](../reference-implementation/ml-python-base/skills.md) for the complete inventory, and [Skill Design](../patterns/skill-design.md) before creating or changing a skill. The authoritative implementation remains in the cloned repository.
 
 ---
 
@@ -195,7 +198,7 @@ Over time, this suite becomes an **organizational benchmark for AI-assisted engi
 This guide is backed by the engineering references most relevant to this path:
 
 - **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: A reference implementation of a **Governed Harness** (centralized rules, skills sync, multi-tool adapters, CI lockfile gates).
-- **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: A reference implementation of an **Evaluation & Continuous Improvement Platform** (Docker execution, attribution, LLM audits, sanitized proposal generator).
+- **[Harness Lab](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: A reference implementation of an **Evaluation & Continuous Improvement Platform** (Docker execution, attribution, LLM audits, sanitized proposal generator).
 
 ---
 

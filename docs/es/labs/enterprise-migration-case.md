@@ -2,6 +2,10 @@
 
 En este laboratorio práctico recorrerás el ciclo completo de **Estandarizar → Medir → Mejorar** resolviendo un desafío empresarial real: **evitar que los coding agents generen migraciones de base de datos inseguras que bloqueen tablas en producción.**
 
+
+!!! warning "Escenario ilustrativo"
+    El caso es realista, pero la cantidad de corridas y las tasas de éxito de este lab son ilustrativas. Tus propias corridas van a dar otros números.
+
 ---
 
 ```mermaid
@@ -56,7 +60,7 @@ validation_commands:
 
 ## 3. Medición del baseline
 
-En **Agentic Harness Lab**, ejecuta 10 corridas de baseline del caso con `claude-3-7-sonnet` sin la skill especializada.
+En **Harness Lab**, ejecuta 10 corridas de baseline del caso con `claude-3-7-sonnet` sin la skill especializada.
 
 ### Resultados de las corridas de baseline:
 - **Tasa de éxito**: `2 / 10 (20%)`

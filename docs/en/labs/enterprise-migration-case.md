@@ -2,6 +2,10 @@
 
 In this hands-on lab, you will walk through the complete **Standardize → Measure → Improve** lifecycle by solving a real-world enterprise challenge: **preventing AI coding agents from generating unsafe, table-locking database migrations.**
 
+
+!!! warning "Illustrative scenario"
+    The case is realistic, but the trial counts and pass rates in this lab are illustrative. Your own runs will produce different numbers.
+
 ---
 
 ```mermaid
@@ -56,7 +60,7 @@ validation_commands:
 
 ## 3. Measuring the Baseline
 
-In **Agentic Harness Lab**, execute 10 baseline trials of the case with `claude-3-7-sonnet` without the specialized skill.
+In **Harness Lab**, execute 10 baseline trials of the case with `claude-3-7-sonnet` without the specialized skill.
 
 ### Baseline Trial Results:
 - **Pass Rate**: `2 / 10 (20%)`

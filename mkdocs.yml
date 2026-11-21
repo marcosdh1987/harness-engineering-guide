@@ -16,6 +16,16 @@ theme:
     - content.code.copy
 plugins:
   - search
+  - redirects:
+      redirect_maps:
+        en/use/choose-your-path.md: en/index.md
+        en/start-here/index.md: en/index.md
+        en/learning-path.md: en/index.md
+        es/use/elegi-tu-camino.md: es/index.md
+        es/start-here/index.md: es/index.md
+        es/learning-path.md: es/index.md
+        en/use/skills-by-intention.md: en/harness-kit/few-skills.md
+        es/use/skills-por-intencion.md: es/harness-completo/pocas-skills.md
 markdown_extensions:
   - admonition
   - toc:
@@ -35,9 +45,12 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.arithmatex:
       generic: true
+extra_css:
+  - stylesheets/extra.css
 extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/route-map.js
 extra:
   alternate:
     - name: English
@@ -50,31 +63,41 @@ nav:
   - Home: index.md
   - English:
       - Overview: en/index.md
-      - Use:
-          - Choose your path: en/use/choose-your-path.md
-          - Working loop: en/patterns/working-loop.md
-          - Software task guides:
-              - Start here overview: en/start-here/index.md
-              - Agentic SDLC for teams: en/start-here/agentic-sdlc-for-teams.md
-              - Minimal setup: en/start-here/minimal-setup.md
-              - Adopt an existing project: en/start-here/adopt-existing-project.md
+      - Routes:
+          - I code with AI: en/routes/build-with-ai.md
+          - I lead a team: en/routes/lead-a-team.md
+          - I work with documents, not code: en/routes/documents-not-code.md
+          - I improve the system: en/routes/improve-the-system.md
+      - The complete harness:
+          - Overview and starter kit: en/harness-kit/index.md
+          - Start with few skills: en/harness-kit/few-skills.md
+          - Project memory: en/harness-kit/project-memory.md
+          - Decision records (ADRs): en/harness-kit/decision-records.md
+          - Plans and specs: en/harness-kit/plans-and-specs.md
+          - Commands: en/harness-kit/commands.md
+          - Hooks: en/harness-kit/hooks.md
+          - Quality gates: en/harness-kit/quality-gates.md
+          - Harness health check: en/harness-kit/health-check.md
+          - Tool and task guides:
               - Claude Code basics: en/start-here/claude-code-basics.md
               - Codex: en/start-here/codex.md
               - OpenCode: en/start-here/opencode.md
+              - Minimal setup: en/start-here/minimal-setup.md
+              - Adopt an existing project: en/start-here/adopt-existing-project.md
               - Create your first skill: en/start-here/create-your-first-skill.md
               - Use and modify skills: en/start-here/use-and-modify-skills.md
               - Onboarding guide: en/start-here/onboarding-guide.md
               - More capabilities: en/start-here/leverage-more.md
-          - Knowledge work: en/use/knowledge-work.md
-          - Company Brain template: en/start-here/company-brain-template.md
-          - Project to organization: en/start-here/project-to-organization.md
-          - Skills by intention: en/use/skills-by-intention.md
-          - Learning path: en/learning-path.md
       - Understand:
           - What is Harness Engineering?: en/concepts/harness-engineering.md
           - Practical introduction: en/start-here/what-is-harness-engineering.md
+          - Working loop: en/patterns/working-loop.md
+          - Agentic SDLC for teams: en/start-here/agentic-sdlc-for-teams.md
           - Engineering vs Knowledge Harness: en/understand/engineering-vs-knowledge-harness.md
           - Company Brain, Role Brain and Second Brain: en/understand/company-role-second-brain.md
+          - Knowledge work: en/use/knowledge-work.md
+          - Company Brain template: en/start-here/company-brain-template.md
+          - Project to organization: en/start-here/project-to-organization.md
           - Standardize, Measure, Improve: en/start-here/standardize-measure-improve.md
           - Context engineering: en/concepts/context-engineering.md
           - Rules architecture: en/concepts/ai-rules-architecture.md
@@ -150,31 +173,41 @@ nav:
           - Open-source readiness: en/open-source-readiness.md
   - Español:
       - Visión general: es/index.md
-      - Usar:
-          - Elegí tu camino: es/use/elegi-tu-camino.md
-          - Ciclo de trabajo: es/patterns/working-loop.md
-          - Guías de tareas de software:
-              - Empezá aquí: es/start-here/index.md
-              - Agentic SDLC para equipos: es/start-here/agentic-sdlc-for-teams.md
-              - Configuración mínima: es/start-here/minimal-setup.md
-              - Adoptar un proyecto existente: es/start-here/adopt-existing-project.md
+      - Rutas:
+          - Programo con IA: es/rutas/programo-con-ia.md
+          - Lidero un equipo: es/rutas/lidero-un-equipo.md
+          - Trabajo con documentos, no código: es/rutas/documentos-no-codigo.md
+          - Mejoro el sistema: es/rutas/mejoro-el-sistema.md
+      - El harness completo:
+          - Visión general y kit inicial: es/harness-completo/index.md
+          - Empezá con pocas skills: es/harness-completo/pocas-skills.md
+          - Memoria del proyecto: es/harness-completo/memoria-del-proyecto.md
+          - Registros de decisión (ADRs): es/harness-completo/registros-de-decision.md
+          - Planes y specs: es/harness-completo/planes-y-specs.md
+          - Comandos: es/harness-completo/comandos.md
+          - Hooks: es/harness-completo/hooks.md
+          - Gates de calidad: es/harness-completo/gates-de-calidad.md
+          - Chequeo de salud del harness: es/harness-completo/chequeo-de-salud.md
+          - Guías por herramienta y tarea:
               - Fundamentos de Claude Code: es/start-here/claude-code-basics.md
               - Codex: es/start-here/codex.md
               - OpenCode: es/start-here/opencode.md
+              - Configuración mínima: es/start-here/minimal-setup.md
+              - Adoptar un proyecto existente: es/start-here/adopt-existing-project.md
               - Crear tu primera skill: es/start-here/create-your-first-skill.md
               - Usar y modificar skills: es/start-here/use-and-modify-skills.md
               - Guía de onboarding: es/start-here/onboarding-guide.md
               - Más capacidades: es/start-here/leverage-more.md
-          - Trabajo de conocimiento: es/use/trabajo-de-conocimiento.md
-          - Template de Company Brain: es/start-here/company-brain-template.md
-          - Del proyecto a la organización: es/start-here/proyecto-a-organizacion.md
-          - Skills por intención: es/use/skills-por-intencion.md
-          - Ruta de aprendizaje: es/learning-path.md
       - Entender:
           - ¿Qué es Harness Engineering?: es/concepts/harness-engineering.md
           - Introducción práctica: es/start-here/what-is-harness-engineering.md
+          - Ciclo de trabajo: es/patterns/working-loop.md
+          - Agentic SDLC para equipos: es/start-here/agentic-sdlc-for-teams.md
           - Engineering Harness y Knowledge Harness: es/understand/engineering-vs-knowledge-harness.md
           - Company Brain, Role Brain y Second Brain: es/understand/company-role-second-brain.md
+          - Trabajo de conocimiento: es/use/trabajo-de-conocimiento.md
+          - Template de Company Brain: es/start-here/company-brain-template.md
+          - Del proyecto a la organización: es/start-here/proyecto-a-organizacion.md
           - Estandarizar, Medir, Mejorar: es/start-here/standardize-measure-improve.md
           - Context engineering: es/concepts/context-engineering.md
           - Arquitectura de reglas: es/concepts/ai-rules-architecture.md

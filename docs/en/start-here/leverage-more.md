@@ -46,7 +46,7 @@ this guide documents its choices.
 
 ## Where to next
 
-- [Learning Path](../learning-path.md), the full study sequence.
+- [The route map](../index.md), pick the route that matches your role.
 - [Labs](../labs/index.md), practice creating rules, skills, and validating changes.
 
 ## Official documentation

@@ -32,7 +32,7 @@ flowchart TD
 ### 1. Responsabilidades del equipo central de plataforma (El Core Harness)
 - Mantiene los repositorios template base (`ml-python-base`).
 - Mantiene el motor de sincronización para adaptadores multi-herramienta (`CLAUDE.md`, `AGENTS.md`, `OPENCODE.md`).
-- Opera la infraestructura compartida de evaluación (`ai-agentic-harness-lab`) y las imágenes base de Docker.
+- Opera la infraestructura compartida de evaluación (el Harness Lab) y las imágenes base de Docker.
 - Establece restricciones de seguridad globales, protección de credenciales y límites de gasto de tokens.
 
 ### 2. Responsabilidades de los equipos de dominio (Extensiones de dominio)

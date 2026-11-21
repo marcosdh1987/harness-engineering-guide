@@ -72,6 +72,9 @@ graph LR
 
 ## Ejemplo empresarial concreto: Seguridad en migraciones de base de datos
 
+!!! warning "Escenario ilustrativo"
+    Este ejemplo y sus números (80% de fallas, 10 corridas, 100% de cumplimiento) son un escenario didáctico, no un resultado medido. Hacé tu propia comparación en el [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) antes de citar números.
+
 Un reto frecuente en organizaciones de ingeniería: **los coding agents generan migraciones de base de datos inseguras que bloquean tablas en producción.**
 
 ### El enfoque tradicional (Ad-Hoc)
@@ -98,7 +101,7 @@ flowchart TD
 3. **Mejora del harness**: El equipo escribe una skill gobernada (`.github/skills/safe_db_migration.md`) que instruye patrones de zero-downtime (columnas nullable, backfills por lotes, creación de índices en background).
 4. **Experimento controlado**: El laboratorio de evaluación ejecuta un trial A/B (*Control* vs *Tratamiento con Skill*).
 5. **Validación**: El grupo de tratamiento alcanza el 100% de cumplimiento sin bloqueos de tabla y con atribución confirmada de la skill.
-6. **Conocimiento acumulativo**: La skill se mergea al repositorio compartido y el caso de evaluación se convierte en un test de regresión permanente. La organización no vuelve a sufrir ese fallo.
+6. **Conocimiento acumulativo**: La skill se mergea al repositorio compartido y el caso de evaluación se convierte en un test de regresión permanente. Desde entonces, la suite de regresión detecta ese modo de falla antes de que llegue a la revisión.
 
 ---
 
@@ -173,7 +176,7 @@ Con el tiempo, esta suite se transforma en un **benchmark organizacional para el
 ## Plan de adopción en 4 pasos
 
 1. **Empezar desde una base de Engineering Harness**: Para un developer o equipo de software, cloná [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base) y usalo como punto de inicio avanzado. Provee reglas gobernadas, skills, adapters, gates de calidad y el ciclo de ingeniería común. Para una adopción conceptual, un manager puede empezar por los mismos principios sin operar el repositorio.
-2. **Adaptar la base al equipo**: Mantené la fuente de verdad compartida en `.github/`, entendé las skills por [familia e intención](../use/skills-por-intencion.md) y agregá solo la guía de dominio que el equipo pueda mantener. Usá [Crear tu primera skill](create-your-first-skill.md) para agregar una capacidad y [Usar y modificar skills](use-and-modify-skills.md) para cambiar una existente.
+2. **Adaptar la base al equipo**: Mantené la fuente de verdad compartida en `.github/`, empezá con [pocas skills](../harness-completo/pocas-skills.md) y agregá solo la guía de dominio que el equipo pueda mantener. Usá [Crear tu primera skill](create-your-first-skill.md) para agregar una capacidad y [Usar y modificar skills](use-and-modify-skills.md) para cambiar una existente.
 3. **Medir trabajo representativo**: Configurá sandboxes de ejecución cuando haga falta y capturá los primeros casos internos a partir de fallos, incidentes o fricciones recientes de code review. Usá [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) cuando corresponda una comparación controlada.
 4. **Establecer el ciclo de mejora**: Cuando un agente falle, generá una propuesta, mejorá la regla o skill, medí el impacto, revisá la [proyección de adapters](../reference-implementation/ml-python-base/adapters.md) e incorporá el caso a [regresión](../evaluation/regression-suites.md).
 
@@ -186,7 +189,7 @@ Con el tiempo, esta suite se transforma en un **benchmark organizacional para el
     make check
     ```
 
-    Después leé [Skills por intención](../use/skills-por-intencion.md) para la ruta corta, [Skills gobernadas](../reference-implementation/ml-python-base/skills.md) para el inventario completo y [Diseño de skills](../patterns/skill-design.md) antes de crear o cambiar una skill. La implementación autoritativa permanece en el repositorio clonado.
+    Después leé [Empezá con pocas skills](../harness-completo/pocas-skills.md) para la ruta corta, [Skills gobernadas](../reference-implementation/ml-python-base/skills.md) para el inventario completo y [Diseño de skills](../patterns/skill-design.md) antes de crear o cambiar una skill. La implementación autoritativa permanece en el repositorio clonado.
 
 ---
 
@@ -195,7 +198,7 @@ Con el tiempo, esta suite se transforma en un **benchmark organizacional para el
 Esta guía se respalda en las referencias de ingeniería más relevantes para este camino:
 
 - **[`ml-python-base`](https://github.com/marcosdh1987/ml-python-base)**: Implementación de referencia de un **Harness gobernado** (reglas centralizadas, sincronización de skills, adaptadores multi-herramienta, gates de CI).
-- **[`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: Implementación de referencia de una **Plataforma de evaluación y mejora continua** (ejecución en Docker, atribución, auditorías con LLM, generación de propuestas sanitizadas).
+- **[Harness Lab](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: Implementación de referencia de una **Plataforma de evaluación y mejora continua** (ejecución en Docker, atribución, auditorías con LLM, generación de propuestas sanitizadas).
 
 ---
 

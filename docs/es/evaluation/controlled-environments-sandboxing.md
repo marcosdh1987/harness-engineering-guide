@@ -99,7 +99,7 @@ Asimismo, en [Quantifying infrastructure noise in agentic coding evals (2026)](h
 
 > [!IMPORTANT]
 > **Aclaración sobre el alcance ingenieril**:  
-> Nuestra plataforma de referencia abierta ([`ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab)) no pretende replicar la infraestructura millonaria de los laboratorios de frontera.  
+> Nuestra plataforma de referencia abierta ([Harness Lab](https://github.com/marcosdh1987/ai-agentic-harness-lab)) no pretende replicar la infraestructura millonaria de los laboratorios de frontera.  
 > 
 > En su lugar, adopta los **mismos principios fundamentales** a una escala práctica y accesible para cualquier equipo de ingeniería:
 > - Un contenedor Docker por corrida de evaluación.

@@ -2,12 +2,12 @@
 
 > [!NOTE]
 > **Contenido generado**: Esta página se genera automáticamente a partir del snapshot de la plantilla.
-> - **Commit de referencia**: [d4e673b](https://github.com/marcosdh1987/ml-python-base/commit/d4e673b10064376b40cb165f9a166d0501aca87e) en la rama `main`
-> - **Última sincronización**: `2026-09-08T22:20:01.991439Z`
+> - **Commit de referencia**: [68ed781](https://github.com/marcosdh1987/ml-python-base/commit/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8) en la rama `main`
+> - **Última sincronización**: `2026-11-21T15:48:55.766010Z`
 > - **Artefactos de referencia**:
->   - [skills-lock.json](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/skills-lock.json)
->   - [src/ml_python_base/skills_sync/](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/src/ml_python_base/skills_sync/)
->   - [docs/skills-management.md](https://github.com/marcosdh1987/ml-python-base/blob/d4e673b10064376b40cb165f9a166d0501aca87e/docs/skills-management.md)
+>   - [skills-lock.json](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/skills-lock.json)
+>   - [src/ml_python_base/skills_sync/](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/src/ml_python_base/skills_sync/)
+>   - [docs/skills-management.md](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/docs/skills-management.md)
 > *Nota: Este es un resumen de estudio e índice. La implementación y gobernanza autoritativas permanecen en el repositorio de origen.*
 ## Prevención de desviaciones de configuración
 

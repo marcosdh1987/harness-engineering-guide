@@ -72,7 +72,7 @@ flowchart TB
 - **Evaluadores**: Caja de herramientas con evaluadores objetivos de código, auditores de comportamiento mediante LLMs y evaluación humana calibrada.
 - **Modo de fallo**: La creación de casos de evaluación es manual y no está conectada directamente con los incidentes cotidianos de producción.
 - **Artefactos clave**: Suites de evaluación interna, imágenes base para runners en contenedores, rúbricas de scoring multidimensional, harness de ablaciones.
-- **Ejemplo de referencia**: [`marcosdh1987/ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab).
+- **Ejemplo de referencia**: [Harness Lab](https://github.com/marcosdh1987/ai-agentic-harness-lab).
 
 ---
 

@@ -62,6 +62,6 @@ esta rampa de entrada busca intencionalmente.
 
 ## Referencias
 
-- [Ruta de aprendizaje](../learning-path.md), la secuencia de estudio completa una vez que hiciste el onboarding.
+- [El mapa de rutas](../index.md), elegí tu próxima ruta una vez que hiciste el onboarding.
 - [Herramientas › Claude Code](../tools/claude-code.md), cómo el repo de referencia conecta Claude Code.
 - [Implementación de referencia › ml-python-base](../reference-implementation/ml-python-base/index.md)

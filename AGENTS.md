@@ -4,6 +4,17 @@
 
 This repository hosts the canonical Harness Engineering Guide. It contains bilingual technical documentation, architecture patterns, evaluation methodology, and reference implementation mappings.
 
+## Ecosystem
+
+1. Method: `harness-engineering-guide` (this repository)
+2. Engineering Harness template: `ml-python-base` (mirror of `xmartlabs/sdlc-ml-python-template`)
+3. Knowledge Harness: `company-brain-template`
+4. Engineering Delivery Observatory: `ai-gateway` reference (not public yet)
+5. Evaluation: Harness Lab, `ai-agentic-harness-lab` (mirror of `xmartlabs/sdlc-ml-python-harness-lab`)
+6. Product runtime reference: `ml-langchain-agent` (not public yet)
+
+Use "Harness Lab" in prose. Repository names belong on the lab reference pages and in clone commands.
+
 ## Canonical Commands
 
 - `make check`: Complete quality gate (lint, prose style, reference drift, tests, strict docs build).

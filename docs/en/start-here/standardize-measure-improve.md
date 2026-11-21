@@ -110,7 +110,7 @@ Teams should combine diverse evaluation sources:
 - **Regression Suites**: A growing bank of internal challenges that every harness candidate must satisfy.
 
 > [!NOTE]
-> **Reference Implementation**: [`marcosdh1987/ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab) demonstrates containerized per-run evaluation, automated attribution parsing, and multidimensional validation scoring.
+> **Reference Implementation**: [Harness Lab](https://github.com/marcosdh1987/ai-agentic-harness-lab) demonstrates containerized per-run evaluation, automated attribution parsing, and multidimensional validation scoring.
 
 ---
 

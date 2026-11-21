@@ -47,7 +47,7 @@ la misma forma en que esta guía documenta sus elecciones.
 
 ## Hacia dónde seguir
 
-- [Ruta de aprendizaje](../learning-path.md), la secuencia de estudio completa.
+- [El mapa de rutas](../index.md), elegí la ruta que corresponde a tu rol.
 - [Labs](../labs/index.md), practicá crear reglas, skills y validar cambios.
 
 ## Documentación oficial

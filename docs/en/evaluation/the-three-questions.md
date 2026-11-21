@@ -115,4 +115,4 @@ Teams that adopt this stop arguing from anecdotes. The Slack thread *"the new pr
 - **[Experimental Validity & Ablations](experimental-validity-and-ablations.md)**: variable isolation and condition hashing.
 - **[Regression Suites](regression-suites.md)**: turning release validation into an experiment.
 - **[Behavioral Audits & Scoring](behavioral-audits-and-scoring.md)**: the grader toolbox behind the numbers.
-- **[Agentic Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md)**: the reference implementation of all of the above.
+- **[Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md)**: the reference implementation of all of the above.

@@ -12,7 +12,7 @@ El ciclo de mejora opera a través de dos fronteras sincronizadas: la **Platafor
 
 ```mermaid
 flowchart TB
-    subgraph LAB["1. Plataforma de evaluación (ej. ai-agentic-harness-lab)"]
+    subgraph LAB["1. Plataforma de evaluación (ej. Harness Lab)"]
         RUN["Ejecutar caso de evaluación en Sandbox Docker"]
         ATTR["Capturar atribución estructurada y telemetría"]
         AUD["Generar auditoría de comportamiento con LLM"]

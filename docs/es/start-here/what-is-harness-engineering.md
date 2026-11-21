@@ -92,7 +92,7 @@ flowchart TD
 | **Quality Gates** | Verificaciones automatizadas de solo lectura que bloquean cambios no conformes antes del merge. | `make check`, detección de drift en `uv.lock`, hooks de Git |
 | **Sandboxes controlados** | Entornos de ejecución aislados que evitan efectos colaterales y aseguran reproducibilidad. | Un contenedor Docker por run, usuario no-root, políticas de red |
 | **Observabilidad y atribución** | Telemetría que captura pasos, latencia, costo en tokens y uso exacto de skills. | Logs por pasos, trazas en Langfuse, atribución usado vs disponible |
-| **Suites de evaluación** | Casos reproducibles que miden si los cambios del agente resuelven tareas reales sin introducir regresiones. | Casos personalizados en `ai-agentic-harness-lab`, lanes SWE-bench |
+| **Suites de evaluación** | Casos reproducibles que miden si los cambios del agente resuelven tareas reales sin introducir regresiones. | Casos personalizados en el Harness Lab, lanes SWE-bench |
 
 ---
 
