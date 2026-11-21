@@ -1,10 +1,10 @@
 # Lab Evaluation Workflow
 
-The lab is organized around **four journeys**, one per question a team actually arrives with. Each journey starts on the home screen ("What do you want to learn?") and ends in evidence a team can act on, a verdict with a case matrix, a robustness map, an audit report, or a release decision.
+In the app you start from a guided flow (models and harness, skills, metrics) that asks one question per step and shows a review with the estimated cost before anything is created; see the [Harness Lab overview](index.md). Underneath, every experiment follows one of **four patterns**, one per question a team actually arrives with. Each ends in evidence a team can act on: a verdict with a case matrix, a robustness map, an audit report, or a release decision.
 
 ---
 
-## Journey A, Evaluate a Harness Change (Mode A)
+## Pattern A: evaluate a harness change
 
 *"Does this skill / rule / prompt change actually improve anything?"*
 
@@ -18,7 +18,7 @@ sequenceDiagram
     participant Runner as Runner Container
 
     User->>UI: Pick venue (this lab / a target repo) + factor (add/remove skills, swap harness, full harness…)
-    User->>UI: Pick cases + repetitions (2 exploratory / 5 useful / 10 stronger)
+    User->>UI: Pick cases + repetitions (1 exploratory / 2 to 4 a judgement / 5+ a validation)
     User->>UI: Configure model, prompt variant, budget · Check configuration (preflight)
     UI->>API: Create & launch runs (arms × cases × repetitions)
     API->>API: Design validation — refuses a design the mode cannot answer
@@ -37,7 +37,7 @@ Key properties:
 
 ---
 
-## Journey B, Test Across Repositories (Mode B)
+## Pattern B: test across repositories
 
 *"Does our harness hold up outside the repository it was born in?"*
 
@@ -45,7 +45,7 @@ Same wizard, cross-repo mode: the harness and model stay fixed, each selected re
 
 ---
 
-## Journey C, Audit a Repository (Mode C)
+## Pattern C: audit a repository
 
 *"What can we learn from how this project or team works with AI today?"*, including a client's repository you have never seen.
 
@@ -65,7 +65,7 @@ The natural closing experiment for any audit: **native vs injected**: the reposi
 
 ---
 
-## Journey D, Validate a Harness Release
+## Pattern D: validate a harness release
 
 *"Is v0.7 safe to ship over v0.6?"*
 
@@ -90,12 +90,12 @@ When a run exposes a harness weakness, the loop into the governed template still
 1. Open the run, it leads with its **condition** (experiment, arm, repository @ commit, governance source) before its logs.
 2. Run the **LLM audit** (judged against the governance surface that run actually had) and synthesize **improvement proposals**.
 3. Collect proposals across runs on the **Improvements** screen and generate one **sanitized combined issue** for the governed template (private paths and tokens stripped).
-4. Fix, release, and validate the new version through **Journey D**.
+4. Fix, release, and validate the new version through **Pattern D**.
 
 ---
 
 ### Related Resources
-- **[Agentic Harness Lab Overview](index.md)**
+- **[Harness Lab overview](index.md)**
 - **[The Three Questions (Evaluation Modes)](../../evaluation/the-three-questions.md)**
 - **[Regression Suites](../../evaluation/regression-suites.md)**
 - **[Continuous Harness Improvement](../../adoption/continuous-harness-improvement.md)**

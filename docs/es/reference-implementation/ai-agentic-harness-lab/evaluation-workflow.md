@@ -1,10 +1,10 @@
 # Flujo de evaluación en el Lab
 
-El lab se organiza alrededor de **cuatro recorridos**, uno por cada pregunta con la que un equipo realmente llega. Cada recorrido empieza en la pantalla de inicio ("¿Qué querés aprender?") y termina en evidencia accionable, un veredicto con matriz de casos, un mapa de robustez, un reporte de auditoría o una decisión de release.
+En la aplicación empezás desde un flujo guiado (modelos y harness, skills, métricas) que hace una pregunta por paso y muestra una revisión con el costo estimado antes de crear nada; mirá la [visión general del Harness Lab](index.md). Por debajo, cada experimento sigue uno de **cuatro patrones**, uno por cada pregunta con la que un equipo realmente llega. Cada uno termina en evidencia accionable: un veredicto con matriz de casos, un mapa de robustez, un reporte de auditoría o una decisión de release.
 
 ---
 
-## Recorrido A, Evaluar un cambio del harness (Modo A)
+## Patrón A: evaluar un cambio del harness
 
 *"¿Esta skill / regla / cambio de prompt realmente mejora algo?"*
 
@@ -18,7 +18,7 @@ sequenceDiagram
     participant Runner as Contenedor runner
 
     User->>UI: Elegir sede (este lab / un repo objetivo) + factor (agregar/quitar skills, cambiar harness, harness completo…)
-    User->>UI: Elegir casos + repeticiones (2 exploratorio / 5 útil / 10 más fuerte)
+    User->>UI: Elegir casos + repeticiones (1 exploratoria / 2 a 4 un juicio / 5+ una validación)
     User->>UI: Configurar modelo, variante de prompt, presupuesto · Verificar configuración (preflight)
     UI->>API: Crear y lanzar corridas (brazos × casos × repeticiones)
     API->>API: Validación de diseño — rechaza un diseño que el modo no puede responder
@@ -37,7 +37,7 @@ Propiedades clave:
 
 ---
 
-## Recorrido B, Probar entre repositorios (Modo B)
+## Patrón B: probar entre repositorios
 
 *"¿Nuestro harness se sostiene fuera del repositorio donde nació?"*
 
@@ -45,7 +45,7 @@ El mismo asistente, en modo cross-repo: el harness y el modelo quedan fijos, cad
 
 ---
 
-## Recorrido C, Auditar un repositorio (Modo C)
+## Patrón C: auditar un repositorio
 
 *"¿Qué podemos aprender de cómo este proyecto o equipo trabaja hoy con IA?"*, incluido el repositorio de un cliente que nunca viste.
 
@@ -65,7 +65,7 @@ El experimento natural de cierre de cualquier auditoría: **nativo vs inyectado*
 
 ---
 
-## Recorrido D, Validar un release del harness
+## Patrón D: validar un release del harness
 
 *"¿Es seguro publicar v0.7 sobre v0.6?"*
 
@@ -90,12 +90,12 @@ Cuando una corrida expone una debilidad del harness, el ciclo hacia el template 
 1. Abrir la corrida, encabeza con su **condición** (experimento, brazo, repositorio @ commit, fuente de gobernanza) antes que con sus logs.
 2. Correr la **auditoría LLM** (juzgada contra la superficie de gobernanza que esa corrida realmente tuvo) y sintetizar **propuestas de mejora**.
 3. Reunir propuestas de varias corridas en la pantalla **Improvements** y generar un único **issue combinado y sanitizado** para el template gobernado (rutas privadas y tokens eliminados).
-4. Corregir, publicar release, y validar la versión nueva con el **Recorrido D**.
+4. Corregir, publicar release, y validar la versión nueva con el **Patrón D**.
 
 ---
 
 ### Recursos relacionados
-- **[Visión general de Agentic Harness Lab](index.md)**
+- **[Visión general del Harness Lab](index.md)**
 - **[Las tres preguntas (Modos de evaluación)](../../evaluation/the-three-questions.md)**
 - **[Suites de regresión](../../evaluation/regression-suites.md)**
 - **[Mejora continua del harness](../../adoption/continuous-harness-improvement.md)**

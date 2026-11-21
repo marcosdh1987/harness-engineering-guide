@@ -1,110 +1,143 @@
-# Harness Lab: Plataforma de evaluación
+# Harness Lab
 
 !!! info "Sobre esta página"
-    **Qué vas a aprender:** cómo el plano de evaluación compara configuraciones de harness y convierte fallos en mejoras.
+    **Qué vas a aprender:** qué responde el Harness Lab, cómo empezar en 30 segundos o en 15 minutos, y qué te va a decir y qué no.
 
-    **Para quién:** Harness Engineers, AI champions, tech leads y equipos que ejecutan experimentos controlados.
+    **Para quién:** developers, tech leads, AI champions y Harness Engineers que quieren evidencia en lugar de impresiones.
 
-    **Leela cuando:** necesites entender el lab de referencia después de conocer la diferencia con observabilidad.
+    **Leela cuando:** dudes de una skill, un modelo o una regla y quieras saber si de verdad ayuda.
 
-El **Harness Lab** es la implementación de referencia del **Plano de Evaluación** en Harness Engineering. Proporciona un instrumento empírico para evaluar harnesses de programación con IA, comparar modelos de frontera en tareas reales y alimentar las fallas observadas de regreso a las plantillas de gobernanza compartida.
+Averiguá, con números en lugar de impresiones, si tu configuración de IA para programar funciona, y qué modelo, harness o skill la hace funcionar mejor.
 
-La plataforma existe en dos implementaciones relacionadas:
+Un *harness* es todo lo que rodea a un agente de código y no es el modelo: el archivo de reglas, las skills, los agentes, los hooks, el ciclo de trabajo. Los equipos suelen escribirlo a ojo. El lab lo mide. Traés una tarea, un repositorio o una skill; el lab corre agentes de código sobre eso en contenedores aislados con las configuraciones que elijas, puntúa cada corrida contra chequeos que el agente no escribió y te dice qué tan seguro está.
 
-1. **`sdlc-ml-python-harness-lab`**: La plataforma empresarial activa desarrollada en Xmartlabs, que incorpora verificaciones completas de validez experimental (ADR-0046), exploración de fuentes locales y reportes de auditoría para clientes.
-2. **`ai-agentic-harness-lab`**: La línea base abierta inicial que demostró el aislamiento de ejecuciones en contenedores Docker, hashes de condición y atribución estructurada.
+## Qué podés hacer
 
----
+- **Revisar el harness de tu repositorio** en unos 30 segundos, sin modelo: los ocho chequeos del [chequeo de salud del harness](../../harness-completo/chequeo-de-salud.md).
+- **Comparar modelos** sobre los mismos casos, varias veces cada uno: cuál hace el trabajo, y si el harness ayuda más a un modelo chico que a uno grande.
+- **Medir una skill:** correr los mismos casos con y sin ella, y ver si el agente siquiera la abrió.
+- **Mejorar una skill:** el lab lee las corridas, escribe un borrador de versión 2 que revisás, y prepara versión 1 contra versión 2.
+- **Llevarte lo que funciona:** el harness completo, algunas skills o una sola, copiadas a tu proyecto después de una vista previa.
+- **Mejorar el template compartido:** la evidencia de las corridas se convierte en un issue para `ml-python-base`, y la próxima versión se mide antes de confiar en ella.
 
-## 1. Arquitectura central: El Experimento sobre la Corrida
+## Empezar
 
-Una decisión arquitectónica fundamental del lab es que **la entidad Experimento se sitúa por encima de la Corrida (Run)** (ADR-0033).
+**En 30 segundos, sin modelo.** Cloná el lab y apuntalo a cualquier repositorio local:
 
-Una corrida individual es solo un dato aislado. Un experimento define la pregunta científica *antes* de que comience la ejecución, declara sus brazos, fija la condición de control y rechaza diseños experimentales que el modo declarado no pueda responder.
-
-```mermaid
-flowchart TB
-    subgraph STACK["Arquitectura del Harness Lab"]
-        UI["Web UI<br/>(React / TypeScript / Vite)"] --> API["FastAPI Backend<br/>(SQLModel / SQLite WAL)"]
-        API --> W["Celery Worker (+ Redis)"]
-        W --> RUNNER["Contenedor Runner (uno por corrida)<br/><i>Claude Code · OpenCode · Codex</i>"]
-    end
-
-    EXP["<b>EXPERIMENTO</b><br/>(pregunta · modo · brazos declarados · repeticiones)"] -->|"Se expande en"| RUNS["Corridas etiquetadas por brazo"]
-    RUNS --> RUNNER
-    RUNNER --> ART["Artefactos de corrida<br/>(diff, pasos, llamadas, hash de condición,<br/>huella del harness)"]
-    ART --> SCORE["Registro de Scores<br/>(Hecho / Observación / Juicio)"]
-    ART --> AUDIT["Auditor de comportamiento con LLM"]
-    SCORE & AUDIT --> VERDICT["Veredicto del experimento<br/>+ Matriz de casos (Arreglado / Roto / Sin cambios)"]
-    VERDICT --> FIND["Hallazgos<br/>(Sugeridos por máquina; firmados por personas)"]
-    FIND -->|"Hipótesis"| EXP
+```bash
+git clone https://github.com/marcosdh1987/ai-agentic-harness-lab
+cd ai-agentic-harness-lab
+make harness-check REPO=../tu-proyecto
 ```
 
----
+**La aplicación web, en unos 15 minutos.** Necesitás Docker Desktop, `make`, `git` y `uv`, más una credencial (un token de Claude o tu AI gateway):
 
-## 2. Los tres modos de evaluación
+```bash
+cp .env.example .env      # agregá UNA credencial
+make app-up               # http://localhost:5173
+```
 
-El lab estructura los experimentos en tres modos explícitos (ADR-0028), previniendo afirmaciones causales inválidas:
+La [guía de onboarding](https://github.com/marcosdh1987/ai-agentic-harness-lab/blob/main/docs/onboarding.md) del lab recorre la primera corrida y los problemas más comunes.
 
-- **Modo A (Evaluación de Harness)**: ¿Mejora el rendimiento este cambio de skill, regla, prompt o harness? El repositorio objetivo, el caso de prueba, el modelo y el entorno se mantienen estrictamente constantes; solo varía el harness. Es el único modo que permite sostener una conclusión causal.
-- **Modo B (Validación cruzada entre repositorios)**: ¿Generaliza este harness a diferentes bases de código? Los resultados se desglosan por repositorio y nunca se promedian en una media global engañosa.
-- **Modo C (Auditoría exploratoria de repositorio)**: ¿Qué podemos aprender de cómo trabaja hoy con IA un repositorio desconocido? Genera casos de línea base, observaciones y hallazgos sugeridos, sin emitir un veredicto comparativo.
+## Cómo te guía la aplicación
 
----
+La pantalla de inicio pregunta "¿Qué querés probar hoy?" y ofrece algunas puertas: **modelos y harness**, **skills**, **métricas**, **benchmarks** y **tu repo**. Cada puerta abre un flujo guiado:
 
-## 3. Capacidades verificadas de la plataforma
+- **Una pregunta por paso.** Qué caso, qué agente y modelo, qué harness de base, cuántas repeticiones.
+- **Un diagrama que se enciende** a medida que respondés, así siempre ves dónde estás y podés volver atrás.
+- **Una revisión antes de crear nada,** con el costo estimado a partir de corridas anteriores del mismo caso y modelo. Nada se lanza sin el formulario de lanzamiento de siempre y sus chequeos de validez.
 
-### Preflight de validez de comparaciones (ADR-0046)
+Todas las puertas siguen el mismo ciclo:
 
-Antes de reportar un veredicto comparativo entre dos brazos, el lab ejecuta verificaciones automatizadas de validez:
+<span class="hk-chip">Elegí un caso</span> → <span class="hk-chip">Corré dos configuraciones</span> → <span class="hk-chip">Leé el veredicto</span> → <span class="hk-chip">Quedate con lo que funcionó</span>
 
-- Comprueba que ambos brazos se hayan evaluado sobre conjuntos de casos y commits idénticos.
-- Verifica que las condiciones de infraestructura (límites de sandbox, imágenes Docker) hayan sido constantes.
-- Rechaza comparaciones donde existan factores de confusión (como cambiar el modelo y el harness a la vez) que invaliden la atribución.
+## Seis recorridos, una página cada uno
 
-### Registro de scores con procedencia (ADR-0034, ADR-0038)
+| Querés... | Recorrido |
+| --- | --- |
+| Convertir una idea, un issue de SWE-bench o una tarea de tu repo en un caso de prueba | [Crear un caso](https://github.com/marcosdh1987/ai-agentic-harness-lab/blob/main/docs/journey-create-a-case.md) |
+| Correrlo con distintos modelos, harnesses y skills; repetirlo; continuar una corrida que quedó corta | [Correr y comparar](https://github.com/marcosdh1987/ai-agentic-harness-lab/blob/main/docs/journey-run-and-compare.md) |
+| Saber qué dice un resultado, y cuándo creerle | [Leer los resultados](https://github.com/marcosdh1987/ai-agentic-harness-lab/blob/main/docs/journey-read-results.md) |
+| Auditar tu repositorio o medir tu skill | [Traé tu repo o tu skill](https://github.com/marcosdh1987/ai-agentic-harness-lab/blob/main/docs/journey-bring-your-repo-or-skill.md) |
+| Llevarte el harness, o una skill, a tu proyecto | [Llevalo a casa](https://github.com/marcosdh1987/ai-agentic-harness-lab/blob/main/docs/journey-take-it-home.md) |
+| Convertir lo aprendido en un template mejor | [Mejorar el template](https://github.com/marcosdh1987/ai-agentic-harness-lab/blob/main/docs/journey-improve-the-template.md) |
 
-Las métricas están versionadas (`nombre@version`) y categorizadas explícitamente según su autoridad:
+Los recorridos del lab están en inglés.
 
-- **Hecho (Fact)**: reproducible sin necesidad de juicio (como códigos de salida de procesos o existencia de archivos).
-- **Observación (Observation)**: extraída de artefactos de ejecución (como conteo de pasos o llamadas a herramientas).
-- **Juicio (Judgment)**: opiniones evaluativas emitidas por modelos o humanos (como legibilidad del código o utilidad de una skill).
+## Pocas skills, y que cada eliminación se la gane
 
-### Métricas de trayectoria con DeepEval y auditorías de comportamiento
+Cada skill que el agente puede ver cuesta contexto en cada corrida. El lab lo contó: con 25 skills cargadas, los agentes abrieron solo 3 en 18 corridas con seis modelos. Por eso un proyecto lleva un **skill profile**: `minimal` (7 skills: planificar, depurar, verificar, investigar, revisar) es el default para proyectos nuevos, y `full` conserva todas las skills gobernadas. Los perfiles filtran, nunca borran: volver a activar una skill es una línea.
 
-El lab incorpora la evaluación de trayectorias directamente en el scoring:
+Las pruebas de poda del lab fueron chicas y no mostraron que se pueda sacar una skill gratis. La regla que salió de ahí: sacar una skill se gana con evidencia, y `minimal` crece de a una skill probada por vez (`make add-skill-trial`). Mirá [Empezá con pocas skills](../../harness-completo/pocas-skills.md).
 
-- **Completitud de tarea (Task Completion)**: verificada contra runners de tests objetivos.
-- **Eficiencia de pasos (Step Efficiency)**: proporción de acciones productivas frente a bucles exploratorios.
-- **Corrección de herramientas (Tool Correctness)**: cumplimiento de esquemas y recuperación de errores.
+## Llevarte un harness a casa
 
-### Atribución estructurada y hashes de condición (ADR-0003, ADR-0005)
+`make harness-export` copia a tu repositorio lo que se ganó su lugar, en tres tamaños:
 
-Cada corrida captura un `condition_hash` y una `harness_fingerprint` inmutables. El rastreo de atribución registra qué skills gobernadas estaban disponibles, cuáles leyó realmente el agente y cuáles contribuyeron directamente a resolver la tarea.
+| Qué te llevás | Qué recibís |
+| --- | --- |
+| Una skill | El archivo de la skill en la carpeta de skills de tu herramienta, nada más |
+| Algunas skills y las reglas | Esas skills, el archivo de reglas, los agentes y los documentos de gobernanza |
+| El harness completo | Todas las skills, agentes y reglas con los que corre el lab |
 
-### Hallazgos y evaluación de madurez curada por humanos (ADR-0035)
+Por defecto muestra una vista previa y solo escribe con `APPLY=1`. Se niega a trabajar sobre un repositorio con cambios sin commitear, así la exportación llega como su propio diff, y guarda cualquier archivo tuyo que reemplace al lado del nuevo como `<archivo>.native.bak`. Copiar un harness que ayudó en los casos del lab es una hipótesis sobre tu repositorio, no un resultado: medilo ahí también.
 
-Los logs de auditoría se analizan para detectar patrones de fallo recurrentes. Las debilidades detectadas se presentan en una cola de revisión como hallazgos sugeridos. Un hallazgo requiere revisión y firma humana antes de convertirse en una tarea o suite de regresión.
+## Qué te va a decir el lab, y qué no
 
----
+- Mide un harness y un flujo de trabajo (reglas, skills, hooks, verificación), nunca a una persona. Ningún resultado es por developer.
+- Las repeticiones deciden hasta dónde llega un resultado: una corrida es exploratoria, de dos a cuatro son un juicio, cinco o más son una validación, y cada tasa lleva su intervalo.
+- Un resultado vale para los casos, el modelo y la versión del harness con los que corrió. Cada corrida registra los tres.
 
-## 4. Stack técnico
+## Diseños de evaluación
+
+Cada experimento declara su diseño antes de correr, y el lab rechaza un diseño que no puede responder su pregunta.
+
+| Diseño | La pregunta | Queda fijo | Varía |
+| --- | --- | --- | --- |
+| Validar tu herramienta | Construí un agente, un servidor MCP o un wrapper, y una skill que lo maneja. ¿Funciona de forma confiable? | El sujeto, los casos, dónde corre | Harness y modelo |
+| Evaluar un cambio del harness | ¿Este cambio de skill, regla, flujo o prompt mejora el desempeño? | Dónde corre, los casos, el modelo | La condición del harness |
+| ¿Un modelo más fuerte necesita menos harness? | ¿El efecto del harness se achica a medida que crece el modelo? | Los casos, dónde corre | Nivel de harness y modelo, como grilla |
+| Comparar modelos en un caso | Salió un modelo nuevo: ¿cómo le va en el caso donde probamos el anterior? | El caso, el prompt, los pasos, las repeticiones | El modelo, cada uno con su harness |
+| Auditar un repositorio | ¿Qué podemos aprender de cómo este proyecto trabaja hoy con IA? | Nada; es exploratorio | Nada |
+
+Solo "Evaluar un cambio del harness" puede respaldar una afirmación causal, y solo con suficientes repeticiones por brazo.
+
+## Por dentro
+
+Para quien quiere la mecánica:
+
+- **El experimento está por encima de la corrida.** Una corrida es un dato; un experimento declara primero su pregunta y sus brazos, fija el control y se expande en corridas etiquetadas por brazo.
+- **Chequeos de validez de la comparación:** confirman que los dos brazos corrieron sobre los mismos casos y commits con la misma infraestructura, y rechazan comparaciones donde cambiaron dos cosas a la vez.
+- **Un registro de puntajes con procedencia:** cada métrica está versionada y marcada como *hecho* (reproducible, como un código de salida), *observación* (leída de los artefactos, como la cantidad de pasos) o *juicio* (de un modelo o una persona).
+- **Atribución:** cada corrida registra un hash de condición y una huella del harness, qué skills estaban disponibles, cuáles se abrieron y cuáles ayudaron.
+- **Los hallazgos los firma una persona.** Las debilidades que salen de las auditorías llegan como sugerencias y pasan a ser tareas o casos de regresión solo después de que una persona las firma.
+- **Agentes y modelos:** Claude Code, OpenCode, Codex y Gemini CLI corren como harnesses; el esfuerzo de razonamiento es un parámetro de la corrida; los modelos locales (LM Studio, Ollama) están al lado de los de la nube.
+
+```mermaid
+flowchart LR
+    CASE["Caso<br/>tarea + chequeos que el agente<br/>no escribió"] --> EXP["Experimento<br/>los brazos difieren en una cosa:<br/>modelo · harness · skill · prompt"]
+    EXP --> RUN["Corridas<br/>un contenedor cada una"]
+    RUN --> SCORE["Puntaje<br/>primero los chequeos,<br/>un juez solo donde hace falta"]
+    SCORE --> VERDICT["Veredicto<br/>con su intervalo"]
+    VERDICT --> KEEP["Quedarse con lo que funcionó<br/>harness-export · issue al template"]
+```
 
 | Capa | Tecnología |
-|---|---|
-| **Frontend** | React, TypeScript, Vite, tokens semánticos, iconografía SVG local |
-| **Backend** | Python 3.11+, FastAPI, Pydantic v2, SQLModel, SQLite con modo WAL |
-| **Ejecución** | Celery, Redis, sandboxes aislados en contenedores Docker por corrida |
-| **Evaluación** | Registro de scores, auditor de comportamiento con LLM, adaptador DeepEval |
-| **Telemetría** | LiteLLM AI Gateway, trazabilidad con Langfuse |
-| **Gates de calidad** | `uv`, `ruff`, `pytest`, `make check` |
+| --- | --- |
+| Frontend | React, TypeScript, Vite, design tokens semánticos, set local de íconos SVG |
+| Backend | Python 3.11+, FastAPI, Pydantic v2, SQLModel, SQLite en modo WAL |
+| Ejecución | Celery, Redis, aislamiento con un contenedor Docker por corrida y toolchains preinstaladas |
+| Evaluación | Registro de puntajes, auditor de comportamiento con LLM, adaptador de DeepEval |
+| Telemetría | LiteLLM AI Gateway, tracing con Langfuse |
+| Gates de calidad | `uv`, `ruff`, `pytest`, `make check` |
 
----
+## Repositorios
 
-### Recursos relacionados
+El desarrollo ocurre en [`xmartlabs/sdlc-ml-python-harness-lab`](https://github.com/xmartlabs/sdlc-ml-python-harness-lab), la plataforma de evaluación desarrollada en Xmartlabs. [`marcosdh1987/ai-agentic-harness-lab`](https://github.com/marcosdh1987/ai-agentic-harness-lab) es su espejo público, que se sincroniza en cada versión de upstream; los comandos de esta página usan el espejo.
 
-- **[Flujo de evaluación en el Lab](evaluation-workflow.md)**: recorrido paso a paso de un experimento.
-- **[Las tres preguntas (Modos de evaluación)](../../evaluation/the-three-questions.md)**: metodología de evaluación.
-- **[Harnesses adaptativos y desmantelamiento de scaffolding](../../evaluation/adaptive-harnesses.md)**: retiro de scaffolding obsoleto.
-- **[Repositorio del Lab Empresarial](https://github.com/xmartlabs/sdlc-ml-python-harness-lab)**: plataforma corporativa de evaluación.
-- **[Repositorio de la Línea Base Abierta](https://github.com/marcosdh1987/ai-agentic-harness-lab)**: implementación abierta inicial.
+## Recursos relacionados
+
+- [Flujo de evaluación en el lab](evaluation-workflow.md): los patrones de experimento paso a paso.
+- [Las tres preguntas](../../evaluation/the-three-questions.md): la metodología de evaluación.
+- [Chequeo de salud del harness](../../harness-completo/chequeo-de-salud.md): los ocho chequeos como checklist.
+- [Harnesses adaptativos](../../evaluation/adaptive-harnesses.md): retirar andamiaje que un modelo más fuerte ya no necesita.
