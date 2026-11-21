@@ -24,6 +24,8 @@ plugins:
         es/use/elegi-tu-camino.md: es/index.md
         es/start-here/index.md: es/index.md
         es/learning-path.md: es/index.md
+        en/use/skills-by-intention.md: en/harness-kit/few-skills.md
+        es/use/skills-por-intencion.md: es/harness-completo/pocas-skills.md
 markdown_extensions:
   - admonition
   - toc:
@@ -67,7 +69,8 @@ nav:
           - I work with documents, not code: en/routes/documents-not-code.md
           - I improve the system: en/routes/improve-the-system.md
       - The complete harness:
-          - Skills by intention: en/use/skills-by-intention.md
+          - Overview and starter kit: en/harness-kit/index.md
+          - Start with few skills: en/harness-kit/few-skills.md
           - Tool and task guides:
               - Claude Code basics: en/start-here/claude-code-basics.md
               - Codex: en/start-here/codex.md
@@ -169,7 +172,8 @@ nav:
           - Trabajo con documentos, no código: es/rutas/documentos-no-codigo.md
           - Mejoro el sistema: es/rutas/mejoro-el-sistema.md
       - El harness completo:
-          - Skills por intención: es/use/skills-por-intencion.md
+          - Visión general y kit inicial: es/harness-completo/index.md
+          - Empezá con pocas skills: es/harness-completo/pocas-skills.md
           - Guías por herramienta y tarea:
               - Fundamentos de Claude Code: es/start-here/claude-code-basics.md
               - Codex: es/start-here/codex.md

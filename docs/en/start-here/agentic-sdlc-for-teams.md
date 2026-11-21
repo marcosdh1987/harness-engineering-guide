@@ -173,7 +173,7 @@ Over time, this suite becomes an **organizational benchmark for AI-assisted engi
 ## How to Get Started (The 4-Step Plan)
 
 1. **Start from an Engineering Harness baseline**: For a developer or software team, clone [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base) and use it as the advanced starting point. It provides governed rules, skills, adapters, quality gates, and the common engineering loop. For a conceptual adoption, a manager can start with the same principles without operating the repository.
-2. **Adapt the baseline to your team**: Keep the shared source of truth under `.github/`, understand skills by [family and intention](../use/skills-by-intention.md), and add only the domain guidance your team can own. Use [Create Your First Skill](create-your-first-skill.md) to add a new capability and [Use and Modify Skills](use-and-modify-skills.md) to change an existing one.
+2. **Adapt the baseline to your team**: Keep the shared source of truth under `.github/`, start with [a few skills](../harness-kit/few-skills.md), and add only the domain guidance your team can own. Use [Create Your First Skill](create-your-first-skill.md) to add a new capability and [Use and Modify Skills](use-and-modify-skills.md) to change an existing one.
 3. **Measure representative work**: Set up execution sandboxes where needed and capture your first internal evaluation cases from recent bug fixes, incidents, or PR review friction. Use the [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) when a controlled comparison is justified.
 4. **Establish the improvement loop**: When an agent fails, draft a proposal, improve the rule or skill, measure the delta, review the [adapter projection](../reference-implementation/ml-python-base/adapters.md), and lock the case into [regression](../evaluation/regression-suites.md).
 
@@ -186,7 +186,7 @@ Over time, this suite becomes an **organizational benchmark for AI-assisted engi
     make check
     ```
 
-    Then read [Skills by intention](../use/skills-by-intention.md) for the short route, [Governed Skills](../reference-implementation/ml-python-base/skills.md) for the complete inventory, and [Skill Design](../patterns/skill-design.md) before creating or changing a skill. The authoritative implementation remains in the cloned repository.
+    Then read [Start with few skills](../harness-kit/few-skills.md) for the short route, [Governed Skills](../reference-implementation/ml-python-base/skills.md) for the complete inventory, and [Skill Design](../patterns/skill-design.md) before creating or changing a skill. The authoritative implementation remains in the cloned repository.
 
 ---
 

@@ -173,7 +173,7 @@ Con el tiempo, esta suite se transforma en un **benchmark organizacional para el
 ## Plan de adopción en 4 pasos
 
 1. **Empezar desde una base de Engineering Harness**: Para un developer o equipo de software, cloná [`ml-python-base`](https://github.com/marcosdh1987/ml-python-base) y usalo como punto de inicio avanzado. Provee reglas gobernadas, skills, adapters, gates de calidad y el ciclo de ingeniería común. Para una adopción conceptual, un manager puede empezar por los mismos principios sin operar el repositorio.
-2. **Adaptar la base al equipo**: Mantené la fuente de verdad compartida en `.github/`, entendé las skills por [familia e intención](../use/skills-por-intencion.md) y agregá solo la guía de dominio que el equipo pueda mantener. Usá [Crear tu primera skill](create-your-first-skill.md) para agregar una capacidad y [Usar y modificar skills](use-and-modify-skills.md) para cambiar una existente.
+2. **Adaptar la base al equipo**: Mantené la fuente de verdad compartida en `.github/`, empezá con [pocas skills](../harness-completo/pocas-skills.md) y agregá solo la guía de dominio que el equipo pueda mantener. Usá [Crear tu primera skill](create-your-first-skill.md) para agregar una capacidad y [Usar y modificar skills](use-and-modify-skills.md) para cambiar una existente.
 3. **Medir trabajo representativo**: Configurá sandboxes de ejecución cuando haga falta y capturá los primeros casos internos a partir de fallos, incidentes o fricciones recientes de code review. Usá [Harness Lab](../reference-implementation/ai-agentic-harness-lab/index.md) cuando corresponda una comparación controlada.
 4. **Establecer el ciclo de mejora**: Cuando un agente falle, generá una propuesta, mejorá la regla o skill, medí el impacto, revisá la [proyección de adapters](../reference-implementation/ml-python-base/adapters.md) e incorporá el caso a [regresión](../evaluation/regression-suites.md).
 
@@ -186,7 +186,7 @@ Con el tiempo, esta suite se transforma en un **benchmark organizacional para el
     make check
     ```
 
-    Después leé [Skills por intención](../use/skills-por-intencion.md) para la ruta corta, [Skills gobernadas](../reference-implementation/ml-python-base/skills.md) para el inventario completo y [Diseño de skills](../patterns/skill-design.md) antes de crear o cambiar una skill. La implementación autoritativa permanece en el repositorio clonado.
+    Después leé [Empezá con pocas skills](../harness-completo/pocas-skills.md) para la ruta corta, [Skills gobernadas](../reference-implementation/ml-python-base/skills.md) para el inventario completo y [Diseño de skills](../patterns/skill-design.md) antes de crear o cambiar una skill. La implementación autoritativa permanece en el repositorio clonado.
 
 ---
 
