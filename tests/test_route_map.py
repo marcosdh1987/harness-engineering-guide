@@ -68,3 +68,12 @@ def test_data_blocks_have_no_forbidden_dashes_or_urls():
         raw = json.dumps(load_data(path), ensure_ascii=False)
         assert "--" not in raw and "—" not in raw and "–" not in raw
         assert "http" not in raw and "](" not in raw
+
+
+def test_focus_ring_wins_over_lit_and_selected_styles():
+    """A focused box must look different from an unfocused lit box (WCAG 2.4.7)."""
+    css = Path("docs/stylesheets/extra.css").read_text(encoding="utf-8")
+    focus = css.index(".rm-node.is-lit:focus-visible .rm-box")
+    assert focus > css.index(".rm-node.is-lit .rm-box {")
+    assert focus > css.index(".rm-node.is-selected .rm-box {")
+    assert ".rm-node.is-dim:focus-visible" in css

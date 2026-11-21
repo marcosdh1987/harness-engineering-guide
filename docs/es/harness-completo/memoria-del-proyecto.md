@@ -9,7 +9,7 @@ Unos pocos archivos de texto en el repositorio que las personas y los agentes le
 Un agente empieza cada sesión sin recordar la anterior. Sin una memoria escrita, los mismos datos se redescubren cada vez, despacio y a veces mal. Una memoria chica y cuidada convierte los descubrimientos aislados en algo que puede usar todo el equipo y cualquier herramienta.
 
 !!! info "Nivel de evidencia: implementación de referencia"
-    Un backend de producción (anonimizado) acumuló 29 aprendizajes con fecha en unos dos meses. Sus instrucciones y un hook de inicio de sesión le pedían al agente leer `memory/context.md` y `memory/learnings.md` antes de empezar, y un comando `/retro` agregaba entradas nuevas al final. El Harness Lab y `ml-python-base` usan los mismos tres archivos.
+    Un backend de producción (anonimizado) acumuló unos 30 aprendizajes con fecha en unos dos meses. Sus instrucciones y un hook de inicio de sesión le pedían al agente leer `memory/context.md` y `memory/learnings.md` antes de empezar, y un comando `/retro` agregaba entradas nuevas al final. El Harness Lab y `ml-python-base` usan los mismos tres archivos.
 
 ## Plantilla
 

@@ -108,11 +108,6 @@
   outline: none;
 }
 
-.rm-node:focus-visible .rm-box {
-  stroke: var(--md-accent-fg-color);
-  stroke-width: 3;
-}
-
 .rm-box {
   fill: var(--md-code-bg-color);
   stroke: var(--md-default-fg-color--lighter);
@@ -143,6 +138,19 @@
 
 .rm-node.is-selected .rm-box {
   stroke-dasharray: 6 3;
+}
+
+/* Keyboard focus must win over the lit and selected styles (WCAG 2.4.7). */
+.rm-node:focus-visible .rm-box,
+.rm-node.is-lit:focus-visible .rm-box,
+.rm-node.is-selected:focus-visible .rm-box {
+  stroke: var(--md-accent-fg-color);
+  stroke-width: 4;
+  stroke-dasharray: none;
+}
+
+.rm-node.is-dim:focus-visible {
+  opacity: 1;
 }
 
 .rm-badge {

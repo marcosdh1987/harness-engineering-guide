@@ -9,7 +9,7 @@ Un comando es un atajo corto con nombre que escribe una persona, como `/plan`, `
 Los comandos ponen los momentos importantes del ciclo a una tecla de distancia y hacen que un equipo trabaje de la misma forma sin memorizar procedimientos. Como cada uno es un archivo chico en el repositorio, se revisa y se versiona como código.
 
 !!! info "Nivel de evidencia: implementación de referencia"
-    Un backend de producción (anonimizado) tenía seis comandos, de unas 20 líneas cada uno. Los que acompañaban un hábito que ya existía fueron los más usados: `/adr` aparece unas 30 veces en sus documentos e historial, mientras que `/orchestrate`, para correr agentes en paralelo, aparece unas 6. El Harness Lab y `ml-python-base` traen el mismo núcleo: `/plan`, `/adr`, `/retro`, `/verify`.
+    Un backend de producción (anonimizado) tenía un puñado de comandos, de unas 20 líneas cada uno. Los que acompañaban un hábito que ya existía fueron los más mencionados: el comando de registros de decisión aparece varias veces más en sus documentos e historial que el de correr agentes en paralelo. Son menciones, no invocaciones medidas. El Harness Lab y `ml-python-base` traen el mismo núcleo: `/plan`, `/adr`, `/retro`, `/verify`.
 
 ## Plantilla
 
@@ -50,7 +50,7 @@ Creá un comando para un momento que se repite varias veces por semana: empezar 
 
 ## Qué falló en la práctica
 
-- **Los comandos para hábitos que el equipo todavía no tenía fueron los menos usados.** El comando de decisiones prosperó porque el equipo ya escribía decisiones; el de agentes en paralelo siguió siendo raro. Un comando facilita un hábito; no lo crea.
+- **Los comandos para hábitos que el equipo todavía no tenía fueron los menos mencionados.** El comando de decisiones prosperó porque el equipo ya escribía decisiones; el de agentes en paralelo casi no aparece. Un comando facilita un hábito; no lo crea.
 
 !!! tip "Nivel de evidencia: recomendación de la guía"
     Mantené entre cuatro y seis comandos. Si un comando ocupa más de una pantalla, una parte pertenece a una skill o a `AGENTS.md`.

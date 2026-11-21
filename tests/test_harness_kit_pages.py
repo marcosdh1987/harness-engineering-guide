@@ -112,3 +112,55 @@ def test_kit_index_shows_the_starter_tree_and_routing_table():
             "LEVEL=minimal",
         ):
             assert needle in text, (str(path), needle)
+
+
+def test_skill_folder_table_matches_vendor_docs():
+    """Codex reads .agents/skills; Copilot reads .github/skills (and others)."""
+    for path in (EN_DIR / "index.md", ES_DIR / "index.md"):
+        text = path.read_text(encoding="utf-8")
+        assert ".codex/skills" not in text, path
+        assert "No native skills folder" not in text, path
+        assert "No tiene carpeta nativa" not in text, path
+        assert "| Codex | `.agents/skills/" in text, path
+        assert "| GitHub Copilot | `.github/skills/" in text, path
+
+
+def test_stop_hook_template_cannot_loop():
+    for path in (EN_DIR / "hooks.md", ES_DIR / "hooks.md"):
+        text = path.read_text(encoding="utf-8")
+        assert "stop_hook_active" in text, path
+        assert "/tmp/stop_gate.log" not in text, path
+
+
+def test_backend_figures_are_rounded_and_carry_no_identifiers():
+    exact = [
+        "/orchestrate",
+        "29 dated",
+        "29 aprendizajes",
+        "about 27",
+        "unos 27",
+        "shipped six commands",
+        "tenía seis comandos",
+        "about 30 times",
+        "unas 30 veces",
+    ]
+    for directory in (EN_DIR, ES_DIR):
+        for path in directory.glob("*.md"):
+            text = path.read_text(encoding="utf-8")
+            for needle in exact:
+                assert needle not in text, (str(path), needle)
+
+
+def test_ci_snippet_only_calls_targets_the_makefile_defines():
+    for path in (EN_DIR / "quality-gates.md", ES_DIR / "gates-de-calidad.md"):
+        text = path.read_text(encoding="utf-8")
+        if "make install" in text:
+            assert "\ninstall:" in text, path
+
+
+def test_lab_overview_states_setup_for_the_30_second_check():
+    lab = Path("docs/{}/reference-implementation/ai-agentic-harness-lab/index.md")
+    assert "once installed" in Path(str(lab).format("en")).read_text(encoding="utf-8")
+    assert "una vez instalado" in Path(str(lab).format("es")).read_text(
+        encoding="utf-8"
+    )

@@ -9,7 +9,7 @@ A command is a short, named shortcut a person types, such as `/plan`, `/adr`, `/
 Commands put the important moments of the loop one keystroke away, and they make a team work the same way without memorizing procedures. Because each one is a small file in the repository, it is reviewed and versioned like code.
 
 !!! info "Evidence level: reference implementation"
-    A production backend (anonymized) shipped six commands, each about 20 lines long. The ones tied to an existing habit were used most: `/adr` appears about 30 times across its documents and history, while `/orchestrate`, for running parallel agents, appears about 6 times. The Harness Lab and `ml-python-base` ship the same core: `/plan`, `/adr`, `/retro`, `/verify`.
+    A production backend (anonymized) shipped a handful of commands, each about 20 lines long. The ones tied to an existing habit were referenced most: the decision-record command shows up several times more often in its documents and history than the one for running parallel agents. These are mentions, not measured invocations. The Harness Lab and `ml-python-base` ship the same core: `/plan`, `/adr`, `/retro`, `/verify`.
 
 ## Template
 
@@ -50,7 +50,7 @@ Create a command for a moment that happens several times a week: starting a plan
 
 ## What failed in practice
 
-- **Commands for habits the team did not have yet were used least.** The decision command thrived because the team already wrote decisions; the parallel-agents command stayed rare. A command makes a habit easier; it does not create one.
+- **Commands for habits the team did not have yet were referenced least.** The decision command thrived because the team already wrote decisions; the parallel-agents command was rarely mentioned. A command makes a habit easier; it does not create one.
 
 !!! tip "Evidence level: guide recommendation"
     Keep four to six commands. If a command grows past one screen, part of it belongs in a skill or in `AGENTS.md`.

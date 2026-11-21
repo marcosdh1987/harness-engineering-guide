@@ -3,7 +3,7 @@
 Las skills se llevan la atención, pero en los proyectos de referencia la mayor parte del valor de todos los días vino de piezas más simples: un archivo de reglas corto, una memoria del proyecto, registros de decisión de una página, planes aprobados, unos pocos comandos y hooks, y un gate que puede fallar. Esta sección documenta cada pieza con una plantilla para copiar.
 
 !!! info "Nivel de evidencia: implementación de referencia"
-    En un backend de producción (anonimizado), durante unos dos meses (alrededor de 1.000 commits), lo que más escribieron las personas y los agentes fueron registros de decisión (más de 100) y planes (unos 27). Su catálogo de skills pasó de 27 skills sueltas a 9 puntos de entrada. Es un equipo y un código: leelo como una señal de dónde está el valor, no como un benchmark.
+    En un backend de producción (anonimizado), durante unos dos meses (alrededor de 1.000 commits), lo que más escribieron las personas y los agentes fueron registros de decisión (más de 100) y planes (más de dos docenas). Su catálogo de skills pasó de 27 skills sueltas a 9 puntos de entrada. Es un equipo y un código: leelo como una señal de dónde está el valor, no como un benchmark.
 
 ## El kit inicial
 
@@ -126,15 +126,15 @@ Las siete skills iniciales son el nivel `minimal` del template. [Empezá con poc
 | `writing-plans` | [.github/skills-external/writing-plans/SKILL.md](https://github.com/marcosdh1987/ml-python-base/blob/main/.github/skills-external/writing-plans/SKILL.md) |
 | `requesting-code-review` | [.github/skills-external/requesting-code-review/SKILL.md](https://github.com/marcosdh1987/ml-python-base/blob/main/.github/skills-external/requesting-code-review/SKILL.md) |
 
-Cada herramienta lee las skills desde su propia carpeta. Estas son las carpetas a las que proyecta el template de referencia; revisá la documentación de tu herramienta por si cambiaron:
+Cada herramienta lee las skills desde sus propias carpetas. Estas son las carpetas del repositorio que documenta cada proveedor (revisadas en noviembre de 2026); `.agents/skills/` la leen Codex, Copilot y Antigravity, así que es una buena opción por defecto si tu equipo usa varias herramientas:
 
 | Herramienta | Carpeta |
 | --- | --- |
 | Claude Code | `.claude/skills/<nombre>/SKILL.md` |
 | OpenCode | `.opencode/skills/<nombre>/SKILL.md` |
-| Codex | `.codex/skills/<nombre>/SKILL.md` |
+| Codex | `.agents/skills/<nombre>/SKILL.md` ([docs](https://developers.openai.com/codex/skills)) |
 | Antigravity | `.agents/skills/<nombre>/SKILL.md` |
-| GitHub Copilot | No tiene carpeta nativa de skills: poné las reglas y la tabla de ruteo en `.github/copilot-instructions.md` |
+| GitHub Copilot | `.github/skills/<nombre>/SKILL.md`, o `.claude/skills/` o `.agents/skills/` ([docs](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills)) |
 
 En el template, esas carpetas por herramienta son symlinks que genera `make sync-skills`, así que si las descargás desde GitHub recibís una ruta y no la skill. Copiá desde la fuente gobernada:
 

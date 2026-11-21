@@ -9,7 +9,7 @@ A few plain files in the repository that people and agents read at the start of 
 An agent starts every session without memory of the last one. Without a written memory, the same facts are rediscovered every time, slowly and sometimes wrongly. A small, tended memory turns one-off discoveries into an asset the whole team and every tool can use.
 
 !!! info "Evidence level: reference implementation"
-    A production backend (anonymized) kept 29 dated learnings over about two months. Its instructions and a session-start hook told the agent to read `memory/context.md` and `memory/learnings.md` before starting work, and a `/retro` command appended new entries at the end. The Harness Lab and `ml-python-base` use the same three files.
+    A production backend (anonymized) kept about 30 dated learnings over about two months. Its instructions and a session-start hook told the agent to read `memory/context.md` and `memory/learnings.md` before starting work, and a `/retro` command appended new entries at the end. The Harness Lab and `ml-python-base` use the same three files.
 
 ## Template
 

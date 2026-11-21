@@ -9,7 +9,7 @@ Una spec (un diseño) dice qué vas a construir y por qué. Un plan dice cómo, 
 Separar las decisiones de la ejecución permite que un agente haga una tarea larga sin desviarse, que una persona revise el diseño una vez en lugar de cada diff, y que el trabajo se pueda retomar cuando una sesión se corta a la mitad. Cuando el plan lleva las decisiones, la ejecución puede correr en un modelo más barato o repartirse entre agentes.
 
 !!! info "Nivel de evidencia: implementación de referencia"
-    Un backend de producción (anonimizado) guardó unos 27 planes en `docs/plans/` en dos meses. Su skill de planificación (`plan_and_execute_feature`, también en `ml-python-base`) tiene un modo `execute_only`: con un plan aprobado, saltea las fases de planificación y va directo a ejecutar, así el diseño no se reabre.
+    Un backend de producción (anonimizado) guardó más de dos docenas de planes en `docs/plans/` en dos meses. Su skill de planificación (`plan_and_execute_feature`, también en `ml-python-base`) tiene un modo `execute_only`: con un plan aprobado, saltea las fases de planificación y va directo a ejecutar, así el diseño no se reabre.
 
 ## Plantilla
 
@@ -62,7 +62,7 @@ No los uses para tareas chicas y claras: un typo no necesita ninguno. Una tarea 
 
 ## Qué falló en la práctica
 
-- **El gate de diseño se nombraba más de lo que se usaba.** En el backend de producción, la skill de brainstorming (que bloquea el código hasta que se aprueba un diseño) aparecía en todos los archivos de instrucciones, pero solo se escribieron 7 specs de diseño en el mismo período en que se escribieron más de 100 registros de decisión y unos 27 planes. La mayor parte del trabajo fue por el camino barato, y eso estuvo bien; el error sería creer que el gate protegía trabajo que nunca vio.
+- **El gate de diseño se nombraba más de lo que se usaba.** En el backend de producción, la skill de brainstorming (que bloquea el código hasta que se aprueba un diseño) aparecía en todos los archivos de instrucciones, pero solo se escribieron 7 specs de diseño en el mismo período en que se escribieron más de 100 registros de decisión y más de dos docenas de planes. La mayor parte del trabajo fue por el camino barato, y eso estuvo bien; el error sería creer que el gate protegía trabajo que nunca vio.
 - **Los planes que reabren el diseño a mitad de camino** convierten la ejecución en una sesión de diseño nueva, sin la revisión que tuvo la primera.
 
 !!! tip "Nivel de evidencia: recomendación de la guía"

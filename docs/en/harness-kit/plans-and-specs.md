@@ -9,7 +9,7 @@ A spec (a design) says what you will build and why. A plan says how, step by ste
 Separating decisions from execution lets an agent run a long task without drifting, lets a person review the design once instead of every diff, and makes the work resumable when a session ends halfway through. When the plan carries the decisions, execution can run on a cheaper model or be split across agents.
 
 !!! info "Evidence level: reference implementation"
-    A production backend (anonymized) kept about 27 plans in `docs/plans/` over two months. Its planning skill (`plan_and_execute_feature`, also in `ml-python-base`) has an `execute_only` mode: given an approved plan, it skips the planning phases and goes straight to execution, so the design is not reopened.
+    A production backend (anonymized) kept more than two dozen plans in `docs/plans/` over two months. Its planning skill (`plan_and_execute_feature`, also in `ml-python-base`) has an `execute_only` mode: given an approved plan, it skips the planning phases and goes straight to execution, so the design is not reopened.
 
 ## Template
 
@@ -62,7 +62,7 @@ Skip them for small and clear tasks: a typo needs neither. A bounded task gets a
 
 ## What failed in practice
 
-- **The design gate was named more than it was used.** In the production backend, the brainstorming skill (which blocks code until a design is approved) was referenced in every instruction file, yet only 7 design specs were written in the same period that produced over 100 decision records and about 27 plans. Most work went through the cheaper path, which was fine; the mistake would be to believe the gate protected work it never saw.
+- **The design gate was named more than it was used.** In the production backend, the brainstorming skill (which blocks code until a design is approved) was referenced in every instruction file, yet only 7 design specs were written in the same period that produced over 100 decision records and more than two dozen plans. Most work went through the cheaper path, which was fine; the mistake would be to believe the gate protected work it never saw.
 - **Plans that reopen the design mid-way** turn execution into a new design session, without the review the first one had.
 
 !!! tip "Evidence level: guide recommendation"

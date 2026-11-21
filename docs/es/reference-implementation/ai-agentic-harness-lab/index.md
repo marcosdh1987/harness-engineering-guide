@@ -22,7 +22,7 @@ Un *harness* es todo lo que rodea a un agente de código y no es el modelo: el a
 
 ## Empezar
 
-**En 30 segundos, sin modelo.** Cloná el lab y apuntalo a cualquier repositorio local:
+**En unos 30 segundos por corrida, sin modelo.** Necesitás `git`, `uv` y `make`; cada chequeo tarda unos 30 segundos una vez instalado. Cloná el lab y apuntalo a cualquier repositorio local:
 
 ```bash
 git clone https://github.com/marcosdh1987/ai-agentic-harness-lab

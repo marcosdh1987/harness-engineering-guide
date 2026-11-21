@@ -16,17 +16,23 @@ El "todos los tests pasan" de un agente vale lo que vale el comando que hay detr
 Un gate mínimo en un `Makefile`, de solo lectura por diseño:
 
 ```make
-# Fixes are a separate, explicit step.
-fix:
-	ruff check --fix src tests
-	ruff format src tests
+install:
+	uv sync
+
+# Fast checks: format and lint. Hooks can run this in seconds.
+lint:
+	uv run ruff format --check src tests
+	uv run ruff check src tests
 
 # The gate never writes. It fails when anything fails.
-check:
-	ruff format --check src tests
-	ruff check src tests
-	mypy src
-	pytest
+check: lint
+	uv run mypy src
+	uv run pytest
+
+# Fixes are a separate, explicit step.
+fix:
+	uv run ruff check --fix src tests
+	uv run ruff format src tests
 ```
 
 Usá el equivalente de tu stack (`npm run check`, `./gradlew check`). Después hacé que CI corra exactamente el mismo target:
@@ -40,6 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
       - run: make install
       - run: make check
 ```

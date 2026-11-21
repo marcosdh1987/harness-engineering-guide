@@ -12,7 +12,7 @@ Las reglas escritas en prosa son consejos: un modelo puede saltearlas, sobre tod
     Un backend de producción (anonimizado) usaba en Claude Code tres tipos de hooks y permisos: un hook de inicio de sesión que imprimía el ciclo de trabajo y apuntaba a `memory/`; un hook de cierre que, si había cambiado código, le recordaba al agente verificar, actualizar la documentación y registrar lo aprendido; y permisos que piden confirmación antes de cada commit, push, merge o borrado de rama. Su configuración de OpenCode usaba un plugin que corría el formateador después de cada edición y `make check` cuando la sesión quedaba inactiva.
 
 !!! info "Nivel de evidencia: industria"
-    En Claude Code, los hooks se configuran en `settings.json`. Un hook que termina con código 2 bloquea la acción y su salida de error se le muestra al modelo, que tiene que resolverla; un hook que termina con 0 solo agrega un mensaje. Mirá la [documentación de hooks de Claude Code](https://docs.anthropic.com/en/docs/claude-code/hooks).
+    En Claude Code, los hooks se configuran en `settings.json`. Lo que imprime un hook de `SessionStart` se suma al contexto que ve el modelo. Un hook de `Stop` que termina con código 2 manda al agente a seguir trabajando, con la salida de error como motivo. El campo de entrada `stop_hook_active` vale true cuando el agente ya está continuando por un stop hook, y la documentación pide revisarlo para que un hook no bloquee por una condición que nunca se va a resolver. Mirá la [documentación de hooks de Claude Code](https://code.claude.com/docs/en/hooks).
 
 ## Plantilla
 
@@ -52,17 +52,25 @@ Verify with make check. Record decisions in docs/adr/ and lessons in memory/.
 EOF
 ```
 
-Un hook que hace cumplir, `.claude/hooks/stop_gate.sh`: si cambió el código y el gate falla, el agente todavía no puede terminar.
+Un hook que hace cumplir, `.claude/hooks/stop_gate.sh`: si cambió el código y el chequeo rápido falla, el agente vuelve a arreglarlo, una vez. Lee `stop_hook_active` para no bloquear dos veces seguidas, y usa el target rápido `lint` de [Gates de calidad](gates-de-calidad.md) para correr en segundos.
 
 ```bash
 #!/usr/bin/env bash
 set -uo pipefail
-# Only gate when source or tests changed in this session.
+input="$(cat)"
+# Already continuing because of this hook: let the agent stop, so a failure
+# it cannot fix never keeps the session running.
+if printf '%s' "$input" | grep -q '"stop_hook_active": *true'; then
+  exit 0
+fi
+# Only gate when source or tests have uncommitted changes.
 if [ -z "$(git status --porcelain -- src tests 2>/dev/null)" ]; then
   exit 0
 fi
-if ! make check >/tmp/stop_gate.log 2>&1; then
-  echo "make check fails. Fix it (see /tmp/stop_gate.log) before finishing." >&2
+log="$(mktemp)"
+# A fast, reliable target; the full gate runs in CI.
+if ! make lint >"$log" 2>&1; then
+  echo "make lint fails (log: $log). Fix it before finishing." >&2
   exit 2
 fi
 exit 0
@@ -81,6 +89,7 @@ No uses hooks que bloquean para chequeos lentos o inestables. Un hook que bloque
 ## Cómo saber si está sano
 
 - Al menos un hook puede bloquear (termina con 2 o devuelve una decisión de bloqueo).
+- Cada hook que bloquea revisa `stop_hook_active`, o algo equivalente, para no mantener una sesión corriendo para siempre.
 - Cada hook corre en pocos segundos.
 - Los hooks viven en la configuración del proyecto, bajo control de versiones, no solo en la máquina de una persona.
 - Commit, push, merge y borrado de ramas piden confirmación antes de correr.
