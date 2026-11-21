@@ -70,7 +70,7 @@ flowchart LR
 - **[Agentic SDLC Maturity Model](https://marcosdh1987.github.io/harness-engineering-guide/en/adoption/maturity-model/)**: Progression from Level 0 (Ad-hoc AI) to Level 5 (Continuously Improving Agentic SDLC).
 - **[Controlled Environments & Sandboxing](https://marcosdh1987.github.io/harness-engineering-guide/en/evaluation/controlled-environments-sandboxing/)**: Why reproducible execution requires container isolation, backed by frontier lab research.
 - **[Building an Internal Evaluation Suite](https://marcosdh1987.github.io/harness-engineering-guide/en/adoption/internal-evaluation-suite/)**: Encoding company architecture and incident learnings into an organizational benchmark.
-- **[Choose your path](https://marcosdh1987.github.io/harness-engineering-guide/en/use/choose-your-path/)**: Find an entry point by role or goal.
+- **[Route map](https://marcosdh1987.github.io/harness-engineering-guide/en/)**: Pick a route by role and see which pieces of the ecosystem it uses.
 
 ---
 

@@ -61,6 +61,6 @@ on-ramp intentionally does.
 
 ## References
 
-- [Learning Path](../learning-path.md), the full study sequence once you've onboarded.
+- [The route map](../index.md), pick your next route once you have onboarded.
 - [Tools › Claude Code](../tools/claude-code.md), how the reference repo wires Claude Code.
 - [Reference Implementation › ml-python-base](../reference-implementation/ml-python-base/index.md)
