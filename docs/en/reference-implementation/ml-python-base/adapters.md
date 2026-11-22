@@ -3,7 +3,7 @@
 > [!NOTE]
 > **Generated content**: This page is automatically generated from the template snapshot.
 > - **Reference Commit**: [68ed781](https://github.com/marcosdh1987/ml-python-base/commit/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8) on branch `main`
-> - **Last Synced**: `2026-11-21T15:48:55.766010Z`
+> - **Last Synced**: `2026-11-22T05:11:00.364951Z`
 > - **Reference Artifacts**:
 >   - [adapters/](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/)
 >   - [CLAUDE.md](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/CLAUDE.md)
@@ -28,10 +28,10 @@ Each adapter is composed of two distinct regions:
 | Adapter / Template Name | Path | Target Tool | Link |
 |---|---|---|---|
 | `registry.toml` | `adapters/registry.toml` | Multiple | [Link](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/registry.toml) |
-| `template: skills_catalog.md.j2` | `adapters/templates/skills_catalog.md.j2` | Multiple | [Link](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/templates/skills_catalog.md.j2) |
 | `template: claude.md.j2` | `adapters/templates/claude.md.j2` | Claude Code | [Link](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/templates/claude.md.j2) |
 | `template: opencode.md.j2` | `adapters/templates/opencode.md.j2` | OpenCode | [Link](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/templates/opencode.md.j2) |
 | `template: _skills_block.j2` | `adapters/templates/_skills_block.j2` | Multiple | [Link](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/templates/_skills_block.j2) |
-| `template: agents.md.j2` | `adapters/templates/agents.md.j2` | Codex | [Link](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/templates/agents.md.j2) |
-| `template: gemini.md.j2` | `adapters/templates/gemini.md.j2` | Antigravity | [Link](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/templates/gemini.md.j2) |
 | `template: copilot.md.j2` | `adapters/templates/copilot.md.j2` | GitHub Copilot | [Link](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/templates/copilot.md.j2) |
+| `template: gemini.md.j2` | `adapters/templates/gemini.md.j2` | Antigravity | [Link](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/templates/gemini.md.j2) |
+| `template: agents.md.j2` | `adapters/templates/agents.md.j2` | Codex | [Link](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/templates/agents.md.j2) |
+| `template: skills_catalog.md.j2` | `adapters/templates/skills_catalog.md.j2` | Multiple | [Link](https://github.com/marcosdh1987/ml-python-base/blob/68ed7816a2e312d6ec65167b30e3e24dc6d8c5f8/adapters/templates/skills_catalog.md.j2) |
